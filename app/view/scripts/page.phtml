@@ -1,0 +1,173 @@
+<script src="system/javascript/bootstrap-tabs.js" type="text/javascript"></script>
+<div class="page-header">
+    <h2>
+	<?php
+	    if($this->action == 'new')
+		echo "Create Page";
+	    else
+		echo "Edit Page";
+	?>
+    </h2>
+</div>
+<form class="form-horizontal" method="post">
+    <div class="tabbable">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#tab-page">Page</a></li>
+	    <li><a data-toggle="tab" href="#tab-content">Content</a></li>
+	    <li><a data-toggle="tab" href="#tab-permission">Permissions</a></li>
+	    <li><a data-toggle="tab" href="#tab-inherit-permission">Inherit Permissions</a></li>
+	    <li><a data-toggle="tab" href="#tab-info">Information</a></li>
+	    <li><a data-toggle="tab" href="#tab-history">History</a></li>
+	</ul>
+	<div class="tab-content">
+	    <div class="tab-pane active" id="tab-page">
+		<fieldset>
+		    <div class="control-group">
+			<label class="control-label" for="content-title">Seite</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span2" id="content-title" size="255" name="page_parent" value="<?= $this->parent ?>">
+			    <p class="help-block">
+				Parent Page
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
+			<label class="control-label" for="page-name">Name</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span9" id="page-name" name="page_title" size="255" value="<?= $this->title ?>">
+			    <p class="help-block">
+				Name of Page.
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
+			<label class="control-label" for="page-alias">Alias</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span9" id="page-alias" name="page_alias" size="255" value="<?= $this->alias ?>">
+			    <p class="help-block">
+				Alias for Page.
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
+			<label class="control-label" for="page-tooltip">Tooltip</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span9" id="page-tooltip" name="tooltip" value="<?= $this->tooltip ?>">
+			    <p class="help-block">
+				Tooltip for Page.
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
+			<label class="control-label" for="content-icon">Icon</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span2" id="content-icon" size="255" value="<?= $this->icon ?>">
+			    <p class="help-block">
+				Icon for Tree
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
+			<label class="control-label" for="content-symlink">Symlink</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span2" id="content-symlink" size="255" value="<?= $this->symlink ?>">
+			    <p class="help-block">
+				Symlink to other page
+			    </p>
+			</div>
+		    </div>
+		</fieldset>
+	    </div>
+	    <div class="tab-pane" id="tab-content">
+		<div class="control-group">
+		    <label class="control-label" for="content-title">Standard Position für Inhalt:</label>
+		    <div class="controls">
+			<select>
+			    <option value="">am Anfang</option>
+			    <option value="">am Ende</option>
+			</select>
+			<p class="help-block">
+			    Page
+			</p>
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="optionsCheckboxList">Options:</label>
+		    <div class="controls">
+			<label class="checkbox">
+			    <input type="checkbox" name="contentcollapse" value="1" />
+			    Inhalte zusammen geklappt anzeigen
+			</label>
+
+			<p class="help-block"><strong>Note:</strong> Foo Bar Hello World.</p>
+
+		    </div>
+		</div>
+	    </div>
+	    <div class="tab-pane" id="tab-permission">
+		<?php
+		echo $this->partial("rights.phtml");
+		?>
+	    </div>
+	    <div class="tab-pane" id="tab-inherit-permission">
+		<div class="control-group">
+		    <label class="control-label" for="optionsCheckboxList">Options:</label>
+		    <div class="controls">
+			<label class="checkbox">
+			    <input type="checkbox" name="subinheritrights" value="1" />
+			    enable inherit rights for subpages and contents
+			</label>
+
+			<label class="checkbox">
+			    <input type="checkbox" name="subinheritrightseditable" value="1" />
+			    enable edit of rights for these pages and contents
+			</label>
+			<label class="checkbox">
+			    <input type="checkbox" name="subinheritrightsdisable" value="1" />
+			    disable inherit rights for subpages and contents
+			</label>
+			<p class="help-block"><strong>Note:</strong> Foo Bar Hello World.</p>
+
+		    </div>
+		</div>
+
+		<?php
+		echo $this->partial("rights.phtml");
+		?>
+	    </div>
+	    <div class="tab-pane" id="tab-info">
+		<div class="control-group">
+		    <label class="control-label" for="content-title">Created By</label>
+		    <div class="controls">
+			<span class="input-xlarge uneditable-input">admin</span>
+			<p class="help-block">
+			    username
+			</p>
+		    </div>
+		</div>
+		<div class="control-group">
+		    <label class="control-label" for="content-title">Created at</label>
+		    <div class="controls">
+			<span class="input-xlarge uneditable-input">20120606</span>
+			<p class="help-block">
+			    creation date
+			</p>
+		    </div>
+		</div>
+	    </div>
+	    <div class="tab-pane" id="tab-history">
+	    </div>
+	</div>
+    </div>
+    <div class="form-actions">
+	<button class="btn btn-primary" type="submit" name="button" value="save">Save</button>&nbsp;
+	<button class="btn" type="submit" name="button" value="save_and_close">Save and Close</button>&nbsp;
+	<button class="btn btn-danger" type="submit" name="button" value="close">Close</button>&nbsp;
+    </div>
+</form>

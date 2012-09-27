@@ -1,0 +1,267 @@
+<?php
+/**
+ * load config
+ */
+$config = Zend_Registry::get('config');
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<title>Knowledgeroot</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<base href="<?= $config->base->base_url ?>" />
+	<?php echo $this->layout()->header; ?>
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+	<style type="text/css">
+	    body {
+		padding-top: 60px;
+	    }
+
+
+	    /* Footer
+	    -------------------------------------------------- */
+	    .footer {
+		background-color: #eee;
+		min-width: 940px;
+		padding: 30px 0;
+		text-shadow: 0 1px 0 #fff;
+		border-top: 1px solid #e5e5e5;
+		-webkit-box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		-moz-box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		/*          box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		*/}
+	    .footer p {
+		color: #555;
+	    }
+	</style>
+
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+	<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- load the dojo toolkit base -->
+	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dojo/dojo.js"
+		djConfig="parseOnLoad: false, async:true">
+	</script>
+
+	<style type="text/css">
+	    @import "http://ajax.googleapis.com/ajax/libs/dojo/1.8.0/dijit/themes/claro/claro.css";
+	</style>
+    </head>
+
+    <body class="claro">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="navbar-inner">
+
+		<div class="container-fluid">
+		    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		    </button>
+		    <a class="brand" href="#"><img src="img/home.png" width="17" style="margin-right: 5px;" /><?= $config->base->title ?></a>
+
+			<ul class="nav">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				    <i class="icon-plus icon-white"></i>&nbsp;<strong>New</strong>
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <li><a href="page/new">Page</a></li>
+				    <li><a href="content/new">Content</a></li>
+				    <li><a href="#">File</a></li>
+				    <?php /* TODO if($_SESSION['admin'] == 1) { ?>
+				      <li class="divider"></li>
+				      <li><a href="index.php?action=adduser">User</a></li>
+				      <li><a href="index.php?action=addgroup">Group</a></li>
+				      <?php } */ ?>
+				</ul>
+			    </li>
+			    <li class="divider-vertical"></li>
+			</ul>
+
+
+			<form class="navbar-search pull-left" action="index.php" method="post">
+			    <input id="searchquery" class="search-query span2" style="background-image:url('img/search.png'); background-repeat: no-repeat; background-position: 4px 4px; padding-left: 30px;" type="text" placeholder="Suche" name="search" value="" />
+			    <input type="hidden" name="submit" value="GO" />
+			    <script>
+				$('#searchquery').on('focusin focusout', function () {
+				    $('#searchquery').toggleClass('span2 span5');
+				})
+			    </script>
+			</form>
+			<ul class="nav pull-right">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown">
+				<a href="#"
+				   class="dropdown-toggle"
+				   data-toggle="dropdown">
+				    <i class="icon-flag icon-white"></i>&nbsp;
+				    Languages
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <?php
+				    $translation = Knowledgeroot_Registry::get('translate');
+
+				    foreach ($translation->getTranslations() as $key => $value) {
+					echo '<li><a href="./language/' . $key . '">' . $key . '</a></li>';
+				    }
+				    ?>
+				</ul>
+			    </li>
+			</ul>
+			<script>
+			    $('.dropdown-toggle').dropdown();
+			</script>
+			<ul class="nav pull-right">
+			    <?php
+			    $userSession = new Zend_Session_Namespace('user');
+			    if ($userSession->valid) {
+				?>
+    			    <ul class="nav pull-right">
+    				<li class="divider-vertical"></li>
+    				<li class="dropdown">
+    				    <a href="#"
+    				       class="dropdown-toggle"
+    				       data-toggle="dropdown">
+    					<i class="icon-user icon-white"></i>&nbsp;
+					    <?= $userSession->name ?>
+    					<b class="caret"></b>
+    				    </a>
+    				    <ul class="dropdown-menu">
+    					<li><a href="settings"><i class="icon-cog"></i>&nbsp;Settings</a></li>
+    					<li><a href="logout"><i class="icon-user"></i>&nbsp;Logout</a></li>
+    				    </ul>
+    				</li>
+    			    </ul>
+				<?php
+			    } else {
+				?>
+    			    <li><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;Login</a></li>
+				<?php
+			    }
+			    ?>
+			</ul>
+			<?php echo $this->layout()->topNavi; ?>
+
+		</div>
+	    </div> <!-- /topbar -->
+	</div>
+
+	<div class="container-fluid">
+	    <div class="row-fluid">
+		<div class="span3">
+		    <div class="container-fluid">
+			<div class="sidebar">
+			    <div class="well">
+				<div class="btn-group">
+				    <a class="btn" href="#"><i class="icon-refresh"></i></a>
+				    <a class="btn" href="#"><i class="icon-plus"></i></a>
+				    <a class="btn" href="#"><i class="icon-minus"></i></a>
+				</div>
+				<script type="text/javascript">
+				    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
+
+					var store = new dojo.data.ItemFileReadStore({
+					    url: "./page/jsontree"
+					});
+
+					var treeModel = new dijit.tree.ForestStoreModel({
+					    store: store,
+					    query: {"type": "root"},
+					    rootId: "root",
+					    rootLabel: "Knowledgeroot",
+					    childrenAttrs: ["children"]
+					});
+
+					new dijit.Tree({
+					    model: treeModel,
+					    showRoot: false,
+					    persist: true,
+					    onClick: function(item){
+						// Get the URL from the item, and navigate to it
+						location.href = item.url;
+					    }
+					}, "treeOne");
+				    });
+				</script>
+
+				<div id="treeOne"></div>
+			    </div>
+
+			</div>
+		    </div><!--/span-->
+		</div>
+		<div class="span9">
+
+		    <?php
+		    if (is_array($this->layout()->pathNavi)) {
+			echo "<ul class=\"breadcrumb\">";
+
+			$c = count($this->layout()->pathNavi);
+			$x = 0;
+			foreach ($this->layout()->pathNavi as $page) {
+			    $x++;
+
+			    if ($x != $c) {
+				echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getTitle() . "</a>";
+				echo " <span class=\"divider\">/</span>";
+				echo "</li>";
+			    } else {
+				echo "<li class=\"active\"><a href=\"./page/" . $page->getId() . "\">" . $page->getTitle() . "</a></li>";
+			    }
+			}
+
+			echo "</ul>";
+		    }
+		    ?>
+
+		    <div class="content">
+			<?php
+			foreach (Knowledgeroot_Message::getMessages() as $key => $value) {
+			    echo '
+			    <div class="alert alert-' . $value['type'] . '" data-dismiss="alert">
+			    <a class="close" href="#">×</a>
+			    <p><strong>' . $value['title'] . '</strong>&nbsp;' . $value['message'] . '</p>
+			    </div>';
+
+			    Knowledgeroot_Message::delMessage($key);
+			}
+			?>
+			<script>
+			    $(".alert").alert()
+			</script>
+			<?php echo $this->layout()->content; ?>
+		    </div>
+		</div><!--/span-->
+	    </div><!--/row-->
+
+	    <hr>
+
+	    <footer>
+		<p>Knowledgeroot <?php echo $this->layout()->version; ?></p>
+
+	    </footer>
+
+	</div><!--/.fluid-container-->
+
+	<script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>
+    </body>
+</html>

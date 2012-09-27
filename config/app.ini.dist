@@ -1,0 +1,66 @@
+[base]
+version = 2.0-dev
+title = Knowledgeroot
+cryptkey = yourcryptkeyhere
+base_path = /www/knowledgeroot/
+base_url = http://localhost/knowledgeroot/public/
+locale = en_US
+
+[upload]
+path = data/uploads/
+maxfilesize = 
+
+[db]
+adapter = mysql
+params.host = localhost
+params.username = user
+params.password = password
+params.dbname = knowledgeroot
+params.charset = "utf8"
+schema = public
+profiler = true
+pconnect = false
+
+[session]
+path = data/sessions/
+handle = true
+lifetime = 60
+check_browser = true
+check_ip = true
+only_cookies = true
+
+[lucene]
+save_path = PROJECT_PATH "/data/lucene"
+
+[email]
+;from = user@domain.tld
+;host = hostname
+;auth = plain|cram-md5|login
+;username = username
+;password = password
+;port = 25
+;ssl = ssl|tls
+
+[cache]
+options.caching = false
+path = cache/
+options.lifetime = 7200
+options.automatic_serialization = true
+
+[log]
+adapter = file
+level = debug
+file = data/log/knowledgeroot.log
+
+[translation]
+adapter = gettext
+folder = data/locale/
+
+[development]
+runtime = false
+toolbar = false
+sqldebug = false
+
+[layout]
+path = app/layout/
+name = layout

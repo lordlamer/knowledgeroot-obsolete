@@ -1,0 +1,68 @@
+<!-- page navi -->
+<div class="subnav" style="margin-bottom:20px;">
+    <ul class="nav nav-pills">
+	<li><a href="page/new/<?php echo $this->id; ?>">add new page</a></li>
+	<li><a href="page/edit/<?php echo $this->id; ?>">edit page</a></li>
+	<li><a href="javascript:;" onclick="window.open('page/move/<?php echo $this->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move page</a></li>
+	<li><a href="javascript:;" onclick="if(confirm('Do you really want to delete this page?')) { location.href='page/delete/<?php echo $this->id; ?>'; } else { return false; }">delete page</a></li>
+	<li><a href="content/new/<?php echo $this->id; ?>">add new content</a></li>
+	<li><a href="menu/toggle">hide menu</a></li>
+    </ul>
+</div>
+<?php
+foreach ($this->contents as $content) { // run for each content
+    ?>
+    <!-- anchor --><a name="<?php echo $content->id; ?>"></a>
+    <div class="accordion" id="accordion<?php echo $content->id; ?>"><!-- start accordian -->
+        <div class="accordion-group">
+    	<div class="accordion-heading" style="background-color: #F6F6F6;">
+
+    	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->id; ?>" href="#collapse<?php echo $content->id; ?>">
+    		<i id="collapseicon<?php echo $content->id; ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $content->title; ?>
+    	    </a>
+
+    	</div>
+    	<div id="collapse<?php echo $content->id; ?>" class="accordion-body collapse<?php if ($this->open) echo ' in'; ?>">
+
+    	    <div class="accordion-inner">
+    		<div class="btn-toolbar">
+    		    <div class="btn-group"><a class="btn" href="content/edit/<?php echo $content->id; ?>">edit</a>
+    			<a class="btn" href="javascript:;" onclick="if(confirm('Do you really want to delete?')) { location.href='content/delete/<?php echo $content->id; ?>'; } else { return false; }">delete</a>
+    			<a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move</a>
+    			<a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->id; ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');">print</a>
+    			<a class="btn" href="javascript:;" onclick="return false;">add file</a>
+    		    </div>
+    		    <div class="btn-group pull-right">
+    			<a class="btn pull-right" href="javascript:;" onclick="location.href='#top';">Top</a>
+    		    </div>
+    		</div>
+    		<br>
+		    <?php echo $content->content; ?>
+		<br>
+		<?php
+		    //if(is_array($content->files)) {
+		?>
+		<form>
+		    <legend>Files</legend>
+		    <?php
+			//foreach($content->files as $file) {
+			//    echo '<a class="btn" href="#"><i class="icon-hdd"></i></a>' . $file->filename . "<br>\n";
+			//}
+		    ?>
+		</form>
+		<?php
+		    //}
+		?>
+    	    </div>
+    	    <div class="content_statusbar">Last changed: XXX By: YYY</div>
+    	</div>
+        </div>
+    </div><!-- end accordian -->
+    <script>
+        $('#accordion<?php echo $content->id; ?>').on('hidden shown', function () {
+    	$('#collapseicon<?php echo $content->id; ?>').toggleClass('icon-chevron-right icon-chevron-down');
+        })
+    </script>
+    <?php
+} // foreach end
+?>

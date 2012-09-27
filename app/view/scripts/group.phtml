@@ -1,0 +1,19 @@
+<div class="page-header">
+    <h2>Group</h2>
+</div>
+<form class="form-horizontal" action="index.php" method="post" name="loginformular" autocomplete="off">
+    <input type="hidden" name="action" value="<?php echo $this->action; ?>" />
+    <input type="hidden" name="gid" value="<?php echo $this->id; ?>" />
+
+    <div class="control-group">
+	<label class="control-label" for="name">Name</label>
+	<div class="controls">
+	    <input type="text" class="input-xlarge" id="name" name="name" value="<?php echo $this->name; ?>">
+	</div>
+    </div>
+
+    <div class="form-actions">
+	<input class="btn btn-primary" type="submit" name="submit" value="save" />
+	<a class="btn" href="index.php?action=users">cancel</a>
+    </div>
+</form>
