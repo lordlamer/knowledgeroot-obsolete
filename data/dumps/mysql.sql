@@ -1,12 +1,8 @@
-/**
- * knowledgeroot2 dump for postgresql
- */
+-- knowledgeroot2 dump for mysql
 
-BEGIN;
+-- tables
 
-/* tables */
-
-/* table: user */
+-- table: user
 CREATE TABLE `user` (
   id integer NOT NULL AUTO_INCREMENT,
   first_name varchar(255) DEFAULT '' NOT NULL,
@@ -27,7 +23,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: group */
+-- table: group
 CREATE TABLE `group` (
   id integer NOT NULL AUTO_INCREMENT,
   name varchar(255) DEFAULT '' NOT NULL,
@@ -43,7 +39,7 @@ CREATE TABLE `group` (
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: user_group */
+-- table: user_group
 CREATE TABLE group_member (
   id integer NOT NULL AUTO_INCREMENT,
   group_id integer NOT NULL,
@@ -52,7 +48,7 @@ CREATE TABLE group_member (
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: acl */
+-- table: acl
 CREATE TABLE acl (
   id integer NOT NULL AUTO_INCREMENT,
   role_id varchar(255) NOT NULL,
@@ -62,7 +58,7 @@ CREATE TABLE acl (
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: page */
+-- table: page
 CREATE TABLE page (
   id integer NOT NULL AUTO_INCREMENT,
   parent integer DEFAULT 0 NOT NULL,
@@ -86,7 +82,7 @@ CREATE TABLE page (
   FOREIGN KEY (changed_by) REFERENCES `user` (id) ON DELETE RESTRICT
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: page */
+-- table: page
 CREATE TABLE page_history (
   id integer NOT NULL AUTO_INCREMENT,
   page_id integer DEFAULT 0 NOT NULL,
@@ -111,7 +107,7 @@ CREATE TABLE page_history (
   FOREIGN KEY (page_id) REFERENCES page (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: content */
+-- table: content
 CREATE TABLE content (
   id integer NOT NULL AUTO_INCREMENT,
   parent integer DEFAULT 0 NOT NULL,
@@ -133,7 +129,7 @@ CREATE TABLE content (
   FOREIGN KEY (changed_by) REFERENCES `user` (id) ON DELETE RESTRICT
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: content */
+-- table: content
 CREATE TABLE content_history (
   id integer NOT NULL AUTO_INCREMENT,
   content_id integer DEFAULT 0 NOT NULL,
@@ -155,7 +151,7 @@ CREATE TABLE content_history (
   FOREIGN KEY (content_id) REFERENCES content (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: file */
+-- table: file
 CREATE TABLE file (
   id integer NOT NULL AUTO_INCREMENT,
   content_id integer DEFAULT 0 NOT NULL,
@@ -174,7 +170,7 @@ CREATE TABLE file (
   FOREIGN KEY (changed_by) REFERENCES `user` (id) ON DELETE RESTRICT
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: file_history */
+-- table: file_history
 CREATE TABLE file_history (
   id integer NOT NULL AUTO_INCREMENT,
   file_id integer DEFAULT 0 NOT NULL,
@@ -193,16 +189,16 @@ CREATE TABLE file_history (
   FOREIGN KEY (file_id)  REFERENCES file (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* tags */
+-- tags
 
-/* table: tag */
+-- table: tag
 CREATE TABLE tag (
   id integer NOT NULL AUTO_INCREMENT,
   name varchar(255) DEFAULT '' NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* table: tag_content */
+-- table: tag_content
 CREATE TABLE tag_content (
   id integer NOT NULL AUTO_INCREMENT,
   tag_id integer NOT NULL,
@@ -212,20 +208,65 @@ CREATE TABLE tag_content (
   FOREIGN KEY (content_id) REFERENCES content (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-/* content ratings */
+-- content ratings
 
-/* functions */
-/* trigger function for content table */
+-- functions
+-- trigger function for content table
+DELIMITER ||
+CREATE TRIGGER contentHistory_trigger_insert AFTER INSERT ON content FOR EACH ROW
+BEGIN
+    INSERT INTO content_history (content_id, `version`, `parent`, `name`, `content`, `type`, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, 1, NEW.parent, NEW.name, NEW.content, NEW.type, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+END
+||
+DELIMITER ;
 
-/* trigger function for page table */
+DELIMITER ||
+CREATE TRIGGER contentHistory_trigger_update AFTER UPDATE ON content FOR EACH ROW
+BEGIN
+    INSERT INTO content_history (content_id, `version`, `parent`, `name`, `content`, `type`, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, (SELECT max(version)+1 FROM content_history WHERE content_id = NEW.id), NEW.parent, NEW.name, NEW.content, NEW.type, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+END
+||
+DELIMITER ;
 
-/* trigger function for file table */
 
-/* trigger */
-CREATE TRIGGER contentHistory_trigger AFTER INSERT OR UPDATE ON content FOR EACH ROW EXECUTE PROCEDURE contentHistory();
-CREATE TRIGGER pageHistory_trigger AFTER INSERT OR UPDATE ON page FOR EACH ROW EXECUTE PROCEDURE pageHistory();
-CREATE TRIGGER fileHistory_trigger AFTER INSERT OR UPDATE ON file FOR EACH ROW EXECUTE PROCEDURE fileHistory();
+-- trigger function for page table
+DELIMITER ||
+CREATE TRIGGER pageHistory_trigger_insert AFTER INSERT ON page FOR EACH ROW
+BEGIN
+    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, 1, NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+END
+||
+DELIMITER ;
 
-/* indexes */
+DELIMITER ||
+CREATE TRIGGER pageHistory_trigger_update AFTER UPDATE ON page FOR EACH ROW
+BEGIN
+    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, (SELECT max(version)+1 FROM page_history WHERE page_id = NEW.id), NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+END
+||
+DELIMITER ;
 
-COMMIT;
+-- trigger function for file table
+DELIMITER ||
+CREATE TRIGGER fileHistory_trigger_insert AFTER INSERT ON file FOR EACH ROW
+BEGIN
+    INSERT INTO file_history (file_id, version, content_id, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    VALUES (NEW.id, 1, NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+ND
+||
+DELIMITER ;
+
+DELIMITER ||
+CREATE TRIGGER fileHistory_trigger_update AFTER UPDATE ON file FOR EACH ROW
+BEGIN
+    INSERT INTO file_history (file_id, version, content_id, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    VALUES (NEW.id, (SELECT max(version)+1 FROM file_history WHERE file_id = NEW.id), NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+END
+||
+DELIMITER ;
+
+-- indexes
