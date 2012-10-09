@@ -1,3 +1,8 @@
+20121009 - fhabermann
+* added demo dump for postgresql
+* added new database dumps
+* set and renamed functions for knowledgeroot classes
+
 20120917 - fhabermann
 * updated license to BSD license
 * removed all old unused stuff
