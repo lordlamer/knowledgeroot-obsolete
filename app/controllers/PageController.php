@@ -28,7 +28,7 @@ class PageController extends Zend_Controller_Action {
 
 	// set page for view
 	$this->view->id = $page->getId();
-	$this->view->title = $page->getTitle();
+	$this->view->title = $page->getName();
 
 	// set contents for view
 	$this->view->contents = $contents;
@@ -41,7 +41,7 @@ class PageController extends Zend_Controller_Action {
 
 	    $page = new Knowledgeroot_Page();
 	    $page->setParent($this->_getParam('page_parent'));
-	    $page->setTitle($this->_getParam('page_title'));
+	    $page->setName($this->_getParam('page_title'));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -65,7 +65,7 @@ class PageController extends Zend_Controller_Action {
 		$this->_redirect('page/' . $page->getId());
 
 	    $page->setParent($this->_getParam('page_parent'));
-	    $page->setTitle($this->_getParam('page_title'));
+	    $page->setName($this->_getParam('page_title'));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -80,7 +80,7 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->action = 'edit';
 	    $this->view->id = $id;
 	    $this->view->parent = $page->getParent();
-	    $this->view->title = $page->getTitle();
+	    $this->view->title = $page->getName();
 
 	    // action body
 	    $this->renderScript("page.phtml");
@@ -120,13 +120,13 @@ class PageController extends Zend_Controller_Action {
 	    foreach ($pages as $key => $value) {
 		$item = array(
 		    'id' => $value['id'],
-		    'belongs_to' => $value['belongs_to'],
+		    'parent' => $value['parent'],
 		    'url' => $config->base->base_url . 'page/' . $value['id'],
-		    'name' => $value['title'],
-		    'type' => (($value['belongs_to'] == 0) ? 'root' : 'page'),
+		    'name' => $value['name'],
+		    'type' => (($value['parent'] == 0) ? 'root' : 'page'),
 		    'tooltip' => $value['tooltip'],
 		    'alias' => $value['alias'],
-		    'symlink' => $value['symlink'],
+		    //'symlink' => $value['symlink'],
 		    'icon' => $value['icon']
 		);
 
@@ -154,7 +154,7 @@ class PageController extends Zend_Controller_Action {
 	$ret = array();
 
 	foreach ($items as $value) {
-	    if ($item['id'] == $value['belongs_to']) {
+	    if ($item['id'] == $value['parent']) {
 		$ret[] = array('_reference' => $value['id']);
 	    }
 	}

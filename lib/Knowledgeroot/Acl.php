@@ -37,14 +37,14 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	$db = Knowledgeroot_Registry::get('db');
 
 	// fetch all groups
-	$rows = $db->fetchAll('SELECT id FROM groups WHERE enabled=1 AND deleted=0');
+	$rows = $db->fetchAll('SELECT id FROM ' . $db->quoteIdentifier('group') . ' WHERE active=true AND deleted=false');
 
 	foreach($rows as $key => $value) {
 	    $this->acl->addRole(new Zend_Acl_Role('G_' . $value['id']));
 	}
 
 	// fetch all group and create group members
-	$rows = $db->fetchAll('SELECT id FROM groups WHERE enabled=1 AND deleted=0');
+	$rows = $db->fetchAll('SELECT id FROM ' . $db->quoteIdentifier('group') . ' WHERE active=true AND deleted=false');
 
 	foreach($rows as $key => $value) {
 	    $parents = array('G_'.$value['id']);
@@ -57,7 +57,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	}
 
 	// fetch all users and set parent
-	$rows = $db->fetchAll('SELECT id FROM users WHERE enabled=1 AND deleted=0');
+	$rows = $db->fetchAll('SELECT id FROM ' . $db->quoteIdentifier('user') . ' WHERE active=true AND deleted=false');
 
 	foreach($rows as $key => $value) {
 	    $parents = array();
@@ -77,21 +77,21 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	$db = Knowledgeroot_Registry::get('db');
 
 	// load pages
-	$pages = $db->fetchAll('SELECT id FROM tree WHERE deleted=0');
+	$pages = $db->fetchAll('SELECT id FROM page WHERE deleted=false');
 
 	foreach($pages as $key => $value) {
 	    $this->acl->addResource(new Zend_Acl_Resource('P_' . $value['id']));
 	}
 
 	// load contents
-	$content = $db->fetchAll('SELECT id FROM content WHERE deleted=0');
+	$content = $db->fetchAll('SELECT id FROM content WHERE deleted=false');
 
 	foreach($content as $key => $value) {
 	    $this->acl->addResource(new Zend_Acl_Resource('C_' . $value['id']));
 	}
 
 	// load files
-	$files = $db->fetchAll('SELECT id FROM files WHERE deleted=0');
+	$files = $db->fetchAll('SELECT id FROM file WHERE deleted=false');
 
 	foreach($files as $key => $value) {
 	    $this->acl->addResource(new Zend_Acl_Resource('F_' . $value['id']));
@@ -101,7 +101,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
     protected function loadAcl() {
 	$db = Knowledgeroot_Registry::get('db');
 
-	$acl = $db->fetchAll('SELECT role_id, resource, action, `right` FROM `acl`');
+	$acl = $db->fetchAll('SELECT role_id, resource, action, ' . $db->quoteIdentifier('right') . ' FROM ' . $db->quoteIdentifier('acl'));
 
 	foreach($acl as $key => $value) {
 	    if($value['right'] == 'allow') {

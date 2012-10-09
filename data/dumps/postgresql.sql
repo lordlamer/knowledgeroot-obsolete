@@ -36,13 +36,13 @@ CREATE TABLE "user" (
   password varchar(255) DEFAULT '' NOT NULL,
   language varchar(10) DEFAULT '' NOT NULL,
   timezone varchar(50) DEFAULT 'UTC' NOT NULL,
-  time_start timestamp with time zone NULL,
-  time_end timestamp with time zone NULL,
+  time_start timestamp without time zone NULL,
+  time_end timestamp without time zone NULL,
   active boolean DEFAULT false NOT NULL,
   created_by integer NOT NULL,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
 
@@ -51,13 +51,13 @@ CREATE TABLE "group" (
   id integer PRIMARY KEY DEFAULT nextval('seq_user') NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
   description text DEFAULT '' NOT NULL,
-  time_start timestamp with time zone NULL,
-  time_end timestamp with time zone NULL,
+  time_start timestamp without time zone NULL,
+  time_end timestamp without time zone NULL,
   active boolean DEFAULT false NOT NULL,
   created_by integer NOT NULL,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
 
@@ -89,12 +89,12 @@ CREATE TABLE page (
   content_collapse boolean DEFAULT TRUE NOT NULL,
   content_position content_position DEFAULT 'end' NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
-  time_start timestamp with time zone NULL,
-  time_end timestamp with time zone NULL,
+  time_start timestamp without time zone NULL,
+  time_end timestamp without time zone NULL,
   created_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   active boolean DEFAULT false NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
@@ -112,12 +112,12 @@ CREATE TABLE page_history (
   content_collapse boolean DEFAULT TRUE NOT NULL,
   content_position content_position DEFAULT 'end' NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
-  time_start timestamp with time zone NULL,
-  time_end timestamp with time zone NULL,
+  time_start timestamp without time zone NULL,
+  time_end timestamp without time zone NULL,
   created_by integer NOT NULL,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   active boolean DEFAULT false NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
@@ -130,12 +130,12 @@ CREATE TABLE content (
   content text DEFAULT '' NOT NULL,
   type varchar(255) DEFAULT 'text' NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
-  time_start timestamp with time zone NULL,
-  time_end timestamp with time zone NULL,
+  time_start timestamp without time zone NULL,
+  time_end timestamp without time zone NULL,
   created_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   active boolean DEFAULT false NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
@@ -150,12 +150,12 @@ CREATE TABLE content_history (
   content text DEFAULT '' NOT NULL,
   type varchar(255) DEFAULT 'text' NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
-  time_start timestamp with time zone NULL,
-  time_end timestamp with time zone NULL,
+  time_start timestamp without time zone NULL,
+  time_end timestamp without time zone NULL,
   created_by integer NOT NULL,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   active boolean DEFAULT false NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
@@ -169,9 +169,9 @@ CREATE TABLE file (
   file_type varchar(255) DEFAULT 'application/octet-stream',
   downloads integer DEFAULT 0 NOT NULL,
   created_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
 
@@ -186,9 +186,9 @@ CREATE TABLE file_history (
   file_type varchar(255) DEFAULT 'application/octet-stream',
   downloads integer DEFAULT 0 NOT NULL,
   created_by integer NOT NULL,
-  create_date timestamp with time zone NOT NULL,
+  create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL,
-  change_date timestamp with time zone NOT NULL,
+  change_date timestamp without time zone NOT NULL,
   deleted boolean DEFAULT false NOT NULL
 );
 

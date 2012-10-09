@@ -15,7 +15,7 @@ class Knowledgeroot_Auth {
 	    $db = Knowledgeroot_Registry::get('db');
 
 	    // get user from db
-	    $user = $db->fetchRow("SELECT id, password FROM users WHERE name=:name", array(':name' => $this->username));
+	    $user = $db->fetchRow("SELECT id, password FROM " . $db->quoteIdentifier('user') . " WHERE login=:login", array(':login' => $this->username));
 
 	    // check password hashes
 	    if(Knowledgeroot_Password::verify($this->password, $user['password'])) {
@@ -47,13 +47,13 @@ class Knowledgeroot_Auth {
 	    $db = Knowledgeroot_Registry::get('db');
 
 	    // get user from db
-	    $user = $db->fetchRow("SELECT id, name, language FROM users WHERE name=:name", array(':name' => $this->username));
+	    $user = $db->fetchRow("SELECT id, login, language FROM " . $db->quoteIdentifier('user') . " WHERE login=:login", array(':login' => $this->username));
 
 	    // get new session namespace and save data
 	    $session = new Zend_Session_Namespace('user');
 	    $session->valid = true;
 	    $session->id = $user['id'];
-	    $session->name = $user['name'];
+	    $session->login = $user['login'];
 	    $session->language = $user['language'];
 	}
 }

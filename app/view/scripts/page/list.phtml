@@ -18,7 +18,7 @@ foreach ($this->contents as $content) { // run for each content
     	<div class="accordion-heading" style="background-color: #F6F6F6;">
 
     	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->id; ?>" href="#collapse<?php echo $content->id; ?>">
-    		<i id="collapseicon<?php echo $content->id; ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $content->title; ?>
+    		<i id="collapseicon<?php echo $content->id; ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $content->name; ?>
     	    </a>
 
     	</div>

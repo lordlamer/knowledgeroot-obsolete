@@ -3,24 +3,23 @@
 class Knowledgeroot_Content {
 
     const TYPE_TEXT = 'text';
-    const POSITION_FIRST = 'first';
-    const POSITION_LAST = 'last';
+    const POSITION_FIRST = 'start';
+    const POSITION_LAST = 'end';
 
     protected $id = null;
-    protected $title = null;
+    protected $parent = null;
+    protected $name = null;
     protected $content = null;
-    protected $belongsTo = null;
     protected $type = null;
-    protected $sort = null;
-    protected $owner = null;
-    protected $group = null;
-    protected $userRight = null;
-    protected $groupRight = null;
-    protected $otherRight = null;
+    protected $sorting = null;
+    protected $time_start = null;
+    protected $time_end = null;
+    protected $created_by = null;
+    protected $create_date = null;
+    protected $changed_by = null;
+    protected $change_date = null;
+    protected $active = null;
     protected $deleted = null;
-    protected $lastUpdatedBy = null;
-    protected $lastUpdated = null;
-    protected $createDate = null;
 
     public function __construct($id = null) {
 	if ($id != null) {
@@ -33,61 +32,58 @@ class Knowledgeroot_Content {
 	$row = $content->find($id);
 
 	$this->id = $row[0]['id'];
-	$this->title = $row[0]['title'];
+	$this->parent = $row[0]['parent'];
+	$this->name = $row[0]['name'];
 	$this->content = $row[0]['content'];
-	$this->belongsTo = $row[0]['belongs_to'];
 	$this->type = $row[0]['type'];
-	$this->sort = $row[0]['sorting'];
-	$this->owner = $row[0]['owner'];
-	$this->group = $row[0]['group'];
-	$this->userRight = $row[0]['userrights'];
-	$this->groupRight = $row[0]['grouprights'];
-	$this->otherRight = $row[0]['otherrights'];
+	$this->sorting = $row[0]['sorting'];
+	$this->time_start = $row[0]['time_start'];
+	$this->time_end = $row[0]['time_end'];
+	$this->created_by = $row[0]['created_by'];
+	$this->create_date = $row[0]['create_date'];
+	$this->changed_by = $row[0]['changed_by'];
+	$this->change_date = $row[0]['change_date'];
+	$this->active = $row[0]['active'];
 	$this->deleted = $row[0]['deleted'];
-	$this->lastUpdatedBy = $row[0]['lastupdatedby'];
-	$this->lastUpdated = $row[0]['lastupdated'];
-	$this->createDate = $row[0]['createdate'];
     }
 
     public function save() {
 	$data = array();
 
-	if ($this->title != null)
-	    $data['title'] = $this->title;
+	if ($this->parent != null)
+	    $data['parent'] = $this->parent;
+	if ($this->name != null)
+	    $data['name'] = $this->name;
 	if ($this->content != null)
 	    $data['content'] = $this->content;
-	if ($this->belongsTo != null)
-	    $data['belongs_to'] = $this->belongsTo;
 	if ($this->type != null)
 	    $data['type'] = $this->type;
-	if ($this->sort != null)
-	    $data['sorting'] = $this->sort;
-	if ($this->owner != null)
-	    $data['owner'] = $this->owner;
-	if ($this->group != null)
-	    $data['group'] = $this->group;
-	if ($this->userRight != null)
-	    $data['userrights'] = $this->userRight;
-	if ($this->groupRight != null)
-	    $data['grouprights'] = $this->groupRight;
-	if ($this->otherRight != null)
-	    $data['otherrights'] = $this->otherRight;
+	if ($this->sorting != null)
+	    $data['sorting'] = $this->sorting;
+	if ($this->time_start != null)
+	    $data['time_start'] = $this->time_start;
+	if ($this->time_end != null)
+	    $data['time_end'] = $this->time_end;
+	if ($this->created_by != null)
+	    $data['created_by'] = $this->created_by;
+	if ($this->changed_by != null)
+	    $data['changed_by'] = $this->changed_by;
+	if ($this->active != null)
+	    $data['active'] = $this->active;
 
-	// set lastUpdatedBy
-	if ($this->lastUpdatedBy == null)
-	    $this->lastUpdatedBy = 0; // set to guest user
-
-	$data['lastupdatedby'] = $this->lastUpdatedBy;
+	// set changed_by
+	if ($this->changed_by == null)
+	    $this->changed_by = 0; // set to guest user
 
 	// set create date
-	if ($this->createDate == null) {
-	    $this->createDate = date("Y-m-d H:i:s", time());
-	    $data['createdate'] = $this->createDate;
+	if ($this->create_date == null) {
+	    $this->create_date = date("Y-m-d H:i:s", time());
+	    $data['create_date'] = $this->create_date;
 	}
 
 	// set last updated
-	$this->lastUpdated = date("Y-m-d H:i:s", time());
-	$data['lastupdated'] = $this->lastUpdated;
+	$this->change_date = date("Y-m-d H:i:s", time());
+	$data['change_date'] = $this->change_date;
 
 	$content = new Knowledgeroot_Db_Content();
 
@@ -118,10 +114,10 @@ class Knowledgeroot_Content {
 
 	$content = new Knowledgeroot_Db_Content();
 
-	$data = array('belongs_to' => $pageId);
+	$data = array('parent' => $pageId);
 	$content->update($data, 'id = ' . $this->id);
 
-	$this->belongsTo = $pageId;
+	$this->parent = $pageId;
     }
 
     public function moveUp() {
@@ -140,104 +136,88 @@ class Knowledgeroot_Content {
 
     }
 
-    public function setTitle($title) {
-	$this->title = $title;
+    public function setName($name) {
+	$this->name = $name;
     }
 
     public function setContent($content) {
 	$this->content = $content;
     }
 
-    public function setBelongsTo($id) {
-	$this->belongsTo = $id;
+    public function setParent($id) {
+	$this->parent = $id;
     }
 
     public function setType($type) {
 	$this->type = $type;
     }
 
-    public function setSort($sort) {
-	$this->sort = $sort;
+    public function setSorting($sorting) {
+	$this->sorting = $sorting;
     }
 
-    public function setOwner($userid) {
-	$this->owner = $userid;
+    public function setActive($active) {
+	$this->active = $active;
     }
 
-    public function setGroup($groupid) {
-	$this->group = $groupid;
+    public function setTimeStart($time) {
+	$this->time_start = $time;
     }
 
-    public function setUserRight($right) {
-	$this->userRight = $right;
+    public function setTimeEnd($time) {
+	$this->time_end = $time;
     }
 
-    public function setGroupRight($right) {
-	$this->groupRight = $right;
-    }
-
-    public function setOtherRight($right) {
-	$this->otherRight = $right;
-    }
-
-    public function setLastUpdatedBy($userid) {
-	$this->lastUpdatedBy = $userid;
+    public function setChangedBy($userid) {
+	$this->changed_by = $userid;
     }
 
     public function getId() {
 	return $this->id;
     }
 
-    public function getTitle() {
-	return $this->title;
+    public function getName() {
+	return $this->name;
     }
 
     public function getContent() {
 	return $this->content;
     }
 
-    public function getBelongsTo() {
-	return $this->belongsTo;
+    public function getParent() {
+	return $this->parent;
     }
 
     public function getType() {
 	return $this->type;
     }
 
-    public function getSort() {
-	return $this->sort;
+    public function getSorting() {
+	return $this->sorting;
     }
 
-    public function getOwner() {
-	return $this->owner;
+    public function getActive() {
+	return $this->active;
     }
 
-    public function getGroup() {
-	return $this->group;
+    public function getTimeStart() {
+	return $this->time_start;
     }
 
-    public function getUserRight() {
-	return $this->userRight;
-    }
-
-    public function getGroupRight() {
-	return $this->groupRight;
-    }
-
-    public function getOtherRight() {
-	return $this->otherRight;
+    public function getTimeEnd() {
+	return $this->time_end;
     }
 
     public function getCreateDate() {
-	return $this->createDate;
+	return $this->create_date;
     }
 
-    public function getLastUpdated() {
-	return $this->lastUpdated;
+    public function getChangeDate() {
+	return $this->change_date;
     }
 
-    public function getLastUpdatedBy() {
-	return $this->lastUpdatedBy;
+    public function getChangedBy() {
+	return $this->changed_by;
     }
 
     /**
@@ -250,8 +230,8 @@ class Knowledgeroot_Content {
 
 	$content = new Knowledgeroot_Db_Content();
 	$select = $content->select();
-	$select->where('belongs_to = ?', $page->getId());
-	$select->where('deleted = 0');
+	$select->where('parent = ?', $page->getId());
+	$select->where('deleted = false');
 	$ret = $content->fetchAll($select);
 
 	return $ret;

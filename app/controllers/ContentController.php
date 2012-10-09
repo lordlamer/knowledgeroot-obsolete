@@ -16,9 +16,9 @@ class ContentController extends Zend_Controller_Action {
 		$this->_redirect('page/' . $this->_getParam('content_page'));
 
 	    $content = new Knowledgeroot_Content();
-	    $content->setTitle($this->_getParam('content_title'));
+	    $content->setName($this->_getParam('content_title'));
 	    $content->setContent($this->_getParam('content'));
-	    $content->setBelongsTo($this->_getParam('content_page'));
+	    $content->setParent($this->_getParam('content_page'));
 	    $content->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -44,9 +44,9 @@ class ContentController extends Zend_Controller_Action {
 		$this->_redirect('page/' . $this->_getParam('content_page'));
 
 	    $content = new Knowledgeroot_Content($this->_getParam('id'));
-	    $content->setTitle($this->_getParam('content_title'));
+	    $content->setName($this->_getParam('content_title'));
 	    $content->setContent($this->_getParam('content'));
-	    $content->setBelongsTo($this->_getParam('content_page'));
+	    $content->setParent($this->_getParam('content_page'));
 	    $content->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -63,9 +63,9 @@ class ContentController extends Zend_Controller_Action {
 	    $rte = Knowledgeroot_Registry::get('rte');
 	    $this->view->editor = $rte->show($content->getContent());
 
-	    $this->view->title = $content->getTitle();
+	    $this->view->title = $content->getName();
 
-	    $this->view->page = $content->getBelongsTo();
+	    $this->view->page = $content->getParent();
 
 	    $this->renderScript("content.phtml");
 	}
@@ -73,7 +73,7 @@ class ContentController extends Zend_Controller_Action {
 
     public function deleteAction() {
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
-	$parent = $content->getBelongsTo();
+	$parent = $content->getParent();
 	$content->delete();
 
 	$this->_redirect('page/' . $parent);
@@ -95,7 +95,7 @@ class ContentController extends Zend_Controller_Action {
 	$this->_helper->layout()->disableLayout();
 
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
-	$this->view->title = $content->getTitle();
+	$this->view->title = $content->getName();
 	$this->view->content = $content->getContent();
     }
 
