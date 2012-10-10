@@ -1,5 +1,7 @@
 -- knowledgeroot2 dump for mysql
 
+BEGIN;
+
 -- tables
 
 -- table: user
@@ -225,7 +227,7 @@ DELIMITER ||
 CREATE TRIGGER contentHistory_trigger_update AFTER UPDATE ON content FOR EACH ROW
 BEGIN
     INSERT INTO content_history (content_id, `version`, `parent`, `name`, `content`, `type`, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, (SELECT max(version)+1 FROM content_history WHERE content_id = NEW.id), NEW.parent, NEW.name, NEW.content, NEW.type, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM content_history) x WHERE x.content_id = NEW.id), NEW.parent, NEW.name, NEW.content, NEW.type, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 END
 ||
 DELIMITER ;
@@ -245,7 +247,7 @@ DELIMITER ||
 CREATE TRIGGER pageHistory_trigger_update AFTER UPDATE ON page FOR EACH ROW
 BEGIN
     INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, (SELECT max(version)+1 FROM page_history WHERE page_id = NEW.id), NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM page_history) x WHERE x.page_id = NEW.id), NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 END
 ||
 DELIMITER ;
@@ -256,7 +258,7 @@ CREATE TRIGGER fileHistory_trigger_insert AFTER INSERT ON file FOR EACH ROW
 BEGIN
     INSERT INTO file_history (file_id, version, content_id, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
     VALUES (NEW.id, 1, NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
-ND
+END
 ||
 DELIMITER ;
 
@@ -264,9 +266,11 @@ DELIMITER ||
 CREATE TRIGGER fileHistory_trigger_update AFTER UPDATE ON file FOR EACH ROW
 BEGIN
     INSERT INTO file_history (file_id, version, content_id, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
-    VALUES (NEW.id, (SELECT max(version)+1 FROM file_history WHERE file_id = NEW.id), NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM file_history) x WHERE x.file_id = NEW.id), NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 END
 ||
 DELIMITER ;
 
 -- indexes
+
+COMMIT;
