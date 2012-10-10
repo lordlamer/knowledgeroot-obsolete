@@ -50,6 +50,9 @@ class Knowledgeroot_Content {
     public function save() {
 	$data = array();
 
+	// get session
+	$session = new Zend_Session_Namespace('user');
+
 	if ($this->parent != null)
 	    $data['parent'] = $this->parent;
 	if ($this->name != null)
@@ -64,16 +67,21 @@ class Knowledgeroot_Content {
 	    $data['time_start'] = $this->time_start;
 	if ($this->time_end != null)
 	    $data['time_end'] = $this->time_end;
-	if ($this->created_by != null)
-	    $data['created_by'] = $this->created_by;
-	if ($this->changed_by != null)
-	    $data['changed_by'] = $this->changed_by;
 	if ($this->active != null)
 	    $data['active'] = $this->active;
 
 	// set changed_by
+	if ($this->created_by == null)
+	    $this->created_by = $session->id; // set to guest user
+
+	// set changed_by
 	if ($this->changed_by == null)
-	    $this->changed_by = 0; // set to guest user
+	    $this->changed_by = $session->id; // set to guest user
+
+	if ($this->created_by != null)
+	    $data['created_by'] = $this->created_by;
+	if ($this->changed_by != null)
+	    $data['changed_by'] = $this->changed_by;
 
 	// set create date
 	if ($this->create_date == null) {

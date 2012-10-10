@@ -55,6 +55,9 @@ class Knowledgeroot_Page {
     public function save() {
 	$data = array();
 
+	// get user session
+	$session = new Zend_Session_Namespace('user');
+
 	if ($this->name != null)
 	    $data['name'] = $this->name;
 	if ($this->parent != null)
@@ -75,16 +78,21 @@ class Knowledgeroot_Page {
 	    $data['time_start'] = $this->time_start;
 	if ($this->time_end != null)
 	    $data['time_end'] = $this->time_end;
-	if ($this->created_by != null)
-	    $data['created_by'] = $this->created_by;
-	if ($this->changed_by != null)
-	    $data['changed_by'] = $this->changed_by;
 	if ($this->active != null)
 	    $data['active'] = $this->active;
 
 	// set changed_by
+	if ($this->created_by == null)
+	    $this->created_by = $session->id; // set to guest user
+
+	// set changed_by
 	if ($this->changed_by == null)
-	    $this->changed_by = 0; // set to guest user
+	    $this->changed_by = $session->id; // set to guest user
+
+	if ($this->created_by != null)
+	    $data['created_by'] = $this->created_by;
+	if ($this->changed_by != null)
+	    $data['changed_by'] = $this->changed_by;
 
 	// set create date
 	if ($this->create_date == null) {
@@ -95,7 +103,6 @@ class Knowledgeroot_Page {
 	// set last updated
 	$this->change_date = date("Y-m-d H:i:s", time());
 	$data['change_date'] = $this->change_date;
-
 
 	$page = new Knowledgeroot_Db_Page();
 
