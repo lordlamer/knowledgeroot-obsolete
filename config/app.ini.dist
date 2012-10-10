@@ -1,66 +1,181 @@
+[production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+includePaths.library = PROJECT_PATH "/lib"
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+appnamespace = "Knowledgeroot"
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+resources.frontController.params.displayExceptions = 1
+resources.frontController.defaultControllerName = "index"
+resources.frontController.defaultAction = "index"
+
+resources.layout.layoutPath = APPLICATION_PATH "/layout/"
+resources.layout.layout = "layout"
+
+resources.view.encoding = "UTF-8"
+resources.view.basePath = APPLICATION_PATH "/view/"
+[staging : production]
+
+[testing : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.frontController.params.displayExceptions = 1
+
 [base]
-version = 2.0-dev
-title = Knowledgeroot
-cryptkey = yourcryptkeyhere
-base_path = /www/knowledgeroot/
-base_url = http://localhost/knowledgeroot/public/
-locale = en_US
+version = "1.9-dev"
+title = "Knowledgeroot"
+cryptkey = "yourcryptkeyhere"
+base_path = "/path/to/folder/"
+base_url = "http://localhost/knowledgeroot/public/"
+charset = "UTF-8"
+locale = "en_US"
+showlogo = "1"
+theme = "green"
+
+[admin]
+loginhash = ""
+base_path = "/path/to/folder/"
+
+[rest]
+enabled = true
+apikey = XYZ
 
 [upload]
-path = data/uploads/
-maxfilesize = 
+url_suffix = "upload/"
+path = "uploads/"
+maxfilesize = ""
 
-[db]
-adapter = mysql
-params.host = localhost
-params.username = user
-params.password = password
-params.dbname = knowledgeroot
+[output]
+compression = ""
+level = "6"
+
+[database]
+adapter = "Pdo_Mysql"
+params.host = "localhost"
+params.username = "root"
+params.password = ""
+params.dbname = "knowledgeroot"
 params.charset = "utf8"
-schema = public
-profiler = true
-pconnect = false
+schema = ""
+profiler = "0"
+pconnect = ""
 
 [session]
-path = data/sessions/
-handle = true
-lifetime = 60
-check_browser = true
-check_ip = true
-only_cookies = true
+;handle = "1"
+;lifetime = "60"
+;check_browser = "1"
+;check_ip = "1"
+;only_cookies = "1"
+save_path = PROJECT_PATH "/data/sessions"
+use_only_cookies = on
+remember_me_seconds = 3600
+name = knowledgeroot
 
 [lucene]
 save_path = PROJECT_PATH "/data/lucene"
 
+[login]
+delay = "30"
+max = "50"
+
 [email]
-;from = user@domain.tld
-;host = hostname
-;auth = plain|cram-md5|login
-;username = username
-;password = password
-;port = 25
-;ssl = ssl|tls
+notification = false
+html = true
+from = notify@localhost
+to = notify@localhost
+host = localhost
+auth = login
+username = user
+password = password
+port = 465
+ssl = ssl
+
+[mail]
+;php or smtp
+transport = php
+
+;# php options
+;parameters =
+
+;# smtp options
+;host = localhost
+;options.xxx = yyy
 
 [cache]
 options.caching = false
-path = cache/
-options.lifetime = 7200
-options.automatic_serialization = true
+options.lifetime = "7200"
+options.automatic_serialization = "1"
+path = "cache/"
+frontend.name = Core
+frontend.options.lifetime = 3600
+frontend.options.automatic_serialization = true
+backend.name = File
+backend.options.cache_dir = PROJECT_PATH "/data/cache"
 
 [log]
-adapter = file
-level = debug
-file = data/log/knowledgeroot.log
+adapter = "file"
+level = ""
+file = "/tmp/knowledgeroot.log"
 
 [translation]
-adapter = gettext
-folder = data/locale/
+adapter = "gettext"
+folder = PROJECT_PATH "/data/locale/"
 
-[development]
-runtime = false
-toolbar = false
-sqldebug = false
+[developmentXX]
+runtime = ""
+toolbar = ""
+sqldebug = "1"
 
 [layout]
 path = app/layout/
-name = layout
+name = layout-old
+
+[tree]
+expandall = "1"
+type = "static"
+ajax = "1"
+edittooltiptext = "1"
+order = ""
+showcounter = "1"
+defaultlayout = ""
+defaultlayoutarray = ""
+symlink = "1"
+
+[content]
+showtitle = "1"
+showtitledetails = ""
+collapsecontent = "1"
+statusbar = "1"
+autosave = "1"
+autosaveevery = "30"
+
+[menu]
+context = "1"
+dragdrop = "1"
+type = "static"
+showsourceforgelogo = ""
+
+[misc]
+defaultpage = ""
+recursivdelete = "2"
+pagealias.use = "1"
+pagealias.static = "1"
+pagealias.rights = "2"
+langdropdown = "1"
+download.static = ""
+subinheritrightsonmove = ""
+showpagebottomnavi = ""
+
+[javascript]
+cdn = false
+cdn_url = http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js
+cdn_css_base_url = http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/
+
+[password]
+method = sha512
+rotation = 100
