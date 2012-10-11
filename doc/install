@@ -1,0 +1,13 @@
+Installation:
+
+1. run "php composer.phar update" in root directory of knowledgeroot
+2. import dump to database ( dumps are located in data/dumps/ ): postgresql.sql or mysql.sql
+3. import demo-dump to database: postgresql-demo.sql or mysql-demo.sql
+4. cp config/app.ini.dist to config/app.ini
+5. set database credentials in config/app.ini
+6. set base_path and base_url in config/app.ini
+6. open the public folder from knowledgeroot in your browser
+
+Default admin login:
+User: admin
+Password: admin
