@@ -283,4 +283,10 @@ CREATE TRIGGER fileHistory_trigger AFTER INSERT OR UPDATE ON file FOR EACH ROW E
 
 /* indexes */
 
+/* data */
+
+/* guest user */
+INSERT INTO "user" (id, first_name, last_name, login, email, password, language, timezone, active, created_by, create_date, changed_by, change_date, deleted)
+VALUES (0, 'knowledgeroot', 'guest', 'guest', 'guest@localhost', 'XXX', 'en_US', 'Europe/Berlin', true, 0, '20121001 22:00:00', 0, '20121001 22:00:00', false);
+
 COMMIT;
