@@ -82,16 +82,16 @@ class Knowledgeroot_Page {
 	    $data['active'] = $this->active;
 
 	// set changed_by
-	if ($this->created_by == null)
-	    $this->created_by = $session->id; // set to guest user
+	if ($this->created_by === null)
+	    $this->created_by = (($session->id !== null) ? $session->id : 0); // set to guest user
 
 	// set changed_by
-	if ($this->changed_by == null)
-	    $this->changed_by = $session->id; // set to guest user
+	if ($this->changed_by === null)
+	    $this->changed_by = (($session->id !== null) ? $session->id : 0); // set to guest user
 
-	if ($this->created_by != null)
+	if ($this->created_by !== null)
 	    $data['created_by'] = $this->created_by;
-	if ($this->changed_by != null)
+	if ($this->changed_by !== null)
 	    $data['changed_by'] = $this->changed_by;
 
 	// set create date

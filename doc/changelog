@@ -1,3 +1,8 @@
+20121011 - fhabermann
+* added guest user to dump
+* fixed problem with guest user and page and content class
+* removed old reference to js file
+
 20121009 - fhabermann
 * added demo dump for postgresql
 * added new database dumps

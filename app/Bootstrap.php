@@ -135,6 +135,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    $session = new Zend_Session_Namespace('default');
 	    Knowledgeroot_Registry::set('session', $session);
 
+	    // set guest user if user does not exists
+	    // get new session namespace and save data
+	    $session = new Zend_Session_Namespace('user');
+	    if(!$session->valid) {
+		$session->valid = true;
+		$session->id = 0;
+		$session->login = 'guest';
+		$session->language = 'en_US';
+	    }
+
 	    return $session;
 	} catch (Exception $e) {
 	    echo $e->getMessage();
