@@ -2,6 +2,7 @@
 * added guest user to dump
 * fixed problem with guest user and page and content class
 * removed old reference to js file
+* added install instructions
 
 20121009 - fhabermann
 * added demo dump for postgresql
