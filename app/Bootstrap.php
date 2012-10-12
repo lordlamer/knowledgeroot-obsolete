@@ -314,6 +314,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    // set cache for metadata
 	    Zend_Db_Table_Abstract::setDefaultMetadataCache($cache);
 
+	    // use profiler?
+	    if($config->database->profiler) {
+		// init firebug profiler
+		$profiler = new Zend_Db_Profiler_Firebug('All Database Queries:');
+
+		// enable it
+		$profiler->setEnabled(true);
+
+		// attach profiler to db adapter
+		$db->setProfiler($profiler);
+	    }
+
 	    // save db handle in registry
 	    Knowledgeroot_Registry::set('db', $db);
 
