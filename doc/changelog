@@ -1,3 +1,8 @@
+20121012 - fhabermann
+* added firebug profiler for database
+* jquery update to 1.8.2
+* added first file upload form
+
 20121011 - fhabermann
 * added guest user to dump
 * fixed problem with guest user and page and content class
