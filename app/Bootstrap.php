@@ -139,7 +139,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    // get new session namespace and save data
 	    $session = new Zend_Session_Namespace('user');
 	    if(!$session->valid) {
-		$session->valid = true;
+		$session->valid = false;
 		$session->id = 0;
 		$session->login = 'guest';
 		$session->language = 'en_US';
