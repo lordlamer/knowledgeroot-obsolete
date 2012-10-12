@@ -64,6 +64,45 @@ $config = Zend_Registry::get('config');
     </head>
 
     <body class="claro">
+	<div id="fileUpload" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="myModalLabel">File Upload</h3>
+            </div>
+            <div class="modal-body">
+		<fieldset>
+		    <div class="control-group">
+			<label class="control-label" for="content-title">Seite</label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span2" id="parent" size="255" name="parent" value="">
+			    <p class="help-block">
+				Content for File
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
+			<label class="control-label" for="file-box">File</label>
+			<div class="controls">
+			                    <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+			    <input type="file" class="input-xlarge span2" id="file-box" name="file"">
+			    <p class="help-block">
+				Select a file.
+			    </p>
+			</div>
+		    </div>
+		</fieldset>
+            </div>
+            <div class="modal-footer">
+		<button class="btn btn-primary">Upload</button>
+		<button class="btn" data-dismiss="modal">Close</button>
+            </div>
+	</div>
+
 	<div class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="navbar-inner">
 
@@ -75,91 +114,91 @@ $config = Zend_Registry::get('config');
 		    </button>
 		    <a class="brand" href="#"><img src="img/home.png" width="17" style="margin-right: 5px;" /><?= $config->base->title ?></a>
 
-			<ul class="nav">
-			    <li class="divider-vertical"></li>
-			    <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				    <i class="icon-plus icon-white"></i>&nbsp;<strong>New</strong>
-				    <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-				    <li><a href="page/new">Page</a></li>
-				    <li><a href="content/new">Content</a></li>
-				    <li><a href="#">File</a></li>
-				    <?php /* TODO if($_SESSION['admin'] == 1) { ?>
-				      <li class="divider"></li>
-				      <li><a href="index.php?action=adduser">User</a></li>
-				      <li><a href="index.php?action=addgroup">Group</a></li>
-				      <?php } */ ?>
-				</ul>
-			    </li>
-			    <li class="divider-vertical"></li>
-			</ul>
+		    <ul class="nav">
+			<li class="divider-vertical"></li>
+			<li class="dropdown">
+			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<i class="icon-plus icon-white"></i>&nbsp;<strong>New</strong>
+				<b class="caret"></b>
+			    </a>
+			    <ul class="dropdown-menu">
+				<li><a href="page/new">Page</a></li>
+				<li><a href="content/new">Content</a></li>
+				<li><a data-toggle="modal" href="#fileUpload">File</a></li>
+				<?php /* TODO if($_SESSION['admin'] == 1) { ?>
+				  <li class="divider"></li>
+				  <li><a href="index.php?action=adduser">User</a></li>
+				  <li><a href="index.php?action=addgroup">Group</a></li>
+				  <?php } */ ?>
+			    </ul>
+			</li>
+			<li class="divider-vertical"></li>
+		    </ul>
 
 
-			<form class="navbar-search pull-left" action="index.php" method="post">
-			    <input id="searchquery" class="search-query span2" style="background-image:url('img/search.png'); background-repeat: no-repeat; background-position: 4px 4px; padding-left: 30px;" type="text" placeholder="Suche" name="search" value="" />
-			    <input type="hidden" name="submit" value="GO" />
-			    <script>
-				$('#searchquery').on('focusin focusout', function () {
-				    $('#searchquery').toggleClass('span2 span5');
-				})
-			    </script>
-			</form>
-			<ul class="nav pull-right">
-			    <li class="divider-vertical"></li>
-			    <li class="dropdown">
-				<a href="#"
-				   class="dropdown-toggle"
-				   data-toggle="dropdown">
-				    <i class="icon-flag icon-white"></i>&nbsp;
-				    Languages
-				    <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-				    <?php
-				    $translation = Knowledgeroot_Registry::get('translate');
-
-				    foreach ($translation->getTranslations() as $key => $value) {
-					echo '<li><a href="./language/' . $key . '">' . $key . '</a></li>';
-				    }
-				    ?>
-				</ul>
-			    </li>
-			</ul>
+		    <form class="navbar-search pull-left" action="index.php" method="post">
+			<input id="searchquery" class="search-query span2" style="background-image:url('img/search.png'); background-repeat: no-repeat; background-position: 4px 4px; padding-left: 30px;" type="text" placeholder="Suche" name="search" value="" />
+			<input type="hidden" name="submit" value="GO" />
 			<script>
-			    $('.dropdown-toggle').dropdown();
+			    $('#searchquery').on('focusin focusout', function () {
+				$('#searchquery').toggleClass('span2 span5');
+			    })
 			</script>
-			<ul class="nav pull-right">
-			    <?php
-			    $userSession = new Zend_Session_Namespace('user');
-			    if ($userSession->valid) {
-				?>
-    			    <ul class="nav pull-right">
-    				<li class="divider-vertical"></li>
-    				<li class="dropdown">
-    				    <a href="#"
-    				       class="dropdown-toggle"
-    				       data-toggle="dropdown">
-    					<i class="icon-user icon-white"></i>&nbsp;
-					    <?= $userSession->login ?>
-    					<b class="caret"></b>
-    				    </a>
-    				    <ul class="dropdown-menu">
-    					<li><a href="settings"><i class="icon-cog"></i>&nbsp;Settings</a></li>
-    					<li><a href="logout"><i class="icon-user"></i>&nbsp;Logout</a></li>
-    				    </ul>
-    				</li>
-    			    </ul>
+		    </form>
+		    <ul class="nav pull-right">
+			<li class="divider-vertical"></li>
+			<li class="dropdown">
+			    <a href="#"
+			       class="dropdown-toggle"
+			       data-toggle="dropdown">
+				<i class="icon-flag icon-white"></i>&nbsp;
+				Languages
+				<b class="caret"></b>
+			    </a>
+			    <ul class="dropdown-menu">
 				<?php
-			    } else {
+				$translation = Knowledgeroot_Registry::get('translate');
+
+				foreach ($translation->getTranslations() as $key => $value) {
+				    echo '<li><a href="./language/' . $key . '">' . $key . '</a></li>';
+				}
 				?>
-    			    <li><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;Login</a></li>
-				<?php
-			    }
+			    </ul>
+			</li>
+		    </ul>
+		    <script>
+			$('.dropdown-toggle').dropdown();
+		    </script>
+		    <ul class="nav pull-right">
+			<?php
+			$userSession = new Zend_Session_Namespace('user');
+			if ($userSession->valid) {
 			    ?>
-			</ul>
-			<?php echo $this->layout()->topNavi; ?>
+    			<ul class="nav pull-right">
+    			    <li class="divider-vertical"></li>
+    			    <li class="dropdown">
+    				<a href="#"
+    				   class="dropdown-toggle"
+    				   data-toggle="dropdown">
+    				    <i class="icon-user icon-white"></i>&nbsp;
+					<?= $userSession->login ?>
+    				    <b class="caret"></b>
+    				</a>
+    				<ul class="dropdown-menu">
+    				    <li><a href="settings"><i class="icon-cog"></i>&nbsp;Settings</a></li>
+    				    <li><a href="logout"><i class="icon-user"></i>&nbsp;Logout</a></li>
+    				</ul>
+    			    </li>
+    			</ul>
+			    <?php
+			} else {
+			    ?>
+    			<li><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;Login</a></li>
+			    <?php
+			}
+			?>
+		    </ul>
+		    <?php echo $this->layout()->topNavi; ?>
 
 		</div>
 	    </div> <!-- /topbar -->
