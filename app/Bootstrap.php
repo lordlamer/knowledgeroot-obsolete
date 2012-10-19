@@ -46,6 +46,25 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     }
 
     /**
+     * init date and time
+     */
+    protected function _initDateTime() {
+	try {
+	    // load config
+	    $this->bootstrap('config');
+
+	    // get config
+	    $config = Knowledgeroot_Registry::get('config');
+
+	    // set timezone
+	    date_default_timezone_set($config->base->timezone);
+	} catch (Exception $e) {
+	    echo $e->getMessage();
+	    die('could not create output compression');
+	}
+    }
+
+    /**
      * init output compression
      */
     protected function _initOutputCompression() {

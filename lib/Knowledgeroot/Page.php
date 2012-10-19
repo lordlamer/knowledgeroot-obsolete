@@ -269,7 +269,7 @@ class Knowledgeroot_Page {
 	$page = new Knowledgeroot_Db_Page();
 	$select = $page->select();
 	//$select->where('parent = ?', $parentPage->getId());
-	$select->where('deleted = false');
+	$select->where('deleted = '.Knowledgeroot_Db::false());
 	$ret = $page->fetchAll($select);
 
 	return $ret;

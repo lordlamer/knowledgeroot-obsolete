@@ -204,7 +204,7 @@ CREATE TABLE tag (
 CREATE TABLE tag_content (
   id integer PRIMARY KEY DEFAULT nextval('seq_tag_content') NOT NULL,
   tag_id integer NOT NULL REFERENCES tag (id) ON DELETE CASCADE,
-  content_id integer NOT NULL  REFERENCES content (id) ON DELETE CASCADE
+  content_id integer NOT NULL REFERENCES content (id) ON DELETE CASCADE
 );
 
 /* content ratings */

@@ -1,3 +1,11 @@
+20121019 - fhabermann
+* added new class Knowledgeroot_Date for datetime handling
+
+20121018 - fhabermann
+* fixed sqlite problems
+* added Knowledgeroot_Db class to handle database adapter true and false
+* using dojo 1.7.2 because of tree layout problems
+
 20121012 - fhabermann
 * added firebug profiler for database
 * jquery update to 1.8.2
