@@ -20,17 +20,15 @@ class Knowledgeroot_Date {
      * @param object $date OPTIONAL DateTime object
      */
     public function __construct($date = null) {
-	if ($date instanceof DateTime) {
+	if ($date instanceof Zend_Date) {
 	    $this->date = $date;
 	} else {
 	    // get config
 	    $config = Knowledgeroot_Registry::get('config');
 
-	    // create timezone object
-	    $tz = new DateTimeZone($config->base->timezone);
-
-	    // create datetime with now and timezone
-	    $this->date = new DateTime('now', $tz);
+	    // create date object with timezone
+	    $this->date = new Zend_Date();
+	    $this->date->setTimezone($config->base->timezone);
 	}
     }
 
@@ -62,10 +60,8 @@ class Knowledgeroot_Date {
      * return date in given timezone
      */
     public function getDate($timezone) {
-	$tz = new DateTimeZone($timezone);
-
 	$date = clone $this->date;
-	$date->setTimezone($tz);
+	$date->setTimezone($timezone);
 
 	return $date;
     }
