@@ -36,7 +36,7 @@ class Knowledgeroot_Date {
      * return date in UTC timezone
      */
     public function getDbDate() {
-	return $this->getDate('UTC');
+	return $this->getDate('UTC')->get('yyyy-MM-dd HH:mm:ss');
     }
 
     /**

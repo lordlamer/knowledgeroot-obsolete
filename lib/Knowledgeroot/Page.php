@@ -94,14 +94,17 @@ class Knowledgeroot_Page {
 	if ($this->changed_by !== null)
 	    $data['changed_by'] = $this->changed_by;
 
+	// create date object
+	$date = new Knowledgeroot_Date();
+
 	// set create date
 	if ($this->create_date == null) {
-	    $this->create_date = date("Y-m-d H:i:s", time());
+	    $this->create_date = $date->getDbDate();
 	    $data['create_date'] = $this->create_date;
 	}
 
 	// set last updated
-	$this->change_date = date("Y-m-d H:i:s", time());
+	$this->change_date = $date->getDbDate();
 	$data['change_date'] = $this->change_date;
 
 	$page = new Knowledgeroot_Db_Page();
