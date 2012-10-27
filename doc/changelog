@@ -1,3 +1,7 @@
+20121027 - fhabermann
+* added mssql dump
+* fixed problems with mssql connection
+
 20121020 - fhabermann
 * added knowledgeroot_date object to content und page class
 

@@ -13,10 +13,10 @@ abstract class Knowledgeroot_Db_Table_Abstract extends Zend_Db_Table_Abstract {
 
 	parent::__construct($config, $definition);
 
-	$this->_setSequence();
+	$this->setSequence();
     }
 
-    protected function _setSequence() {
+    protected function setSequence() {
 	if ($this->_db instanceof Zend_Db_Adapter_Pdo_Mysql || $this->_db instanceof Zend_Db_Adapter_Mysqli) {
 	    $this->_sequence = (bool) $this->_sequence;
 	}

@@ -91,7 +91,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	}
 
 	// load files
-	$files = $db->fetchAll('SELECT id FROM file WHERE deleted='.Knowledgeroot_Db::false());
+	$files = $db->fetchAll('SELECT id FROM ' . $db->quoteIdentifier('file') . ' WHERE deleted='.Knowledgeroot_Db::false());
 
 	foreach($files as $key => $value) {
 	    $this->acl->addResource(new Zend_Acl_Resource('F_' . $value['id']));
