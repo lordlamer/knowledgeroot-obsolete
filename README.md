@@ -1,10 +1,21 @@
 knowledgeroot
 =============
 
-knowledgeroot
+Knowledgeroot is a knowledgebase system. Your content and files are inserted and managed in a tree - or directory - like structure.
+WYSIWYG editors let you edit your contents.
 
 Quick Start
 -----------
+
+Knowledgeroot is a knowledgebase system. Your content and files are inserted and managed in a tree - or directory - like structure.
+WYSIWYG editors let you edit your contents.
+
+Requirements
+------------
+
++ Webserver like Apache, Nginx, IIS, ...
++ PHP >= 5.3
++ Database like PostgreSQL, MySQL, SQLite3, MSSQL
 
 Bug tracker
 -----------
@@ -27,6 +38,8 @@ http://forum.linuxdelta.de
 
 Contributing
 ------------
+
+Please submit all pull requests against master branch.
 
 Authors
 -------
