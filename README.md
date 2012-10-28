@@ -31,7 +31,7 @@ Contributing
 Authors
 -------
 
-** Frank Habermann **
+**Frank Habermann**
 
 + https://github.com/lordlamer
 + http://www.lordlamer.de
