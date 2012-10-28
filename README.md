@@ -1,4 +1,4 @@
-knowledgeroot
+Knowledgeroot
 =============
 
 Knowledgeroot is a knowledgebase system. Your content and files are inserted and managed in a tree - or directory - like structure.
@@ -7,8 +7,11 @@ WYSIWYG editors let you edit your contents.
 Quick Start
 -----------
 
-Knowledgeroot is a knowledgebase system. Your content and files are inserted and managed in a tree - or directory - like structure.
-WYSIWYG editors let you edit your contents.
+1. Clone the repo, `git clone git://github.com/lordlamer/knowledgeroot.git`, or [download the latest release](https://github.com/lordlamer/knowledgeroot/zipball/master).
+2. Run composer `php composer.phar update`
+3. Import database dump from folder **data/dumps**.
+4. Configure your app.ini in config folder. Set database credentials, timezone, base_path, base_url
+5. Open Knowledgeroot with your Browser...
 
 Requirements
 ------------
