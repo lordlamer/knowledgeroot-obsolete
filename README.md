@@ -35,7 +35,7 @@ For Mailinglist support visit and subscribe at
 http://lists.knowledgeroot.org/cgi-bin/mailman/listinfo
 
 ### Forum
-For forum bases support visit
+For forum based support visit
 
 http://forum.linuxdelta.de
 
