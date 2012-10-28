@@ -16,10 +16,14 @@ Support
 ---------
 
 ### Mailing list
-For Mailinglist support visit and subscribe at (http://lists.knowledgeroot.org/cgi-bin/mailman/listinfo).
+For Mailinglist support visit and subscribe at
+
+http://lists.knowledgeroot.org/cgi-bin/mailman/listinfo
 
 ### Forum
-For forum bases support visit (http://forum.linuxdelta.de).
+For forum bases support visit
+
+http://forum.linuxdelta.de
 
 Contributing
 ------------
@@ -27,7 +31,10 @@ Contributing
 Authors
 -------
 
-* Frank Habermann (https://github.com/lordlamer), (http://www.lordlamer.de)
+** Frank Habermann **
+
++ https://github.com/lordlamer
++ http://www.lordlamer.de
 
 License
 -------
