@@ -1,3 +1,6 @@
+20121101 - fhabermann
+* bootstrap update to 2.2.1
+
 20121027 - fhabermann
 * added mssql dump
 * fixed problems with mssql connection
