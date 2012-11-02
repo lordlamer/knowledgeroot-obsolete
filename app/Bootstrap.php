@@ -619,5 +619,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    die('could not load default rte');
 	}
     }
+
+    /**
+     * init filemanager
+     */
+    protected function _initFileManager() {
+	try {
+	    // load config
+	    $this->bootstrap('config');
+
+	    // init filemanager
+	    $fm = new Knowledgeroot_FileManager();
+
+	    // save filemanager
+	    Knowledgeroot_Registry::set('filemanager', $fm);
+	} catch(Exception $e) {
+	    echo $e->getMessage();
+	    die('could not load filemanager');
+	}
+    }
 }
 

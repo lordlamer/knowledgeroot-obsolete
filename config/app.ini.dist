@@ -50,6 +50,9 @@ url_suffix = "upload/"
 path = "uploads/"
 maxfilesize = ""
 
+[files]
+datastore = PROJECT_PATH "/data/files"
+
 [output]
 compression = ""
 level = "6"
