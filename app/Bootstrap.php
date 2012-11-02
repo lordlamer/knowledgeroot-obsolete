@@ -470,6 +470,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
 	    // set layout name
 	    $layout->setLayout($config->production->resources->layout->layout);
+
+	    // set version
+	    $layout->version = $config->base->version;
+
 	} catch (Exception $e) {
 	    echo $e->getMessage();
 	    die('could not create layout');

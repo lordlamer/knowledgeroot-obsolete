@@ -188,3 +188,16 @@ a.ContentName:hover {
 	border-radius: 0;
     }
 }
+
+.pull-center {
+    text-align: center;
+}
+
+.credit {
+    margin-top: 10px;
+}
+
+.credit a, .credit span {
+    padding-left: 10px;
+    padding-right: 10px;
+}

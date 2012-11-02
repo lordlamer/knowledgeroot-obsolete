@@ -67,11 +67,11 @@ $config = Zend_Registry::get('config');
 
     <body class="claro">
 	<div id="fileUpload" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
+	    <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h3 id="myModalLabel">File Upload</h3>
-            </div>
-            <div class="modal-body">
+	    </div>
+	    <div class="modal-body">
 		<fieldset>
 		    <div class="control-group">
 			<label class="control-label" for="content-title">Seite</label>
@@ -86,11 +86,11 @@ $config = Zend_Registry::get('config');
 		    <div class="control-group">
 			<label class="control-label" for="file-box">File</label>
 			<div class="controls">
-			                    <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
-                    <span>Add files...</span>
-                    <input type="file" name="files[]" multiple>
-                </span>
+			    <span class="btn btn-success fileinput-button">
+				<i class="icon-plus icon-white"></i>
+				<span>Add files...</span>
+				<input type="file" name="files[]" multiple>
+			    </span>
 			    <input type="file" class="input-xlarge span2" id="file-box" name="file"">
 			    <p class="help-block">
 				Select a file.
@@ -98,11 +98,11 @@ $config = Zend_Registry::get('config');
 			</div>
 		    </div>
 		</fieldset>
-            </div>
-            <div class="modal-footer">
+	    </div>
+	    <div class="modal-footer">
 		<button class="btn btn-primary">Upload</button>
 		<button class="btn" data-dismiss="modal">Close</button>
-            </div>
+	    </div>
 	</div>
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -293,16 +293,20 @@ $config = Zend_Registry::get('config');
 		    </div>
 		</div><!--/span-->
 	    </div><!--/row-->
-
-	    <hr>
-
-	    <footer>
-		<p>Knowledgeroot <?php echo $this->layout()->version; ?></p>
-
-	    </footer>
-
 	</div><!--/.fluid-container-->
 
-	<script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script>
+	<div class="navbar navbar-fixed-bottom">
+	    <div class="navbar-inner pull-center">
+		<p class="muted credit">
+		    <a href="http://knowledgeroot.org">Knowledgeroot</a>
+		    <a href="https://github.com/lordlamer/knowledgeroot">Github</a>
+		    <a href="http://forum.lordlamer.de/">Forum</a>
+		    <a href="http://lists.knowledgeroot.org">Mailinglists</a>
+		    <span>Version: <?php echo $this->layout()->version; ?></span>
+		</p>
+	    </div>
+	</div>
+
+<!-- <script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script> -->
     </body>
 </html>
