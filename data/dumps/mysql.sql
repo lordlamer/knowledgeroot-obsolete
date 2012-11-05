@@ -157,6 +157,7 @@ CREATE TABLE content_history (
 CREATE TABLE file (
   id integer NOT NULL AUTO_INCREMENT,
   content_id integer DEFAULT 0 NOT NULL,
+  hash varchar(32) DEFAULT '' NOT NULL,
   file_name varchar(255) DEFAULT '' NOT NULL,
   file_size integer DEFAULT 0 NOT NULL,
   file_type varchar(255) DEFAULT 'application/octet-stream',
@@ -178,6 +179,7 @@ CREATE TABLE file_history (
   file_id integer DEFAULT 0 NOT NULL,
   version integer DEFAULT 0 NOT NULL,
   content_id integer DEFAULT 0 NOT NULL,
+  hash varchar(32) DEFAULT '' NOT NULL,
   file_name varchar(255) DEFAULT '' NOT NULL,
   file_size integer DEFAULT 0 NOT NULL,
   file_type varchar(255) DEFAULT 'application/octet-stream',
@@ -256,8 +258,8 @@ DELIMITER ;
 DELIMITER ||
 CREATE TRIGGER fileHistory_trigger_insert AFTER INSERT ON file FOR EACH ROW
 BEGIN
-    INSERT INTO file_history (file_id, version, content_id, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
-    VALUES (NEW.id, 1, NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+    INSERT INTO file_history (file_id, version, content_id, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    VALUES (NEW.id, 1, NEW.content_id, NEW.hash, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 END
 ||
 DELIMITER ;
@@ -265,8 +267,8 @@ DELIMITER ;
 DELIMITER ||
 CREATE TRIGGER fileHistory_trigger_update AFTER UPDATE ON file FOR EACH ROW
 BEGIN
-    INSERT INTO file_history (file_id, version, content_id, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
-    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM file_history) x WHERE x.file_id = NEW.id), NEW.content_id, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+    INSERT INTO file_history (file_id, version, content_id, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM file_history) x WHERE x.file_id = NEW.id), NEW.content_id, NEW.hash, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 END
 ||
 DELIMITER ;
