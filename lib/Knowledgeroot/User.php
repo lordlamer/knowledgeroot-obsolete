@@ -3,16 +3,21 @@
 class Knowledgeroot_User {
 
     protected $id = null;
-    protected $name = null;
-    protected $passwordHash = null;
+    protected $first_name = null;
+    protected $last_name = null;
+    protected $login = null;
     protected $email = null;
-    protected $theme = null;
+    protected $passwordHash = null;
     protected $language = null;
+    protected $timezone = null;
+    protected $time_start = null;
+    protected $time_end = null;
+    protected $created_by = null;
+    protected $create_date = null;
+    protected $changed_by = null;
+    protected $change_date = null;
     protected $active = null;
     protected $deleted = null;
-    protected $lastUpdatedBy = null;
-    protected $lastUpdated = null;
-    protected $createDate = null;
 
     public function __construct($id = null) {
 	if ($id != null) {
@@ -25,49 +30,72 @@ class Knowledgeroot_User {
 	$row = $content->find($id);
 
 	$this->id = $row[0]['id'];
-	$this->name = $row[0]['name'];
-	$this->passwordHash = $row[0]['password'];
+	$this->first_name = $row[0]['first_name'];
+	$this->last_name = $row[0]['last_name'];
+	$this->login = $row[0]['login'];
 	$this->email = $row[0]['email'];
-	$this->theme = $row[0]['theme'];
+	$this->passwordHash = $row[0]['password'];
 	$this->language = $row[0]['language'];
-	$this->active = $row[0]['enabled'];
+	$this->timezone = $row[0]['timezone'];
+	$this->time_start = $row[0]['time_start'];
+	$this->time_end = $row[0]['time_end'];
+	$this->active = $row[0]['active'];
+	$this->created_by = $row[0]['created_by'];
+	$this->create_date = $row[0]['create_date'];
+	$this->changed_by = $row[0]['changed_by'];
+	$this->change_date = $row[0]['change_date'];
 	$this->deleted = $row[0]['deleted'];
-	$this->lastUpdatedBy = $row[0]['lastupdatedby'];
-	$this->lastUpdated = $row[0]['lastupdated'];
-	$this->createDate = $row[0]['createdate'];
     }
 
     public function save() {
 	$data = array();
 
-	if ($this->name != null)
-	    $data['name'] = $this->name;
-	if ($this->passwordHash != null)
-	    $data['password'] = $this->passwordHash;
+	if ($this->first_name != null)
+	    $data['first_name'] = $this->first_name;
+	if ($this->last_name != null)
+	    $data['last_name'] = $this->last_name;
+	if ($this->login != null)
+	    $data['login'] = $this->login;
 	if ($this->email != null)
 	    $data['email'] = $this->email;
-	if ($this->theme != null)
-	    $data['theme'] = $this->theme;
+	if ($this->passwordHash != null)
+	    $data['password'] = $this->passwordHash;
 	if ($this->language != null)
 	    $data['language'] = $this->language;
+	if ($this->timezone != null)
+	    $data['timezone'] = $this->timezone;
+	if ($this->time_start != null)
+	    $data['time_start'] = $this->time_start;
+	if ($this->time_end != null)
+	    $data['time_end'] = $this->time_end;
 	if ($this->active != null)
-	    $data['enabled'] = $this->active;
+	    $data['active'] = $this->active;
 
-	// set lastUpdatedBy
-	if ($this->lastUpdatedBy == null)
-	    $this->lastUpdatedBy = 0; // set to guest user
+	// set changed_by
+	if ($this->created_by === null)
+	    $this->created_by = (($session->id !== null) ? $session->id : 0); // set to guest user
 
-	$data['lastupdatedby'] = $this->lastUpdatedBy;
+	// set changed_by
+	if ($this->changed_by === null)
+	    $this->changed_by = (($session->id !== null) ? $session->id : 0); // set to guest user
+
+	if ($this->created_by !== null)
+	    $data['created_by'] = $this->created_by;
+	if ($this->changed_by !== null)
+	    $data['changed_by'] = $this->changed_by;
+
+	// create date object
+	$date = new Knowledgeroot_Date();
 
 	// set create date
-	if ($this->createDate == null) {
-	    $this->createDate = date("Y-m-d H:i:s", time());
-	    $data['createdate'] = $this->createDate;
+	if ($this->create_date == null) {
+	    $this->create_date = $date->getDbDate();
+	    $data['create_date'] = $this->create_date;
 	}
 
 	// set last updated
-	$this->lastUpdated = date("Y-m-d H:i:s", time());
-	$data['lastupdated'] = $this->lastUpdated;
+	$this->change_date = $date->getDbDate();
+	$data['change_date'] = $this->change_date;
 
 	$content = new Knowledgeroot_Db_Content();
 
@@ -92,66 +120,101 @@ class Knowledgeroot_User {
 	}
     }
 
-    public function setName($name) {
-	$this->name = $name;
+    public function setFirstName($name) {
+	$this->first_name = $name;
     }
 
-    public function setPassword($password) {
-	$this->passwordHash = Knowledgeroot_Password::hash($password);
+    public function setLastName($name) {
+	$this->last_name = $name;
+    }
+
+    public function setLogin($login) {
+	$this->login = $login;
     }
 
     public function setEmail($email) {
 	$this->email = $email;
     }
 
-    public function setTheme($theme) {
-	$this->theme = $theme;
+    public function setPassword($password) {
+	$this->passwordHash = Knowledgeroot_Password::hash($password);
     }
 
     public function setLanguage($lang) {
 	$this->language = $lang;
     }
 
-    public function getName() {
-	return $this->name;
+    public function setTimezone($timezone) {
+	$this->timezone = $timezone;
+    }
+
+    public function setActive($active) {
+	$this->active = $active;
+    }
+
+    public function setTimeStart($time) {
+	$this->time_start = $time;
+    }
+
+    public function setTimeEnd($time) {
+	$this->time_end = $time;
+    }
+
+    public function setChangedBy($userid) {
+	$this->changed_by = $userid;
+    }
+
+    public function getFirstName() {
+	return $this->first_name;
+    }
+
+    public function getLastName() {
+	return $this->last_name;
+    }
+
+    public function getLogin() {
+	return $this->login;
     }
 
     public function getEmail() {
 	return $this->email;
     }
 
-    public function getTheme() {
-	return $this->theme;
-    }
-
     public function getLanguage() {
 	return $this->language;
     }
 
-    public function setActive($enabled) {
-	$this->active = $enabled;
+    public function getTimezone() {
+	return $this->timezone;
     }
 
     public function isActive() {
 	return $this->active;
     }
 
-    public function setLastUpdatedBy($userid) {
-	$this->lastUpdatedBy = $userid;
+    public function getActive() {
+	return $this->active;
+    }
+
+    public function getTimeStart() {
+	return $this->time_start;
+    }
+
+    public function getTimeEnd() {
+	return $this->time_end;
     }
 
     public function getCreateDate() {
-	return $this->createDate;
+	return $this->create_date;
     }
 
-    public function getLastUpdated() {
-	return $this->lastUpdated;
+    public function getChangeDate() {
+	return $this->change_date;
     }
 
-    public function getLastUpdatedBy() {
-	return $this->lastUpdatedBy;
+    public function getChangedBy() {
+	return $this->changed_by;
     }
-
 }
 
 ?>
