@@ -102,7 +102,7 @@ class Knowledgeroot_FileManager {
      * @return string file content
      */
     public function getContent($fileHash) {
-	return file_get_content($this->getFilename($fileHash));
+	return file_get_contents($this->getFilename($fileHash));
     }
 
     /**

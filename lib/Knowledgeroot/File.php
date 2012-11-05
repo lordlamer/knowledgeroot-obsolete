@@ -18,7 +18,7 @@ class Knowledgeroot_File {
     public function __construct($id = null) {
 	if ($id != null) {
 	    // load file by id
-	    if(is_int($id))
+	    if(( !is_int($id) ? (ctype_digit($id)) : true ))
 		$this->load((int) $id);
 
 	    // load file from disk
@@ -52,9 +52,21 @@ class Knowledgeroot_File {
     }
 
     public function load($id = null) {
-	if ($id != null) {
-	    $this->load((int) $id);
-	}
+	$file = new Knowledgeroot_Db_File();
+	$row = $file->find($id);
+
+	$this->id = $row[0]['id'];
+	$this->hash = $row[0]['hash'];
+	$this->parent = $row[0]['parent'];
+	$this->name = $row[0]['name'];
+	$this->size = $row[0]['size'];
+	$this->type = $row[0]['type'];
+	$this->downloads = $row[0]['downloads'];
+	$this->created_by = $row[0]['created_by'];
+	$this->create_date = $row[0]['create_date'];
+	$this->changed_by = $row[0]['changed_by'];
+	$this->change_date = $row[0]['change_date'];
+	$this->deleted = $row[0]['deleted'];
     }
 
     public function save() {
@@ -198,7 +210,11 @@ class Knowledgeroot_File {
     }
 
     public function getContent() {
+	if($this->hash == null)
+	    return null;
 
+	$fm = new Knowledgeroot_FileManager();
+	return $fm->getContent($this->hash);
     }
 
     private function detectMimeType($filename) {
