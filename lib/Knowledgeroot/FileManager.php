@@ -34,6 +34,31 @@ class Knowledgeroot_FileManager {
     }
 
     /**
+     * get content from file
+     *
+     * @param type $filename
+     * @return string return file hash
+     */
+    public function saveContentFromFile($filename, $delete = true) {
+	// create hash from file
+	$hash = md5_file($filename);
+
+	// get filename
+	$dsFilename = $this->getFilename($hash);
+
+	// if file exists in datastor exit
+	if(is_file($dsFilename))
+	    return $hash;
+
+	// get content and save
+	file_put_contents($dsFilename, file_get_contents($filename));
+
+	// delete file ?
+	if($delete)
+	    unlink($filename);
+    }
+
+    /**
      *
      * @param type $content
      * @return string return file hash

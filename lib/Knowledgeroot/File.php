@@ -27,11 +27,28 @@ class Knowledgeroot_File {
 	}
     }
 
-    public function loadFile($filename) {
+    /**
+     *
+     * @param type $filename
+     * @param type $delete delete original file after loading
+     */
+    public function loadFile($filename, $delete = true) {
 	$this->name = basename($filename);
 	$this->size = filesize($filename);
 	$this->type = $this->detectMimeType($filename);
 	$this->downloads = 0;
+
+	$fm = new Knowledgeroot_FileManager();
+	$this->hash = $fm->saveContentFromFile($filename, $delete);
+
+	print_r($this);
+
+	// save file
+	$this->save();
+
+	// check if file should be deleted
+	if($delete)
+	    unlink($filename);
     }
 
     public function load($id = null) {
