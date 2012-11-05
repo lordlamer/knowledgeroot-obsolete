@@ -277,6 +277,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 				1 => 'language',
 			    )
 	    ));
+
+	    //route: download/:fileid
+	    $router->addRoute('download', new Zend_Controller_Router_Route_Regex('download/(\d+)', array(
+			'controller' => 'file',
+			'action' => 'download'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
 	} catch (Exception $e) {
 	    echo $e->getMessage();
 	    die('could not create routes');
