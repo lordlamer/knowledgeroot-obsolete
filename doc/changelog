@@ -1,3 +1,7 @@
+20121105 - fhabermann
+* added download action
+* added File class with actions
+
 20121102 - fhabermann
 * added bootom bar with version and social links
 * added FileManager
