@@ -163,11 +163,11 @@ CREATE TABLE content_history (
 /* table: file */
 CREATE TABLE file (
   id integer PRIMARY KEY DEFAULT nextval('seq_file') NOT NULL,
-  content_id integer DEFAULT 0 NOT NULL REFERENCES content (id) ON DELETE CASCADE,
+  parent integer DEFAULT 0 NOT NULL REFERENCES content (id) ON DELETE CASCADE,
   hash varchar(32) DEFAULT '' NOT NULL,
-  file_name varchar(255) DEFAULT '' NOT NULL,
-  file_size integer DEFAULT 0 NOT NULL,
-  file_type varchar(255) DEFAULT 'application/octet-stream',
+  name varchar(255) DEFAULT '' NOT NULL,
+  size integer DEFAULT 0 NOT NULL,
+  type varchar(255) DEFAULT 'application/octet-stream',
   downloads integer DEFAULT 0 NOT NULL,
   created_by integer NOT NULL REFERENCES "user" (id) ON DELETE RESTRICT,
   create_date timestamp without time zone NOT NULL,
@@ -181,11 +181,11 @@ CREATE TABLE file_history (
   id integer PRIMARY KEY DEFAULT nextval('seq_file') NOT NULL,
   file_id integer DEFAULT 0 NOT NULL REFERENCES file (id) ON DELETE CASCADE,
   version integer DEFAULT 0 NOT NULL,
-  content_id integer DEFAULT 0 NOT NULL,
+  parent integer DEFAULT 0 NOT NULL,
   hash varchar(32) DEFAULT '' NOT NULL,
-  file_name varchar(255) DEFAULT '' NOT NULL,
-  file_size integer DEFAULT 0 NOT NULL,
-  file_type varchar(255) DEFAULT 'application/octet-stream',
+  name varchar(255) DEFAULT '' NOT NULL,
+  size integer DEFAULT 0 NOT NULL,
+  type varchar(255) DEFAULT 'application/octet-stream',
   downloads integer DEFAULT 0 NOT NULL,
   created_by integer NOT NULL,
   create_date timestamp without time zone NOT NULL,
@@ -270,8 +270,8 @@ BEGIN
 	    fileVersion = (SELECT max(version)+1 FROM file_history WHERE file_id = NEW.id);
     END CASE;
 
-    INSERT INTO file_history (file_id, version, content_id, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
-    VALUES (NEW.id, fileVersion, NEW.content_id, NEW.hash, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+    INSERT INTO file_history (file_id, version, parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    VALUES (NEW.id, fileVersion, NEW.parent, NEW.hash, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 
     RETURN NEW;
 END;

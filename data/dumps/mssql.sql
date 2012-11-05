@@ -191,18 +191,18 @@ GO
 -- table: file
 CREATE TABLE [file] (
   id int IDENTITY(1,1) NOT NULL,
-  content_id integer DEFAULT 0 NOT NULL,
+  parent integer DEFAULT 0 NOT NULL,
   hash varchar(32) DEFAULT '' NOT NULL,
-  file_name varchar(255) DEFAULT '' NOT NULL,
-  file_size integer DEFAULT 0 NOT NULL,
-  file_type varchar(255) DEFAULT 'application/octet-stream',
+  name varchar(255) DEFAULT '' NOT NULL,
+  size integer DEFAULT 0 NOT NULL,
+  type varchar(255) DEFAULT 'application/octet-stream',
   downloads integer DEFAULT 0 NOT NULL,
   created_by integer NOT NULL,
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
   deleted bit DEFAULT 0 NOT NULL,
-  FOREIGN KEY (content_id) REFERENCES content (id) ON DELETE CASCADE,
+  FOREIGN KEY (parent) REFERENCES content (id) ON DELETE CASCADE,
   FOREIGN KEY (created_by) REFERENCES [user] (id) ON DELETE NO ACTION,
   FOREIGN KEY (changed_by) REFERENCES [user] (id) ON DELETE NO ACTION,
   CONSTRAINT [PK_file_id] PRIMARY KEY CLUSTERED (
@@ -217,11 +217,11 @@ CREATE TABLE file_history (
   id int IDENTITY(1,1) NOT NULL,
   file_id integer DEFAULT 0 NOT NULL,
   version integer DEFAULT 0 NOT NULL,
-  content_id integer DEFAULT 0 NOT NULL,
+  parent integer DEFAULT 0 NOT NULL,
   hash varchar(32) DEFAULT '' NOT NULL,
-  file_name varchar(255) DEFAULT '' NOT NULL,
-  file_size integer DEFAULT 0 NOT NULL,
-  file_type varchar(255) DEFAULT 'application/octet-stream',
+  name varchar(255) DEFAULT '' NOT NULL,
+  size integer DEFAULT 0 NOT NULL,
+  type varchar(255) DEFAULT 'application/octet-stream',
   downloads integer DEFAULT 0 NOT NULL,
   created_by integer NOT NULL,
   create_date datetime NOT NULL,
@@ -309,7 +309,7 @@ GO
 -- trigger function for file table
 CREATE TRIGGER fileHistory_trigger_insert ON [file] AFTER INSERT AS
 BEGIN
-    INSERT INTO file_history ([version], file_id, content_id, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    INSERT INTO file_history ([version], file_id, parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
 	SELECT 1 as [version], f.* from inserted i, [file] f WHERE i.id=f.id
 END
 
@@ -319,8 +319,8 @@ CREATE TRIGGER fileHistory_trigger_update ON [file] AFTER UPDATE AS
 	DECLARE @version INT
 BEGIN
 	SELECT  @version = (max(h.version)+1) FROM inserted i, file_history h WHERE i.id=h.file_id
-	
-    INSERT INTO file_history (file_id, [version], content_id, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+
+    INSERT INTO file_history (file_id, [version], parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
     SELECT @version as [version], f.* from inserted i, [file] f WHERE i.id=f.id
 END
 
