@@ -56,6 +56,8 @@ class Knowledgeroot_FileManager {
 	// delete file ?
 	if($delete)
 	    unlink($filename);
+
+	return $hash;
     }
 
     /**
