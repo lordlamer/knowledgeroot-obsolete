@@ -1,5 +1,6 @@
 20121117 - fhabermann
 * fixed upload problem with filemanager
+* added xsendfile feature
 
 20121115 - fhabermann
 * added upload action

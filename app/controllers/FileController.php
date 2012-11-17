@@ -50,6 +50,8 @@ class FileController extends Zend_Controller_Action
 	$this->_helper->layout()->disableLayout();
 	$this->_helper->viewRenderer->setNoRender(true);
 
+	$config = Knowledgeroot_Registry::get('config');
+
         // action body
 	// normal download
 	// with x-sendfile
@@ -59,15 +61,21 @@ class FileController extends Zend_Controller_Action
 
 	$file = new Knowledgeroot_File($this->_getParam('id'));
 
-	header("Content-Type: " . $file->getType() . "; name=\"".$file->getName()."\"");
-	header("Content-Disposition: attachment; filename=\"".$file->getName()."\";");
-	header("Pragma: private");
-	header("Expires: 0");
-	header("Cache-Control: private, must-revalidate, post-check=0, pre-check=0");
-	header("Content-Transfer-Encoding: binary");
+	// check for sendfile option
+	if($config->files->xsendfile->enable) {
+	    header("Content-Disposition: attachment; filename=\"".$file->getName()."\";");
+	    header($config->files->xsendfile->name.": ".$file->getDatastorePath());
+	} else {
+	    header("Content-Type: " . $file->getType() . "; name=\"".$file->getName()."\"");
+	    header("Content-Disposition: attachment; filename=\"".$file->getName()."\";");
+	    header("Pragma: private");
+	    header("Expires: 0");
+	    header("Cache-Control: private, must-revalidate, post-check=0, pre-check=0");
+	    header("Content-Transfer-Encoding: binary");
 
-	// put file content to screen
-	echo $file->getContent();
+	    // put file content to screen
+	    echo $file->getContent();
+	}
     }
 
 

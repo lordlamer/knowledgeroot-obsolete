@@ -203,6 +203,14 @@ class Knowledgeroot_File {
 
     }
 
+    public function getDatastorePath() {
+	if($this->hash == null)
+	    return null;
+
+	$fm = new Knowledgeroot_FileManager();
+	return $fm->getFilename($this->hash);
+    }
+
     public function setContent() {
 
     }

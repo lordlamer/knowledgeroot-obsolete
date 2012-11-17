@@ -52,6 +52,9 @@ maxfilesize = ""
 
 [files]
 datastore = PROJECT_PATH "/data/files"
+; download files with xsendfile feature
+xsendfile.enable = false
+xsendfile.name = "X-Sendfile"
 
 [output]
 compression = ""
