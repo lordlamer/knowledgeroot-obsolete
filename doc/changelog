@@ -1,3 +1,11 @@
+20121117 - fhabermann
+* fixed upload problem with filemanager
+
+20121115 - fhabermann
+* added upload action
+* added layout for files
+* more File class action
+
 20121105 - fhabermann
 * added download action
 * added File class with actions

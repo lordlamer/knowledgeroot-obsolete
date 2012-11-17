@@ -279,9 +279,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    ));
 
 	    //route: download/:fileid
-	    $router->addRoute('download', new Zend_Controller_Router_Route_Regex('download/(\d+)', array(
+	    $router->addRoute('download', new Zend_Controller_Router_Route_Regex('download/(\d+).*', array(
 			'controller' => 'file',
 			'action' => 'download'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: file/delete/:fileid
+	    $router->addRoute('filedelete', new Zend_Controller_Router_Route_Regex('file/delete/(\d+)', array(
+			'controller' => 'file',
+			'action' => 'delete'),
 			    array(
 				1 => 'id',
 			    )

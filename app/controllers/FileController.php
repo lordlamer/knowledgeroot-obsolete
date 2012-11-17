@@ -15,12 +15,34 @@ class FileController extends Zend_Controller_Action
 
     public function newAction()
     {
-        // action body
+        if ($this->getRequest()->getMethod() == 'POST') {
+	    if($_FILES['file']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['file']['tmp_name']) && is_file($_FILES['file']['tmp_name'])) {
+		$file = new Knowledgeroot_File();
+		$file->setParent($this->_getParam('parent'));
+		$file->loadFile($_FILES['file']['tmp_name'], true);
+		$file->setName($_FILES['file']['name']);
+		$file->save();
+
+		// get content
+		$content = new Knowledgeroot_Content($this->_getParam('parent'));
+
+		// redirect to page
+		$this->redirect('./page/'.$content->getParent());
+	    }
+	} else {
+	    $this->redirect('./');
+	}
     }
 
     public function deleteAction()
     {
-        // action body
+        $file = new Knowledgeroot_File($this->_getParam('id'));
+
+	$content = new Knowledgeroot_Content($file->getParent());
+
+	$file->delete();
+
+	$this->redirect('./page/'.$content->getParent());
     }
 
     public function downloadAction()

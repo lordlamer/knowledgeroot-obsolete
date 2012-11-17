@@ -41,8 +41,6 @@ class Knowledgeroot_File {
 	$fm = new Knowledgeroot_FileManager();
 	$this->hash = $fm->saveContentFromFile($filename, $delete);
 
-	print_r($this);
-
 	// save file
 	$this->save();
 

@@ -44,10 +44,21 @@ foreach ($this->contents as $content) { // run for each content
 		<form>
 		    <legend>Files</legend>
 		    <?php
-			//foreach($content->files as $file) {
-			//    echo '<a class="btn" href="#"><i class="icon-hdd"></i></a>' . $file->filename . "<br>\n";
-			//}
+			if(is_array($this->files)) {
+			    echo "<ul class=\"unstyled\">\n";
+			    foreach($this->files[$content->id] as $file) {
+				echo '<li>';
+				echo '<a href="./file/delete/'.$file->id.'"><i class="icon-trash"></i></a>';
+				echo '<a href="./download/'.$file->id.'/'.$file->name.'"><i class="icon-file" style="margin-right:5px;"></i>' . $file->name . "</a>\n";
+				echo'
+<a href="javascript:;" class="label label-info" rel="popover" data-html="true" data-placement="right" data-content="Size: '.$file->size.'<br>Downloads:'.$file->downloads.'<br>MD5 Sum:'.$file->hash.'<br>changed:'.$file->change_date.'<br>changed by:'.$file->changed_by.'<br>created:'.$file->create_date.'<br>created by:'.$file->created_by.'" title="File Information">info</a>
+';
+				echo '</li>';
+			    }
+			    echo "</ul>";
+			}
 		    ?>
+		    <a data-toggle="modal" href="#fileUpload" class="btn btn-primary btn-mini"><i class="icon-plus icon-white" style="margin-right:2px;"></i>add</a>
 		</form>
 		<?php
 		    //}
@@ -58,6 +69,8 @@ foreach ($this->contents as $content) { // run for each content
         </div>
     </div><!-- end accordian -->
     <script>
+	//$('[rel=popover]').data('popover');
+	$('[rel=popover]').popover();
         $('#accordion<?php echo $content->id; ?>').on('hidden shown', function () {
     	$('#collapseicon<?php echo $content->id; ?>').toggleClass('icon-chevron-right icon-chevron-down');
         })

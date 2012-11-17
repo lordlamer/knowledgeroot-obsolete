@@ -52,6 +52,7 @@ $config = Zend_Registry::get('config');
 
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-filestyle.js"></script>
 
 	<!-- load the dojo toolkit base -->
 	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"
@@ -67,42 +68,44 @@ $config = Zend_Registry::get('config');
 
     <body class="claro">
 	<div id="fileUpload" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3 id="myModalLabel">File Upload</h3>
-	    </div>
-	    <div class="modal-body">
-		<fieldset>
-		    <div class="control-group">
-			<label class="control-label" for="content-title">Seite</label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span2" id="parent" size="255" name="parent" value="">
-			    <p class="help-block">
-				Content for File
-			    </p>
-			</div>
-		    </div>
+	    <form action="./file/new" method="post" enctype="multipart/form-data">
+		<div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h3 id="myModalLabel">File Upload</h3>
+		</div>
+		<div class="modal-body">
 
-		    <div class="control-group">
-			<label class="control-label" for="file-box">File</label>
-			<div class="controls">
-			    <span class="btn btn-success fileinput-button">
-				<i class="icon-plus icon-white"></i>
-				<span>Add files...</span>
-				<input type="file" name="files[]" multiple>
-			    </span>
-			    <input type="file" class="input-xlarge span2" id="file-box" name="file"">
-			    <p class="help-block">
-				Select a file.
-			    </p>
+		    <fieldset>
+			<div class="control-group">
+			    <label class="control-label" for="content-title"><h4>Content Id</h4></label>
+			    <div class="controls">
+				<input type="text" class="input-xlarge span2" id="parent" size="255" name="parent" value="">
+				<p class="help-block">
+				    Id for Content
+				</p>
+			    </div>
 			</div>
-		    </div>
-		</fieldset>
-	    </div>
-	    <div class="modal-footer">
-		<button class="btn btn-primary">Upload</button>
-		<button class="btn" data-dismiss="modal">Close</button>
-	    </div>
+
+			<div class="control-group">
+			    <label class="control-label" for="file-box"><h4>File</h4></label>
+			    <div class="controls">
+				<span class="btn btn-success">
+				    <i class="icon-plus icon-white"></i>
+				    <span>Add files...</span>
+				    <input type="file" name="file" multiple>
+				</span>
+				<p class="help-block">
+				    Select a file.
+				</p>
+			    </div>
+			</div>
+		    </fieldset>
+		</div>
+		<div class="modal-footer">
+		    <button class="btn btn-primary" type="submit">Upload</button>
+		    <button class="btn" data-dismiss="modal">Close</button>
+		</div>
+	    </form>
 	</div>
 
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -307,6 +310,12 @@ $config = Zend_Registry::get('config');
 	    </div>
 	</div>
 
-<!-- <script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script> -->
+	<!-- style file uploads -->
+	<script>
+	    jQuery(function($) {
+		$(':file').filestyle();
+	    });
+	</script>
+    <!-- <script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script> -->
     </body>
 </html>

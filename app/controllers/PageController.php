@@ -25,13 +25,36 @@ class PageController extends Zend_Controller_Action {
 	// load contents for page
 	$page = new Knowledgeroot_Page($this->_getParam('id'));
 	$contents = Knowledgeroot_Content::getContents($page);
+	$files = array();
+
+	// get files for each content
+	foreach($contents as $value) {
+	    $files[$value->id] = Knowledgeroot_File::getFiles(new Knowledgeroot_Content($value->id));
+	}
 
 	// set page for view
 	$this->view->id = $page->getId();
 	$this->view->title = $page->getName();
 
+	/*
+	$fm = new Knowledgeroot_FileManager();
+
+	//$f = new Knowledgeroot_File(4711);
+	$f = new Knowledgeroot_File();
+	$f->setParent(1);
+	$f->loadFile("/tmp/test.xls", true);
+
+	//$f->getContent();
+	//$f->getDatastorePath();
+
+	//$f->delete();
+*/
+
 	// set contents for view
 	$this->view->contents = $contents;
+
+	// set files for view
+	$this->view->files = $files;
     }
 
     public function newAction() {
