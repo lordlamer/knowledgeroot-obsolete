@@ -29,7 +29,6 @@ foreach ($this->contents as $content) { // run for each content
     			<a class="btn" href="javascript:;" onclick="if(confirm('Do you really want to delete?')) { location.href='content/delete/<?php echo $content->id; ?>'; } else { return false; }">delete</a>
     			<a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move</a>
     			<a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->id; ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');">print</a>
-    			<a class="btn" href="javascript:;" onclick="return false;">add file</a>
     		    </div>
     		    <div class="btn-group pull-right">
     			<a class="btn pull-right" href="#top">Top</a>
