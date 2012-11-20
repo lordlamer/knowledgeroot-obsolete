@@ -220,13 +220,13 @@ END;
 -- trigger function for file table
 CREATE TRIGGER fileHistory_trigger_insert AFTER INSERT ON file FOR EACH ROW
 BEGIN
-    INSERT INTO file_history (file_id, version, parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    INSERT INTO file_history (file_id, version, parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
     VALUES (NEW.id, 1, NEW.parent, NEW.hash, NEW.name, NEW.size, NEW.type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 END;
 
 CREATE TRIGGER fileHistory_trigger_update AFTER UPDATE ON file FOR EACH ROW
 BEGIN
-    INSERT INTO file_history (file_id, version, parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    INSERT INTO file_history (file_id, version, parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
     VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM file_history) x WHERE x.file_id = NEW.id), NEW.parent, NEW.hash, NEW.name, NEW.size, NEW.type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 END;
 
