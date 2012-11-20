@@ -270,8 +270,8 @@ BEGIN
 	    fileVersion = (SELECT max(version)+1 FROM file_history WHERE file_id = NEW.id);
     END CASE;
 
-    INSERT INTO file_history (file_id, version, parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
-    VALUES (NEW.id, fileVersion, NEW.parent, NEW.hash, NEW.file_name, NEW.file_size, NEW.file_type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
+    INSERT INTO file_history (file_id, version, parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    VALUES (NEW.id, fileVersion, NEW.parent, NEW.hash, NEW.name, NEW.size, NEW.type, NEW.downloads, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.deleted);
 
     RETURN NEW;
 END;
