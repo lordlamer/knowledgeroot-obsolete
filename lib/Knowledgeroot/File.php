@@ -41,9 +41,6 @@ class Knowledgeroot_File {
 	$fm = new Knowledgeroot_FileManager();
 	$this->hash = $fm->saveContentFromFile($filename, $delete);
 
-	// save file
-	$this->save();
-
 	// check if file should be deleted
 	if($delete)
 	    unlink($filename);
