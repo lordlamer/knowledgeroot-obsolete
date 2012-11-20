@@ -309,7 +309,7 @@ GO
 -- trigger function for file table
 CREATE TRIGGER fileHistory_trigger_insert ON [file] AFTER INSERT AS
 BEGIN
-    INSERT INTO file_history ([version], file_id, parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    INSERT INTO file_history ([version], file_id, parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
 	SELECT 1 as [version], f.* from inserted i, [file] f WHERE i.id=f.id
 END
 
@@ -320,7 +320,7 @@ CREATE TRIGGER fileHistory_trigger_update ON [file] AFTER UPDATE AS
 BEGIN
 	SELECT  @version = (max(h.version)+1) FROM inserted i, file_history h WHERE i.id=h.file_id
 
-    INSERT INTO file_history (file_id, [version], parent, hash, file_name, file_size, file_type, downloads, created_by, create_date, changed_by, change_date, deleted)
+    INSERT INTO file_history (file_id, [version], parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
     SELECT @version as [version], f.* from inserted i, [file] f WHERE i.id=f.id
 END
 
