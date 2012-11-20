@@ -48,7 +48,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 
 	foreach($rows as $key => $value) {
 	    $parents = array('G_'.$value['id']);
-	    $gm = $db->fetchAll("SELECT group_id FROM group_member WHERE member_id=:gid AND member_type='group'", array('gid' => $value['id']));
+	    $gm = $db->fetchAll("SELECT group_id FROM group_member WHERE member_id=? AND member_type='group'", array($value['id']));
 	    foreach($gm as $mKey => $mValue) {
 		$parents[] = 'G_' . $mValue['group_id'];
 	    }
@@ -61,7 +61,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 
 	foreach($rows as $key => $value) {
 	    $parents = array();
-	    $gm = $db->fetchAll("SELECT group_id FROM group_member WHERE member_id=:uid AND member_type='user'", array('uid' => $value['id']));
+	    $gm = $db->fetchAll("SELECT group_id FROM group_member WHERE member_id=? AND member_type='user'", array($value['id']));
 	    foreach($gm as $mKey => $mValue) {
 		$parents[] = 'GM_' . $mValue['group_id'];
 	    }

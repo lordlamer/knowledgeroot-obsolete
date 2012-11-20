@@ -1,3 +1,6 @@
+20121120 - fhabermann
+* used non named parameters for sql
+
 20121117 - fhabermann
 * fixed upload problem with filemanager
 * added xsendfile feature
