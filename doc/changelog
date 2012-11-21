@@ -1,3 +1,7 @@
+20121121 - fhabermann
+* fixed date format
+* fixed problem with abstract table class for mssql
+
 20121120 - fhabermann
 * used non named parameters for sql
 
