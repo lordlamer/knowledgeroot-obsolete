@@ -24,7 +24,7 @@ class ContentController extends Zend_Controller_Action {
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('content/edit/' . $content->getId());
 	    } else {
-		$this->_redirect('page/' . $this->_getParam('content_page'));
+		$this->_redirect('page/' . $this->_getParam('content_page') . '#content' . $content->getId());
 	    }
 	} else {
 	    $this->view->action = 'new';
@@ -52,7 +52,7 @@ class ContentController extends Zend_Controller_Action {
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('content/edit/' . $content->getId());
 	    } else {
-		$this->_redirect('page/' . $this->_getParam('content_page'));
+		$this->_redirect('page/' . $this->_getParam('content_page') . '#content' . $content->getId());
 	    }
 	} else {
 	    $this->view->action = 'edit';

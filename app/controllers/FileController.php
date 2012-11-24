@@ -27,7 +27,7 @@ class FileController extends Zend_Controller_Action
 		$content = new Knowledgeroot_Content($this->_getParam('parent'));
 
 		// redirect to page
-		$this->redirect('./page/'.$content->getParent());
+		$this->redirect('./page/'.$content->getParent() . '#content' . $content->getId());
 	    }
 	} else {
 	    $this->redirect('./');
@@ -42,7 +42,7 @@ class FileController extends Zend_Controller_Action
 
 	$file->delete();
 
-	$this->redirect('./page/'.$content->getParent());
+	$this->redirect('./page/'.$content->getParent() . '#content' . $content->getId());
     }
 
     public function downloadAction()

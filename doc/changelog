@@ -1,3 +1,6 @@
+20121124 - fhabermann
+* added jump to anker on content new/edit or file upload/delete
+
 20121121 - fhabermann
 * fixed date format
 * fixed problem with abstract table class for mssql
