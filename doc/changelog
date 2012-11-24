@@ -1,5 +1,6 @@
 20121124 - fhabermann
 * added jump to anker on content new/edit or file upload/delete
+* added collapse for active content element
 
 20121121 - fhabermann
 * fixed date format
