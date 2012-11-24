@@ -36,20 +36,6 @@ class PageController extends Zend_Controller_Action {
 	$this->view->id = $page->getId();
 	$this->view->title = $page->getName();
 
-	/*
-	$fm = new Knowledgeroot_FileManager();
-
-	//$f = new Knowledgeroot_File(4711);
-	$f = new Knowledgeroot_File();
-	$f->setParent(1);
-	$f->loadFile("/tmp/test.xls", true);
-
-	//$f->getContent();
-	//$f->getDatastorePath();
-
-	//$f->delete();
-*/
-
 	// set contents for view
 	$this->view->contents = $contents;
 
