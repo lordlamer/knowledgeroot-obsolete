@@ -656,5 +656,27 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    die('could not load filemanager');
 	}
     }
+
+    /**
+     * init modules
+     */
+    protected function _initModules() {
+	try {
+	    // load config
+	    $this->bootstrap('config');
+
+	    // init module manager
+	    $manager = new Knowledgeroot_ModuleManager();
+
+	    // load modules
+	    $manager->loadModules();
+
+	    // save filemanager
+	    Knowledgeroot_Registry::set('modulemanager', $manager);
+	} catch(Exception $e) {
+	    echo $e->getMessage();
+	    die('could not load modules');
+	}
+    }
 }
 

@@ -1,0 +1,5 @@
+[modules]
+; do not load module1
+module1 = false
+; load module2
+module2 = true
