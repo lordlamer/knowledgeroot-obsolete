@@ -36,13 +36,16 @@ class Knowledgeroot_ModuleManager {
 		$module = new $moduleFileClass();
 
 		// get modul config
-		$modulConfig = new Zend_Config_Ini($module->getConfigPath());
+		$moduleConfig = new Zend_Config_Ini($module->getConfigPath());
+
+		// save config
+		Knowledgeroot_Registry::set($keyname.'_config', $moduleConfig);
 
 		// check if autoloader should include module lib path
-		if($modulConfig->module->lib->path) {
+		if($moduleConfig->module->lib->path) {
 		    // add module lib to include path
 		    set_include_path(implode(PATH_SEPARATOR, array(
-			realpath($modulePath . '/' . $modulConfig->module->lib->path),
+			realpath($modulePath . '/' . $moduleConfig->module->lib->path),
 			get_include_path(),
 		    )));
 
@@ -52,10 +55,10 @@ class Knowledgeroot_ModuleManager {
 		}
 
 		// check for bootstrap
-		if($modulConfig->module->bootstrap->path && $modulConfig->module->bootstrap->class) {
+		if($moduleConfig->module->bootstrap->path && $moduleConfig->module->bootstrap->class) {
 		    // get bootstrap
-		    $bootstrapPath = $modulePath . '/' . $modulConfig->module->bootstrap->path;
-		    $boostrapClass = $modulConfig->module->bootstrap->class;
+		    $bootstrapPath = $modulePath . '/' . $moduleConfig->module->bootstrap->path;
+		    $boostrapClass = $moduleConfig->module->bootstrap->class;
 
 		    // include bootstrap class
 		    include_once($bootstrapPath);
