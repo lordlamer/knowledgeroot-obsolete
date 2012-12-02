@@ -65,9 +65,10 @@ class Knowledgeroot_ModuleManager {
 
 		    // init bootstrap
 		    $bootstrap = new $boostrapClass();
+		    $bootstrap->run();
 		}
 	    } catch(Exception $e) {
-		throw new Knowledgeroot_ModuleManager_Exception('Could not load Module:'.$keyname, 0, $e);
+		throw new Knowledgeroot_ModuleManager_Exception('Could not load Module: '.$keyname, 0, $e);
 	    }
 	}
 }
