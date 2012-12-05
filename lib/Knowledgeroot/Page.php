@@ -46,9 +46,9 @@ class Knowledgeroot_Page {
 	$this->time_end = $row[0]['time_end'];
 	$this->active = $row[0]['active'];
 	$this->created_by = $row[0]['created_by'];
-	$this->create_date = $row[0]['create_date'];
+	$this->create_date = new Knowledgeroot_Date($row[0]['create_date']);
 	$this->changed_by = $row[0]['changed_by'];
-	$this->change_date = $row[0]['change_date'];
+	$this->change_date = new Knowledgeroot_Date($row[0]['change_date']);
 	$this->deleted = $row[0]['deleted'];
     }
 

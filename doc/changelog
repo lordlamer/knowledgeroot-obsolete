@@ -1,5 +1,7 @@
 20121205 - fhabermann
 * fixed problems with mssql dump
+* allow DateTime as contructor object for Knowledgeroot_Date
+* use Knowledgeroot_Date for datetime from database
 
 20121202 - fhabermann
 * optimized bootstrap

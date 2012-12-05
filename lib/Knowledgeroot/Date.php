@@ -22,6 +22,11 @@ class Knowledgeroot_Date {
     public function __construct($date = null) {
 	if ($date instanceof Zend_Date) {
 	    $this->date = $date;
+	} elseif($date instanceof DateTime) {
+	    $d = new Zend_Date();
+	    $d->set($date->getTimestamp());
+
+	    $this->date = $d;
 	} else {
 	    // get config
 	    $config = Knowledgeroot_Registry::get('config');
@@ -30,6 +35,13 @@ class Knowledgeroot_Date {
 	    $this->date = new Zend_Date();
 	    $this->date->setTimezone($config->base->timezone);
 	}
+    }
+
+    /**
+     *
+     */
+    public function __tostring() {
+	return (string) $this->getSystemDate();
     }
 
     /**
