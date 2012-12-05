@@ -1,3 +1,6 @@
+20121205 - fhabermann
+* fixed problems with mssql dump
+
 20121202 - fhabermann
 * optimized bootstrap
 

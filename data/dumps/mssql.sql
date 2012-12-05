@@ -269,8 +269,12 @@ GO
 -- trigger function for content table
 CREATE TRIGGER contentHistory_trigger_insert ON content AFTER INSERT AS
 BEGIN
+	SET NOCOUNT ON;
+
     INSERT INTO content_history ([version], content_id, [parent], [name], [content], [type], sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-	SELECT 1 as [version], c.* from inserted i, content c WHERE i.id=c.id
+	SELECT 1 as [version], c.* from inserted i, content c WHERE i.id=c.id;
+	
+	SET NOCOUNT OFF;
 END
 
 GO
@@ -278,10 +282,14 @@ GO
 CREATE TRIGGER contentHistory_trigger_update ON content AFTER UPDATE AS
 	DECLARE @version INT
 BEGIN
-	SELECT  @version = (max(h.version)+1) FROM inserted i, content_history h WHERE i.id=h.content_id
+	SET NOCOUNT ON;
+
+	SELECT  @version = (max(h.version)+1) FROM inserted i, content_history h WHERE i.id=h.content_id;
 
 	INSERT INTO content_history ([version], content_id, [parent], [name], [content], [type], sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-	SELECT @version as [version], c.* from inserted i, content c WHERE i.id=c.id
+	SELECT @version as [version], c.* from inserted i, content c WHERE i.id=c.id;
+	
+	SET NOCOUNT OFF;
 END
 
 GO
@@ -289,8 +297,12 @@ GO
 -- trigger function for page table
 CREATE TRIGGER pageHistory_trigger_insert ON page AFTER INSERT AS
 BEGIN
+	SET NOCOUNT ON;
+
     INSERT INTO page_history ([version], page_id, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-	SELECT 1 as [version], p.* from inserted i, page p WHERE i.id=p.id
+	SELECT 1 as [version], p.* from inserted i, page p WHERE i.id=p.id;
+	
+	SET NOCOUNT OFF;
 END
 
 GO
@@ -298,10 +310,14 @@ GO
 CREATE TRIGGER pageHistory_trigger_update ON page AFTER UPDATE AS
 	DECLARE @version INT
 BEGIN
-	SELECT  @version = (max(h.version)+1) FROM inserted i, page_history h WHERE i.id=h.page_id
+	SET NOCOUNT ON;
+
+	SELECT  @version = (max(h.version)+1) FROM inserted i, page_history h WHERE i.id=h.page_id;
 
     INSERT INTO page_history (page_id, [version], parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-	SELECT @version as [version], p.* from inserted i, page p WHERE i.id=p.id
+	SELECT @version as [version], p.* from inserted i, page p WHERE i.id=p.id;
+	
+	SET NOCOUNT OFF;
 END
 
 GO
@@ -309,8 +325,12 @@ GO
 -- trigger function for file table
 CREATE TRIGGER fileHistory_trigger_insert ON [file] AFTER INSERT AS
 BEGIN
+	SET NOCOUNT ON;
+
     INSERT INTO file_history ([version], file_id, parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
-	SELECT 1 as [version], f.* from inserted i, [file] f WHERE i.id=f.id
+	SELECT 1 as [version], f.* from inserted i, [file] f WHERE i.id=f.id;
+	
+	SET NOCOUNT OFF;
 END
 
 GO
@@ -318,10 +338,14 @@ GO
 CREATE TRIGGER fileHistory_trigger_update ON [file] AFTER UPDATE AS
 	DECLARE @version INT
 BEGIN
-	SELECT  @version = (max(h.version)+1) FROM inserted i, file_history h WHERE i.id=h.file_id
+	SET NOCOUNT ON;
+
+	SELECT  @version = (max(h.version)+1) FROM inserted i, file_history h WHERE i.id=h.file_id;
 
     INSERT INTO file_history (file_id, [version], parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
-    SELECT @version as [version], f.* from inserted i, [file] f WHERE i.id=f.id
+    SELECT @version as [version], f.* from inserted i, [file] f WHERE i.id=f.id;
+	
+	SET NOCOUNT OFF;
 END
 
 GO
