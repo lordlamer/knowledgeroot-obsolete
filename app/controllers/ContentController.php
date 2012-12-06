@@ -30,7 +30,9 @@ class ContentController extends Zend_Controller_Action {
 	    $this->view->action = 'new';
 
 	    $rte = Knowledgeroot_Registry::get('rte');
-	    $this->view->editor = $rte->show("");
+	    $rte->setName('content');
+	    $rte->setContent('');
+	    $this->view->editor = $rte;
 
 	    $this->view->page = $this->_getParam('id');
 
@@ -61,7 +63,9 @@ class ContentController extends Zend_Controller_Action {
 	    $content = new Knowledgeroot_Content($this->_getParam('id'));
 
 	    $rte = Knowledgeroot_Registry::get('rte');
-	    $this->view->editor = $rte->show($content->getContent());
+	    $rte->setName('content');
+	    $rte->setContent($content->getContent());
+	    $this->view->editor = $rte;
 
 	    $this->view->title = $content->getName();
 

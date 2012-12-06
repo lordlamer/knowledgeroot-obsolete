@@ -1,3 +1,8 @@
+20121206 - fhabermann
+* created abstract class for Knowledgeroot_Rte
+* default Knowledgeroot_Rte class using abstrace class
+* using new rte commands
+
 20121205 - fhabermann
 * fixed problems with mssql dump
 * allow DateTime as contructor object for Knowledgeroot_Date

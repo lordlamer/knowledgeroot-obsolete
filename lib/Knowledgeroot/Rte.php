@@ -1,11 +1,12 @@
 <?php
 
-class Knowledgeroot_Rte implements Knowledgeroot_Rte_Interface {
-	public function __construct() {
+class Knowledgeroot_Rte extends Knowledgeroot_Rte_Abstract {
 
-	}
+    public function show($content = null) {
+	if ($content != null)
+	    $this->content = (string) $content;
 
-	public function show($content) {
-		return "<textarea name=\"content\">" . $content . "</textarea>";
-	}
+	return "<textarea name=\"content\">" . $this->content . "</textarea>";
+    }
+
 }
