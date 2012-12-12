@@ -1,3 +1,6 @@
+20121212 - fhabermann
+* bootstrap update to 2.2.2
+
 20121206 - fhabermann
 * created abstract class for Knowledgeroot_Rte
 * default Knowledgeroot_Rte class using abstrace class
