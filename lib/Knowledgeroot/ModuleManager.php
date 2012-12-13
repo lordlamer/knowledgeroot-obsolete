@@ -49,9 +49,16 @@ class Knowledgeroot_ModuleManager {
 			get_include_path(),
 		    )));
 
+		    // check namespace
+		    if($moduleConfig->module->namespace) {
+			$namespace = $moduleConfig->module->namespace;
+		    } else {
+			$namespace = $moduleFileClass.'_';
+		    }
+
 		    // add module prefix to autoloader
 		    $autoloader = Knowledgeroot_Registry::get('loader');
-		    $autoloader->registerNamespace($moduleFileClass.'_');
+		    $autoloader->registerNamespace($namespace);
 		}
 
 		// check for bootstrap
