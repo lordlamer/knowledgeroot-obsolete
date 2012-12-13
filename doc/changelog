@@ -1,5 +1,6 @@
 20121213 - fhabermann
 * enabled namespace declaration in modules
+* using File objects for listing
 
 20121212 - fhabermann
 * bootstrap update to 2.2.2

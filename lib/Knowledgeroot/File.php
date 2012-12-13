@@ -180,6 +180,10 @@ class Knowledgeroot_File {
 	return $this->create_date;
     }
 
+    public function getCreatedBy() {
+	return $this->created_by;
+    }
+
     public function getChangeDate() {
 	return $this->change_date;
     }
@@ -220,6 +224,20 @@ class Knowledgeroot_File {
 	return $fm->getContent($this->hash);
     }
 
+    public function getDownloads() {
+	if($this->hash == null)
+	    return null;
+
+	return (int)$this->downloads;
+    }
+
+    public function getHash() {
+	if($this->hash == null)
+	    return null;
+
+	return $this->hash;
+    }
+
     private function detectMimeType($filename) {
 	$mime = null;
 	$finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -236,7 +254,11 @@ class Knowledgeroot_File {
 	$select = $file->select();
 	$select->where('parent = ?', $content->getId());
 	$select->where('deleted = '.Knowledgeroot_Db::false());
-	$ret = $file->fetchAll($select);
+	$rows = $file->fetchAll($select);
+
+	foreach($rows as $value) {
+	    $ret[] = new Knowledgeroot_File($value->id);
+	}
 
 	return $ret;
     }
