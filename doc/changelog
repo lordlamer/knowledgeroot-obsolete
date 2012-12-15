@@ -1,3 +1,6 @@
+20121215 - fhabermann
+* added check if modules config exists
+
 20121213 - fhabermann
 * enabled namespace declaration in modules
 * using File objects for listing

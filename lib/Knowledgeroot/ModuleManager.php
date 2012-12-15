@@ -5,6 +5,10 @@
  */
 class Knowledgeroot_ModuleManager {
 	public function loadModules() {
+	    // check if modules config is found
+	    if(!is_file(PROJECT_PATH . '/config/modules.ini'))
+		return;
+
 	    $modulesConfig = new Zend_Config_Ini(PROJECT_PATH . '/config/modules.ini');
 
 	    foreach($modulesConfig->modules->toArray() as $key => $value) {
