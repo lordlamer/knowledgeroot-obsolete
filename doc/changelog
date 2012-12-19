@@ -1,3 +1,8 @@
+20121219 - fhabermann
+* upgraded to jquery 1.8.3
+* upgraded to dojo 1.8.2
+* composer update
+
 20121215 - fhabermann
 * added check if modules config exists
 
