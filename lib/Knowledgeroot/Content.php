@@ -248,7 +248,11 @@ class Knowledgeroot_Content {
 	$select = $content->select();
 	$select->where('parent = ?', $page->getId());
 	$select->where('deleted = '.Knowledgeroot_Db::false());
-	$ret = $content->fetchAll($select);
+	$rows = $content->fetchAll($select);
+
+	foreach($rows as $value) {
+	    $ret[] = new Knowledgeroot_Content($value->id);
+	}
 
 	return $ret;
     }

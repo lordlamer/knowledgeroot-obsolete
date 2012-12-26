@@ -29,7 +29,7 @@ class PageController extends Zend_Controller_Action {
 
 	// get files for each content
 	foreach($contents as $value) {
-	    $files[$value->id] = Knowledgeroot_File::getFiles(new Knowledgeroot_Content($value->id));
+	    $files[$value->getId()] = Knowledgeroot_File::getFiles(new Knowledgeroot_Content($value->getId()));
 	}
 
 	// set page for view

@@ -11,31 +11,31 @@
 <?php
 foreach ($this->contents as $content) { // run for each content
     ?>
-    <!-- anchor --><a name="content<?php echo $content->id; ?>"></a>
-    <div class="accordion" id="accordion<?php echo $content->id; ?>"><!-- start accordian -->
+    <!-- anchor --><a name="content<?php echo $content->getId(); ?>"></a>
+    <div class="accordion" id="accordion<?php echo $content->getId(); ?>"><!-- start accordian -->
         <div class="accordion-group">
     	<div class="accordion-heading" style="background-color: #F6F6F6;">
 
-    	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->id; ?>" href="#collapse<?php echo $content->id; ?>">
-    		<i id="collapseicon<?php echo $content->id; ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $content->name; ?>
+    	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->getId(); ?>" href="#collapse<?php echo $content->getId(); ?>">
+    		<i id="collapseicon<?php echo $content->getId(); ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $content->getName(); ?>
     	    </a>
 
     	</div>
-    	<div id="collapse<?php echo $content->id; ?>" class="accordion-body collapse<?php if ($this->open) echo ' in'; ?>">
+    	<div id="collapse<?php echo $content->getId(); ?>" class="accordion-body collapse<?php if ($this->open) echo ' in'; ?>">
 
     	    <div class="accordion-inner">
     		<div class="btn-toolbar">
-    		    <div class="btn-group"><a class="btn" href="content/edit/<?php echo $content->id; ?>">edit</a>
-    			<a class="btn" href="javascript:;" onclick="if(confirm('Do you really want to delete?')) { location.href='content/delete/<?php echo $content->id; ?>'; } else { return false; }">delete</a>
-    			<a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move</a>
-    			<a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->id; ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');">print</a>
+    		    <div class="btn-group"><a class="btn" href="content/edit/<?php echo $content->getId(); ?>">edit</a>
+    			<a class="btn" href="javascript:;" onclick="if(confirm('Do you really want to delete?')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }">delete</a>
+    			<a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->getId(); ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move</a>
+    			<a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');">print</a>
     		    </div>
     		    <div class="btn-group pull-right">
     			<a class="btn pull-right" href="#top">Top</a>
     		    </div>
     		</div>
     		<br>
-		    <?php echo $content->content; ?>
+		    <?php echo $content->getContent(); ?>
 		<br>
 		<?php
 		    //if(is_array($content->files)) {
@@ -45,7 +45,7 @@ foreach ($this->contents as $content) { // run for each content
 		    <?php
 			if(is_array($this->files)) {
 			    echo "<ul class=\"unstyled\">\n";
-			    foreach($this->files[$content->id] as $file) {
+			    foreach($this->files[$content->getId()] as $file) {
 				echo '<li>';
 				echo '<a href="./file/delete/'.$file->getId().'"><i class="icon-trash"></i></a>';
 				echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-file" style="margin-right:5px;"></i>' . $file->getName() . "</a>\n";
@@ -70,8 +70,8 @@ foreach ($this->contents as $content) { // run for each content
     <script>
 	//$('[rel=popover]').data('popover');
 	$('[rel=popover]').popover();
-        $('#accordion<?php echo $content->id; ?>').on('hidden shown', function () {
-    	$('#collapseicon<?php echo $content->id; ?>').toggleClass('icon-chevron-right icon-chevron-down');
+        $('#accordion<?php echo $content->getId(); ?>').on('hidden shown', function () {
+    	$('#collapseicon<?php echo $content->getId(); ?>').toggleClass('icon-chevron-right icon-chevron-down');
         })
     </script>
     <?php
