@@ -1,6 +1,7 @@
 20121226 - fhabermann
 * added Knowledgeroot_Content_Parser
 * using objects in getContents of Knowledgeroot_Content
+* enable getContents with raw content in Knowledgeroot_Content
 
 20121219 - fhabermann
 * upgraded to jquery 1.8.3

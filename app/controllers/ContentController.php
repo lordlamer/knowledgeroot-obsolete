@@ -64,7 +64,7 @@ class ContentController extends Zend_Controller_Action {
 
 	    $rte = Knowledgeroot_Registry::get('rte');
 	    $rte->setName('content');
-	    $rte->setContent($content->getContent());
+	    $rte->setContent($content->getContent(true));
 	    $this->view->editor = $rte;
 
 	    $this->view->title = $content->getName();

@@ -191,8 +191,8 @@ class Knowledgeroot_Content {
 	return $this->name;
     }
 
-    public function getContent() {
-	if(Knowledgeroot_Registry::isRegistered('Knowledgeroot_Content_Parser')) {
+    public function getContent($raw = false) {
+	if(!$raw && Knowledgeroot_Registry::isRegistered('Knowledgeroot_Content_Parser')) {
 	    $parser = Knowledgeroot_Registry::get('Knowledgeroot_Content_Parser');
 	    return $parser->parse($this->content);
 	}
