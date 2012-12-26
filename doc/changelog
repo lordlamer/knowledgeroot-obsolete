@@ -1,3 +1,6 @@
+20121227 - fhabermann
+* added system settings to layout
+
 20121226 - fhabermann
 * added Knowledgeroot_Content_Parser
 * using objects in getContents of Knowledgeroot_Content
