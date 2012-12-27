@@ -612,7 +612,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    $controller = Zend_Controller_Front::getInstance();
 
 	    // load plugings
-	    //$controller->registerPlugin(new Crm_Auth_Check());
+	    $controller->registerPlugin(new Knowledgeroot_Page_Default());
 	} catch (Exception $e) {
 	    echo $e->getMessage();
 	    die('could not create plugins');

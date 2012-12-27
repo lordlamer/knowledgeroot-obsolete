@@ -1,5 +1,6 @@
 20121227 - fhabermann
 * added system settings to layout
+* added Knowledgeroot_Page_Default plugin to handle default page
 
 20121226 - fhabermann
 * added Knowledgeroot_Content_Parser
