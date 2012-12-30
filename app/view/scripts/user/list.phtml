@@ -1,0 +1,51 @@
+<div class="page-header">
+    <h2>Users</h2>
+</div>
+
+<table id="users" class="tablesorter table table-striped table-bordered table-hover">
+    <thead>
+	<tr>
+	    <td>#</td>
+	    <td>firstname</td>
+	    <td>lastname</td>
+	    <td>login</td>
+	    <td>email</td>
+	    <td>language</td>
+	    <td>timezone</td>
+	    <td>active</td>
+	    <td>action</td>
+	</tr>
+    </thead>
+    <?php
+    foreach ($this->users as $value) {
+	?>
+        <tr>
+    	<td><?= $value->getId(); ?></td>
+    	<td><?= $value->getFirstName(); ?></td>
+    	<td><?= $value->getLastName(); ?></td>
+    	<td><?= $value->getLogin(); ?></td>
+    	<td><?= $value->getEmail(); ?></td>
+    	<td><?= $value->getLanguage(); ?></td>
+    	<td><?= $value->getTimezone(); ?></td>
+    	<td><?= $value->getActive(); ?></td>
+    	<td>
+    	    <div class="btn-group">
+    		<a class="btn btn-primary" href="./user/edit/<?= $value->getId(); ?>">edit</a>
+    		<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
+    		    <span class="caret"></span>
+    		</button>
+    		<ul class="dropdown-menu">
+		    <li><a href="./user/sulogin/<?= $value->getId(); ?>">SU-Login</a></li>
+		    <li><a href="./user/disable/<?= $value->getId(); ?>">disable</a></li>
+		    <li><a href="./user/delete/<?= $value->getId(); ?>">delete</a></li>
+    		</ul>
+    	    </div>
+    	</td>
+        </tr>
+
+    <?php } ?>
+</table>
+
+<div class="form-actions">
+    <a class="btn btn-primary" href="./user/new">new User</a>
+</div>

@@ -1,7 +1,8 @@
 <?php
 
 /**
- *
+ * check if default module with index controller and index action is called
+ * will redirect to defined default page instead of knowledgeroot welcome page
  */
 class Knowledgeroot_Page_Default extends Zend_Controller_Plugin_Abstract {
     public function preDispatch(Zend_Controller_Request_Abstract $request) {

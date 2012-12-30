@@ -20,7 +20,7 @@ class Knowledgeroot_User {
     protected $deleted = null;
 
     public function __construct($id = null) {
-	if ($id != null) {
+	if (!is_null($id)) {
 	    $this->load((int) $id);
 	}
     }
@@ -97,12 +97,12 @@ class Knowledgeroot_User {
 	$this->change_date = $date->getDbDate();
 	$data['change_date'] = $this->change_date;
 
-	$content = new Knowledgeroot_Db_Content();
+	$user = new Knowledgeroot_Db_User();
 
-	if ($this->id == null) {
-	    $this->id = $content->insert($data);
+	if (is_null($this->id)) {
+	    $this->id = $user->insert($data);
 	} else {
-	    $content->update($data, 'id = ' . $this->id);
+	    $user->update($data, 'id = ' . $this->id);
 	}
     }
 
@@ -137,7 +137,8 @@ class Knowledgeroot_User {
     }
 
     public function setPassword($password) {
-	$this->passwordHash = Knowledgeroot_Password::hash($password);
+	$hash = new Knowledgeroot_Password($password);
+	$this->passwordHash = $hash->getHash();
     }
 
     public function setLanguage($lang) {
@@ -170,6 +171,10 @@ class Knowledgeroot_User {
 
     public function getLastName() {
 	return $this->last_name;
+    }
+
+    public function getId() {
+	return $this->id;
     }
 
     public function getLogin() {
@@ -214,6 +219,26 @@ class Knowledgeroot_User {
 
     public function getChangedBy() {
 	return $this->changed_by;
+    }
+
+    /**
+     * get all users as Knowledgeroot_User object
+     *
+     * return $array
+     */
+    public static function getUsers() {
+	$ret = array();
+
+	$content = new Knowledgeroot_Db_User();
+	$select = $content->select();
+	$select->where('deleted = '.Knowledgeroot_Db::false());
+	$rows = $content->fetchAll($select);
+
+	foreach($rows as $value) {
+	    $ret[] = new Knowledgeroot_User($value->id);
+	}
+
+	return $ret;
     }
 }
 

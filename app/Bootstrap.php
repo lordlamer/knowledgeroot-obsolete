@@ -233,7 +233,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
-	    //route: contet/new/:pageid
+	    //route: content/new/:pageid
 	    $router->addRoute('contentnew', new Zend_Controller_Router_Route_Regex('content/new/(\d*)', array(
 			'controller' => 'content',
 			'action' => 'new'),
@@ -291,6 +291,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    $router->addRoute('filedelete', new Zend_Controller_Router_Route_Regex('file/delete/(\d+)', array(
 			'controller' => 'file',
 			'action' => 'delete'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: user/edit/:userid
+	    $router->addRoute('useredit', new Zend_Controller_Router_Route_Regex('user/edit/(\d+)', array(
+			'controller' => 'user',
+			'action' => 'edit'),
 			    array(
 				1 => 'id',
 			    )

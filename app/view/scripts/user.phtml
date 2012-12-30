@@ -1,151 +1,99 @@
 <div class="page-header">
-    <h2>User</h2>
+    <h2>
+	<?php
+	if ($this->action == 'new')
+	    echo "Create User";
+	else
+	    echo "Edit User";
+	?>
+    </h2>
 </div>
-<form class="form-horizontal" action="index.php" method="post" name="loginformular" autocomplete="off">
-    <input type="hidden" name="action" value="<?php echo $this->action; ?>" />
-    <input type="hidden" name="uid" value="<?php echo $this->id; ?>" />
+<form class="form-horizontal" method="post">
+    <div class="tabbable">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#tab-user">User</a></li>
+	    <li><a data-toggle="tab" href="#tab-member">Member Of</a></li>
+	    <li><a data-toggle="tab" href="#tab-permission">Permissions</a></li>
+	</ul>
+	<div class="tab-content">
+	    <div class="tab-pane active" id="tab-user">
+		<div class="control-group">
+		    <label class="control-label" for="login">Login</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="login" name="login" value="<?php echo $this->login; ?>">
+		    </div>
+		</div>
 
-    <div class="control-group">
-	<label class="control-label" for="username">Username</label>
-	<div class="controls">
-	    <input type="text" class="input-xlarge" id="username" name="name" value="<?php echo $this->name; ?>">
+		<div class="control-group">
+		    <label class="control-label" for="password">Password</label>
+		    <div class="controls">
+			<input type="password" class="input-xlarge" id="password" name="password" autocomplete="off">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="password2">Repeat Password</label>
+		    <div class="controls">
+			<input type="password" class="input-xlarge" id="password2" name="password2" autocomplete="off">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="firstname">First Name</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="firstname" name="firstname" value="<?php echo $this->firstname; ?>">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="lastname">Last Name</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="lastname" name="lastname" value="<?php echo $this->lastname; ?>">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="email">E-Mail</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="email" name="email" value="<?php echo $this->email; ?>">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="language">Language</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="language" name="language" value="<?php echo $this->language; ?>">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="timezone">Timezone</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="timezone" name="timezone" value="<?php echo $this->timezone; ?>">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="active">Active</label>
+		    <div class="controls">
+			<select name="active" id="active">
+			    <option>Yes</option>
+			    <option>No</option>
+			</select>
+		    </div>
+		</div>
+	    </div>
+	    <div class="tab-pane" id="tab-member">
+	    </div>
+	    <div class="tab-pane" id="tab-permission">
+	    </div>
 	</div>
-    </div>
 
-    <div class="control-group">
-	<label class="control-label" for="password">Password</label>
-	<div class="controls">
-	    <input type="password" class="input-xlarge" id="password" name="password">
-	</div>
-    </div>
-
-<!--
-    <div class="control-group">
-	<label class="control-label" for="language">Language</label>
-	<div class="controls">
-	    <select name="language-dev" id="language">
-		<?php /*
-		    foreach($this->languages as $key => $value) {
-			echo '<option value="'.$value['key'].'">'.$value['name'].'</option>';
-		    }
-		*/ ?>
-	    </select>
-	</div>
-    </div>
--->
-
-    <div class="control-group">
-	<label class="control-label" for="theme">Theme</label>
-	<div class="controls">
-	    <select name="theme" id="theme">
-		<?php
-		    foreach($this->themes as $key => $value) {
-			echo '<option value="'.$value['key'].'"'.(($this->theme == $value['key']) ? ' selected="selected"':'').'>'.$value['name'].'</option>';
-		    }
-		?>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="defaultgroup">Default Group</label>
-	<div class="controls">
-	    <select name="defaultgroup" id="defaultgroup">
-		<?php
-		    foreach($this->groups as $key => $value) {
-			echo '<option value="'.$value['id'].'"'.(($value['id'] == $this->defaultgroup) ? ' selected="selected"' : '').'>'.$value['name'].'</option>';
-		    }
-		?>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="admin">Admin</label>
-	<div class="controls">
-	    <select name="admin" id="admin">
-		<option value="1"<?php echo (($this->admin) ? ' selected="selected"':'') ?>>yes</option>
-		<option value="0"<?php echo ((!$this->admin) ? ' selected="selected"':'') ?>>no</option>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="rightedit">Rights Editable</label>
-	<div class="controls">
-	    <select name="rightedit" id="rightedit">
-		<option value="1"<?php echo (($this->rightedit) ? ' selected="selected"':'') ?>>yes</option>
-		<option value="0"<?php echo ((!$this->rightedit) ? ' selected="selected"':'') ?>>no</option>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="enabled">Enabled</label>
-	<div class="controls">
-	    <select name="enabled" id="enabled">
-		<option value="1"<?php echo (($this->enabled) ? ' selected="selected"':'') ?>>yes</option>
-		<option value="0"<?php echo ((!$this->enabled) ? ' selected="selected"':'') ?>>no</option>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="groups">Groups</label>
-	<div class="controls">
-	    <select name="groups[]" multiple="multiple" id="groups">
-		<?php
-		    foreach($this->groups as $key => $value) {
-			$selected = false;
-
-			foreach($this->groupmember as $gkey => $gvalue) {
-			    if($gvalue == $value['id'])
-				$selected = true;
-			}
-
-			echo '<option value="'.$value['id'].'"'.(($selected) ? ' selected="selected"':'').'>'.$value['name'].'</option>';
-		    }
-		?>
-	    </select>
-	</div>
-    </div>
-
-    <h4>Default Rights</h4>
-    <div class="control-group">
-	<label class="control-label" for="userrights">User</label>
-	<div class="controls">
-	    <select name="userrights" id="userrights">
-		<option value="2"<?php echo (($this->userrights == 2) ? ' selected="selected"' : ''); ?>>read+write</option>
-		<option value="1"<?php echo (($this->userrights == 1) ? ' selected="selected"' : ''); ?>>read</option>
-		<option value="0"<?php echo (($this->userrights == 0) ? ' selected="selected"' : ''); ?>>none</option>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="grouprights">Group</label>
-	<div class="controls">
-	    <select name="grouprights" id="grouprights">
-		<option value="2"<?php echo (($this->grouprights == 2) ? ' selected="selected"' : ''); ?>>read+write</option>
-		<option value="1"<?php echo (($this->grouprights == 1) ? ' selected="selected"' : ''); ?>>read</option>
-		<option value="0"<?php echo (($this->grouprights == 0) ? ' selected="selected"' : ''); ?>>none</option>
-	    </select>
-	</div>
-    </div>
-
-    <div class="control-group">
-	<label class="control-label" for="otherrights">Others</label>
-	<div class="controls">
-	    <select name="otherrights" id="otherrights">
-		<option value="2"<?php echo (($this->otherrights == 2) ? ' selected="selected"' : ''); ?>>read+write</option>
-		<option value="1"<?php echo (($this->otherrights == 1) ? ' selected="selected"' : ''); ?>>read</option>
-		<option value="0"<?php echo (($this->otherrights == 0) ? ' selected="selected"' : ''); ?>>none</option>
-	    </select>
-	</div>
     </div>
 
     <div class="form-actions">
-	<input class="btn btn-primary" type="submit" name="submit" value="save" />
-	<a class="btn" href="index.php?action=users">cancel</a>
+	<button class="btn btn-primary" type="submit" name="button" value="save">Save</button>
+	<button class="btn" type="submit" name="button" value="save_and_close">Save and Close</button>
+	<button class="btn btn-danger" type="submit" name="button" value="close">Close</button>
     </div>
 </form>
