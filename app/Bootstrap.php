@@ -304,6 +304,33 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 				1 => 'id',
 			    )
 	    ));
+
+	    //route: user/delete/:userid
+	    $router->addRoute('userdelete', new Zend_Controller_Router_Route_Regex('user/delete/(\d+)', array(
+			'controller' => 'user',
+			'action' => 'delete'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: user/enable/:userid
+	    $router->addRoute('userenable', new Zend_Controller_Router_Route_Regex('user/enable/(\d+)', array(
+			'controller' => 'user',
+			'action' => 'enable'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: user/disable/:userid
+	    $router->addRoute('userdisable', new Zend_Controller_Router_Route_Regex('user/disable/(\d+)', array(
+			'controller' => 'user',
+			'action' => 'disable'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
 	} catch (Exception $e) {
 	    echo $e->getMessage();
 	    die('could not create routes');

@@ -1,3 +1,9 @@
+20130102 - fhabermann
+* enable function to enable or disable user
+* added delete for user
+* added new permissions menu
+* login only for active users
+
 20121230 - fhabermann
 * enable user listing, add user and edit user
 

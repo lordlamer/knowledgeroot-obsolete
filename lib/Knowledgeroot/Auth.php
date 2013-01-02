@@ -15,10 +15,10 @@ class Knowledgeroot_Auth {
 	    $db = Knowledgeroot_Registry::get('db');
 
 	    // get user from db
-	    $user = $db->fetchRow("SELECT id, password FROM " . $db->quoteIdentifier('user') . " WHERE login=?", array($this->username));
+	    $user = $db->fetchRow("SELECT id, password FROM " . $db->quoteIdentifier('user') . " WHERE login=? AND active=?", array($this->username, Knowledgeroot_Db::true()));
 
 	    // check password hashes
-	    if(Knowledgeroot_Password::verify($this->password, $user['password'])) {
+	    if($user && Knowledgeroot_Password::verify($this->password, $user['password'])) {
 		$this->isValid = true;
 		return true;
 	    }

@@ -100,7 +100,34 @@ class UserController extends Zend_Controller_Action
 
     public function deleteAction()
     {
-        // action body
+	$id = $this->_getParam('id');
+	$user = new Knowledgeroot_User($id);
+
+	$user->delete();
+
+	$this->_redirect('user/');
+    }
+
+    public function enableAction()
+    {
+	$id = $this->_getParam('id');
+	$user = new Knowledgeroot_User($id);
+
+	$user->setActive(true);
+	$user->save();
+
+	$this->_redirect('user/');
+    }
+
+    public function disableAction()
+    {
+	$id = $this->_getParam('id');
+	$user = new Knowledgeroot_User($id);
+
+	$user->setActive(false);
+	$user->save();
+
+	$this->_redirect('user/');
     }
 
 

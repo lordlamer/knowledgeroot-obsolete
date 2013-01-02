@@ -68,8 +68,12 @@ class Knowledgeroot_User {
 	    $data['time_start'] = $this->time_start;
 	if ($this->time_end != null)
 	    $data['time_end'] = $this->time_end;
-	if ($this->active != null)
-	    $data['active'] = $this->active;
+	if (!is_null($this->active)) {
+	    if($this->active)
+		$data['active'] = Knowledgeroot_Db::true();
+	    else
+		$data['active'] = Knowledgeroot_Db::false();
+	}
 
 	// set changed_by
 	if ($this->created_by === null)
@@ -150,7 +154,7 @@ class Knowledgeroot_User {
     }
 
     public function setActive($active) {
-	$this->active = $active;
+	$this->active = (bool) $active;
     }
 
     public function setTimeStart($time) {

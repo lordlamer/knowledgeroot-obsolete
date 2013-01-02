@@ -27,7 +27,7 @@
     	<td><?= $value->getEmail(); ?></td>
     	<td><?= $value->getLanguage(); ?></td>
     	<td><?= $value->getTimezone(); ?></td>
-    	<td><?= $value->getActive(); ?></td>
+    	<td><?= (($value->getActive()) ? 'Yes' : 'No'); ?></td>
     	<td>
     	    <div class="btn-group">
     		<a class="btn btn-primary" href="./user/edit/<?= $value->getId(); ?>">edit</a>
@@ -35,8 +35,8 @@
     		    <span class="caret"></span>
     		</button>
     		<ul class="dropdown-menu">
-		    <li><a href="./user/sulogin/<?= $value->getId(); ?>">SU-Login</a></li>
-		    <li><a href="./user/disable/<?= $value->getId(); ?>">disable</a></li>
+		    <!-- <li><a href="./user/sulogin/<?= $value->getId(); ?>">SU-Login</a></li> -->
+		    <li><a href="./user/<?= (($value->getActive()) ? 'disable' : 'enable'); ?>/<?= $value->getId(); ?>"><?= (($value->getActive()) ? 'disable' : 'enable'); ?></a></li>
 		    <li><a href="./user/delete/<?= $value->getId(); ?>">delete</a></li>
     		</ul>
     	    </div>
