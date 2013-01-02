@@ -1,0 +1,43 @@
+<div class="page-header">
+    <h2>Groups</h2>
+</div>
+
+<table id="groups" class="tablesorter table table-striped table-bordered table-hover">
+    <thead>
+	<tr>
+	    <td>#</td>
+	    <td>Name</td>
+	    <td>Description</td>
+	    <td>active</td>
+	    <td>action</td>
+	</tr>
+    </thead>
+    <?php
+    foreach ($this->groups as $value) {
+	?>
+        <tr>
+    	<td><?= $value->getId(); ?></td>
+    	<td><?= $value->getName(); ?></td>
+    	<td><?= $value->getDescription(); ?></td>
+    	<td><?= (($value->getActive()) ? 'Yes' : 'No'); ?></td>
+    	<td>
+    	    <div class="btn-group">
+    		<a class="btn btn-primary" href="./group/edit/<?= $value->getId(); ?>">edit</a>
+    		<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
+    		    <span class="caret"></span>
+    		</button>
+    		<ul class="dropdown-menu">
+		    <!-- <li><a href="./user/sulogin/<?= $value->getId(); ?>">SU-Login</a></li> -->
+		    <li><a href="./group/<?= (($value->getActive()) ? 'disable' : 'enable'); ?>/<?= $value->getId(); ?>"><?= (($value->getActive()) ? 'disable' : 'enable'); ?></a></li>
+		    <li><a href="./group/delete/<?= $value->getId(); ?>">delete</a></li>
+    		</ul>
+    	    </div>
+    	</td>
+        </tr>
+
+    <?php } ?>
+</table>
+
+<div class="form-actions">
+    <a class="btn btn-primary" href="./group/new">new Group</a>
+</div>

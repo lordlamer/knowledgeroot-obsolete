@@ -3,6 +3,7 @@
 * added delete for user
 * added new permissions menu
 * login only for active users
+* added group handling
 
 20121230 - fhabermann
 * enable user listing, add user and edit user

@@ -26,8 +26,8 @@ class Knowledgeroot_User {
     }
 
     public function load($id) {
-	$content = new Knowledgeroot_Db_User();
-	$row = $content->find($id);
+	$user = new Knowledgeroot_Db_User();
+	$row = $user->find($id);
 
 	$this->id = $row[0]['id'];
 	$this->first_name = $row[0]['first_name'];
@@ -114,13 +114,13 @@ class Knowledgeroot_User {
 	if ($id == null)
 	    $id = $this->id;
 
-	$content = new Knowledgeroot_Db_User();
+	$user = new Knowledgeroot_Db_User();
 
 	if ($markOnly == true) {
-	    $data = array('deleted' => 1);
-	    $content->update($data, 'id = ' . $id);
+	    $data = array('deleted' => Knowledgeroot_Db::true());
+	    $user->update($data, 'id = ' . $id);
 	} else {
-	    $content->delete('id = ' . $id);
+	    $user->delete('id = ' . $id);
 	}
     }
 

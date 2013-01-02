@@ -331,6 +331,42 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 				1 => 'id',
 			    )
 	    ));
+
+	    //route: group/edit/:groupid
+	    $router->addRoute('groupedit', new Zend_Controller_Router_Route_Regex('group/edit/(\d+)', array(
+			'controller' => 'group',
+			'action' => 'edit'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: group/delete/:groupid
+	    $router->addRoute('groupdelete', new Zend_Controller_Router_Route_Regex('group/delete/(\d+)', array(
+			'controller' => 'group',
+			'action' => 'delete'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: group/enable/:groupid
+	    $router->addRoute('groupenable', new Zend_Controller_Router_Route_Regex('group/enable/(\d+)', array(
+			'controller' => 'group',
+			'action' => 'enable'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: group/disable/:groupid
+	    $router->addRoute('groupdisable', new Zend_Controller_Router_Route_Regex('group/disable/(\d+)', array(
+			'controller' => 'group',
+			'action' => 'disable'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
 	} catch (Exception $e) {
 	    echo $e->getMessage();
 	    die('could not create routes');

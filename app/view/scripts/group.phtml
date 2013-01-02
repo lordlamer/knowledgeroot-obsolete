@@ -1,19 +1,54 @@
 <div class="page-header">
-    <h2>Group</h2>
+    <h2>
+	<?php
+	if ($this->action == 'new')
+	    echo "Create Group";
+	else
+	    echo "Edit Group";
+	?>
+    </h2>
 </div>
-<form class="form-horizontal" action="index.php" method="post" name="loginformular" autocomplete="off">
-    <input type="hidden" name="action" value="<?php echo $this->action; ?>" />
-    <input type="hidden" name="gid" value="<?php echo $this->id; ?>" />
+<form class="form-horizontal" method="post">
+    <div class="tabbable">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#tab-group">Group</a></li>
+	    <li><a data-toggle="tab" href="#tab-member">Member Of</a></li>
+	</ul>
+	<div class="tab-content">
+	    <div class="tab-pane active" id="tab-group">
+		<div class="control-group">
+		    <label class="control-label" for="name">Name</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="name" name="name" value="<?php echo $this->name; ?>">
+		    </div>
+		</div>
 
-    <div class="control-group">
-	<label class="control-label" for="name">Name</label>
-	<div class="controls">
-	    <input type="text" class="input-xlarge" id="name" name="name" value="<?php echo $this->name; ?>">
+		<div class="control-group">
+		    <label class="control-label" for="description">Description</label>
+		    <div class="controls">
+			<input type="text" class="input-xlarge" id="description" name="description" value="<?php echo $this->description; ?>">
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="active">Active</label>
+		    <div class="controls">
+			<select name="active" id="active">
+			    <option value="1"<?= ((!is_null($this->active) && $this->active) ? ' selected="selected"' : '') ?>>Yes</option>
+			    <option value="0"<?= ((!is_null($this->active) && !$this->active) ? ' selected="selected"' : '') ?>>No</option>
+			</select>
+		    </div>
+		</div>
+	    </div>
+	    <div class="tab-pane" id="tab-member">
+	    </div>
 	</div>
+
     </div>
 
     <div class="form-actions">
-	<input class="btn btn-primary" type="submit" name="submit" value="save" />
-	<a class="btn" href="index.php?action=users">cancel</a>
+	<button class="btn btn-primary" type="submit" name="button" value="save">Save</button>
+	<button class="btn" type="submit" name="button" value="save_and_close">Save and Close</button>
+	<button class="btn btn-danger" type="submit" name="button" value="close">Close</button>
     </div>
 </form>
