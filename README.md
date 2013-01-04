@@ -54,7 +54,7 @@ Authors
 
 License
 -------
-Copyright (c) 2012, Frank Habermann <lordlamer@lordlamer.de>
+Copyright (c) 2013, Frank Habermann <lordlamer@lordlamer.de>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
