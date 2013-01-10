@@ -1,3 +1,6 @@
+20130110 - fhabermann
+* added first system permissions stuff like controller and templates
+
 20130102 - fhabermann
 * enable function to enable or disable user
 * added delete for user
