@@ -1,3 +1,6 @@
+20130206 - fhabermann
+* added first permissionpanel as view helper
+
 20130110 - fhabermann
 * added first system permissions stuff like controller and templates
 

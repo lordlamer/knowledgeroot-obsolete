@@ -15,6 +15,7 @@ resources.layout.layout = "layout"
 
 resources.view.encoding = "UTF-8"
 resources.view.basePath = APPLICATION_PATH "/view/"
+resources.view.helperPath = APPLICATION_PATH "/view/helpers"
 [staging : production]
 
 [testing : production]

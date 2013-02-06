@@ -12,7 +12,7 @@
 	<div id="collapse1" class="accordion-body collapse">
 
 	    <div class="accordion-inner">
-		test
+		<?php echo $this->permissionPanel('manageUsers', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
@@ -36,7 +36,7 @@
 	<div id="collapse2" class="accordion-body collapse">
 
 	    <div class="accordion-inner">
-		test
+		<?php echo $this->permissionPanel('manageGroups', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
@@ -60,7 +60,7 @@
 	<div id="collapse3" class="accordion-body collapse">
 
 	    <div class="accordion-inner">
-		test
+		<?php echo $this->permissionPanel('manageSystemPermissions', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
@@ -84,7 +84,7 @@
 	<div id="collapse4" class="accordion-body collapse">
 
 	    <div class="accordion-inner">
-		test
+		<?php echo $this->permissionPanel('manageRootPages', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>

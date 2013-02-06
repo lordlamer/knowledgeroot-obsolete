@@ -201,3 +201,65 @@ a.ContentName:hover {
     padding-left: 10px;
     padding-right: 10px;
 }
+
+/* permission-panel start */
+
+.permission-panel {
+    width: 650px;
+}
+
+.permission-panel-roles {
+    margin: 5px 5px 5px 5px;
+    display:block;
+    width: 250px;
+    height: 150px;
+    overflow:auto;
+}
+
+.permission-panel-roles ul {
+    list-style-type: none;
+}
+
+.permission-panel-roles li {
+    border: 1px solid #E5E5E5;
+    /*border-width: 1px 0;*/
+    margin: 2px 0;
+}
+
+.permission-panel-roles li a {
+    color: #000000;
+    display: block;
+    background: #F6F6F6;
+    /* font: bold 120% Arial, Helvetica, sans-serif; */
+    padding: 2px;
+    text-decoration: none;
+}
+
+.permission-panel-roles li a:hover {
+    background: #0081C2;
+}
+
+.permission-panel-roles li a.active {
+    color: #000000;
+    display: block;
+    background: #DCEAF4;
+    /* font: bold 120% Arial, Helvetica, sans-serif; */
+    padding: 2px;
+    text-decoration: none;
+}
+
+.permission-panel-rights {
+
+}
+
+.permission-panel-rights .action {
+    margin: 2px;
+}
+
+.permission-panel-rights .action-name {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+/* permission-panel end */
