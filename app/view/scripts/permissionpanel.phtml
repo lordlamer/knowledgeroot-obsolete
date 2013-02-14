@@ -5,7 +5,7 @@
 </script>
 
 <!-- main permission panel -->
-<div class="permission-panel">
+<div class="permission-panel" data-panel-name="<?= $this->name ?>">
     <button class="btn" data-toggle="modal" href="#permissionPanelRoles_<?= $this->name ?>">add Role</button>
     <button class="btn">remove selected Role</button>
     <div class="row-fluid">
@@ -14,7 +14,7 @@
 	    <div class="permission-panel-roles">
 		<ul>
 		    <?php foreach ($this->permissions as $key => $value) { ?>
-    		    <li><a href="javascript:;"><?= $value['name'] ?></a></li>
+    		    <li><a data-panel-name="<?= $this->name ?>" data-panel-userid="<?= $key ?>" href="javascript:;"><?= $value['name'] ?></a></li>
 		    <?php } ?>
 		    <!-- <li><a class="active" href="javascript:;">test1</a></li> -->
 		</ul>
@@ -27,11 +27,11 @@
 		<?php
 		foreach ($this->actions as $value) {
 		    ?>
-    		<div class="action">
+    		<div class="action" data-panel-action-name="<?= $value ?>">
     		    <span class="action-name"><?= $value ?>:</span>
     		    <div class="btn-group" data-toggle="buttons-radio">
-    			<button type="button" class="btn btn-small btn-success">allow</button>
-    			<button type="button" class="btn btn-small btn-danger">deny</button>
+    			<button type="button" class="btn btn-small btn-success" data-panel-action-right="allow">allow</button>
+    			<button type="button" class="btn btn-small btn-danger" data-panel-action-right="deny">deny</button>
     		    </div>
     		</div>
 		<?php } ?>

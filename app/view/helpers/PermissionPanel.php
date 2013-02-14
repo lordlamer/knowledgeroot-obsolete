@@ -70,6 +70,26 @@ class Zend_View_Helper_PermissionPanel extends Zend_View_Helper_Abstract {
 			    'show' => 'allow',
 		    ),
 		),
+
+		'G_3' => array(
+		    'name' => 'group3',
+		    'permissions' => array(
+			    'new' => 'deny',
+			    'edit' => 'deny',
+			    'delete' => 'deny',
+			    'show' => 'allow',
+		    ),
+		),
+
+		'G_4' => array(
+		    'name' => 'group4',
+		    'permissions' => array(
+			    'new' => 'deny',
+			    'edit' => 'deny',
+			    'delete' => 'deny',
+			    'show' => 'allow',
+		    ),
+		),
 	    );
 
 	    $view->setScriptPath(APPLICATION_PATH . '/view/scripts/');
