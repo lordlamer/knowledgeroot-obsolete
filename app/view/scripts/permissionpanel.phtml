@@ -1,13 +1,14 @@
 <!-- -->
 <script>
     var permissionStore_<?= $this->name ?> = <?= json_encode($this->permissions) ?>;
-    //alert(permissionStore_<?= $this->name ?>['U_1']['permissions']['new']);
+    var roleStore_<?= $this->name ?> = <?= json_encode($this->roles) ?>;
+    var actionStore_<?= $this->name ?> = <?= json_encode($this->actions) ?>;
 </script>
 
 <!-- main permission panel -->
 <div class="permission-panel" data-panel-name="<?= $this->name ?>">
     <button class="btn" data-toggle="modal" href="#permissionPanelRoles_<?= $this->name ?>">add Role</button>
-    <button class="btn">remove selected Role</button>
+    <button class="btn" data-panel-event="removeUser">remove selected Role</button>
     <div class="row-fluid">
 	<div class="span6">
 	    <h5>Gruppen- order Benutzernamen:</h5>
@@ -46,7 +47,7 @@
 </div>
 
 <!-- modal box with available roles -->
-<div id="permissionPanelRoles_<?= $this->name ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="permissionPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
+<div id="permissionPanelRoles_<?= $this->name ?>" data-panel-name="<?= $this->name ?>" class="permissionPanelRoles modal hide fade" tabindex="-1" role="dialog" aria-labelledby="permissionPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	    <h3 id="">Roles</h3>
@@ -60,7 +61,7 @@
 	    </select>
 	</div>
 	<div class="modal-footer">
-	    <button class="btn btn-primary" type="submit">Add</button>
+	    <button class="btn btn-primary" data-panel-event="addUser" type="submit">Add</button>
 	    <button class="btn" data-dismiss="modal">Cancel</button>
 	</div>
 </div>
