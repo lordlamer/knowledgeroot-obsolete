@@ -1,13 +1,16 @@
 /**
  * onclick event for selected user in permissionpanel
  */
-$( ".permission-panel-roles ul li a" ).on( "click", function( event ) {
-    $( ".permission-panel-roles ul li a" ).removeClass('active');
-    $(this).addClass('active');
-
-    showUserRights($(this).attr('data-panel-name'), $(this).attr('data-panel-userid'));
-});
-
+function onClickUser() {
+    $( ".permission-panel-roles ul li a" ).on( "click", function(event) {
+	$( ".permission-panel-roles ul li a" ).removeClass('active');
+	$(this).addClass('active');
+        alert($(this).attr('data-panel-name'));
+	alert($(this).attr('data-panel-userid'));
+	showUserRights($(this).attr('data-panel-name'), $(this).attr('data-panel-userid'));
+    });
+}
+onClickUser();
 
 /**
  * removeUser event in permission panel that removes user
@@ -118,7 +121,7 @@ function addUserToList(panelName, userId) {
     var roleStore = window['roleStore_' + panelName];
 
     //
-    $('[data-panel-name="'+panelName+'"] div.permission-panel-roles ul').append('<li><a data-panel-name="'+panelName+'" data-panel-userid="'+userId+'" href="javascript:;">'+roleStore[userId]+'</a></li>');
+    $('[data-panel-name="'+panelName+'"] div.permission-panel-roles ul').append('<li><a onClick="onClickUser();" data-panel-name="'+panelName+'" data-panel-userid="'+userId+'" href="javascript:;">'+roleStore[userId]+'</a></li>');
 
     //
     addUserToStore(panelName, userId);
