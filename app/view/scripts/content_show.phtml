@@ -4,7 +4,7 @@
 	<div class="accordion-heading" style="background-color: #F6F6F6;">
 
 	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $this->id; ?>" href="#collapse<?php echo $this->id; ?>">
-		<i id="collapseicon<?php echo $this->id; ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $this->title; ?>
+		<?php echo $this->title; ?>
 	    </a>
 
 	</div>
@@ -22,8 +22,3 @@
 	</div>
     </div>
 </div><!-- end accordian -->
-<script>
-    $('#accordion<?php echo $this->id; ?>').on('hidden shown', function () {
-	$('#collapseicon<?php echo $this->id; ?>').toggleClass('icon-chevron-right icon-chevron-down');
-    })
-</script>

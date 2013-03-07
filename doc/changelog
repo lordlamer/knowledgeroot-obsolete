@@ -1,5 +1,6 @@
 20130307 - fhabermann
 * bootstrape upgrade to version 2.3.1
+* added better accordion icon handling over extra js script
 
 20130214 - fhabermann
 * added js functions to handle permissions

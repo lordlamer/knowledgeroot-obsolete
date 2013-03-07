@@ -17,7 +17,7 @@ foreach ($this->contents as $content) { // run for each content
     	<div class="accordion-heading" style="background-color: #F6F6F6;">
 
     	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->getId(); ?>" href="#collapse<?php echo $content->getId(); ?>">
-    		<i id="collapseicon<?php echo $content->getId(); ?>" class="<?php if ($this->open) echo ' icon-chevron-down'; else echo 'icon-chevron-right'; ?>"></i>&nbsp;<?php echo $content->getName(); ?>
+    		<?php echo $content->getName(); ?>
     	    </a>
 
     	</div>
@@ -67,13 +67,6 @@ foreach ($this->contents as $content) { // run for each content
     	</div>
         </div>
     </div><!-- end accordian -->
-    <script>
-	//$('[rel=popover]').data('popover');
-	$('[rel=popover]').popover();
-        $('#accordion<?php echo $content->getId(); ?>').on('hidden shown', function () {
-    	$('#collapseicon<?php echo $content->getId(); ?>').toggleClass('icon-chevron-right icon-chevron-down');
-        })
-    </script>
     <?php
 } // foreach end
 ?>

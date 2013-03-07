@@ -4,95 +4,51 @@
 <div class="accordion" id="accordion1"><!-- start accordian -->
     <div class="accordion-group">
 	<div class="accordion-heading" style="background-color: #F6F6F6;">
-
-	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
-		<i id="collapseicon1" class="icon-chevron-right"></i>&nbsp;Manage Users</a>
-
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">Manage Users</a>
 	</div>
 	<div id="collapse1" class="accordion-body collapse">
-
 	    <div class="accordion-inner">
 		<?php echo $this->permissionPanel('manageUsers', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
 </div><!-- end accordian -->
-<script>
-    //$('[rel=popover]').data('popover');
-    $('[rel=popover]').popover();
-    $('#accordion1').on('hidden shown', function () {
-	$('#collapseicon1').toggleClass('icon-chevron-right icon-chevron-down');
-    })
-</script>
 
 <div class="accordion" id="accordion2"><!-- start accordian -->
     <div class="accordion-group">
 	<div class="accordion-heading" style="background-color: #F6F6F6;">
-
-	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
-		<i id="collapseicon2" class="icon-chevron-right"></i>&nbsp;Manage Groups</a>
-
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">Manage Groups</a>
 	</div>
 	<div id="collapse2" class="accordion-body collapse">
-
 	    <div class="accordion-inner">
 		<?php echo $this->permissionPanel('manageGroups', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
 </div><!-- end accordian -->
-<script>
-    //$('[rel=popover]').data('popover');
-    $('[rel=popover]').popover();
-    $('#accordion2').on('hidden shown', function () {
-	$('#collapseicon2').toggleClass('icon-chevron-right icon-chevron-down');
-    })
-</script>
 
 <div class="accordion" id="accordion3"><!-- start accordian -->
     <div class="accordion-group">
 	<div class="accordion-heading" style="background-color: #F6F6F6;">
-
-	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse3">
-		<i id="collapseicon3" class="icon-chevron-right"></i>&nbsp;Manage System Permissions</a>
-
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse3">Manage System Permissions</a>
 	</div>
 	<div id="collapse3" class="accordion-body collapse">
-
 	    <div class="accordion-inner">
 		<?php echo $this->permissionPanel('manageSystemPermissions', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
 </div><!-- end accordian -->
-<script>
-    //$('[rel=popover]').data('popover');
-    $('[rel=popover]').popover();
-    $('#accordion3').on('hidden shown', function () {
-	$('#collapseicon3').toggleClass('icon-chevron-right icon-chevron-down');
-    })
-</script>
 
 <div class="accordion" id="accordion4"><!-- start accordian -->
     <div class="accordion-group">
 	<div class="accordion-heading" style="background-color: #F6F6F6;">
-
-	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapse4">
-		<i id="collapseicon4" class="icon-chevron-right"></i>&nbsp;Root Pages</a>
-
+	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapse4">Root Pages</a>
 	</div>
 	<div id="collapse4" class="accordion-body collapse">
-
 	    <div class="accordion-inner">
 		<?php echo $this->permissionPanel('manageRootPages', array('new','edit','delete','show')); ?>
 	    </div>
 	</div>
     </div>
 </div><!-- end accordian -->
-<script>
-    //$('[rel=popover]').data('popover');
-    $('[rel=popover]').popover();
-    $('#accordion4').on('hidden shown', function () {
-	$('#collapseicon4').toggleClass('icon-chevron-right icon-chevron-down');
-    })
-</script>

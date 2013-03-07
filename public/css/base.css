@@ -263,3 +263,11 @@ a.ContentName:hover {
 }
 
 /* permission-panel end */
+
+/* accordion-icon handling start */
+
+.accordion-icon {
+	margin-right: 5px;
+}
+
+/* accordion-icon handling end */
