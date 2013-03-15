@@ -2,6 +2,10 @@
  * onclick event for selected user in permissionpanel
  */
 function onClickUser() {
+    // empty existing onclick functions
+    $( ".permission-panel-roles ul li a" ).attr('onclick','').unbind('click');
+
+    // set new onclick
     $( ".permission-panel-roles ul li a" ).on( "click", function(event) {
 	$( ".permission-panel-roles ul li a" ).removeClass('active');
 	$(this).addClass('active');
@@ -10,6 +14,8 @@ function onClickUser() {
 	showUserRights($(this).attr('data-panel-name'), $(this).attr('data-panel-userid'));
     });
 }
+
+// run onclick now
 onClickUser();
 
 /**
@@ -121,7 +127,10 @@ function addUserToList(panelName, userId) {
     var roleStore = window['roleStore_' + panelName];
 
     //
-    $('[data-panel-name="'+panelName+'"] div.permission-panel-roles ul').append('<li><a onClick="onClickUser();" data-panel-name="'+panelName+'" data-panel-userid="'+userId+'" href="javascript:;">'+roleStore[userId]+'</a></li>');
+    $('[data-panel-name="'+panelName+'"] div.permission-panel-roles ul').append('<li><a data-panel-name="'+panelName+'" data-panel-userid="'+userId+'" href="javascript:;">'+roleStore[userId]+'</a></li>');
+
+    // run onclickuser to set onclick for roles
+    onClickUser();
 
     //
     addUserToStore(panelName, userId);
