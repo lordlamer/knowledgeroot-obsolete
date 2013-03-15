@@ -31,8 +31,8 @@
     		<div class="action" data-panel-action-name="<?= $value ?>">
     		    <span class="action-name"><?= $value ?>:</span>
     		    <div class="btn-group" data-toggle="buttons-radio">
-    			<button type="button" class="btn btn-small btn-success" data-panel-action-right="allow">allow</button>
-    			<button type="button" class="btn btn-small btn-danger" data-panel-action-right="deny">deny</button>
+    			<button type="button" class="btn btn-small btn-success" data-panel-name="<?= $this->name ?>" data-panel-action-name="<?= $value ?>" data-panel-action-right="allow">allow</button>
+    			<button type="button" class="btn btn-small btn-danger" data-panel-name="<?= $this->name ?>" data-panel-action-name="<?= $value ?>" data-panel-action-right="deny">deny</button>
     		    </div>
     		</div>
 		<?php } ?>

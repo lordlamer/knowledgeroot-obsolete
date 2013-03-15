@@ -9,8 +9,7 @@ function onClickUser() {
     $( ".permission-panel-roles ul li a" ).on( "click", function(event) {
 	$( ".permission-panel-roles ul li a" ).removeClass('active');
 	$(this).addClass('active');
-        alert($(this).attr('data-panel-name'));
-	alert($(this).attr('data-panel-userid'));
+
 	showUserRights($(this).attr('data-panel-name'), $(this).attr('data-panel-userid'));
     });
 }
@@ -41,7 +40,6 @@ $('[data-panel-event="addUser"]').on( "click", function( event ) {
     panelName = $(this).parent().parent().attr('data-panel-name');
 
     $('#permissionPanelRoles_'+panelName+' select option:selected').each(function( index ) {
-	//alert(this.value);
 	addUserToList(panelName, this.value);
     });
 
@@ -59,6 +57,9 @@ function showUserRights(panelName, userName) {
     var store = window['permissionStore_' + panelName];
 
     $.each( store[userName]['permissions'], function( key, value ) {
+	$('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="allow"]').attr('data-panel-userid', userName);
+	$('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="deny"]').attr('data-panel-userid', userName);
+
 	if(value == 'allow') {
 	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="allow"]').addClass('active');
 	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="deny"]').removeClass('active');
@@ -149,3 +150,17 @@ function removeUserFromList(panelName, userId) {
     //
     removeUserFromStore(panelName, userId);
 }
+
+/**
+ * set action on right click
+ */
+$('[data-panel-action-right]').on('click', function() {
+    // define vars
+    var panelName = $(this).attr('data-panel-name');
+    var userId = $(this).attr('data-panel-userid');
+    var action = $(this).attr('data-panel-action-name');
+    var permission = $(this).attr('data-panel-action-right');
+
+    // set user permissions
+    setUserPermission(panelName, userId, action, permission);
+});
