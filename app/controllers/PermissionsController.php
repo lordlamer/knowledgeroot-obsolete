@@ -20,8 +20,18 @@ class PermissionsController extends Zend_Controller_Action
 	$this->_helper->layout()->disableLayout();
 	$this->_helper->viewRenderer->setNoRender(true);
 
-	print_r($this->getAllParams());
+	$acl = Knowledgeroot_Registry::get('acl');
 
-	echo "test";
+	$params = $this->getAllParams();
+
+	// clear old rights
+	$acl->clearByResource($params['panelName']);
+
+	// save new rights
+	foreach($params['panelStore'] as $role => $value) {
+	    foreach($value['permissions'] as $action => $right) {
+		$acl->addAcl($role, $params['panelName'],$action,$right);
+	    }
+	}
     }
 }

@@ -176,6 +176,14 @@ $('.permission-panel-save-button').on('click', function() {
 	data: {
 	    panelName: $(this).attr('data-panel-name'),
 	    panelStore: window['permissionStore_' + $(this).attr('data-panel-name')]
+	},
+	dataType: 'html',
+	success: function(dataPacket) {
+	   /* process the received dataPacket */
+	   alert(dataPacket);
+	},
+	error: function(data) {
+	    alert('error' + data);
 	}
     });
 });

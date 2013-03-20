@@ -107,9 +107,19 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	    if($value['right'] == 'allow') {
 		$this->acl->allow($value['role_id'], $value['resource'], $value['action']);
 	    } else {
-		$this->acl->deny($value['role_id'], $value['resource'], $value['right']);
+		$this->acl->deny($value['role_id'], $value['resource'], $value['action']);
 	    }
 	}
+    }
+
+    public function clearByResource($resource) {
+	$db = Knowledgeroot_Registry::get('db');
+	$db->query('DELETE FROM ' . $db->quoteIdentifier('acl') . ' WHERE resource = ?', array($resource));
+    }
+
+    public function addAcl($role, $resource, $action, $right) {
+	$db = Knowledgeroot_Registry::get('db');
+	$db->query('INSERT INTO ' . $db->quoteIdentifier('acl') . ' (role_id, resource, action, ' . $db->quoteIdentifier('right') . ') VALUES (?, ?, ?, ?)', array($role, $resource, $action, $right));
     }
 }
 
