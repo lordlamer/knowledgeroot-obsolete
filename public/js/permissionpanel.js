@@ -164,3 +164,18 @@ $('[data-panel-action-right]').on('click', function() {
     // set user permissions
     setUserPermission(panelName, userId, action, permission);
 });
+
+/**
+ * added save action for save button
+ */
+$('.permission-panel-save-button').on('click', function() {
+    $.ajax({
+	type: "POST",
+	url: $(this).attr('data-panel-save-url'),
+	dataType: "json",
+	data: {
+	    panelName: $(this).attr('data-panel-name'),
+	    panelStore: window['permissionStore_' + $(this).attr('data-panel-name')]
+	}
+    });
+});

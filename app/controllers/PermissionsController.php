@@ -13,8 +13,15 @@ class PermissionsController extends Zend_Controller_Action
     }
 
     public function listAction() {
-	
+
     }
 
+    public function saveAction() {
+	$this->_helper->layout()->disableLayout();
+	$this->_helper->viewRenderer->setNoRender(true);
 
+	print_r($this->getAllParams());
+
+	echo "test";
+    }
 }
