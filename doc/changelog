@@ -1,3 +1,6 @@
+20130321 - fhabermann
+* added first save acl feature
+
 20130315 - fhabermann
 * save user permissions in browser javascript var if permissions are changed
 

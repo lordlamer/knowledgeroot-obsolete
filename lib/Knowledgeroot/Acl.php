@@ -104,6 +104,18 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	$acl = $db->fetchAll('SELECT role_id, resource, action, ' . $db->quoteIdentifier('right') . ' FROM ' . $db->quoteIdentifier('acl'));
 
 	foreach($acl as $key => $value) {
+	    // FIXME: is this the right way? - special resources could be realized of an extra db table
+	    if(!$this->acl->has($value['resource'])) {
+		//echo $value['resource']."#<br>\n";
+		$this->acl->addResource(new Zend_Acl_Resource($value['resource']));
+	    }
+
+	    // FIXME: remove this part because if a role not exists something must be wrong - this is only for testing with acl
+	    if(!$this->acl->hasRole($value['role_id'])) {
+		//echo $value['role_id']."#<br>\n";
+		$this->acl->addRole(new Zend_Acl_Role($value['role_id']));
+	    }
+
 	    if($value['right'] == 'allow') {
 		$this->acl->allow($value['role_id'], $value['resource'], $value['action']);
 	    } else {
@@ -120,6 +132,31 @@ class Knowledgeroot_Acl extends Zend_Acl {
     public function addAcl($role, $resource, $action, $right) {
 	$db = Knowledgeroot_Registry::get('db');
 	$db->query('INSERT INTO ' . $db->quoteIdentifier('acl') . ' (role_id, resource, action, ' . $db->quoteIdentifier('right') . ') VALUES (?, ?, ?, ?)', array($role, $resource, $action, $right));
+    }
+
+    public function getAclForResource($resource) {
+	$db = Knowledgeroot_Registry::get('db');
+	$acl = $db->fetchAll('SELECT * FROM ' . $db->quoteIdentifier('acl') . ' WHERE resource = ?', array($resource));
+
+	$ret = array();
+
+	foreach($acl as $value) {
+	    if(!isset($ret[$value['role_id']]['name'])) {
+		if(substr($value['role_id'],0,2) == 'U_') {
+		    $u = new Knowledgeroot_User(substr($value['role_id'],2));
+		    $ret[$value['role_id']]['name'] = $u->getLogin();
+		}
+
+		if(substr($value['role_id'],0,2) == 'G_') {
+		    $g = new Knowledgeroot_Group(substr($value['role_id'],2));
+		    $ret[$value['role_id']]['name'] = $g->getName();
+		}
+	    }
+
+	    $ret[$value['role_id']]['permissions'][$value['action']] = $value['right'];
+	}
+
+	return $ret;
     }
 }
 

@@ -8,89 +8,24 @@ class Zend_View_Helper_PermissionPanel extends Zend_View_Helper_Abstract {
 	    $view->actions = $actions;
 
 	    // available roles
-	    $view->roles = array(
-		'U_1' => 'test1',
-		'U_2' => 'test2',
-		'U_3' => 'test3',
-		'U_4' => 'test4',
-		'G_1' => 'group1',
-		'G_2' => 'group2',
-		'G_3' => 'group3',
-		'G_4' => 'group4',
-	    );
+	    $roles = array();
+
+	    $users = Knowledgeroot_User::getUsers();
+	    foreach($users as $value) {
+		$roles['U_' . $value->getId()] = $value->getLogin() . ' (U)';
+	    }
+
+	    $groups = Knowledgeroot_Group::getGroups();
+	    foreach($groups as $value) {
+		$roles['G_' . $value->getId()] = $value->getName() . ' (G)';
+	    }
+
+	    $view->roles = $roles;
+
+	    $acl = Knowledgeroot_Registry::get('acl');
 
 	    // active roles with permissions
-	    $view->permissions = array(
-		'U_1' => array(
-		    'name' => 'test1',
-		    'permissions' => array(
-			    'new' => 'allow',
-			    'edit' => 'allow',
-			    'delete' => 'deny',
-			    'show' => 'allow',
-		    ),
-		),
-
-		'U_2' => array(
-		    'name' => 'test2',
-		    'permissions' => array(
-			    'new' => 'allow',
-			    'edit' => 'allow',
-			    'delete' => 'allow',
-			    'show' => 'allow',
-		    ),
-		),
-
-		'U_3' => array(
-		    'name' => 'test3',
-		    'permissions' => array(
-			    'new' => 'deny',
-			    'edit' => 'deny',
-			    'delete' => 'deny',
-			    'show' => 'allow',
-		    ),
-		),
-
-		'G_1' => array(
-		    'name' => 'group1',
-		    'permissions' => array(
-			    'new' => 'allow',
-			    'edit' => 'allow',
-			    'delete' => 'allow',
-			    'show' => 'allow',
-		    ),
-		),
-
-		'G_2' => array(
-		    'name' => 'group2',
-		    'permissions' => array(
-			    'new' => 'deny',
-			    'edit' => 'deny',
-			    'delete' => 'deny',
-			    'show' => 'allow',
-		    ),
-		),
-
-		'G_3' => array(
-		    'name' => 'group3',
-		    'permissions' => array(
-			    'new' => 'deny',
-			    'edit' => 'deny',
-			    'delete' => 'deny',
-			    'show' => 'allow',
-		    ),
-		),
-
-		'G_4' => array(
-		    'name' => 'group4',
-		    'permissions' => array(
-			    'new' => 'deny',
-			    'edit' => 'deny',
-			    'delete' => 'deny',
-			    'show' => 'allow',
-		    ),
-		),
-	    );
+	    $view->permissions = $acl->getAclForResource($name);
 
 	    $view->setScriptPath(APPLICATION_PATH . '/view/scripts/');
 	    return $view->render('permissionpanel.phtml');

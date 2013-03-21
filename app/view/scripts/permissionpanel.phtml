@@ -1,6 +1,6 @@
 <!-- -->
 <script>
-    var permissionStore_<?= $this->name ?> = <?= json_encode($this->permissions) ?>;
+    var permissionStore_<?= $this->name ?> = <?php echo ((count($this->permissions) > 0) ? json_encode($this->permissions) : '{}'); ?>;
     var roleStore_<?= $this->name ?> = <?= json_encode($this->roles) ?>;
     var actionStore_<?= $this->name ?> = <?= json_encode($this->actions) ?>;
 </script>
