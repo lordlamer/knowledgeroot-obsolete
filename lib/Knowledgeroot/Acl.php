@@ -21,11 +21,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	'export',
     );
 
-    protected $acl = null;
-
     public function load() {
-	$this->acl = new Zend_Acl();
-
 	$this->loadRoles();
 
 	$this->loadResources();
@@ -40,7 +36,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	$rows = $db->fetchAll('SELECT id FROM ' . $db->quoteIdentifier('group') . ' WHERE active='.Knowledgeroot_Db::true().' AND deleted='.Knowledgeroot_Db::false());
 
 	foreach($rows as $key => $value) {
-	    $this->acl->addRole(new Zend_Acl_Role('G_' . $value['id']));
+	    $this->addRole(new Zend_Acl_Role('G_' . $value['id']));
 	}
 
 	// fetch all group and create group members
@@ -53,7 +49,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 		$parents[] = 'G_' . $mValue['group_id'];
 	    }
 
-	    $this->acl->addRole(new Zend_Acl_Role('GM_' . $value['id']), $parents);
+	    $this->addRole(new Zend_Acl_Role('GM_' . $value['id']), $parents);
 	}
 
 	// fetch all users and set parent
@@ -66,7 +62,7 @@ class Knowledgeroot_Acl extends Zend_Acl {
 		$parents[] = 'GM_' . $mValue['group_id'];
 	    }
 
-	    $this->acl->addRole(new Zend_Acl_Role('U_' . $value['id']), $parents);
+	    $this->addRole(new Zend_Acl_Role('U_' . $value['id']), $parents);
 	}
 
 
@@ -80,21 +76,21 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	$pages = $db->fetchAll('SELECT id FROM page WHERE deleted='.Knowledgeroot_Db::false());
 
 	foreach($pages as $key => $value) {
-	    $this->acl->addResource(new Zend_Acl_Resource('P_' . $value['id']));
+	    $this->addResource(new Zend_Acl_Resource('P_' . $value['id']));
 	}
 
 	// load contents
 	$content = $db->fetchAll('SELECT id FROM content WHERE deleted='.Knowledgeroot_Db::false());
 
 	foreach($content as $key => $value) {
-	    $this->acl->addResource(new Zend_Acl_Resource('C_' . $value['id']));
+	    $this->addResource(new Zend_Acl_Resource('C_' . $value['id']));
 	}
 
 	// load files
 	$files = $db->fetchAll('SELECT id FROM ' . $db->quoteIdentifier('file') . ' WHERE deleted='.Knowledgeroot_Db::false());
 
 	foreach($files as $key => $value) {
-	    $this->acl->addResource(new Zend_Acl_Resource('F_' . $value['id']));
+	    $this->addResource(new Zend_Acl_Resource('F_' . $value['id']));
 	}
     }
 
@@ -105,21 +101,21 @@ class Knowledgeroot_Acl extends Zend_Acl {
 
 	foreach($acl as $key => $value) {
 	    // FIXME: is this the right way? - special resources could be realized of an extra db table
-	    if(!$this->acl->has($value['resource'])) {
+	    if(!$this->has($value['resource'])) {
 		//echo $value['resource']."#<br>\n";
-		$this->acl->addResource(new Zend_Acl_Resource($value['resource']));
+		$this->addResource(new Zend_Acl_Resource($value['resource']));
 	    }
 
 	    // FIXME: remove this part because if a role not exists something must be wrong - this is only for testing with acl
-	    if(!$this->acl->hasRole($value['role_id'])) {
+	    if(!$this->hasRole($value['role_id'])) {
 		//echo $value['role_id']."#<br>\n";
-		$this->acl->addRole(new Zend_Acl_Role($value['role_id']));
+		$this->addRole(new Zend_Acl_Role($value['role_id']));
 	    }
 
 	    if($value['right'] == 'allow') {
-		$this->acl->allow($value['role_id'], $value['resource'], $value['action']);
+		$this->allow($value['role_id'], $value['resource'], $value['action']);
 	    } else {
-		$this->acl->deny($value['role_id'], $value['resource'], $value['action']);
+		$this->deny($value['role_id'], $value['resource'], $value['action']);
 	    }
 	}
     }
@@ -157,6 +153,15 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	}
 
 	return $ret;
+    }
+
+    public static function iAmAllowed($resource, $action) {
+	$acl = Knowledgeroot_Registry::get('acl');
+
+	$session = new Zend_Session_Namespace('user');
+	$userId = 'U_' . $session->id;
+
+	return $acl->isAllowed($userId, $resource, $action);
     }
 }
 
