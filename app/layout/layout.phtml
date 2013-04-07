@@ -208,8 +208,8 @@ $config = Zend_Registry::get('config');
     				</a>
     				<ul class="dropdown-menu">
 				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="icon-user"></i>&nbsp;Users</a></li><?php } ?>
-    				    <li><a href="group"><i class="icon-briefcase"></i>&nbsp;Groups</a></li>
-				    <li><a href="permissions"><i class="icon-eye-open"></i>&nbsp;Permissions</a></li>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="icon-briefcase"></i>&nbsp;Groups</a></li><?php } ?>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="icon-eye-open"></i>&nbsp;Permissions</a></li><?php } ?>
     				</ul>
     			    </li>
     			</ul>
