@@ -158,6 +158,12 @@ class Knowledgeroot_Acl extends Zend_Acl {
     public static function iAmAllowed($resource, $action) {
 	$acl = Knowledgeroot_Registry::get('acl');
 
+	// create resource if resource not exists to avoid exception
+	if(!$acl->has($resource)) {
+	    $res = new Zend_Acl_Resource($resource);
+	    $acl->addResource($res);
+	}
+
 	$session = new Zend_Session_Namespace('user');
 	$userId = 'U_' . $session->id;
 
