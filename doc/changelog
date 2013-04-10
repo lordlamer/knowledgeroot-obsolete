@@ -1,3 +1,8 @@
+20130410 - fhabermann
+* added acl to demo dump
+* using tinyint in mysql instead of boolean
+* fixed problems with true/false in mysql
+
 20130407 - fhabermann
 * added more acl checks
 
