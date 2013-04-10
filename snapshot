@@ -1,0 +1,4 @@
+#!/bin/sh
+DATE=`date +"%Y%m%d"`
+git archive --format=tar.gz --prefix=knowledgeroot2/ master > /tmp/knowledgeroot2-$DATE.tar.gz
+echo "Created Snapshot:" /tmp/knowledgeroot2-$DATE.tar.gz
