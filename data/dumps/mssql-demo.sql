@@ -52,3 +52,26 @@ VALUES ((SELECT id FROM page where name='first'), 'first content', 'first conten
 
 GO
 -- files
+
+-- acl
+
+GO
+
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageUsers', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageUsers', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageUsers', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageUsers', 'show', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageGroups', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageGroups', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageGroups', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageGroups', 'show', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageSystemPermissions', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageSystemPermissions', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageSystemPermissions', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageSystemPermissions', 'show', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageRootPages', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageRootPages', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageRootPages', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, [right]) VALUES ('U_1', 'manageRootPages', 'show', 'allow');
+
+GO
