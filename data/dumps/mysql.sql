@@ -16,12 +16,12 @@ CREATE TABLE `user` (
   timezone varchar(50) DEFAULT 'UTC' NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
-  active boolean DEFAULT false NOT NULL,
+  active tinyint(1) DEFAULT false NOT NULL,
   created_by integer NOT NULL,
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
@@ -32,12 +32,12 @@ CREATE TABLE `group` (
   description text DEFAULT '' NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
-  active boolean DEFAULT false NOT NULL,
+  active tinyint(1) DEFAULT false NOT NULL,
   created_by integer NOT NULL,
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
@@ -68,7 +68,7 @@ CREATE TABLE page (
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
-  content_collapse boolean DEFAULT TRUE NOT NULL,
+  content_collapse tinyint(1) DEFAULT TRUE NOT NULL,
   content_position ENUM('start', 'end') DEFAULT 'end' NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
@@ -77,8 +77,8 @@ CREATE TABLE page (
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  active boolean DEFAULT false NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  active tinyint(1) DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (created_by) REFERENCES `user` (id) ON DELETE RESTRICT,
   FOREIGN KEY (changed_by) REFERENCES `user` (id) ON DELETE RESTRICT
@@ -94,7 +94,7 @@ CREATE TABLE page_history (
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
-  content_collapse boolean DEFAULT TRUE NOT NULL,
+  content_collapse tinyint(1) DEFAULT TRUE NOT NULL,
   content_position ENUM('start', 'end') DEFAULT 'end' NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
@@ -103,8 +103,8 @@ CREATE TABLE page_history (
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  active boolean DEFAULT false NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  active tinyint(1) DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (page_id) REFERENCES page (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
@@ -123,8 +123,8 @@ CREATE TABLE content (
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  active boolean DEFAULT false NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  active tinyint(1) DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (parent) REFERENCES page (id) ON DELETE CASCADE,
   FOREIGN KEY (created_by) REFERENCES `user` (id) ON DELETE RESTRICT,
@@ -147,8 +147,8 @@ CREATE TABLE content_history (
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  active boolean DEFAULT false NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  active tinyint(1) DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (content_id) REFERENCES content (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
@@ -166,7 +166,7 @@ CREATE TABLE file (
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (parent) REFERENCES content (id) ON DELETE CASCADE,
   FOREIGN KEY (created_by) REFERENCES `user` (id) ON DELETE RESTRICT,
@@ -188,7 +188,7 @@ CREATE TABLE file_history (
   create_date datetime NOT NULL,
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
-  deleted boolean DEFAULT false NOT NULL,
+  deleted tinyint(1) DEFAULT false NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (file_id)  REFERENCES file (id) ON DELETE CASCADE
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
