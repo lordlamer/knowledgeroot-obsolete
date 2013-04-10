@@ -33,3 +33,21 @@ INSERT INTO content (parent, name, content, active, created_by, create_date, cha
 VALUES ((SELECT id FROM page where name='first'), 'first content', 'first content', true, (SELECT id FROM `user` where login='admin'), '20121001 22:00:00', (SELECT id FROM `user` where login='admin'), '20121001 22:00:00', false);
 
 -- files
+
+-- acl
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageUsers', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageUsers', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageUsers', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageUsers', 'show', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageGroups', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageGroups', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageGroups', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageGroups', 'show', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageSystemPermissions', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageSystemPermissions', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageSystemPermissions', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageSystemPermissions', 'show', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageRootPages', 'new', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageRootPages', 'edit', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageRootPages', 'delete', 'allow');
+INSERT INTO acl (role_id, resource, action, `right`) VALUES ('U_1', 'manageRootPages', 'show', 'allow');
