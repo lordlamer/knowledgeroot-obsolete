@@ -15,7 +15,7 @@
 	    <div class="permission-panel-roles">
 		<ul>
 		    <?php foreach ($this->permissions as $key => $value) { ?>
-    		    <li><a data-panel-name="<?= $this->name ?>" data-panel-userid="<?= $key ?>" href="javascript:;"><?= $value['name'] ?></a></li>
+    		    <li><a data-panel-name="<?= $this->name ?>" data-panel-userid="<?= $key ?>" href="javascript:;"><?= $value['name'] ?> (<?= $key[0] ?>)</a></li>
 		    <?php } ?>
 		    <!-- <li><a class="active" href="javascript:;">test1</a></li> -->
 		</ul>
