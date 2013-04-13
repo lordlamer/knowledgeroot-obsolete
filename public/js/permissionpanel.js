@@ -10,6 +10,10 @@ function onClickUser() {
 	$( ".permission-panel-roles ul li a" ).removeClass('active');
 	$(this).addClass('active');
 
+	// show right panel
+	$('.permission-panel-rights[data-panel-name="'+$(this).attr('data-panel-name')+'"]').show(20);
+
+	// show user rights
 	showUserRights($(this).attr('data-panel-name'), $(this).attr('data-panel-userid'));
     });
 }
