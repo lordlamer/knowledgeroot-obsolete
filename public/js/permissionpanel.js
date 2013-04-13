@@ -202,7 +202,7 @@ $('.permission-panel-save-button').on('click', function() {
 	dataType: 'html',
 	success: function(dataPacket) {
 	   /* process the received dataPacket */
-	   alert(dataPacket);
+	   alert("Data saved");
 	},
 	error: function(data) {
 	    alert('error' + data);
