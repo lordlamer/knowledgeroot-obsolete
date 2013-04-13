@@ -98,6 +98,22 @@ function addUserToStore(panelName, userId) {
 }
 
 /**
+ * check if given userId is in store
+ *
+ * @param string panelName
+ * @param string userId
+ * @returns {undefined}
+ */
+function isUserInStore(panelName, userId) {
+    var permissionStore = window['permissionStore_' + panelName];
+    if(typeof permissionStore[userId] == "object") {
+	return true;
+    } else {
+	return false;
+    }
+}
+
+/**
  * remove user from permission store
  *
  * @param string panelName
@@ -128,17 +144,19 @@ function setUserPermission(panelName, userId, action, permission) {
  * @param string userId
  */
 function addUserToList(panelName, userId) {
-    //
+    // get role store
     var roleStore = window['roleStore_' + panelName];
 
-    //
-    $('[data-panel-name="'+panelName+'"] div.permission-panel-roles ul').append('<li><a data-panel-name="'+panelName+'" data-panel-userid="'+userId+'" href="javascript:;">'+roleStore[userId]+'</a></li>');
+    if(!isUserInStore(panelName, userId)) {
+	// append user
+	$('[data-panel-name="'+panelName+'"] div.permission-panel-roles ul').append('<li><a data-panel-name="'+panelName+'" data-panel-userid="'+userId+'" href="javascript:;">'+roleStore[userId]+'</a></li>');
 
-    // run onclickuser to set onclick for roles
-    onClickUser();
+	// run onclickuser to set onclick for roles
+	onClickUser();
 
-    //
-    addUserToStore(panelName, userId);
+	// add user to storage
+	addUserToStore(panelName, userId);
+    }
 }
 
 /**
