@@ -1,11 +1,25 @@
 <?php
 
 class Zend_View_Helper_PermissionPanel extends Zend_View_Helper_Abstract {
-	public function permissionPanel($name, $actions) {
+	/**
+	 * show permission panel
+	 *
+	 * @param string $name
+	 * @param array $actions
+	 * @param array $config
+	 * @return string
+	 */
+	public function permissionPanel($name, $actions, $config = null) {
 	    $view = new Zend_View();
 
 	    $view->name = $name;
 	    $view->actions = $actions;
+
+	    if(isset($config['show_save_button']) && $config['show_save_button']) {
+		$view->showSaveButton = true;
+	    } else {
+		$view->showSaveButton = false;
+	    }
 
 	    // available roles
 	    $roles = array();
