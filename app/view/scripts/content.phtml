@@ -80,9 +80,7 @@
 		    </div>
 	    </div>
 	    <div class="tab-pane" id="tab-permission">
-		<?php
-		echo $this->partial("rights.phtml");
-		?>
+		<?php echo $this->permissionPanel('content'.$this->id, array('new','edit','delete','show'), array('show_save_button' => true)); ?>
 	    </div>
 	    <div class="tab-pane" id="tab-info">
 		    <div class="control-group">
