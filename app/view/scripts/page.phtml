@@ -110,9 +110,7 @@
 		</div>
 	    </div>
 	    <div class="tab-pane" id="tab-permission">
-		<?php
-		echo $this->partial("rights.phtml");
-		?>
+		<?php echo $this->permissionPanel('page'.$this->id, array('new','edit','delete','show')); ?>
 	    </div>
 	    <div class="tab-pane" id="tab-inherit-permission">
 		<div class="control-group">
