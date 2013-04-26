@@ -19,6 +19,7 @@ class ContentController extends Zend_Controller_Action {
 	    $content->setName($this->_getParam('content_title'));
 	    $content->setContent($this->_getParam('content'));
 	    $content->setParent($this->_getParam('content_page'));
+	    $content->setAcl(json_decode($this->_getParam('acl')));
 	    $content->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -49,6 +50,7 @@ class ContentController extends Zend_Controller_Action {
 	    $content->setName($this->_getParam('content_title'));
 	    $content->setContent($this->_getParam('content'));
 	    $content->setParent($this->_getParam('content_page'));
+	    $content->setAcl(json_decode($this->_getParam('acl')));
 	    $content->save();
 
 	    if ($this->_getParam('button') == 'save') {

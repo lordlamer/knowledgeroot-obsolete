@@ -21,6 +21,12 @@ class Zend_View_Helper_PermissionPanel extends Zend_View_Helper_Abstract {
 		$view->showSaveButton = false;
 	    }
 
+	    if(isset($config['add_acl_on_form_submit']) && $config['add_acl_on_form_submit']) {
+		$view->addAclOnFormSubmit = true;
+	    } else {
+		$view->addAclOnFormSubmit = false;
+	    }
+
 	    // available roles
 	    $roles = array();
 

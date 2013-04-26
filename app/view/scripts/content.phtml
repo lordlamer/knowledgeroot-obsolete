@@ -80,11 +80,11 @@
 		    </div>
 	    </div>
 	    <div class="tab-pane" id="tab-permission">
-		<?php echo $this->permissionPanel('content'.$this->id, array('new','edit','delete','show'), array('show_save_button' => true)); ?>
+		<?php echo $this->permissionPanel('content'.$this->id, array('new','edit','delete','show'), array('show_save_button' => true, 'add_acl_on_form_submit' => true)); ?>
 	    </div>
 	    <div class="tab-pane" id="tab-info">
 		    <div class="control-group">
-			<label class="control-label" for="content-title">Created By</label>
+			<label class="control-label" for="content-title">Createdx By</label>
 			<div class="controls">
 			    <span class="input-xlarge uneditable-input">admin</span>
 			    <p class="help-block">

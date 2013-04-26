@@ -20,6 +20,7 @@ class Knowledgeroot_Content {
     protected $change_date = null;
     protected $active = null;
     protected $deleted = null;
+    protected $acl = null;
 
     public function __construct($id = null) {
 	if ($id != null) {
@@ -234,6 +235,24 @@ class Knowledgeroot_Content {
 
     public function getChangedBy() {
 	return $this->changed_by;
+    }
+
+    /**
+     * set acl for content
+     *
+     * @param array $acl
+     */
+    public function setAcl($acl) {
+
+    }
+
+    /**
+     * return acl for content
+     *
+     * @return array
+     */
+    public function getAcl() {
+
     }
 
     /**

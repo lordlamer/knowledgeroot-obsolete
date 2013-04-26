@@ -95,6 +95,8 @@ function addUserToStore(panelName, userId) {
     $.each( actionStore, function( key, value ) {
 	window['permissionStore_' + panelName][userId]['permissions'][value] = 'allow';
     });
+
+    updateAclField(panelName);
 }
 
 /**
@@ -122,6 +124,8 @@ function isUserInStore(panelName, userId) {
 function removeUserFromStore(panelName, userId) {
     // unset user
     window['permissionStore_' + panelName][userId] = undefined;
+
+    updateAclField(panelName);
 }
 
 /**
@@ -135,6 +139,7 @@ function removeUserFromStore(panelName, userId) {
 function setUserPermission(panelName, userId, action, permission) {
     // set user permission in store
     window['permissionStore_' + panelName][userId]['permissions'][action] = permission;
+    updateAclField(panelName);
 }
 
 /**
@@ -209,3 +214,8 @@ $('.permission-panel-save-button').on('click', function() {
 	}
     });
 });
+
+function updateAclField(panelName) {
+    //alert(JSON.stringify(window['permissionStore_' + panelName]));
+    $('#inputAcl'+panelName).val(JSON.stringify(window['permissionStore_' + panelName]));
+}
