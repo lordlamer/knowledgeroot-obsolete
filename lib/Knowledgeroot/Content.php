@@ -104,6 +104,12 @@ class Knowledgeroot_Content {
 	} else {
 	    $content->update($data, 'id = ' . $this->id);
 	}
+
+	// get acl object
+	$krAcl = Knowledgeroot_Registry::get('acl');
+
+	// save acl
+	$krAcl->saveAclForResource('content_'.$this->id, $this->acl);
     }
 
     public function delete($id = null, $markOnly = true) {
@@ -243,7 +249,7 @@ class Knowledgeroot_Content {
      * @param array $acl
      */
     public function setAcl($acl) {
-
+	$this->acl = Knowledgeroot_Util::objectToArray($acl);
     }
 
     /**

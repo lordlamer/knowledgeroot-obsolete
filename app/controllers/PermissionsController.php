@@ -24,14 +24,7 @@ class PermissionsController extends Zend_Controller_Action
 
 	$params = $this->getAllParams();
 
-	// clear old rights
-	$acl->clearByResource($params['panelName']);
-
-	// save new rights
-	foreach($params['panelStore'] as $role => $value) {
-	    foreach($value['permissions'] as $action => $right) {
-		$acl->addAcl($role, $params['panelName'],$action,$right);
-	    }
-	}
+	// save acl
+	$acl->saveAclForResource($params['panelName'], $params['panelStore']);
     }
 }

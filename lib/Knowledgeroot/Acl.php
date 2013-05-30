@@ -154,7 +154,12 @@ class Knowledgeroot_Acl extends Zend_Acl {
 
 	return $ret;
     }
-
+    /**
+     *
+     * @param type $resource
+     * @param type $action
+     * @return type
+     */
     public static function iAmAllowed($resource, $action) {
 	$acl = Knowledgeroot_Registry::get('acl');
 
@@ -168,6 +173,28 @@ class Knowledgeroot_Acl extends Zend_Acl {
 	$userId = 'U_' . $session->id;
 
 	return $acl->isAllowed($userId, $resource, $action);
+    }
+
+    /**
+     *
+     * @param string $resource
+     * @param array $aclArray
+     */
+    public function saveAclForResource($resource, $aclArray) {
+	// check if resource exists
+	if(!$this->has($resource)) {
+	    $this->addResource(new Zend_Acl_Resource($resource));
+	}
+
+	// clear old rights
+	$this->clearByResource($resource);
+
+	// save new rights
+	foreach($aclArray as $role => $value) {
+	    foreach($value['permissions'] as $action => $right) {
+		$this->addAcl($role, $resource, $action, $right);
+	    }
+	}
     }
 }
 
