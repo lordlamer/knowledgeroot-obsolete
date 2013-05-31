@@ -57,7 +57,11 @@ class PageController extends Zend_Controller_Action {
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('page/edit/' . $page->getId());
 	    } else {
-		$this->_redirect('page/' . $this->_getParam('page_parent'));
+		// check if parent is 0 (root page) so redirect to page itself
+		if($this->_getParam('page_parent') == 0)
+		    $this->_redirect('page/' . $page->getId());
+		else
+		    $this->_redirect('page/' . $this->_getParam('page_parent'));
 	    }
 	} else {
 	    $this->view->action = 'new';
