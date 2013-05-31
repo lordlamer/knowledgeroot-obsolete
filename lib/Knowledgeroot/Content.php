@@ -269,6 +269,8 @@ class Knowledgeroot_Content {
     public static function getContents(Knowledgeroot_Page $page) {
 	$ret = array();
 
+	$acl = Knowledgeroot_Registry::get('acl');
+
 	$content = new Knowledgeroot_Db_Content();
 	$select = $content->select();
 	$select->where('parent = ?', $page->getId());
@@ -276,7 +278,8 @@ class Knowledgeroot_Content {
 	$rows = $content->fetchAll($select);
 
 	foreach($rows as $value) {
-	    $ret[] = new Knowledgeroot_Content($value->id);
+	    if($acl->iAmAllowed('content_' . $value->id, 'show'))
+		$ret[] = new Knowledgeroot_Content($value->id);
 	}
 
 	return $ret;
