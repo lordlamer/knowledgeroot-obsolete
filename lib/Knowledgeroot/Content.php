@@ -269,6 +269,7 @@ class Knowledgeroot_Content {
     public static function getContents(Knowledgeroot_Page $page) {
 	$ret = array();
 
+	// get acl
 	$acl = Knowledgeroot_Registry::get('acl');
 
 	$content = new Knowledgeroot_Db_Content();
