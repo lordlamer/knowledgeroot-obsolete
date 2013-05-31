@@ -3,6 +3,9 @@
 * added acl check on getContents
 * added acl check on getPages
 * getPages returns array of Page objects
+* redirect to page itself if root page is created
+* added more rights to dump
+* added more stuff to demp dumps
 
 20130527 - fhabermann
 * added save acl for content new and edit

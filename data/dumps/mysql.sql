@@ -55,7 +55,7 @@ CREATE TABLE acl (
   id integer NOT NULL AUTO_INCREMENT,
   role_id varchar(255) NOT NULL,
   resource varchar(255) NOT NULL,
-  action ENUM('new','edit','delete','show','print','export') NOT NULL,
+  action ENUM('new','edit','delete','show','new_content','permission','print','export') NOT NULL,
   `right` ENUM('allow', 'deny') NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;

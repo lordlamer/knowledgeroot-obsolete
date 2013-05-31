@@ -70,7 +70,7 @@ CREATE TABLE acl (
   id int IDENTITY(1,1) NOT NULL,
   role_id varchar(255) NOT NULL,
   resource varchar(255) NOT NULL,
-  action varchar(6) NOT NULL CHECK (action IN('new','edit','delete','show','print','export')),
+  action varchar(6) NOT NULL CHECK (action IN('new','edit','delete','show','new_content','permission','print','export')),
   [right] varchar(5) NOT NULL CHECK ([right] IN('allow', 'deny')),
   CONSTRAINT [PK_acl_id] PRIMARY KEY CLUSTERED (
     id ASC

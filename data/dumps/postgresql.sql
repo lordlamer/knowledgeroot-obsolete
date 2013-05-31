@@ -19,7 +19,7 @@ CREATE SEQUENCE seq_tag;
 CREATE SEQUENCE seq_tag_content;
 
 /* types */
-CREATE TYPE acl_action as ENUM ('new','edit','delete','show','print','export');
+CREATE TYPE acl_action as ENUM ('new','edit','delete','show','new_content','permission','print','export');
 CREATE TYPE acl_right as ENUM ('allow', 'deny');
 CREATE TYPE content_position as ENUM ('start', 'end');
 CREATE TYPE group_member_type as ENUM ('user', 'group');
