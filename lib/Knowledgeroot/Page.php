@@ -276,11 +276,19 @@ class Knowledgeroot_Page {
     public static function getPages(Knowledgeroot_Page $parentPage = null) {
 	$ret = array();
 
+	// get acl
+	$acl = Knowledgeroot_Registry::get('acl');
+
 	$page = new Knowledgeroot_Db_Page();
 	$select = $page->select();
 	//$select->where('parent = ?', $parentPage->getId());
 	$select->where('deleted = '.Knowledgeroot_Db::false());
-	$ret = $page->fetchAll($select);
+	$rows = $page->fetchAll($select);
+
+	foreach($rows as $value) {
+	    if($acl->iAmAllowed('page_' . $value->id, 'show'))
+		$ret[] = new Knowledgeroot_Page($value->id);
+	}
 
 	return $ret;
     }

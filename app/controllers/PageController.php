@@ -128,17 +128,17 @@ class PageController extends Zend_Controller_Action {
 	);
 
 	if (count($pages) > 0) {
-	    foreach ($pages as $key => $value) {
+	    foreach ($pages as $key => $page) {
 		$item = array(
-		    'id' => $value['id'],
-		    'parent' => $value['parent'],
-		    'url' => $config->base->base_url . 'page/' . $value['id'],
-		    'name' => $value['name'],
-		    'type' => (($value['parent'] == 0) ? 'root' : 'page'),
-		    'tooltip' => $value['tooltip'],
-		    'alias' => $value['alias'],
+		    'id' => $page->getId(),
+		    'parent' => $page->getParent(),
+		    'url' => $config->base->base_url . 'page/' . $page->getId(),
+		    'name' => $page->getName(),
+		    'type' => (($page->getParent() == 0) ? 'root' : 'page'),
+		    'tooltip' => $page->getTooltip(),
+		    'alias' => $page->getAlias(),
 		    //'symlink' => $value['symlink'],
-		    'icon' => $value['icon']
+		    'icon' => $page->getIcon()
 		);
 
 		$out['items'][] = $item;

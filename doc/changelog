@@ -1,6 +1,8 @@
 20130528 - fhabermann
 * added save acl for page new and edit
 * added acl check on getContents
+* added acl check on getPages
+* getPages returns array of Page objects
 
 20130527 - fhabermann
 * added save acl for content new and edit
