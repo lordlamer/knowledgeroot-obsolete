@@ -1,11 +1,11 @@
 <!-- page navi -->
 <div class="subnav" style="margin-bottom:20px;">
     <ul class="nav nav-pills">
-	<li><a href="page/new/<?php echo $this->id; ?>">add new page</a></li>
-	<li><a href="page/edit/<?php echo $this->id; ?>">edit page</a></li>
-	<li><a href="javascript:;" onclick="window.open('page/move/<?php echo $this->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move page</a></li>
-	<li><a href="javascript:;" onclick="if(confirm('Do you really want to delete this page?')) { location.href='page/delete/<?php echo $this->id; ?>'; } else { return false; }">delete page</a></li>
-	<li><a href="content/new/<?php echo $this->id; ?>">add new content</a></li>
+	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'new')) { ?><li><a href="page/new/<?php echo $this->id; ?>">add new page</a></li><?php } ?>
+	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'edit')) { ?><li><a href="page/edit/<?php echo $this->id; ?>">edit page</a></li><?php } ?>
+	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'edit')) { ?><li><a href="javascript:;" onclick="window.open('page/move/<?php echo $this->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move page</a></li><?php } ?>
+	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'delete')) { ?><li><a href="javascript:;" onclick="if(confirm('Do you really want to delete this page?')) { location.href='page/delete/<?php echo $this->id; ?>'; } else { return false; }">delete page</a></li><?php } ?>
+	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'new_content')) { ?><li><a href="content/new/<?php echo $this->id; ?>">add new content</a></li><?php } ?>
     </ul>
 </div>
 <?php
@@ -25,10 +25,11 @@ foreach ($this->contents as $content) { // run for each content
 
     	    <div class="accordion-inner">
     		<div class="btn-toolbar">
-    		    <div class="btn-group"><a class="btn" href="content/edit/<?php echo $content->getId(); ?>">edit</a>
-    			<a class="btn" href="javascript:;" onclick="if(confirm('Do you really want to delete?')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }">delete</a>
-    			<a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->getId(); ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move</a>
-    			<a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');">print</a>
+    		    <div class="btn-group">
+			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="content/edit/<?php echo $content->getId(); ?>">edit</a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { ?><a class="btn" href="javascript:;" onclick="if(confirm('Do you really want to delete?')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }">delete</a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->getId(); ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');">move</a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');">print</a><?php } ?>
     		    </div>
     		    <div class="btn-group pull-right">
     			<a class="btn pull-right" href="#top">Top</a>
@@ -38,30 +39,25 @@ foreach ($this->contents as $content) { // run for each content
 		    <?php echo $content->getContent(); ?>
 		<br>
 		<?php
-		    //if(is_array($content->files)) {
-		?>
-		<form>
-		    <legend>Files</legend>
-		    <?php
-			if(is_array($this->files)) {
-			    echo "<ul class=\"unstyled\">\n";
-			    foreach($this->files[$content->getId()] as $file) {
-				echo '<li>';
-				echo '<a href="./file/delete/'.$file->getId().'"><i class="icon-trash"></i></a>';
-				echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-file" style="margin-right:5px;"></i>' . $file->getName() . "</a>\n";
-				echo'
+		    if(is_array($this->files) && is_array($this->files[$content->getId()]) && count($this->files[$content->getId()]) > 0) {
+			echo "<legend>Files</legend><ul class=\"unstyled\">\n";
+			foreach($this->files[$content->getId()] as $file) {
+			    echo '<li>';
+			    echo '<a href="./file/delete/'.$file->getId().'"><i class="icon-trash"></i></a>';
+			    echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-file" style="margin-right:5px;"></i>' . $file->getName() . "</a>\n";
+			    echo'
 <a href="javascript:;" class="label label-info" rel="popover" data-html="true" data-placement="right" data-content="Size: '.$file->getSize().'<br>Downloads:'.$file->getDownloads().'<br>MD5 Sum:'.$file->getHash().'<br>changed:'.$file->getChangeDate().'<br>changed by:'.$file->getChangedBy().'<br>created:'.$file->getCreateDate().'<br>created by:'.$file->getCreatedBy().'" title="File Information">info</a>
 ';
-				echo '</li>';
-			    }
-			    echo "</ul>";
+			    echo '</li>';
 			}
-		    ?>
+			echo "</ul>";
+		    }
+		?>
+		<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?>
+		<form>
 		    <a data-toggle="modal" href="#fileUpload" class="btn btn-primary btn-mini"><i class="icon-plus icon-white" style="margin-right:2px;"></i>add</a>
 		</form>
-		<?php
-		    //}
-		?>
+		<?php } ?>
     	    </div>
     	    <div class="content_statusbar">Last changed: XXX By: YYY</div>
     	</div>

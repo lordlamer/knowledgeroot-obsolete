@@ -13,8 +13,10 @@
 	<ul class="nav nav-tabs">
 	    <li class="active"><a data-toggle="tab" href="#tab-page">Page</a></li>
 	    <li><a data-toggle="tab" href="#tab-content">Content</a></li>
+	    <?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'permission') || ($this->action == 'new' && Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))) { ?>
 	    <li><a data-toggle="tab" href="#tab-permission">Permissions</a></li>
 	    <li><a data-toggle="tab" href="#tab-inherit-permission">Inherit Permissions</a></li>
+	    <?php } ?>
 	    <li><a data-toggle="tab" href="#tab-info">Information</a></li>
 	    <li><a data-toggle="tab" href="#tab-history">History</a></li>
 	</ul>
@@ -110,7 +112,9 @@
 		</div>
 	    </div>
 	    <div class="tab-pane" id="tab-permission">
-		<?php echo $this->permissionPanel('page_'.$this->id, array('new','edit','delete','show'), array('show_save_button' => false, 'add_acl_on_form_submit' => true)); ?>
+		<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'permission') || ($this->action == 'new' && Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))) { ?>
+		<?php echo $this->permissionPanel('page_'.$this->id, array('new','edit','delete','show','new_content','permission'), array('show_save_button' => false, 'add_acl_on_form_submit' => true)); ?>
+		<?php } ?>
 	    </div>
 	    <div class="tab-pane" id="tab-inherit-permission">
 		<div class="control-group">

@@ -6,6 +6,7 @@
 * redirect to page itself if root page is created
 * added more rights to dump
 * added more stuff to demp dumps
+* added acl checks to navis
 
 20130527 - fhabermann
 * added save acl for content new and edit
