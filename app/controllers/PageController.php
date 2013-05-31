@@ -51,6 +51,7 @@ class PageController extends Zend_Controller_Action {
 	    $page = new Knowledgeroot_Page();
 	    $page->setParent($this->_getParam('page_parent'));
 	    $page->setName($this->_getParam('page_title'));
+	    $page->setAcl(json_decode($this->_getParam('acl')));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -75,6 +76,7 @@ class PageController extends Zend_Controller_Action {
 
 	    $page->setParent($this->_getParam('page_parent'));
 	    $page->setName($this->_getParam('page_title'));
+	    $page->setAcl(json_decode($this->_getParam('acl')));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {

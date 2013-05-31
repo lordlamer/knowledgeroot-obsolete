@@ -110,7 +110,7 @@
 		</div>
 	    </div>
 	    <div class="tab-pane" id="tab-permission">
-		<?php echo $this->permissionPanel('page'.$this->id, array('new','edit','delete','show')); ?>
+		<?php echo $this->permissionPanel('page_'.$this->id, array('new','edit','delete','show'), array('show_save_button' => false, 'add_acl_on_form_submit' => true)); ?>
 	    </div>
 	    <div class="tab-pane" id="tab-inherit-permission">
 		<div class="control-group">

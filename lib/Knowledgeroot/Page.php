@@ -18,6 +18,7 @@ class Knowledgeroot_Page {
 	protected $change_date = null;
 	protected $active = null;
 	protected $deleted = null;
+	protected $acl = null;
 
     public function __construct($id = null) {
 	if ($id != null) {
@@ -114,6 +115,12 @@ class Knowledgeroot_Page {
 	} else {
 	    $page->update($data, 'id = ' . $this->id);
 	}
+
+	// get acl object
+	$krAcl = Knowledgeroot_Registry::get('acl');
+
+	// save acl
+	$krAcl->saveAclForResource('page_'.$this->id, $this->acl);
     }
 
     public function delete($id = null, $markOnly = true) {
@@ -276,6 +283,14 @@ class Knowledgeroot_Page {
 	$ret = $page->fetchAll($select);
 
 	return $ret;
+    }
+
+    public function setAcl($acl) {
+	$this->acl = Knowledgeroot_Util::objectToArray($acl);
+    }
+
+    public function getAcl() {
+
     }
 }
 
