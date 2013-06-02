@@ -216,6 +216,5 @@ $('.permission-panel-save-button').on('click', function() {
 });
 
 function updateAclField(panelName) {
-    //alert(JSON.stringify(window['permissionStore_' + panelName]));
     $('#inputAcl'+panelName).val(JSON.stringify(window['permissionStore_' + panelName]));
 }

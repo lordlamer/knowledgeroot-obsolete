@@ -48,6 +48,11 @@
     <?php } ?>
     <?php if($this->addAclOnFormSubmit) { ?>
     <input type="hidden" id="inputAcl<?= $this->name ?>" name="acl" value="" />
+    <script>
+	$(window).load(function() {
+	    updateAclField('<?= $this->name ?>');
+	});
+    </script>
     <?php } ?>
 </div>
 

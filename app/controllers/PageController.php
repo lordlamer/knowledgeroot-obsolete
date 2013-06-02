@@ -45,8 +45,22 @@ class PageController extends Zend_Controller_Action {
 
     public function newAction() {
 	if ($this->getRequest()->getMethod() == 'POST') {
-	    if ($this->_getParam('button') == 'close')
-		$this->_redirect('page/' . $this->_getParam('page_parent'));
+	    // acl checks
+	    // check for new root page
+	    if($this->_getParam('page_parent') == 0 && !Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))
+		    $this->_redirect('');
+
+	    // check for non root page
+	    if($this->_getParam('page_parent') != 0 && !Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('page_parent'), 'new'))
+		    $this->_redirect('page/' . $this->_getParam('page_parent'));
+
+	    // close action check
+	    if ($this->_getParam('button') == 'close') {
+		if($this->_getParam('page_parent') == 0)
+		    $this->_redirect('');
+		else
+		    $this->_redirect('page/' . $this->_getParam('page_parent'));
+	    }
 
 	    $page = new Knowledgeroot_Page();
 	    $page->setParent($this->_getParam('page_parent'));
@@ -74,6 +88,15 @@ class PageController extends Zend_Controller_Action {
     public function editAction() {
 	if ($this->getRequest()->getMethod() == 'POST') {
 	    $page = new Knowledgeroot_Page($this->_getParam('id'));
+
+	    // acl checks
+	    // check for new root page
+	    if($this->_getParam('page_parent') == 0 && !Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))
+		    $this->_redirect('');
+
+	    // check for non root page
+	    if($this->_getParam('page_parent') != 0 && !Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('page_parent'), 'new'))
+		    $this->_redirect('page/' . $this->_getParam('page_parent'));
 
 	    if ($this->_getParam('button') == 'close')
 		$this->_redirect('page/' . $page->getId());
@@ -103,6 +126,10 @@ class PageController extends Zend_Controller_Action {
     }
 
     public function deleteAction() {
+	// check for non root page
+	if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('id'), 'delete'))
+		$this->_redirect('page/' . $this->_getParam('id'));
+
 	$page = new Knowledgeroot_Page($this->_getParam('id'));
 	$parent = $page->getParent();
 	$page->delete();

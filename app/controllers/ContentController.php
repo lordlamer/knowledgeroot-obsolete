@@ -12,6 +12,10 @@ class ContentController extends Zend_Controller_Action {
 
     public function newAction() {
 	if ($this->getRequest()->getMethod() == 'POST') {
+	    // check acl
+	    if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('content_page'), 'new_content'))
+		    $this->_redirect('page/' . $this->_getParam('content_page'));
+
 	    if ($this->_getParam('button') == 'close')
 		$this->_redirect('page/' . $this->_getParam('content_page'));
 
@@ -42,6 +46,10 @@ class ContentController extends Zend_Controller_Action {
     }
 
     public function editAction() {
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('page/' . $this->_getParam('content_page'));
+
 	if ($this->getRequest()->getMethod() == 'POST') {
 	    if ($this->_getParam('button') == 'close')
 		$this->_redirect('page/' . $this->_getParam('content_page'));
@@ -78,6 +86,10 @@ class ContentController extends Zend_Controller_Action {
     }
 
     public function deleteAction() {
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'delete'))
+		$this->_redirect('page/' . $this->_getParam('content_page'));
+
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
 	$parent = $content->getParent();
 	$content->delete();
@@ -98,6 +110,10 @@ class ContentController extends Zend_Controller_Action {
     }
 
     public function printAction() {
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'print'))
+		$this->_redirect('');
+
 	$this->_helper->layout()->disableLayout();
 
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
