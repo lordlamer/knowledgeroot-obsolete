@@ -1,3 +1,6 @@
+20130603 - fhabermann
+* added acl checks to file controller
+
 20130602 - fhabermann
 * added server side acl check to page and content controller
 
