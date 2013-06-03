@@ -13,9 +13,12 @@ class FileController extends Zend_Controller_Action
         // action body
     }
 
-    public function newAction()
-    {
+    public function newAction() {
         if ($this->getRequest()->getMethod() == 'POST') {
+	    // check acl
+	    if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('parent'), 'edit'))
+		    $this->_redirect('');
+
 	    if($_FILES['file']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['file']['tmp_name']) && is_file($_FILES['file']['tmp_name'])) {
 		$file = new Knowledgeroot_File();
 		$file->setParent($this->_getParam('parent'));
@@ -34,9 +37,12 @@ class FileController extends Zend_Controller_Action
 	}
     }
 
-    public function deleteAction()
-    {
+    public function deleteAction() {
         $file = new Knowledgeroot_File($this->_getParam('id'));
+
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$file->getParent(), 'delete'))
+		$this->_redirect('');
 
 	$content = new Knowledgeroot_Content($file->getParent());
 
@@ -60,6 +66,10 @@ class FileController extends Zend_Controller_Action
 	// @see: http://wiki.nginx.org/XSendfile
 
 	$file = new Knowledgeroot_File($this->_getParam('id'));
+
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$file->getParent(), 'show'))
+		$this->_redirect('');
 
 	// check for sendfile option
 	if($config->files->xsendfile->enable) {
