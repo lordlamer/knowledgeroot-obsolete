@@ -108,7 +108,7 @@ $config = Zend_Registry::get('config');
 	    </form>
 	</div>
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-inverse navbar-fixed-top" style="border-bottom: 3px solid #F88529;">
 	    <div class="navbar-inner">
 
 		<div class="container-fluid">
@@ -117,11 +117,11 @@ $config = Zend_Registry::get('config');
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		    </button>
-		    <a class="brand" href="#"><img src="img/home.png" width="20" height="20" style="margin-right: 5px; width: 20px; height: 20px;" /><?= $config->base->title ?></a>
+		    <a class="brand" href="#">&bigstar;<?= $config->base->title ?></a>
 
 		    <ul class="nav">
 			<li class="divider-vertical"></li>
-			<li class="dropdown">
+			<li class="dropdown" style="border-top: 3px solid #1171A3;">
 			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<i class="icon-plus icon-white"></i>&nbsp;<strong>New</strong>
 				<b class="caret"></b>
@@ -152,7 +152,7 @@ $config = Zend_Registry::get('config');
 		    </form>
 		    <ul class="nav pull-right">
 			<li class="divider-vertical"></li>
-			<li class="dropdown">
+			<li class="dropdown" style="border-top: 3px solid #932AB6;">
 			    <a href="#"
 			       class="dropdown-toggle"
 			       data-toggle="dropdown">
@@ -181,7 +181,7 @@ $config = Zend_Registry::get('config');
 			    ?>
     			<ul class="nav pull-right">
     			    <li class="divider-vertical"></li>
-    			    <li class="dropdown">
+    			    <li class="dropdown" style="border-top: 3px solid #FA3031;">
     				<a href="#"
     				   class="dropdown-toggle"
     				   data-toggle="dropdown">
@@ -198,7 +198,7 @@ $config = Zend_Registry::get('config');
 
     			<ul class="nav pull-right">
     			    <li class="divider-vertical"></li>
-    			    <li class="dropdown">
+    			    <li class="dropdown" style="border-top: 3px solid #43C83C;">
     				<a href="#"
     				   class="dropdown-toggle"
     				   data-toggle="dropdown">
@@ -216,7 +216,7 @@ $config = Zend_Registry::get('config');
 			    <?php
 			} else {
 			    ?>
-    			<li><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;Login</a></li>
+    			<li style="border-top: 3px solid #FA3031;"><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;Login</a></li>
 			    <?php
 			}
 			?>
