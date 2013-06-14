@@ -24,6 +24,7 @@ $config = Zend_Registry::get('config');
 	<style type="text/css">
 	    body {
 		padding-top: 60px;
+		background-color: #fdfdfd;
 	    }
 
 
@@ -117,7 +118,7 @@ $config = Zend_Registry::get('config');
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		    </button>
-		    <a class="brand" href="#">&bigstar;<?= $config->base->title ?></a>
+		    <a class="brand" href="#"><?= $config->base->title ?></a>
 
 		    <ul class="nav">
 			<li class="divider-vertical"></li>
@@ -272,10 +273,10 @@ $config = Zend_Registry::get('config');
 		    </div><!--/span-->
 		</div>
 		<div class="span9">
-
 		    <?php
 		    if (is_array($this->layout()->pathNavi)) {
 			echo "<ul class=\"breadcrumb\">";
+			echo "<li><i class=\"icon-home\"></i> <a href=\"./\">Home</a> <span class=\"divider\">/</span></li>";
 
 			$c = count($this->layout()->pathNavi);
 			$x = 0;

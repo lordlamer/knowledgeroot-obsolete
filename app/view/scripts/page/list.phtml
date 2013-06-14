@@ -1,3 +1,4 @@
+
 <!-- page navi -->
 <div class="subnav" style="margin-bottom:20px;">
     <ul class="nav nav-pills">
@@ -8,6 +9,10 @@
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'new_content')) { ?><li><a href="content/new/<?php echo $this->id; ?>">add new content</a></li><?php } ?>
     </ul>
 </div>
+
+<h1 style="color: #797979"><?= $this->title ?></h1>
+<?php if(!empty($this->subtitle)) { ?><span  style="color: #797979; padding-left:3px;"><?= $this->subtitle ?></span><?php } ?>
+<hr>
 <?php
 foreach ($this->contents as $content) { // run for each content
     ?>
@@ -23,7 +28,7 @@ foreach ($this->contents as $content) { // run for each content
     	</div>
     	<div id="collapse<?php echo $content->getId(); ?>" class="accordion-body collapse<?php if ($this->open) echo ' in'; ?>">
 
-    	    <div class="accordion-inner">
+    	    <div class="accordion-inner" style="background-color:#ffffff;">
     		<div class="btn-toolbar">
     		    <div class="btn-group">
 			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="content/edit/<?php echo $content->getId(); ?>">edit</a><?php } ?>
