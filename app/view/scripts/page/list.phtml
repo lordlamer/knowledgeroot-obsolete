@@ -48,8 +48,8 @@ foreach ($this->contents as $content) { // run for each content
 			echo "<legend>Files</legend><ul class=\"unstyled\">\n";
 			foreach($this->files[$content->getId()] as $file) {
 			    echo '<li>';
-			    echo '<a href="./file/delete/'.$file->getId().'"><i class="icon-trash"></i></a>';
-			    echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-file" style="margin-right:5px;"></i>' . $file->getName() . "</a>\n";
+			    echo '<a href="./file/delete/'.$file->getId().'"><i class="icon-trash"></i></a> ';
+			    echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-download-alt" style="margin-right:5px;"></i> ' . $file->getName() . "</a>\n";
 			    echo'
 <a href="javascript:;" class="label label-info" rel="popover" data-html="true" data-placement="right" data-content="Size: '.$file->getSize().'<br>Downloads:'.$file->getDownloads().'<br>MD5 Sum:'.$file->getHash().'<br>changed:'.$file->getChangeDate().'<br>changed by:'.$file->getChangedBy().'<br>created:'.$file->getCreateDate().'<br>created by:'.$file->getCreatedBy().'" title="File Information">info</a>
 ';
