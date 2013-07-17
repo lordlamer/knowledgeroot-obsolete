@@ -11,6 +11,8 @@ Quick Start
  * define your name, email, language, country
  * charset is UTF-8
  * save the po file to knowledgeroot/data/locale/YOUR_LOCALE/knowledgeroot.po (or save it to a tmp folder)
+ * do the translation
+ * save
 3. After translation push your files(knowledgeroot.po, knowledgeroot.mo) to the knowledgeroot project
  * send email
  * or create a github pull request
