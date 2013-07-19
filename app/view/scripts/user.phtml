@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><i class="icon-user"></i> 
+    <h2><i class="icon-user"></i>
 	<?php
 	if ($this->action == 'new')
 	    echo "Create User";
@@ -83,6 +83,7 @@
 		</div>
 	    </div>
 	    <div class="tab-pane" id="tab-member">
+		<?php echo $this->memberPanel('user_'.$this->id, array('show_save_button' => false, 'add_acl_on_form_submit' => true)); ?>
 	    </div>
 	</div>
 

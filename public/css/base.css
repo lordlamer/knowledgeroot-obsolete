@@ -271,3 +271,65 @@ a.ContentName:hover {
 }
 
 /* accordion-icon handling end */
+
+/* member-panel start */
+
+.member-panel {
+    width: 650px;
+}
+
+.member-panel-roles {
+    margin: 5px 5px 5px 5px;
+    display:block;
+    width: 250px;
+    height: 150px;
+    overflow:auto;
+}
+
+.member-panel-roles ul {
+    list-style-type: none;
+}
+
+.member-panel-roles li {
+    border: 1px solid #E5E5E5;
+    /*border-width: 1px 0;*/
+    margin: 2px 0;
+}
+
+.member-panel-roles li a {
+    color: #000000;
+    display: block;
+    background: #F6F6F6;
+    /* font: bold 120% Arial, Helvetica, sans-serif; */
+    padding: 2px;
+    text-decoration: none;
+}
+
+.member-panel-roles li a:hover {
+    background: #0081C2;
+}
+
+.member-panel-roles li a.active {
+    color: #000000;
+    display: block;
+    background: #DCEAF4;
+    /* font: bold 120% Arial, Helvetica, sans-serif; */
+    padding: 2px;
+    text-decoration: none;
+}
+
+.member-panel-rights {
+
+}
+
+.member-panel-rights .action {
+    margin: 2px;
+}
+
+.member-panel-rights .action-name {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+/* member-panel end */
