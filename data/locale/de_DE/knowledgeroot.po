@@ -1,0 +1,29 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Knowledgeroot.org
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Knowledgeroot\n"
+"Report-Msgid-Bugs-To: locale@knowledgeroot.org\n"
+"POT-Creation-Date: 2013-07-17 22:28+0200\n"
+"PO-Revision-Date: 2013-07-19 23:33+0100\n"
+"Last-Translator: Frank Habermann <lordlamer@lordlamer.de>\n"
+"Language-Team: Frank Habermann <lordlamer@lordlamer.de>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: bin/../app/view/scripts/content.phtml:14
+msgid "Content"
+msgstr "Inhalt"
+
+#: bin/../app/view/scripts/content.phtml:15
+msgid "Position"
+msgstr "Position"
+
