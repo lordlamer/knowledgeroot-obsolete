@@ -1,3 +1,7 @@
+20130720 - fhabermann
+* fixed not working change language
+* added first german translation
+
 20130719 - fhabermann
 * added first stuff for memberpanel
 * composer update

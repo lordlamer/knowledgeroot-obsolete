@@ -70,9 +70,15 @@ class Knowledgeroot_Translation {
      * set active locale
      *
      * @param $string $locale
+     * @param bool $saveInSession
      */
-    public function setLocale($locale) {
+    public function setLocale($locale, $saveInSession = false) {
 	$this->locale = $locale;
+
+	if($saveInSession) {
+	    $session = new Zend_Session_Namespace('user');
+	    $session->language = $locale;
+	}
     }
 
     /**

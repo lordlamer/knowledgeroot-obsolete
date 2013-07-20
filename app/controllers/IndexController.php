@@ -48,7 +48,7 @@ class IndexController extends Zend_Controller_Action
 	$translate = Knowledgeroot_Registry::get('translate');
 
 	// set locale
-	$translate->setLocale($this->getRequest()->getParam('language'));
+	$translate->setLocale($this->getRequest()->getParam('language'), true);
 
 	// redirect
 	$this->_redirect('./');
