@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Knowledgeroot\n"
 "Report-Msgid-Bugs-To: locale@knowledgeroot.org\n"
-"POT-Creation-Date: 2013-07-19 23:40+0200\n"
+"POT-Creation-Date: 2013-07-20 23:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../app/layout/layout.phtml:128
+#: bin/../app/layout/layout.phtml:128
 msgid "New"
 msgstr ""
 
-#: ../app/view/scripts/content.phtml:14
+#: bin/../app/layout/layout.phtml:170
+msgid "[TRANSLATION_NAME]"
+msgstr ""
+
+#: bin/../app/view/scripts/content.phtml:14
 msgid "Content"
 msgstr ""
 
-#: ../app/view/scripts/content.phtml:15
+#: bin/../app/view/scripts/content.phtml:15
 msgid "Position"
 msgstr ""

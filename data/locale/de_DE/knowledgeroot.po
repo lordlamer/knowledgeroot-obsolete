@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Knowledgeroot\n"
 "Report-Msgid-Bugs-To: locale@knowledgeroot.org\n"
-"POT-Creation-Date: 2013-07-19 23:40+0200\n"
-"PO-Revision-Date: 2013-07-19 23:41+0100\n"
+"POT-Creation-Date: 2013-07-20 23:55+0200\n"
+"PO-Revision-Date: 2013-07-20 23:56+0100\n"
 "Last-Translator: Frank Habermann <lordlamer@lordlamer.de>\n"
 "Language-Team: Frank Habermann <lordlamer@lordlamer.de>\n"
 "Language: \n"
@@ -19,15 +19,19 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../app/layout/layout.phtml:128
+#: bin/../app/layout/layout.phtml:128
 msgid "New"
 msgstr "Neu"
 
-#: ../app/view/scripts/content.phtml:14
+#: bin/../app/layout/layout.phtml:170
+msgid "[TRANSLATION_NAME]"
+msgstr "Deutsch"
+
+#: bin/../app/view/scripts/content.phtml:14
 msgid "Content"
 msgstr "Inhalt"
 
-#: ../app/view/scripts/content.phtml:15
+#: bin/../app/view/scripts/content.phtml:15
 msgid "Position"
 msgstr "Position"
 

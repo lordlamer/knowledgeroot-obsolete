@@ -519,12 +519,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
 	    // create zend translate object
 	    $zTranslate = new Zend_Translate(
-			    array(
-				'adapter' => 'gettext',
-				'content' => $translate->getLocaleFile(),
-				'locale' => $translate->getLocale()
-			    )
+		array(
+		    'adapter' => 'gettext',
+		    'content' => $translate->getLocaleFile(),
+		    'locale' => $translate->getLocale()
+		)
 	    );
+
+	    foreach ($translate->getTranslations() as $key => $value) {
+		$zTranslate->getAdapter()->addTranslation(
+		    array(
+			'adapter' => 'gettext',
+			'content' => $value,
+			'locale' => $key,
+			'clear' => false,
+		    )
+		);
+	    }
+
+	    // set default locale
+	    $zTranslate->getAdapter()->setLocale($locale);
 
 	    // set cache
 	    $zTranslate->setCache($cache);

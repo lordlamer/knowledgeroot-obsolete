@@ -1,3 +1,6 @@
+20130722 - fhabermann
+* load all locales and show translation name
+
 20130720 - fhabermann
 * fixed not working change language
 * added first german translation

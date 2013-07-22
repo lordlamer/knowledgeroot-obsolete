@@ -165,10 +165,18 @@ $config = Zend_Registry::get('config');
 			    <ul class="dropdown-menu">
 				<?php
 				$translation = Knowledgeroot_Registry::get('translate');
+				$actLocale = $translation->getLocale();
 
 				foreach ($translation->getTranslations() as $key => $value) {
-				    echo '<li><a href="./language/' . $key . '">' . $key . '</a></li>';
+					// switch locale
+					$translation->setLocale($key);
+
+					// show translation name
+					echo '<li><a href="./language/' . $key . '">' . $this->translate('[TRANSLATION_NAME]', $key) . '</a></li>';
 				}
+
+				// reset locale
+				$translation->setLocale($actLocale);
 				?>
 			    </ul>
 			</li>
