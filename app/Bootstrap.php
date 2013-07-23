@@ -161,7 +161,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 		$session->valid = false;
 		$session->id = 0;
 		$session->login = 'guest';
-		$session->language = 'en_US';
 	    }
 
 	    return $session;
@@ -453,11 +452,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    // init config
 	    $this->bootstrap('config');
 
+	    // init session
+	    $this->bootstrap('session');
+
 	    // get config
 	    $config = Knowledgeroot_Registry::get('config');
 
+	    // get session
+	    $session = new Zend_Session_Namespace('user');
+
+	    // check if session has a locale
+	    $locale = null;
+
+	    if(!empty($session->language)) {
+		$locale = $session->language;
+	    } else {
+		$locale = $config->base->locale;
+	    }
+
 	    // init Zend_Locale
-	    Knowledgeroot_Registry::set('Zend_Locale', new Knowledgeroot_Locale($config->base->locale));
+	    Knowledgeroot_Registry::set('Zend_Locale', new Knowledgeroot_Locale($locale));
 	} catch (Zend_Exception $e) {
 	    echo $e->getMessage();
 	    die('no locales');
@@ -475,28 +489,56 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    // init cache
 	    $this->bootstrap('cache');
 
+	    // init session
+	    $this->bootstrap('session');
+
 	    // get config
 	    $config = Knowledgeroot_Registry::get('config');
 
 	    // get cache
 	    $cache = Knowledgeroot_Registry::get('cache');
 
+	    // get session
+	    $session = new Zend_Session_Namespace('user');
+
+	    // check if session has a locale
+	    $locale = null;
+	    if(!empty($session->language)) {
+		$locale = $session->language;
+	    } else {
+		$locale = $config->base->locale;
+	    }
+
 	    // load translations
 	    $translate = new Knowledgeroot_Translation();
 	    $translate->loadTranslations($config->translation->folder);
-	    $translate->setLocale($config->base->locale);
+	    $translate->setLocale($locale);
 
 	    // save in registry
 	    Knowledgeroot_Registry::set('translate', $translate);
 
 	    // create zend translate object
 	    $zTranslate = new Zend_Translate(
-			    array(
-				'adapter' => 'gettext',
-				'content' => $translate->getLocaleFile(),
-				'locale' => $translate->getLocale()
-			    )
+		array(
+		    'adapter' => 'gettext',
+		    'content' => $translate->getLocaleFile(),
+		    'locale' => $translate->getLocale()
+		)
 	    );
+
+	    foreach ($translate->getTranslations() as $key => $value) {
+		$zTranslate->getAdapter()->addTranslation(
+		    array(
+			'adapter' => 'gettext',
+			'content' => $value,
+			'locale' => $key,
+			'clear' => false,
+		    )
+		);
+	    }
+
+	    // set default locale
+	    $zTranslate->getAdapter()->setLocale($locale);
 
 	    // set cache
 	    $zTranslate->setCache($cache);

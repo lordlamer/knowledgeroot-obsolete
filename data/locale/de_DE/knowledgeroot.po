@@ -15,25 +15,23 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: bin/../app/layout/layout.phtml:128
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 #: bin/../app/layout/layout.phtml:170
 msgid "[TRANSLATION_NAME]"
-msgstr "English"
+msgstr "Deutsch"
 
 #: bin/../app/view/scripts/content.phtml:14
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 #: bin/../app/view/scripts/content.phtml:15
 msgid "Position"
-msgstr ""
+msgstr "Position"
 
-#~ msgid "loading..."
-#~ msgstr "loading..."

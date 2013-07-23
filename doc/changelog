@@ -1,3 +1,14 @@
+20130722 - fhabermann
+* load all locales and show translation name
+
+20130720 - fhabermann
+* fixed not working change language
+* added first german translation
+
+20130719 - fhabermann
+* added first stuff for memberpanel
+* composer update
+
 20130614 - fhabermann
 * add home link to breadcrumb
 * set light grey background
