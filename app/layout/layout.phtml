@@ -73,39 +73,39 @@ $config = Zend_Registry::get('config');
 	    <form action="./file/new" method="post" enctype="multipart/form-data">
 		<div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		    <h3 id="myModalLabel">File Upload</h3>
+		    <h3 id="myModalLabel"><?= $this->translate('File Upload') ?></h3>
 		</div>
 		<div class="modal-body">
 
 		    <fieldset>
 			<div class="control-group">
-			    <label class="control-label" for="content-title"><h4>Content Id</h4></label>
+			    <label class="control-label" for="content-title"><h4><?= $this->translate('Content Id') ?></h4></label>
 			    <div class="controls">
 				<input type="text" class="input-xlarge span2" id="parent" size="255" name="parent" value="">
 				<p class="help-block">
-				    Id for Content
+				    <?= $this->translate('Id for Content') ?>
 				</p>
 			    </div>
 			</div>
 
 			<div class="control-group">
-			    <label class="control-label" for="file-box"><h4>File</h4></label>
+			    <label class="control-label" for="file-box"><h4><?= $this->translate('File') ?></h4></label>
 			    <div class="controls">
 				<span class="btn btn-success">
 				    <i class="icon-plus icon-white"></i>
-				    <span>Add files...</span>
+				    <span><?= $this->translate('Add files...') ?></span>
 				    <input type="file" name="file" multiple>
 				</span>
 				<p class="help-block">
-				    Select a file.
+				    <?= $this->translate('Select a file') ?>
 				</p>
 			    </div>
 			</div>
 		    </fieldset>
 		</div>
 		<div class="modal-footer">
-		    <button class="btn btn-primary" type="submit">Upload</button>
-		    <button class="btn" data-dismiss="modal">Close</button>
+		    <button class="btn btn-primary" type="submit"><?= $this->translate('Upload') ?></button>
+		    <button class="btn" data-dismiss="modal"><?= $this->translate('Close') ?></button>
 		</div>
 	    </form>
 	</div>
@@ -129,13 +129,13 @@ $config = Zend_Registry::get('config');
 				<b class="caret"></b>
 			    </a>
 			    <ul class="dropdown-menu">
-				<li><a href="page/new"><i class="icon-file"></i>&nbsp;Page</a></li>
-				<li><a href="content/new"><i class="icon-file-text"></i>&nbsp;Content</a></li>
-				<li><a data-toggle="modal" href="#fileUpload"><i class="icon-paper-clip"></i>&nbsp;File</a></li>
+				<li><a href="page/new"><i class="icon-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
+				<li><a href="content/new"><i class="icon-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
+				<li><a data-toggle="modal" href="#fileUpload"><i class="icon-paper-clip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
 				<?php /* TODO if($_SESSION['admin'] == 1) { ?>
 				  <li class="divider"></li>
-				  <li><a href="index.php?action=adduser">User</a></li>
-				  <li><a href="index.php?action=addgroup">Group</a></li>
+				  <li><a href="index.php?action=adduser"><?= $this->translate('User') ?></a></li>
+				  <li><a href="index.php?action=addgroup"><?= $this->translate('Group') ?></a></li>
 				  <?php } */ ?>
 			    </ul>
 			</li>
@@ -144,8 +144,8 @@ $config = Zend_Registry::get('config');
 
 
 		    <form class="navbar-search pull-left" action="index.php" method="post">
-			<input id="searchquery" class="search-query span2" style="background-image:url('img/search.png'); background-repeat: no-repeat; background-position: 4px 4px; padding-left: 30px;" type="text" placeholder="Suche" name="search" value="" />
-			<input type="hidden" name="submit" value="GO" />
+			<input id="searchquery" class="search-query span2" style="background-image:url('img/search.png'); background-repeat: no-repeat; background-position: 4px 4px; padding-left: 30px;" type="text" placeholder="<?= $this->translate('Search') ?>" name="search" value="" />
+			<input type="hidden" name="submit" value="<?= $this->translate('GO') ?>" />
 			<script>
 			    $('#searchquery').on('focusin focusout', function () {
 				$('#searchquery').toggleClass('span2 span5');
@@ -200,8 +200,8 @@ $config = Zend_Registry::get('config');
     				    <b class="caret"></b>
     				</a>
     				<ul class="dropdown-menu">
-    				    <li><a href="settings"><i class="icon-cog"></i>&nbsp;Settings</a></li>
-    				    <li><a href="logout"><i class="icon-off"></i>&nbsp;Logout</a></li>
+    				    <li><a href="settings"><i class="icon-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
+    				    <li><a href="logout"><i class="icon-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
     				</ul>
     			    </li>
     			</ul>
@@ -213,20 +213,20 @@ $config = Zend_Registry::get('config');
     				   class="dropdown-toggle"
     				   data-toggle="dropdown">
     				    <i class="icon-th-large icon-white"></i>&nbsp;
-					system
+					<?= $this->translate('system') ?>
     				    <b class="caret"></b>
     				</a>
     				<ul class="dropdown-menu">
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="icon-user"></i>&nbsp;Users</a></li><?php } ?>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="icon-group"></i>&nbsp;Groups</a></li><?php } ?>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="icon-key"></i>&nbsp;Permissions</a></li><?php } ?>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="icon-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="icon-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="icon-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
     				</ul>
     			    </li>
     			</ul>
 			    <?php
 			} else {
 			    ?>
-    			<li style="border-top: 3px solid #FA3031;"><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;Login</a></li>
+    			<li style="border-top: 3px solid #FA3031;"><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
 			    <?php
 			}
 			?>
@@ -285,7 +285,7 @@ $config = Zend_Registry::get('config');
 		    <?php
 		    if (is_array($this->layout()->pathNavi)) {
 			echo "<ul class=\"breadcrumb\">";
-			echo "<li><i class=\"icon-home icon-large\"></i> <a href=\"./\">Home</a> <span class=\"divider\">/</span></li>";
+			echo "<li><i class=\"icon-home icon-large\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a> <span class=\"divider\">/</span></li>";
 
 			$c = count($this->layout()->pathNavi);
 			$x = 0;
@@ -331,9 +331,9 @@ $config = Zend_Registry::get('config');
 		<p class="muted credit">
 		    <a href="http://knowledgeroot.org">Knowledgeroot</a>
 		    <a href="https://github.com/lordlamer/knowledgeroot">Github</a>
-		    <a href="http://forum.lordlamer.de/">Forum</a>
+		    <a href="http://forum.lordlamer.de/"><?= $this->translate('Forum') ?></a>
 		    <a href="http://lists.knowledgeroot.org">Mailinglists</a>
-		    <span>Version: <?php echo $this->layout()->version; ?></span>
+		    <span><?= $this->translate('Version') ?>: <?php echo $this->layout()->version; ?></span>
 		</p>
 	    </div>
 	</div>
