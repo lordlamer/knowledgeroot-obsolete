@@ -2,63 +2,63 @@
     <h2>
 	<?php
 	    if($this->action == 'new')
-		echo "Create Page";
+		echo $this->translate('Create Page');
 	    else
-		echo "Edit Page";
+		echo $this->translate('Edit Page');
 	?>
     </h2>
 </div>
 <form class="form-horizontal" method="post">
     <div class="tabbable">
 	<ul class="nav nav-tabs">
-	    <li class="active"><a data-toggle="tab" href="#tab-page">Page</a></li>
-	    <li><a data-toggle="tab" href="#tab-content">Content</a></li>
+	    <li class="active"><a data-toggle="tab" href="#tab-page"><?= $this->translate('Page') ?></a></li>
+	    <li><a data-toggle="tab" href="#tab-content"><?= $this->translate('Content') ?></a></li>
 	    <?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'permission') || ($this->action == 'new' && Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))) { ?>
-	    <li><a data-toggle="tab" href="#tab-permission">Permissions</a></li>
-	    <li><a data-toggle="tab" href="#tab-inherit-permission">Inherit Permissions</a></li>
+	    <li><a data-toggle="tab" href="#tab-permission"><?= $this->translate('Permissions') ?></a></li>
+	    <li><a data-toggle="tab" href="#tab-inherit-permission"><?= $this->translate('Inherit Permissions') ?></a></li>
 	    <?php } ?>
-	    <li><a data-toggle="tab" href="#tab-info">Information</a></li>
-	    <li><a data-toggle="tab" href="#tab-history">History</a></li>
+	    <li><a data-toggle="tab" href="#tab-info"><?= $this->translate('Information') ?></a></li>
+	    <li><a data-toggle="tab" href="#tab-history"><?= $this->translate('History') ?></a></li>
 	</ul>
 	<div class="tab-content">
 	    <div class="tab-pane active" id="tab-page">
 		<fieldset>
 		    <div class="control-group">
-			<label class="control-label" for="content-title">Seite</label>
+			<label class="control-label" for="content-title"><?= $this->translate('Page') ?></label>
 			<div class="controls">
 			    <input type="text" class="input-xlarge span2" id="content-title" size="255" name="page_parent" value="<?= $this->parent ?>">
 			    <p class="help-block">
-				Parent Page
+				<?= $this->translate('Parent Page') ?>
 			    </p>
 			</div>
 		    </div>
 
 		    <div class="control-group">
-			<label class="control-label" for="page-name">Name</label>
+			<label class="control-label" for="page-name"><?= $this->translate('Name') ?></label>
 			<div class="controls">
 			    <input type="text" class="input-xlarge span9" id="page-name" name="page_title" size="255" value="<?= $this->title ?>">
 			    <p class="help-block">
-				Name of Page.
+				<?= $this->translate('Name of Page') ?>
 			    </p>
 			</div>
 		    </div>
 
 		    <div class="control-group">
-			<label class="control-label" for="page-alias">Alias</label>
+			<label class="control-label" for="page-alias"><?= $this->translate('Alias') ?></label>
 			<div class="controls">
 			    <input type="text" class="input-xlarge span9" id="page-alias" name="page_alias" size="255" value="<?= $this->alias ?>">
 			    <p class="help-block">
-				Alias for Page.
+				<?= $this->translate('Alias for Page') ?>
 			    </p>
 			</div>
 		    </div>
 
 		    <div class="control-group">
-			<label class="control-label" for="page-tooltip">Tooltip</label>
+			<label class="control-label" for="page-tooltip"><?= $this->translate('Tooltip') ?></label>
 			<div class="controls">
 			    <input type="text" class="input-xlarge span9" id="page-tooltip" name="tooltip" value="<?= $this->tooltip ?>">
 			    <p class="help-block">
-				Tooltip for Page.
+				<?= $this->translate('Tooltip for Page') ?>
 			    </p>
 			</div>
 		    </div>
@@ -74,11 +74,11 @@
 		    </div>
 
 		    <div class="control-group">
-			<label class="control-label" for="content-symlink">Symlink</label>
+			<label class="control-label" for="content-symlink"><?= $this->translate('Symlink') ?></label>
 			<div class="controls">
 			    <input type="text" class="input-xlarge span2" id="content-symlink" size="255" value="<?= $this->symlink ?>">
 			    <p class="help-block">
-				Symlink to other page
+				<?= $this->translate('Symlink to other page') ?>
 			    </p>
 			</div>
 		    </div>
@@ -86,27 +86,27 @@
 	    </div>
 	    <div class="tab-pane" id="tab-content">
 		<div class="control-group">
-		    <label class="control-label" for="content-title">Standard Position für Inhalt:</label>
+		    <label class="control-label" for="content-title"><?= $this->translate('Position for Content') ?>:</label>
 		    <div class="controls">
 			<select>
-			    <option value="">am Anfang</option>
-			    <option value="">am Ende</option>
+			    <option value=""><?= $this->translate('at beginning') ?></option>
+			    <option value=""><?= $this->translate('at the end') ?></option>
 			</select>
 			<p class="help-block">
-			    Page
+			    <?= $this->translate('Page') ?>
 			</p>
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="optionsCheckboxList">Options:</label>
+		    <label class="control-label" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
 		    <div class="controls">
 			<label class="checkbox">
 			    <input type="checkbox" name="contentcollapse" value="1" />
-			    Inhalte zusammen geklappt anzeigen
+			    <?= $this->translate('Show content collapsed') ?>
 			</label>
 
-			<p class="help-block"><strong>Note:</strong> Foo Bar Hello World.</p>
+			<p class="help-block"><strong><?= $this->translate('Note') ?>:</strong> Foo Bar Hello World.</p>
 
 		    </div>
 		</div>
@@ -118,22 +118,22 @@
 	    </div>
 	    <div class="tab-pane" id="tab-inherit-permission">
 		<div class="control-group">
-		    <label class="control-label" for="optionsCheckboxList">Options:</label>
+		    <label class="control-label" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
 		    <div class="controls">
 			<label class="checkbox">
 			    <input type="checkbox" name="subinheritrights" value="1" />
-			    enable inherit rights for subpages and contents
+			    <?= $this->translate('enable inherit rights for subpages and contents') ?>
 			</label>
 
 			<label class="checkbox">
 			    <input type="checkbox" name="subinheritrightseditable" value="1" />
-			    enable edit of rights for these pages and contents
+			    <?= $this->translate('enable edit of rights for these pages and contents') ?>
 			</label>
 			<label class="checkbox">
 			    <input type="checkbox" name="subinheritrightsdisable" value="1" />
-			    disable inherit rights for subpages and contents
+			    <?= $this->translate('disable inherit rights for subpages and contents') ?>
 			</label>
-			<p class="help-block"><strong>Note:</strong> Foo Bar Hello World.</p>
+			<p class="help-block"><strong><?= $this->translate('Note') ?>:</strong> Foo Bar Hello World.</p>
 
 		    </div>
 		</div>
@@ -144,20 +144,20 @@
 	    </div>
 	    <div class="tab-pane" id="tab-info">
 		<div class="control-group">
-		    <label class="control-label" for="content-title">Created By</label>
+		    <label class="control-label" for="content-title"><?= $this->translate('Created By') ?></label>
 		    <div class="controls">
 			<span class="input-xlarge uneditable-input">admin</span>
 			<p class="help-block">
-			    username
+			    <?= $this->translate('Username') ?>
 			</p>
 		    </div>
 		</div>
 		<div class="control-group">
-		    <label class="control-label" for="content-title">Created at</label>
+		    <label class="control-label" for="content-title"><?= $this->translate('Created at') ?></label>
 		    <div class="controls">
 			<span class="input-xlarge uneditable-input">20120606</span>
 			<p class="help-block">
-			    creation date
+			    <?= $this->translate('creation date') ?>
 			</p>
 		    </div>
 		</div>
@@ -167,8 +167,8 @@
 	</div>
     </div>
     <div class="form-actions">
-	<button class="btn btn-primary" type="submit" name="button" value="save">Save</button>&nbsp;
-	<button class="btn" type="submit" name="button" value="save_and_close">Save and Close</button>&nbsp;
-	<button class="btn btn-danger" type="submit" name="button" value="close">Close</button>&nbsp;
+	<button class="btn btn-primary" type="submit" name="button" value="save"><?= $this->translate('Save') ?></button>&nbsp;
+	<button class="btn" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>&nbsp;
+	<button class="btn btn-danger" type="submit" name="button" value="close"><?= $this->translate('Close') ?></button>&nbsp;
     </div>
 </form>
