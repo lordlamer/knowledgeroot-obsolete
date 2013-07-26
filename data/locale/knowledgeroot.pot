@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Knowledgeroot\n"
 "Report-Msgid-Bugs-To: locale@knowledgeroot.org\n"
-"POT-Creation-Date: 2013-07-26 22:03+0200\n"
+"POT-Creation-Date: 2013-07-26 22:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,20 +98,25 @@ msgid "system"
 msgstr ""
 
 #: bin/../app/layout/layout.phtml:220
+#: bin/../app/view/scripts/user/list.phtml:2
 msgid "Users"
 msgstr ""
 
 #: bin/../app/layout/layout.phtml:221
+#: bin/../app/view/scripts/group/list.phtml:2
 msgid "Groups"
 msgstr ""
 
 #: bin/../app/layout/layout.phtml:222 bin/../app/view/scripts/page.phtml:17
 #: bin/../app/view/scripts/permissionpanel.phtml:25
 #: bin/../app/view/scripts/content.phtml:16
+#: bin/../app/view/scripts/permissions/list.phtml:1
 msgid "Permissions"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:229 bin/../app/view/scripts/user.phtml:20
+#: bin/../app/layout/layout.phtml:229
+#: bin/../app/view/scripts/index/login.phtml:2
+#: bin/../app/view/scripts/user.phtml:20
 msgid "Login"
 msgstr ""
 
@@ -121,6 +126,70 @@ msgstr ""
 
 #: bin/../app/layout/layout.phtml:336
 msgid "Version"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:9
+#: bin/../app/view/scripts/page.phtml:37
+#: bin/../app/view/scripts/group.phtml:21
+msgid "Name"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:10
+#: bin/../app/view/scripts/group.phtml:28
+msgid "Description"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:11
+#: bin/../app/view/scripts/user/list.phtml:15
+msgid "active"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:12
+#: bin/../app/view/scripts/user/list.phtml:16
+msgid "action"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:22
+#: bin/../app/view/scripts/user.phtml:79
+#: bin/../app/view/scripts/group.phtml:38
+msgid "Yes"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:22
+#: bin/../app/view/scripts/user.phtml:80
+#: bin/../app/view/scripts/group.phtml:39
+msgid "No"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:25
+#: bin/../app/view/scripts/page/list.phtml:33
+#: bin/../app/view/scripts/user/list.phtml:33
+msgid "edit"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:30
+#: bin/../app/view/scripts/user/list.phtml:38
+msgid "SU-Login"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:31
+#: bin/../app/view/scripts/user/list.phtml:39
+msgid "disable"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:31
+#: bin/../app/view/scripts/user/list.phtml:39
+msgid "enable"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:32
+#: bin/../app/view/scripts/page/list.phtml:34
+#: bin/../app/view/scripts/user/list.phtml:40
+msgid "delete"
+msgstr ""
+
+#: bin/../app/view/scripts/group/list.phtml:42
+msgid "new Group"
 msgstr ""
 
 #: bin/../app/view/scripts/page.phtml:5
@@ -147,11 +216,6 @@ msgstr ""
 
 #: bin/../app/view/scripts/page.phtml:31
 msgid "Parent Page"
-msgstr ""
-
-#: bin/../app/view/scripts/page.phtml:37
-#: bin/../app/view/scripts/group.phtml:21
-msgid "Name"
 msgstr ""
 
 #: bin/../app/view/scripts/page.phtml:41
@@ -244,6 +308,7 @@ msgstr ""
 #: bin/../app/view/scripts/permissionpanel.phtml:44
 #: bin/../app/view/scripts/content.phtml:110
 #: bin/../app/view/scripts/user.phtml:93
+#: bin/../app/view/scripts/settings/index.phtml:47
 #: bin/../app/view/scripts/group.phtml:53
 msgid "Save"
 msgstr ""
@@ -290,6 +355,90 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+#: bin/../app/view/scripts/page/list.phtml:4
+msgid "add new page"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:5
+msgid "edit page"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:6
+msgid "move page"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:7
+msgid "Do you really want to delete this page?"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:7
+msgid "delete page"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:8
+msgid "add new content"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:34
+msgid "Do you really want to delete?"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:35
+msgid "move"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:36
+msgid "print"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:39
+msgid "Top"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:47
+msgid "Files"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "Downloads"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "MD5 Sum"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "changed"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "changed by"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "created"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "created by"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:53
+msgid "File Information"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:62
+msgid "add"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:66
+msgid "Last changed"
+msgstr ""
+
+#: bin/../app/view/scripts/page/list.phtml:66
+msgid "By"
+msgstr ""
+
 #: bin/../app/view/scripts/permissionpanel.phtml:33
 msgid "allow"
 msgstr ""
@@ -331,6 +480,32 @@ msgstr ""
 msgid "Define position of content on page"
 msgstr ""
 
+#: bin/../app/view/scripts/index/login.phtml:9
+#: bin/../app/view/scripts/index/login.phtml:12
+#: bin/../app/view/scripts/user.phtml:14
+msgid "User"
+msgstr ""
+
+#: bin/../app/view/scripts/index/login.phtml:17
+#: bin/../app/view/scripts/index/login.phtml:20
+#: bin/../app/view/scripts/user.phtml:27
+#: bin/../app/view/scripts/settings/index.phtml:7
+msgid "Password"
+msgstr ""
+
+#: bin/../app/view/scripts/index/login.phtml:25
+#: bin/../app/view/scripts/user/list.phtml:11
+msgid "login"
+msgstr ""
+
+#: bin/../app/view/scripts/index/index.phtml:3
+msgid "Home"
+msgstr ""
+
+#: bin/../app/view/scripts/index/index.phtml:7
+msgid "Welcome to Knowledgeroot"
+msgstr ""
+
 #: bin/../app/view/scripts/user.phtml:5
 msgid "Create User"
 msgstr ""
@@ -339,17 +514,9 @@ msgstr ""
 msgid "Edit User"
 msgstr ""
 
-#: bin/../app/view/scripts/user.phtml:14
-msgid "User"
-msgstr ""
-
 #: bin/../app/view/scripts/user.phtml:15
 #: bin/../app/view/scripts/group.phtml:15
 msgid "Member Of"
-msgstr ""
-
-#: bin/../app/view/scripts/user.phtml:27
-msgid "Password"
 msgstr ""
 
 #: bin/../app/view/scripts/user.phtml:34
@@ -369,6 +536,7 @@ msgid "E-Mail"
 msgstr ""
 
 #: bin/../app/view/scripts/user.phtml:62
+#: bin/../app/view/scripts/settings/index.phtml:34
 msgid "Language"
 msgstr ""
 
@@ -381,14 +549,32 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: bin/../app/view/scripts/user.phtml:79
-#: bin/../app/view/scripts/group.phtml:38
-msgid "Yes"
+#: bin/../app/view/scripts/permissions/list.phtml:7
+msgid "Manage Users"
 msgstr ""
 
-#: bin/../app/view/scripts/user.phtml:80
-#: bin/../app/view/scripts/group.phtml:39
-msgid "No"
+#: bin/../app/view/scripts/permissions/list.phtml:20
+msgid "Manage Groups"
+msgstr ""
+
+#: bin/../app/view/scripts/permissions/list.phtml:33
+msgid "Manage System Permissions"
+msgstr ""
+
+#: bin/../app/view/scripts/permissions/list.phtml:46
+msgid "Root Pages"
+msgstr ""
+
+#: bin/../app/view/scripts/settings/index.phtml:2
+msgid "Change Options"
+msgstr ""
+
+#: bin/../app/view/scripts/settings/index.phtml:14
+msgid "confirm Password"
+msgstr ""
+
+#: bin/../app/view/scripts/settings/index.phtml:21
+msgid "Theme"
 msgstr ""
 
 #: bin/../app/view/scripts/group.phtml:5
@@ -407,6 +593,26 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
-#: bin/../app/view/scripts/group.phtml:28
-msgid "Description"
+#: bin/../app/view/scripts/user/list.phtml:9
+msgid "firstname"
+msgstr ""
+
+#: bin/../app/view/scripts/user/list.phtml:10
+msgid "lastname"
+msgstr ""
+
+#: bin/../app/view/scripts/user/list.phtml:12
+msgid "email"
+msgstr ""
+
+#: bin/../app/view/scripts/user/list.phtml:13
+msgid "language"
+msgstr ""
+
+#: bin/../app/view/scripts/user/list.phtml:14
+msgid "timezone"
+msgstr ""
+
+#: bin/../app/view/scripts/user/list.phtml:50
+msgid "new User"
 msgstr ""
