@@ -1,29 +1,28 @@
-
 <div class="page-header">
-    <h2>Login</h2>
+    <h2><?= $this->translate('Login') ?></h2>
 </div>
 <form class="form form-horizontal" action="./login" method="post" name="loginformular">
     <input type="hidden" name="<?php session_name(); ?>" value="<?php session_id(); ?>" />
     <input type="hidden" name="login" value="login" />
 
     <div class="control-group">
-	<label class="control-label" for="user">User</label>
+	<label class="control-label" for="user"><?= $this->translate('User') ?></label>
 	<div class="input-prepend controls" style="margin-left:50px;">
             <span class="add-on"><i class="icon-user"></i></span>
-	    <input type="text" class="input-xlarge" id="user" name="user" placeholder="User" required="required" autofocus="autofocus">
+	    <input type="text" class="input-xlarge" id="user" name="user" placeholder="<?= $this->translate('User') ?>" required="required" autofocus="autofocus">
 	</div>
     </div>
 
     <div class="control-group">
-	<label class="control-label" for="password">Password</label>
+	<label class="control-label" for="password"><?= $this->translate('Password') ?></label>
 	<div class="input-prepend controls" style="margin-left:50px;">
             <span class="add-on"><i class="icon-lock"></i></span>
-	    <input type="password" class="input-xlarge" id="password" name="password" placeholder="Password">
+	    <input type="password" class="input-xlarge" id="password" name="password" placeholder="<?= $this->translate('Password') ?>">
 	</div>
     </div>
 
     <div class="form-actions">
-	<input class="btn btn-primary" type="submit" name="loginbutton" value="login" />
+	<input class="btn btn-primary" type="submit" name="loginbutton" value="<?= $this->translate('login') ?>" />
     </div>
 </form>
 
