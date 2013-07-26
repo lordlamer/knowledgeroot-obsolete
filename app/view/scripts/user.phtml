@@ -2,82 +2,82 @@
     <h2><i class="icon-user"></i>
 	<?php
 	if ($this->action == 'new')
-	    echo "Create User";
+	    echo $this->translate('Create User');
 	else
-	    echo "Edit User";
+	    echo $this->translate('Edit User');
 	?>
     </h2>
 </div>
 <form class="form-horizontal" method="post">
     <div class="tabbable">
 	<ul class="nav nav-tabs">
-	    <li class="active"><a data-toggle="tab" href="#tab-user">User</a></li>
-	    <li><a data-toggle="tab" href="#tab-member">Member Of</a></li>
+	    <li class="active"><a data-toggle="tab" href="#tab-user"><?= $this->translate('User') ?></a></li>
+	    <li><a data-toggle="tab" href="#tab-member"><?= $this->translate('Member Of') ?></a></li>
 	</ul>
 	<div class="tab-content">
 	    <div class="tab-pane active" id="tab-user">
 		<div class="control-group">
-		    <label class="control-label" for="login">Login</label>
+		    <label class="control-label" for="login"><?= $this->translate('Login') ?></label>
 		    <div class="controls">
 			<input type="text" class="input-xlarge" id="login" name="login" value="<?php echo $this->login; ?>">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="password">Password</label>
+		    <label class="control-label" for="password"><?= $this->translate('Password') ?></label>
 		    <div class="controls">
 			<input type="password" class="input-xlarge" id="password" name="password" autocomplete="off">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="password2">Repeat Password</label>
+		    <label class="control-label" for="password2"><?= $this->translate('Repeat Password') ?></label>
 		    <div class="controls">
 			<input type="password" class="input-xlarge" id="password2" name="password2" autocomplete="off">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="firstname">First Name</label>
+		    <label class="control-label" for="firstname"><?= $this->translate('First Name') ?></label>
 		    <div class="controls">
 			<input type="text" class="input-xlarge" id="firstname" name="firstname" value="<?php echo $this->firstname; ?>">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="lastname">Last Name</label>
+		    <label class="control-label" for="lastname"><?= $this->translate('Last Name') ?></label>
 		    <div class="controls">
 			<input type="text" class="input-xlarge" id="lastname" name="lastname" value="<?php echo $this->lastname; ?>">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="email">E-Mail</label>
+		    <label class="control-label" for="email"><?= $this->translate('E-Mail') ?></label>
 		    <div class="controls">
 			<input type="text" class="input-xlarge" id="email" name="email" value="<?php echo $this->email; ?>">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="language">Language</label>
+		    <label class="control-label" for="language"><?= $this->translate('Language') ?></label>
 		    <div class="controls">
 			<input type="text" class="input-xlarge" id="language" name="language" value="<?php echo $this->language; ?>">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="timezone">Timezone</label>
+		    <label class="control-label" for="timezone">i<?= $this->translate('Timezone') ?></label>
 		    <div class="controls">
 			<input type="text" class="input-xlarge" id="timezone" name="timezone" value="<?php echo $this->timezone; ?>">
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    <label class="control-label" for="active">Active</label>
+		    <label class="control-label" for="active"><?= $this->translate('Active') ?></label>
 		    <div class="controls">
 			<select name="active" id="active">
-			    <option value="1"<?= ((!is_null($this->active) && $this->active) ? ' selected="selected"' : '') ?>>Yes</option>
-			    <option value="0"<?= ((!is_null($this->active) && !$this->active) ? ' selected="selected"' : '') ?>>No</option>
+			    <option value="1"<?= ((!is_null($this->active) && $this->active) ? ' selected="selected"' : '') ?>><?= $this->translate('Yes') ?></option>
+			    <option value="0"<?= ((!is_null($this->active) && !$this->active) ? ' selected="selected"' : '') ?>><?= $this->translate('No') ?></option>
 			</select>
 		    </div>
 		</div>
@@ -90,8 +90,8 @@
     </div>
 
     <div class="form-actions">
-	<button class="btn btn-primary" type="submit" name="button" value="save">Save</button>
-	<button class="btn" type="submit" name="button" value="save_and_close">Save and Close</button>
-	<button class="btn btn-danger" type="submit" name="button" value="close">Close</button>
+	<button class="btn btn-primary" type="submit" name="button" value="save"><?= $this->translate('Save') ?></button>
+	<button class="btn" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>
+	<button class="btn btn-danger" type="submit" name="button" value="close"><?= $this->translate('Close') ?></button>
     </div>
 </form>
