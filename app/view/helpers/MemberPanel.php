@@ -36,6 +36,6 @@ class Zend_View_Helper_MemberPanel extends Zend_View_Helper_Abstract {
             $view->permissions = array();
 
 	    $view->setScriptPath(APPLICATION_PATH . '/view/scripts/');
-	    return $view->render('memberpanel.phtml');
+	    return $view->render('helpers/memberpanel.phtml');
 	}
 }

@@ -48,6 +48,6 @@ class Zend_View_Helper_PermissionPanel extends Zend_View_Helper_Abstract {
 	    $view->permissions = $acl->getAclForResource($name);
 
 	    $view->setScriptPath(APPLICATION_PATH . '/view/scripts/');
-	    return $view->render('permissionpanel.phtml');
+	    return $view->render('helpers/permissionpanel.phtml');
 	}
 }
