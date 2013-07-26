@@ -1,15 +1,15 @@
 <div class="page-header">
-    <h2><i class="icon-group"></i> Groups</h2>
+    <h2><i class="icon-group"></i> <?= $this->translate('Groups') ?></h2>
 </div>
 
 <table id="groups" class="tablesorter table table-striped table-bordered table-hover">
     <thead>
 	<tr>
 	    <td>#</td>
-	    <td>Name</td>
-	    <td>Description</td>
-	    <td>active</td>
-	    <td>action</td>
+	    <td><?= $this->translate('Name') ?></td>
+	    <td><?= $this->translate('Description') ?></td>
+	    <td><?= $this->translate('active') ?></td>
+	    <td><?= $this->translate('action') ?></td>
 	</tr>
     </thead>
     <?php
@@ -19,17 +19,17 @@
     	<td><?= $value->getId(); ?></td>
     	<td><?= $value->getName(); ?></td>
     	<td><?= $value->getDescription(); ?></td>
-    	<td><?= (($value->getActive()) ? 'Yes' : 'No'); ?></td>
+    	<td><?= (($value->getActive()) ? $this->translate('Yes') : $this->translate('No')); ?></td>
     	<td>
     	    <div class="btn-group">
-    		<a class="btn btn-primary" href="./group/edit/<?= $value->getId(); ?>">edit</a>
+    		<a class="btn btn-primary" href="./group/edit/<?= $value->getId(); ?>"><?= $this->translate('edit') ?></a>
     		<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
     		    <span class="caret"></span>
     		</button>
     		<ul class="dropdown-menu">
-		    <!-- <li><a href="./user/sulogin/<?= $value->getId(); ?>">SU-Login</a></li> -->
-		    <li><a href="./group/<?= (($value->getActive()) ? 'disable' : 'enable'); ?>/<?= $value->getId(); ?>"><?= (($value->getActive()) ? 'disable' : 'enable'); ?></a></li>
-		    <li><a href="./group/delete/<?= $value->getId(); ?>">delete</a></li>
+		    <!-- <li><a href="./user/sulogin/<?= $value->getId(); ?>"><?= $this->translate('SU-Login') ?></a></li> -->
+		    <li><a href="./group/<?= (($value->getActive()) ? $this->translate('disable') : $this->translate('enable')); ?>/<?= $value->getId(); ?>"><?= (($value->getActive()) ? $this->translate('disable') : $this->translate('enable')); ?></a></li>
+		    <li><a href="./group/delete/<?= $value->getId(); ?>"><?= $this->translate('delete') ?></a></li>
     		</ul>
     	    </div>
     	</td>
@@ -39,5 +39,5 @@
 </table>
 
 <div class="form-actions">
-    <a class="btn btn-primary" href="./group/new">new Group</a>
+    <a class="btn btn-primary" href="./group/new"><?= $this->translate('new Group') ?></a>
 </div>
