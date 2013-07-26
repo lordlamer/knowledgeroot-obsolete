@@ -6,11 +6,11 @@
 
 <!-- main member panel -->
 <div class="member-panel" data-panel-name="<?= $this->name ?>">
-    <button class="btn" data-toggle="modal" href="#memberPanelRoles_<?= $this->name ?>">add Role</button>
-    <button type="button" class="btn" data-panel-event="mem_removeUser">remove selected Role</button>
+    <button class="btn" data-toggle="modal" href="#memberPanelRoles_<?= $this->name ?>"><?= $this->translate('add Role') ?></button>
+    <button type="button" class="btn" data-panel-event="mem_removeUser"><?= $this->translate('remove selected Role') ?></button>
     <div class="row-fluid">
 	<div class="span6">
-	    <h5>Gruppen- order Benutzernamen:</h5>
+	    <h5><?= $this->translate('Group- or Username') ?>:</h5>
 	    <div class="member-panel-roles">
 		<ul>
 		    <?php foreach ($this->permissions as $key => $value) { ?>
@@ -32,10 +32,10 @@
 <div id="memberPanelRoles_<?= $this->name ?>" data-panel-name="<?= $this->name ?>" class="memberPanelRoles modal hide fade" tabindex="-1" role="dialog" aria-labelledby="memberPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3 id="">Roles</h3>
+	    <h3><?= $this->translate('Roles') ?></h3>
 	</div>
 	<div class="modal-body">
-	    <h5>Select roles to add:</h5>
+	    <h5><?= $this->translate('Select roles to add') ?>:</h5>
 	    <select multiple="multiple">
 		<?php foreach($this->roles as $key => $value) { ?>
 		<option value="<?= $key ?>"><?= $value ?></option>
@@ -43,7 +43,7 @@
 	    </select>
 	</div>
 	<div class="modal-footer">
-	    <button class="btn btn-primary" data-panel-event="mem_addUser" type="button">Add</button>
-	    <button class="btn" data-dismiss="modal">Cancel</button>
+	    <button class="btn btn-primary" data-panel-event="mem_addUser" type="button"><?= $this->translate('Add') ?></button>
+	    <button class="btn" data-dismiss="modal"><?= $this->translate('Cancel') ?></button>
 	</div>
 </div>
