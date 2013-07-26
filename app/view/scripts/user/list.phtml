@@ -1,19 +1,19 @@
 <div class="page-header">
-    <h2><i class="icon-user"></i> Users</h2>
+    <h2><i class="icon-user"></i> <?= $this->translate('Users') ?></h2>
 </div>
 
 <table id="users" class="tablesorter table table-striped table-bordered table-hover">
     <thead>
 	<tr>
 	    <td>#</td>
-	    <td>firstname</td>
-	    <td>lastname</td>
-	    <td>login</td>
-	    <td>email</td>
-	    <td>language</td>
-	    <td>timezone</td>
-	    <td>active</td>
-	    <td>action</td>
+	    <td><?= $this->translate('firstname') ?></td>
+	    <td><?= $this->translate('lastname') ?></td>
+	    <td><?= $this->translate('login') ?></td>
+	    <td><?= $this->translate('email') ?></td>
+	    <td><?= $this->translate('language') ?></td>
+	    <td><?= $this->translate('timezone') ?></td>
+	    <td><?= $this->translate('active') ?></td>
+	    <td><?= $this->translate('action') ?></td>
 	</tr>
     </thead>
     <?php
@@ -30,14 +30,14 @@
     	<td><?= (($value->getActive()) ? 'Yes' : 'No'); ?></td>
     	<td>
     	    <div class="btn-group">
-    		<a class="btn btn-primary" href="./user/edit/<?= $value->getId(); ?>">edit</a>
+    		<a class="btn btn-primary" href="./user/edit/<?= $value->getId(); ?>"><?= $this->translate('edit') ?></a>
     		<button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
     		    <span class="caret"></span>
     		</button>
     		<ul class="dropdown-menu">
-		    <!-- <li><a href="./user/sulogin/<?= $value->getId(); ?>">SU-Login</a></li> -->
-		    <li><a href="./user/<?= (($value->getActive()) ? 'disable' : 'enable'); ?>/<?= $value->getId(); ?>"><?= (($value->getActive()) ? 'disable' : 'enable'); ?></a></li>
-		    <li><a href="./user/delete/<?= $value->getId(); ?>">delete</a></li>
+		    <!-- <li><a href="./user/sulogin/<?= $value->getId(); ?>"><?= $this->translate('SU-Login') ?></a></li> -->
+		    <li><a href="./user/<?= (($value->getActive()) ? $this->translate('disable') : $this->translate('enable')); ?>/<?= $value->getId(); ?>"><?= (($value->getActive()) ? $this->translate('disable') : $this->translate('enable')); ?></a></li>
+		    <li><a href="./user/delete/<?= $value->getId(); ?>"><?= $this->translate('delete') ?></a></li>
     		</ul>
     	    </div>
     	</td>
@@ -47,5 +47,5 @@
 </table>
 
 <div class="form-actions">
-    <a class="btn btn-primary" href="./user/new">new User</a>
+    <a class="btn btn-primary" href="./user/new"><?= $this->translate('new User') ?></a>
 </div>
