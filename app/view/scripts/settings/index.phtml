@@ -1,25 +1,24 @@
-
 <div class="page-header">
-    <h2><i class="icon-cog"></i> Optionen ändern</h2>
+    <h2><i class="icon-cog"></i> <?= $this->translate('Change Options') ?></h2>
 </div>
 <form class="form-horizontal" action="index.php" method="post" name="formoptions" autocomplete="off">
     <input type="hidden" name="action" value="options" />
     <div class="control-group">
-	<label class="control-label" for="password">Password</label>
+	<label class="control-label" for="password"><?= $this->translate('Password') ?></label>
 	<div class="controls">
 	    <input type="text" class="input-xlarge" id="password" name="password">
 	</div>
     </div>
 
     <div class="control-group">
-	<label class="control-label" for="password1">confirm Password</label>
+	<label class="control-label" for="password1"><?= $this->translate('confirm Password') ?></label>
 	<div class="controls">
 	    <input type="password" class="input-xlarge" id="password1" name="password1">
 	</div>
     </div>
 
     <div class="control-group">
-	<label class="control-label" for="theme">Thema</label>
+	<label class="control-label" for="theme"><?= $this->translate('Theme') ?></label>
 	<div class="controls">
 	    <select name="theme" id="theme">
 		<?php
@@ -32,7 +31,7 @@
     </div>
 
     <div class="control-group">
-	<label class="control-label" for="language">Sprache</label>
+	<label class="control-label" for="language"><?= $this->translate('Language') ?></label>
 	<div class="controls">
 	    <select name="language" id="language">
 		<?php
@@ -45,10 +44,6 @@
     </div>
 
     <div class="form-actions">
-	<input class="btn btn-primary" type="submit" name="loginbutton" value="speichern" />
+	<input class="btn btn-primary" type="submit" name="loginbutton" value="<?= $this->translate('Save') ?>" />
     </div>
 </form>
-<?php
-//print_r($this->themes);
-//print_r($this->languages);
-?>
