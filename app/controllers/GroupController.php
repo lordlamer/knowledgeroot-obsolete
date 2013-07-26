@@ -39,7 +39,7 @@ class GroupController extends Zend_Controller_Action
 	} else {
 	    $this->view->action = 'new';
 
-	    $this->renderScript("group.phtml");
+	    $this->renderScript("group/group.phtml");
 	}
     }
 
@@ -70,7 +70,7 @@ class GroupController extends Zend_Controller_Action
 	    $this->view->description = $group->getDescription();
 	    $this->view->active = $group->getActive();
 
-	    $this->renderScript("group.phtml");
+	    $this->renderScript("group/group.phtml");
 	}
     }
 

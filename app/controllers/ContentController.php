@@ -41,7 +41,7 @@ class ContentController extends Zend_Controller_Action {
 
 	    $this->view->page = $this->_getParam('id');
 
-	    $this->renderScript("content.phtml");
+	    $this->renderScript("content/content.phtml");
 	}
     }
 
@@ -81,7 +81,7 @@ class ContentController extends Zend_Controller_Action {
 
 	    $this->view->page = $content->getParent();
 
-	    $this->renderScript("content.phtml");
+	    $this->renderScript("content/content.phtml");
 	}
     }
 

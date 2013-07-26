@@ -81,7 +81,7 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->action = 'new';
 	    $this->view->parent = $this->_getParam('id');
 
-	    $this->renderScript("page.phtml");
+	    $this->renderScript("page/page.phtml");
 	}
     }
 
@@ -121,7 +121,7 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->title = $page->getName();
 
 	    // action body
-	    $this->renderScript("page.phtml");
+	    $this->renderScript("page/page.phtml");
 	}
     }
 

@@ -49,7 +49,7 @@ class UserController extends Zend_Controller_Action
 	} else {
 	    $this->view->action = 'new';
 
-	    $this->renderScript("user.phtml");
+	    $this->renderScript("user/user.phtml");
 	}
     }
 
@@ -94,7 +94,7 @@ class UserController extends Zend_Controller_Action
 	    $this->view->language = $user->getLanguage();
 	    $this->view->active = $user->getActive();
 
-	    $this->renderScript("user.phtml");
+	    $this->renderScript("user/user.phtml");
 	}
     }
 
