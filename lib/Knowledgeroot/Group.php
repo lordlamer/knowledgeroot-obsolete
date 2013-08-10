@@ -175,16 +175,161 @@ class Knowledgeroot_Group {
     public static function getGroups() {
 	$ret = array();
 
-	$content = new Knowledgeroot_Db_Group();
-	$select = $content->select();
+	$group = new Knowledgeroot_Db_Group();
+	$select = $group->select();
 	$select->where('deleted = '.Knowledgeroot_Db::false());
-	$rows = $content->fetchAll($select);
+	$rows = $group->fetchAll($select);
 
 	foreach($rows as $value) {
 	    $ret[] = new Knowledgeroot_Group($value->id);
 	}
 
 	return $ret;
+    }
+
+    /**
+     * remove user as member from all groups
+     *
+     * @param Knowledgeroot_User $user
+     */
+    public static function deleteUserFromGroups(Knowledgeroot_User $user) {
+	$member = new Knowledgeroot_Db_GroupMember();
+	$member->delete(
+		    array(
+			'member_id = ?' => $user->getId(),
+			'member_type = ?' => 'user'
+		    )
+		);
+    }
+
+    /**
+     * get group members
+     *
+     * @return $array
+     */
+    public function getMembers() {
+	$ret = array();
+
+	$member = new Knowledgeroot_Db_GroupMember();
+	$select = $member->select();
+	$select->where('group_id = '.$this->id);
+	$rows = $member->fetchAll($select);
+
+	foreach($rows as $value) {
+	    if($value->member_type == 'user')
+		$ret[] = new Knowledgeroot_User($value->id);
+	    else
+		$ret[] = new Knowledgeroot_Group($value->id);
+	}
+
+	return $ret;
+    }
+
+    /**
+     * set members for group as array
+     *
+     * @param array $members
+     */
+    public function setMembers(array $members) {
+	$member = new Knowledgeroot_Db_GroupMember();
+
+	// first delete existing members
+	$member->delete('group_id = ' . $this->id);
+
+	foreach($members as $value) {
+	    $type = '';
+	    $memberId = null;
+
+	    // check if member is a user
+	    if($value instanceof Knowledgeroot_User) {
+		$type = 'user';
+		$memberId = $member->getId();
+	    }
+
+	    // check if member is a group
+	    if($value instanceof Knowledgeroot_Group) {
+		$type = 'group';
+		$memberId = $member->getId();
+	    }
+
+	    if($memberId !== null) {
+		$member = new Knowledgeroot_Db_GroupMember();
+
+		$member->insert(
+			    array(
+			    'group_id' => $this->id,
+			    'member_id' => $memberId,
+			    'member_type' => $type
+			    )
+			);
+	    }
+	}
+    }
+
+    /**
+     * add user or group as member of this group
+     *
+     * @param Knowledgeroot_User|Knowledgeroot_Group $member
+     */
+    public function addMember($member) {
+	$type = '';
+	$memberId = null;
+
+	// check if member is a user
+	if($member instanceof Knowledgeroot_User) {
+	    $type = 'user';
+	    $memberId = $member->getId();
+	}
+
+	// check if member is a group
+	if($member instanceof Knowledgeroot_Group) {
+	    $type = 'group';
+	    $memberId = $member->getId();
+	}
+
+	if ($memberId !== null) {
+	    $member = new Knowledgeroot_Db_GroupMember();
+
+	    $member->insert(
+			array(
+			    'group_id' => $this->id,
+			    'member_id' => $memberId,
+			    'member_type' => $type
+			)
+		    );
+	}
+    }
+
+    /**
+     * delete user or group as member of this group
+     *
+     * @param Knowledgeroot_User|Knowledgeroot_Group $member
+     */
+    public function delMember($member) {
+	$type = '';
+	$memberId = null;
+
+	// check if member is a user
+	if($member instanceof Knowledgeroot_User) {
+	    $type = 'user';
+	    $memberId = $member->getId();
+	}
+
+	// check if member is a group
+	if($member instanceof Knowledgeroot_Group) {
+	    $type = 'group';
+	    $memberId = $member->getId();
+	}
+
+	$member = new Knowledgeroot_Db_GroupMember();
+
+	$member->delete(
+		    array(
+			'group_id = ?' => $this->id,
+			'member_id = ?' => $memberId,
+			'member_type = ?' => $type
+		    )
+		);
     }
 }
 

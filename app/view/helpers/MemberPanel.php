@@ -5,10 +5,11 @@ class Zend_View_Helper_MemberPanel extends Zend_View_Helper_Abstract {
 	 * show member panel
 	 *
 	 * @param string $name
+	 * @param Knowledgeroot_User|Knowledgeroot_Group $member
 	 * @param array $config
 	 * @return string
 	 */
-	public function memberPanel($name, $config = null) {
+	public function memberPanel($name, $member, $config = null) {
 	    $view = new Zend_View();
 
 	    $view->name = $name;
@@ -33,7 +34,34 @@ class Zend_View_Helper_MemberPanel extends Zend_View_Helper_Abstract {
 
 	    $view->roles = $roles;
 
-            $view->permissions = array();
+	    $memberType = "";
+	    $memberId = "";
+
+	    if($member instanceof Knowledgeroot_User) {
+		$memberType = "user";
+		$memberId = $member->getId();
+	    }
+
+	    if($member instanceof Knowledgeroot_Group) {
+		$memberType = "group";
+		$memberId = $member->getId();
+	    }
+
+	    $members = new Knowledgeroot_Db_GroupMember();
+	    $select = $members->select();
+	    $select->where('member_id = ?', $memberId);
+	    $select->where('member_type = ?', $memberType);
+
+	    $all = $members->fetchAll($select);
+	    $members = array();
+	    foreach($all as $value) {
+		$group = new Knowledgeroot_Group($value['group_id']);
+		$members['G_'.$group->getId()] = array(
+		  'name' => $group->getName(),
+		);
+	    }
+
+	    $view->permissions = $members;
 
 	    $view->setScriptPath(APPLICATION_PATH . '/view/scripts/');
 	    return $view->render('helpers/memberpanel.phtml');

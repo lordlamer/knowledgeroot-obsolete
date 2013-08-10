@@ -75,6 +75,20 @@ class UserController extends Zend_Controller_Action
 	    $user->setActive($this->_getParam('active'));
 	    $user->save();
 
+	    // remove existing group memberships
+	    Knowledgeroot_Group::deleteUserFromGroups($user);
+
+	    // save group membership
+	    foreach(Knowledgeroot_Util::objectToArray(json_decode($this->_getParam('member'))) as $memberId => $value) {
+		// we only can be a member of a group
+		if($memberId[0] == 'G') {
+		    $id = substr($memberId,2);
+
+		    $group = new Knowledgeroot_Group($id);
+		    $group->addMember($user);
+		}
+	    }
+
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('user/edit/' . $user->getId());
 	    } else {
