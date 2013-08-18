@@ -55,6 +55,20 @@ class GroupController extends Zend_Controller_Action
 	    $group->setActive($this->_getParam('active'));
 	    $group->save();
 
+	    // remove existing group memberships
+	    Knowledgeroot_Group::deleteMemberFromGroups($group);
+
+	    // save group membership
+	    foreach(Knowledgeroot_Util::objectToArray(json_decode($this->_getParam('member'))) as $memberId => $value) {
+		// we only can be a member of a group
+		if($memberId[0] == 'G') {
+		    $id = substr($memberId,2);
+
+		    $pgroup = new Knowledgeroot_Group($id);
+		    $pgroup->addMember($group);
+		}
+	    }
+
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('group/edit/' . $group->getId());
 	    } else {

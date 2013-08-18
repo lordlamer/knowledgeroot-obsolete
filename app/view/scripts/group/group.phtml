@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><i class="icon-group"></i> 
+    <h2><i class="icon-group"></i>
 	<?php
 	if ($this->action == 'new')
 	    echo $this->translate('Create Group');
@@ -42,6 +42,7 @@
 		</div>
 	    </div>
 	    <div class="tab-pane" id="tab-member">
+		<?php echo $this->memberPanel('group_'.$this->id, new Knowledgeroot_Group($this->id), array('show_users' => false)); ?>
 	    </div>
 	    <div class="tab-pane" id="tab-members">
 	    </div>

@@ -76,7 +76,7 @@ class UserController extends Zend_Controller_Action
 	    $user->save();
 
 	    // remove existing group memberships
-	    Knowledgeroot_Group::deleteUserFromGroups($user);
+	    Knowledgeroot_Group::deleteMemberFromGroups($user);
 
 	    // save group membership
 	    foreach(Knowledgeroot_Util::objectToArray(json_decode($this->_getParam('member'))) as $memberId => $value) {

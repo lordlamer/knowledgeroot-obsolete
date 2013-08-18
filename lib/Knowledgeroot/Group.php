@@ -188,18 +188,35 @@ class Knowledgeroot_Group {
     }
 
     /**
-     * remove user as member from all groups
+     * remove member from all groups
      *
-     * @param Knowledgeroot_User $user
+     * @param object $member
      */
-    public static function deleteUserFromGroups(Knowledgeroot_User $user) {
-	$member = new Knowledgeroot_Db_GroupMember();
-	$member->delete(
-		    array(
-			'member_id = ?' => $user->getId(),
-			'member_type = ?' => 'user'
-		    )
-		);
+    public static function deleteMemberFromGroups($member) {
+	$type = '';
+	$memberId = null;
+
+	// check if member is a user
+	if($member instanceof Knowledgeroot_User) {
+	    $type = 'user';
+	    $memberId = $member->getId();
+	}
+
+	// check if member is a group
+	if($member instanceof Knowledgeroot_Group) {
+	    $type = 'group';
+	    $memberId = $member->getId();
+	}
+
+	if ($memberId !== null) {
+	    $member = new Knowledgeroot_Db_GroupMember();
+	    $member->delete(
+			array(
+			    'member_id = ?' => $memberId,
+			    'member_type = ?' => $type
+			)
+		    );
+	}
     }
 
     /**
