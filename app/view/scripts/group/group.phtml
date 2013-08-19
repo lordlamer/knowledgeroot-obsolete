@@ -45,6 +45,7 @@
 		<?php echo $this->memberPanel('group_'.$this->id, new Knowledgeroot_Group($this->id), array('show_users' => false)); ?>
 	    </div>
 	    <div class="tab-pane" id="tab-members">
+		<?php echo $this->memberPanel('member_'.$this->id, new Knowledgeroot_Group($this->id), array('show_users' => true, 'show_members' => true)); ?>
 	    </div>
 	</div>
 

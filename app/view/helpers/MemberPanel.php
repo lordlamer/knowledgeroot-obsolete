@@ -47,18 +47,38 @@ class Zend_View_Helper_MemberPanel extends Zend_View_Helper_Abstract {
 		$memberId = $member->getId();
 	    }
 
-	    $members = new Knowledgeroot_Db_GroupMember();
-	    $select = $members->select();
-	    $select->where('member_id = ?', $memberId);
-	    $select->where('member_type = ?', $memberType);
+	    if(isset($config['show_members']) && $config['show_members'] && $memberType == 'group') {
+		$members = new Knowledgeroot_Db_GroupMember();
+		$select = $members->select();
+		$select->where('group_id = ?', $memberId);
+	    } else {
+		$members = new Knowledgeroot_Db_GroupMember();
+		$select = $members->select();
+		$select->where('member_id = ?', $memberId);
+		$select->where('member_type = ?', $memberType);
+	    }
 
 	    $all = $members->fetchAll($select);
 	    $members = array();
 	    foreach($all as $value) {
-		$group = new Knowledgeroot_Group($value['group_id']);
-		$members['G_'.$group->getId()] = array(
-		  'name' => $group->getName(),
-		);
+		if(isset($config['show_members']) && $config['show_members'] && $memberType == 'group') {
+		    if($value['member_type'] == 'user') {
+			$user = new Knowledgeroot_User($value['member_id']);
+			$members['U_'.$user->getId()] = array(
+			  'name' => $user->getLogin(),
+			);
+		    } else {
+			$group = new Knowledgeroot_Group($value['member_id']);
+			$members['G_'.$group->getId()] = array(
+			  'name' => $group->getName(),
+			);
+		    }
+		} else {
+		    $group = new Knowledgeroot_Group($value['group_id']);
+		    $members['G_'.$group->getId()] = array(
+		      'name' => $group->getName(),
+		    );
+		}
 	    }
 
 	    $view->permissions = $members;
