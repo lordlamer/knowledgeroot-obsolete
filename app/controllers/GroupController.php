@@ -59,13 +59,31 @@ class GroupController extends Zend_Controller_Action
 	    Knowledgeroot_Group::deleteMemberFromGroups($group);
 
 	    // save group membership
-	    foreach(Knowledgeroot_Util::objectToArray(json_decode($this->_getParam('member'))) as $memberId => $value) {
+	    foreach(Knowledgeroot_Util::objectToArray(json_decode($this->_getParam('memberpanel_group'))) as $memberId => $value) {
 		// we only can be a member of a group
 		if($memberId[0] == 'G') {
 		    $id = substr($memberId,2);
 
 		    $pgroup = new Knowledgeroot_Group($id);
 		    $pgroup->addMember($group);
+		}
+	    }
+
+	    Knowledgeroot_Group::deleteGroupMembers($group);
+	    // save members
+	    foreach(Knowledgeroot_Util::objectToArray(json_decode($this->_getParam('memberpanel_member'))) as $memberId => $value) {
+		if($memberId[0] == 'G') {
+		    $id = substr($memberId,2);
+
+		    $mgroup = new Knowledgeroot_Group($id);
+		    $group->addMember($mgroup);
+		}
+
+		if($memberId[0] == 'U') {
+		    $id = substr($memberId,2);
+
+		    $muser = new Knowledgeroot_User($id);
+		    $group->addMember($muser);
 		}
 	    }
 

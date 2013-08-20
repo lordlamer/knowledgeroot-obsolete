@@ -220,6 +220,20 @@ class Knowledgeroot_Group {
     }
 
     /**
+     * delete members from an existing group
+     *
+     * @param Knowledgeroot_Group $group
+     */
+    public function deleteGroupMembers(Knowledgeroot_Group $group) {
+	$member = new Knowledgeroot_Db_GroupMember();
+	$member->delete(
+		    array(
+			'group_id = ?' => $group->getId(),
+		    )
+		);
+    }
+
+    /**
      * get group members
      *
      * @return $array
