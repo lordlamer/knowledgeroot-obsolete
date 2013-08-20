@@ -48,7 +48,7 @@ CREATE TABLE "user" (
 
 /* table: group */
 CREATE TABLE "group" (
-  id integer PRIMARY KEY DEFAULT nextval('seq_user') NOT NULL,
+  id integer PRIMARY KEY DEFAULT nextval('seq_group') NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
   description text DEFAULT '' NOT NULL,
   time_start timestamp without time zone NULL,
