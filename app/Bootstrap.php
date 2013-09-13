@@ -268,6 +268,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: content/show/:contentid
+	    $router->addRoute('contentshow', new Zend_Controller_Router_Route_Regex('content/show/(\d+)', array(
+			'controller' => 'content',
+			'action' => 'show'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
 	    //route: language/:language
 	    $router->addRoute('language', new Zend_Controller_Router_Route_Regex('language/(.+)', array(
 			'controller' => 'index',

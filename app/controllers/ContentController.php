@@ -121,5 +121,16 @@ class ContentController extends Zend_Controller_Action {
 	$this->view->content = $content->getContent();
     }
 
+    public function showAction() {
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'show'))
+		$this->_redirect('');
+
+	$this->_helper->layout()->disableLayout();
+
+	$content = new Knowledgeroot_Content($this->_getParam('id'));
+	$this->view->title = $content->getName();
+	$this->view->content = $content->getContent();
+    }
 }
 
