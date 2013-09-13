@@ -81,6 +81,8 @@ class ContentController extends Zend_Controller_Action {
 
 	    $this->view->page = $content->getParent();
 
+	    $this->view->versions = $content->getVersions();
+
 	    $this->renderScript("content/content.phtml");
 	}
     }
@@ -128,7 +130,12 @@ class ContentController extends Zend_Controller_Action {
 
 	$this->_helper->layout()->disableLayout();
 
-	$content = new Knowledgeroot_Content($this->_getParam('id'));
+	if($this->_getParam('version') !== null) {
+	    $content = new Knowledgeroot_Content($this->_getParam('id'), $this->_getParam('version'));
+	} else {
+	    $content = new Knowledgeroot_Content($this->_getParam('id'));
+	}
+
 	$this->view->title = $content->getName();
 	$this->view->content = $content->getContent();
     }

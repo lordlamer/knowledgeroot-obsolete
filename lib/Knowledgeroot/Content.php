@@ -6,6 +6,8 @@ class Knowledgeroot_Content {
     const POSITION_FIRST = 'start';
     const POSITION_LAST = 'end';
 
+    protected $readOnly = false;
+
     protected $id = null;
     protected $parent = null;
     protected $name = null;
@@ -22,17 +24,32 @@ class Knowledgeroot_Content {
     protected $deleted = null;
     protected $acl = null;
 
-    public function __construct($id = null) {
+    public function __construct($id = null, $version = null) {
 	if ($id != null) {
-	    $this->load((int) $id);
+	    if($version !== null)
+		$this->load((int) $id, (int) $version);
+	    else
+		$this->load((int) $id);
 	}
     }
 
-    public function load($id) {
-	$content = new Knowledgeroot_Db_Content();
-	$row = $content->find($id);
+    public function load($id, $version = null) {
+	if($version !== null) {
+	    $history = new Knowledgeroot_Db_Content_History();
 
-	$this->id = $row[0]['id'];
+	    $select = $history->select();
+	    $select->where('content_id = ?', $id);
+	    $select->where('version = ?', $version);
+
+	    $row = $history->fetchAll($select);
+
+	    $this->readOnly = true;
+	} else {
+	    $content = new Knowledgeroot_Db_Content();
+	    $row = $content->find($id);
+	}
+
+	$this->id = $id;
 	$this->parent = $row[0]['parent'];
 	$this->name = $row[0]['name'];
 	$this->content = $row[0]['content'];
@@ -49,6 +66,9 @@ class Knowledgeroot_Content {
     }
 
     public function save() {
+	if($this->readOnly)
+	    return;
+
 	$data = array();
 
 	// get session
@@ -113,6 +133,9 @@ class Knowledgeroot_Content {
     }
 
     public function delete($id = null, $markOnly = true) {
+	if($this->readOnly)
+	    return;
+
 	if ($id == null)
 	    $id = $this->id;
 
@@ -127,6 +150,9 @@ class Knowledgeroot_Content {
     }
 
     public function moveTo($pageId) {
+	if($this->readOnly)
+	    return;
+
 	if ($this->id == null)
 	    throw new Knowledgeroot_Content_Exception('Content id is empty!');
 
@@ -139,54 +165,89 @@ class Knowledgeroot_Content {
     }
 
     public function moveUp() {
+	if($this->readOnly)
+	    return;
 
     }
 
     public function moveDown() {
+	if($this->readOnly)
+	    return;
 
     }
 
     public function moveAfter($contentId) {
+	if($this->readOnly)
+	    return;
 
     }
 
     public function moveBefore($contentId) {
+	if($this->readOnly)
+	    return;
 
     }
 
     public function setName($name) {
+	if($this->readOnly)
+	    return;
+
 	$this->name = $name;
     }
 
     public function setContent($content) {
+	if($this->readOnly)
+	    return;
+
 	$this->content = $content;
     }
 
     public function setParent($id) {
+	if($this->readOnly)
+	    return;
+
 	$this->parent = $id;
     }
 
     public function setType($type) {
+	if($this->readOnly)
+	    return;
+
 	$this->type = $type;
     }
 
     public function setSorting($sorting) {
+	if($this->readOnly)
+	    return;
+
 	$this->sorting = $sorting;
     }
 
     public function setActive($active) {
+	if($this->readOnly)
+	    return;
+
 	$this->active = $active;
     }
 
     public function setTimeStart($time) {
+	if($this->readOnly)
+	    return;
+
 	$this->time_start = $time;
     }
 
     public function setTimeEnd($time) {
+	if($this->readOnly)
+	    return;
+
 	$this->time_end = $time;
     }
 
     public function setChangedBy($userid) {
+	if($this->readOnly)
+	    return;
+
 	$this->changed_by = $userid;
     }
 
@@ -249,6 +310,9 @@ class Knowledgeroot_Content {
      * @param array $acl
      */
     public function setAcl($acl) {
+	if($this->readOnly)
+	    return;
+
 	$this->acl = Knowledgeroot_Util::objectToArray($acl);
     }
 
@@ -281,6 +345,33 @@ class Knowledgeroot_Content {
 	foreach($rows as $value) {
 	    if($acl->iAmAllowed('content_' . $value->id, 'show'))
 		$ret[] = new Knowledgeroot_Content($value->id);
+	}
+
+	return $ret;
+    }
+
+    /**
+     * return array with existing versions of content
+     *
+     * return array with integer values of existing versions of content
+     * @return array
+     */
+    public function getVersions() {
+	$ret = array();
+
+	$history = new Knowledgeroot_Db_Content_History();
+
+	$select = $history->select();
+	$select->where('content_id = ?', $this->id);
+	$select->order('version DESC');
+	$rows = $history->fetchAll($select);
+
+	foreach($rows as $value) {
+	    $ret[] = array(
+		'version' => $value['version'],
+		'user' => new Knowledgeroot_User($value['changed_by']),
+		'date' => new Knowledgeroot_Date($value['change_date'])
+		);
 	}
 
 	return $ret;

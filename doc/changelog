@@ -1,6 +1,10 @@
 20130913 - fhabermann
 * added js to print content on open print window
 * added show content action with template
+* added loading version support to Knowledgeroot_Content
+* added class Knowledgeroot_Db_Content_History
+* added show version features to template
+* added routes to show content and show versions
 
 20130820 - fhabermann
 * saving memberships

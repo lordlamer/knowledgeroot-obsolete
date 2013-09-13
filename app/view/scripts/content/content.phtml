@@ -103,6 +103,26 @@
 		    </div>
 	    </div>
 	    <div class="tab-pane" id="tab-history">
+		<table class="table table-striped table-bordered table-hover">
+		    <tr>
+			<th><?= $this->translate('Version') ?></th>
+			<th><?= $this->translate('User') ?></th>
+			<th><?= $this->translate('Date') ?></th>
+			<th><?= $this->translate('Action') ?></th>
+		    </tr>
+		<?php
+		    foreach($this->versions as $key => $value) {
+			?>
+		    <tr>
+			<td><span class="badge badge-info"><?= $value['version'] ?></span></td>
+			<td><?= $value['user']->getLogin() ?></td>
+			<td><?= $value['date'] ?></td>
+			<td><a href="javascript:;" onclick="window.open('content/show/<?= $this->id ?>/version/<?= $value['version'] ?>','Knowledgeroot','width=550,height=400,menubar=yes,resizable=yes,scrollbars=yes');" class="btn btn-primary btn-small"><?= $this->translate('show') ?></a></td>
+		    </tr>
+			<?php
+		    }
+		?>
+		</table>
 	    </div>
 	</div>
     </div>
