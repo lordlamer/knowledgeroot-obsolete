@@ -1,3 +1,7 @@
+21030915 - fhabermann
+* enabled timezone handling for user in Knowledgeroot_Date
+* added timezone to user session
+
 20130913 - fhabermann
 * added js to print content on open print window
 * added show content action with template

@@ -161,6 +161,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 		$session->valid = false;
 		$session->id = 0;
 		$session->login = 'guest';
+		$session->timezone = $config->base->timezone;
 	    }
 
 	    return $session;

@@ -116,7 +116,7 @@
 		    <tr>
 			<td><span class="badge badge-info"><?= $value['version'] ?></span></td>
 			<td><?= $value['user']->getLogin() ?></td>
-			<td><?= $value['date'] ?></td>
+			<td><?= $value['date']->getUserDate() ?></td>
 			<td><a href="javascript:;" onclick="window.open('content/show/<?= $this->id ?>/version/<?= $value['version'] ?>','Knowledgeroot','width=550,height=400,menubar=yes,resizable=yes,scrollbars=yes');" class="btn btn-primary btn-small"><?= $this->translate('show') ?></a></td>
 		    </tr>
 			<?php

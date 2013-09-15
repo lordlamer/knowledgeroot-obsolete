@@ -47,7 +47,7 @@ class Knowledgeroot_Auth {
 	    $db = Knowledgeroot_Registry::get('db');
 
 	    // get user from db
-	    $user = $db->fetchRow("SELECT id, login, language FROM " . $db->quoteIdentifier('user') . " WHERE login=?", array($this->username));
+	    $user = $db->fetchRow("SELECT id, login, language, timezone FROM " . $db->quoteIdentifier('user') . " WHERE login=?", array($this->username));
 
 	    // get new session namespace and save data
 	    $session = new Zend_Session_Namespace('user');
@@ -55,6 +55,7 @@ class Knowledgeroot_Auth {
 	    $session->id = $user['id'];
 	    $session->login = $user['login'];
 	    $session->language = $user['language'];
+	    $session->timezone = $user['timezone'];
 	}
 }
 

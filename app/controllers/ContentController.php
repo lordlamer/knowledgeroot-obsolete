@@ -138,6 +138,9 @@ class ContentController extends Zend_Controller_Action {
 
 	$this->view->title = $content->getName();
 	$this->view->content = $content->getContent();
+
+	$l = new Zend_Locale();
+	$list = $l->getTranslationList('TimezoneToTerritory');
     }
 }
 

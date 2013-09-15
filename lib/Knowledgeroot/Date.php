@@ -27,6 +27,11 @@ class Knowledgeroot_Date {
 	    $d->set($date->getTimestamp());
 
 	    $this->date = $d;
+	} elseif($date != null) {
+	    $d = new Zend_Date();
+	    $d->set($date);
+
+	    $this->date = $d;
 	} else {
 	    // get config
 	    $config = Knowledgeroot_Registry::get('config');
@@ -65,7 +70,11 @@ class Knowledgeroot_Date {
      * return date in user timezone
      */
     public function getUserDate() {
+	// get user session
+	$session = new Zend_Session_Namespace('user');
 
+	// return date with user timezone
+	return $this->getDate($session->timezone);
     }
 
     /**
