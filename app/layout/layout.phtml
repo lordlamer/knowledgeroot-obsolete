@@ -152,6 +152,10 @@ $config = Zend_Registry::get('config');
 			    })
 			</script>
 		    </form>
+		    <?php
+		    $session = new Zend_Session_Namespace('user');
+		    if(!$session->valid) { // show language dropdown only for guest users
+		    ?>
 		    <ul class="nav pull-right">
 			<li class="divider-vertical"></li>
 			<li class="dropdown" style="border-top: 3px solid #932AB6;">
@@ -181,6 +185,9 @@ $config = Zend_Registry::get('config');
 			    </ul>
 			</li>
 		    </ul>
+		    <?php
+		    } // end language dropdown
+		    ?>
 		    <script>
 			$('.dropdown-toggle').dropdown();
 		    </script>

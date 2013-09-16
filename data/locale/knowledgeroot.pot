@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Knowledgeroot\n"
 "Report-Msgid-Bugs-To: locale@knowledgeroot.org\n"
-"POT-Creation-Date: 2013-08-20 23:28+0200\n"
+"POT-Creation-Date: 2013-09-16 23:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: bin/../app/layout/layout.phtml:108
 #: bin/../app/view/scripts/group/group.phtml:57
 #: bin/../app/view/scripts/page/page.phtml:169
-#: bin/../app/view/scripts/content/content.phtml:112
+#: bin/../app/view/scripts/content/content.phtml:132
 #: bin/../app/view/scripts/user/user.phtml:95
 msgid "Close"
 msgstr ""
@@ -73,6 +73,19 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
+#: bin/../app/layout/layout.phtml:137
+#: bin/../app/view/scripts/index/login.phtml:9
+#: bin/../app/view/scripts/index/login.phtml:12
+#: bin/../app/view/scripts/content/content.phtml:109
+#: bin/../app/view/scripts/user/user.phtml:14
+msgid "User"
+msgstr ""
+
+#: bin/../app/layout/layout.phtml:138
+#: bin/../app/view/scripts/group/group.phtml:14
+msgid "Group"
+msgstr ""
+
 #: bin/../app/layout/layout.phtml:147
 msgid "Search"
 msgstr ""
@@ -81,37 +94,38 @@ msgstr ""
 msgid "GO"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:162
+#: bin/../app/layout/layout.phtml:166
 msgid "Languages"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:175
+#: bin/../app/layout/layout.phtml:179
+#: bin/../app/view/scripts/settings/index.phtml:55
 msgid "[TRANSLATION_NAME]"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:203
+#: bin/../app/layout/layout.phtml:210
 msgid "Settings"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:204
+#: bin/../app/layout/layout.phtml:211
 msgid "Logout"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:216
+#: bin/../app/layout/layout.phtml:223
 msgid "system"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:220
+#: bin/../app/layout/layout.phtml:227
 #: bin/../app/view/scripts/user/list.phtml:2
 msgid "Users"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:221
+#: bin/../app/layout/layout.phtml:228
 #: bin/../app/view/scripts/group/list.phtml:2
 msgid "Groups"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:222
+#: bin/../app/layout/layout.phtml:229
 #: bin/../app/view/scripts/page/page.phtml:17
 #: bin/../app/view/scripts/permissions/list.phtml:1
 #: bin/../app/view/scripts/helpers/permissionpanel.phtml:25
@@ -119,17 +133,19 @@ msgstr ""
 msgid "Permissions"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:229
+#: bin/../app/layout/layout.phtml:236
 #: bin/../app/view/scripts/index/login.phtml:2
+#: bin/../app/view/scripts/settings/index.phtml:7
 #: bin/../app/view/scripts/user/user.phtml:20
 msgid "Login"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:334
+#: bin/../app/layout/layout.phtml:341
 msgid "Forum"
 msgstr ""
 
-#: bin/../app/layout/layout.phtml:336
+#: bin/../app/layout/layout.phtml:343
+#: bin/../app/view/scripts/content/content.phtml:108
 msgid "Version"
 msgstr ""
 
@@ -205,10 +221,6 @@ msgstr ""
 msgid "Edit Group"
 msgstr ""
 
-#: bin/../app/view/scripts/group/group.phtml:14
-msgid "Group"
-msgstr ""
-
 #: bin/../app/view/scripts/group/group.phtml:15
 #: bin/../app/view/scripts/user/user.phtml:15
 msgid "Member Of"
@@ -225,16 +237,16 @@ msgstr ""
 
 #: bin/../app/view/scripts/group/group.phtml:55
 #: bin/../app/view/scripts/page/page.phtml:167
-#: bin/../app/view/scripts/settings/index.phtml:47
+#: bin/../app/view/scripts/settings/index.phtml:76
 #: bin/../app/view/scripts/helpers/permissionpanel.phtml:44
-#: bin/../app/view/scripts/content/content.phtml:110
+#: bin/../app/view/scripts/content/content.phtml:130
 #: bin/../app/view/scripts/user/user.phtml:93
 msgid "Save"
 msgstr ""
 
 #: bin/../app/view/scripts/group/group.phtml:56
 #: bin/../app/view/scripts/page/page.phtml:168
-#: bin/../app/view/scripts/content/content.phtml:111
+#: bin/../app/view/scripts/content/content.phtml:131
 #: bin/../app/view/scripts/user/user.phtml:94
 msgid "Save and Close"
 msgstr ""
@@ -435,15 +447,9 @@ msgstr ""
 msgid "By"
 msgstr ""
 
-#: bin/../app/view/scripts/index/login.phtml:9
-#: bin/../app/view/scripts/index/login.phtml:12
-#: bin/../app/view/scripts/user/user.phtml:14
-msgid "User"
-msgstr ""
-
 #: bin/../app/view/scripts/index/login.phtml:17
 #: bin/../app/view/scripts/index/login.phtml:20
-#: bin/../app/view/scripts/settings/index.phtml:7
+#: bin/../app/view/scripts/settings/index.phtml:35
 #: bin/../app/view/scripts/user/user.phtml:27
 msgid "Password"
 msgstr ""
@@ -482,16 +488,31 @@ msgid "Change Options"
 msgstr ""
 
 #: bin/../app/view/scripts/settings/index.phtml:14
-msgid "confirm Password"
+#: bin/../app/view/scripts/user/user.phtml:41
+msgid "First Name"
 msgstr ""
 
 #: bin/../app/view/scripts/settings/index.phtml:21
-msgid "Theme"
+#: bin/../app/view/scripts/user/user.phtml:48
+msgid "Last Name"
 msgstr ""
 
-#: bin/../app/view/scripts/settings/index.phtml:34
+#: bin/../app/view/scripts/settings/index.phtml:28
+msgid "Email"
+msgstr ""
+
+#: bin/../app/view/scripts/settings/index.phtml:42
+msgid "confirm Password"
+msgstr ""
+
+#: bin/../app/view/scripts/settings/index.phtml:49
 #: bin/../app/view/scripts/user/user.phtml:62
 msgid "Language"
+msgstr ""
+
+#: bin/../app/view/scripts/settings/index.phtml:63
+#: bin/../app/view/scripts/user/user.phtml:69
+msgid "Timezone"
 msgstr ""
 
 #: bin/../app/view/scripts/helpers/memberpanel.phtml:9
@@ -570,6 +591,18 @@ msgstr ""
 msgid "Define position of content on page"
 msgstr ""
 
+#: bin/../app/view/scripts/content/content.phtml:110
+msgid "Date"
+msgstr ""
+
+#: bin/../app/view/scripts/content/content.phtml:111
+msgid "Action"
+msgstr ""
+
+#: bin/../app/view/scripts/content/content.phtml:120
+msgid "show"
+msgstr ""
+
 #: bin/../app/view/scripts/user/user.phtml:5
 msgid "Create User"
 msgstr ""
@@ -582,20 +615,8 @@ msgstr ""
 msgid "Repeat Password"
 msgstr ""
 
-#: bin/../app/view/scripts/user/user.phtml:41
-msgid "First Name"
-msgstr ""
-
-#: bin/../app/view/scripts/user/user.phtml:48
-msgid "Last Name"
-msgstr ""
-
 #: bin/../app/view/scripts/user/user.phtml:55
 msgid "E-Mail"
-msgstr ""
-
-#: bin/../app/view/scripts/user/user.phtml:69
-msgid "Timezone"
 msgstr ""
 
 #: bin/../app/view/scripts/user/list.phtml:9

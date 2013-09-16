@@ -1,3 +1,10 @@
+20130916 - fhabermann
+* added new class Knowledgeroot_Timezone to get timezones
+* show language dropdown only for guest users
+* show add group and add user in menu if you have the rights
+* enable saving of personal settings
+* updated gettext template
+
 21030915 - fhabermann
 * enabled timezone handling for user in Knowledgeroot_Date
 * added timezone to user session

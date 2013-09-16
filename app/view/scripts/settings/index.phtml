@@ -1,12 +1,40 @@
 <div class="page-header">
     <h2><i class="icon-cog"></i> <?= $this->translate('Change Options') ?></h2>
 </div>
-<form class="form-horizontal" action="index.php" method="post" name="formoptions" autocomplete="off">
+<form class="form-horizontal" method="post">
     <input type="hidden" name="action" value="options" />
+    <div class="control-group">
+	<label class="control-label" for="login"><?= $this->translate('Login') ?></label>
+	<div class="controls">
+	    <input type="text" class="input-xlarge" id="login" name="login" disabled="disabled" value="<?= $this->login ?>">
+	</div>
+    </div>
+
+    <div class="control-group">
+	<label class="control-label" for="firstname"><?= $this->translate('First Name') ?></label>
+	<div class="controls">
+	    <input type="text" class="input-xlarge" id="firstname" name="first_name" value="<?= $this->first_name ?>">
+	</div>
+    </div>
+
+    <div class="control-group">
+	<label class="control-label" for="lastname"><?= $this->translate('Last Name') ?></label>
+	<div class="controls">
+	    <input type="text" class="input-xlarge" id="lastname" name="last_name" value="<?= $this->last_name ?>">
+	</div>
+    </div>
+
+    <div class="control-group">
+	<label class="control-label" for="email"><?= $this->translate('Email') ?></label>
+	<div class="controls">
+	    <input type="text" class="input-xlarge" id="email" name="email" value="<?= $this->email ?>">
+	</div>
+    </div>
+
     <div class="control-group">
 	<label class="control-label" for="password"><?= $this->translate('Password') ?></label>
 	<div class="controls">
-	    <input type="text" class="input-xlarge" id="password" name="password">
+	    <input type="password" class="input-xlarge" id="password" name="password">
 	</div>
     </div>
 
@@ -18,12 +46,13 @@
     </div>
 
     <div class="control-group">
-	<label class="control-label" for="theme"><?= $this->translate('Theme') ?></label>
+	<label class="control-label" for="language"><?= $this->translate('Language') ?></label>
 	<div class="controls">
-	    <select name="theme" id="theme">
+	    <select name="language" id="language">
 		<?php
-		    foreach($this->themes as $value) {
-			echo '<option value="'.$value['key'].'"'.(($_SESSION['theme'] == $value['key']) ? ' selected="selected"': '').'>'.$value['name'].'</option>';
+		    foreach ($this->translations as $key => $value) {
+			    // show translation name
+			    echo '<option value="'.$key.'"'.(($this->language == $key) ? ' selected="selected"': '').'>' . $this->translate('[TRANSLATION_NAME]', $key) . '</option>';
 		    }
 		?>
 	    </select>
@@ -31,12 +60,12 @@
     </div>
 
     <div class="control-group">
-	<label class="control-label" for="language"><?= $this->translate('Language') ?></label>
+	<label class="control-label" for="timezone"><?= $this->translate('Timezone') ?></label>
 	<div class="controls">
-	    <select name="language" id="language">
+	    <select name="timezone" id="timezone">
 		<?php
-		    foreach($this->languages as $value) {
-			echo '<option value="'.$value['key'].'"'.(($_SESSION['language'] == $value['key']) ? ' selected="selected"': '').'>'.$value['name'].'</option>';
+		    foreach($this->timezones as $key => $value) {
+			echo '<option value="'.$key.'"'.(($this->timezone == $key) ? ' selected="selected"': '').'>'.$value."</option>\n";
 		    }
 		?>
 	    </select>
