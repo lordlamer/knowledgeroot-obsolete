@@ -73,8 +73,8 @@ class Knowledgeroot_Date {
 	// get user session
 	$session = new Zend_Session_Namespace('user');
 
-	// return date with user timezone
-	return $this->getDate($session->timezone);
+	// return date with user timezone in locale format
+	return $this->getDate($session->timezone)->toString(Zend_Locale_Format::getDateTimeFormat($session->language));
     }
 
     /**

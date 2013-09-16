@@ -4,6 +4,7 @@
 * show add group and add user in menu if you have the rights
 * enable saving of personal settings
 * updated gettext template
+* show user date in locale format
 
 21030915 - fhabermann
 * enabled timezone handling for user in Knowledgeroot_Date
