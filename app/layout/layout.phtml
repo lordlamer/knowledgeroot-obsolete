@@ -132,11 +132,11 @@ $config = Zend_Registry::get('config');
 				<li><a href="page/new"><i class="icon-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
 				<li><a href="content/new"><i class="icon-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
 				<li><a data-toggle="modal" href="#fileUpload"><i class="icon-paper-clip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
-				<?php /* TODO if($_SESSION['admin'] == 1) { ?>
-				  <li class="divider"></li>
-				  <li><a href="index.php?action=adduser"><?= $this->translate('User') ?></a></li>
-				  <li><a href="index.php?action=addgroup"><?= $this->translate('Group') ?></a></li>
-				  <?php } */ ?>
+				<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new') || Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?>
+				    <li class="divider"></li>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="icon-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="icon-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
+				<?php } ?>
 			    </ul>
 			</li>
 			<li class="divider-vertical"></li>
