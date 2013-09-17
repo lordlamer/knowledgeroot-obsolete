@@ -63,7 +63,7 @@ foreach ($this->contents as $content) { // run for each content
 		</form>
 		<?php } ?>
     	    </div>
-    	    <div class="content_statusbar"><?= $this->translate('Last changed') ?>: XXX <?= $this->translate('By') ?>: YYY</div>
+    	    <div class="content_statusbar"><?= $this->translate('Last change') ?>: <?= $content->getChangedBy()->getLogin() ?> - <?= $content->getChangeDate()->getUserDate() ?></div>
     	</div>
         </div>
     </div><!-- end accordian -->
