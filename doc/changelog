@@ -1,6 +1,7 @@
 20130917 - fhabermann
 * return user or date object on Knowledgeroot_Content
 * show last change infos on content
+* show create date and created by informations for content
 
 20130916 - fhabermann
 * added new class Knowledgeroot_Timezone to get timezones

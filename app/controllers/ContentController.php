@@ -81,6 +81,9 @@ class ContentController extends Zend_Controller_Action {
 
 	    $this->view->page = $content->getParent();
 
+	    $this->view->created_by = $content->getCreatedBy()->getLogin();
+	    $this->view->create_date = $content->getCreateDate()->getUserDate();
+
 	    $this->view->versions = $content->getVersions();
 
 	    $this->renderScript("content/content.phtml");
