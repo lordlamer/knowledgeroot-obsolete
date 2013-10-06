@@ -47,7 +47,8 @@ foreach ($this->contents as $content) { // run for each content
 			echo "<legend>" . $this->translate('Files') . "</legend><ul class=\"unstyled\">\n";
 			foreach($this->files[$content->getId()] as $file) {
 			    echo '<li>';
-			    echo '<a href="./file/delete/'.$file->getId().'"><i class="icon-trash"></i></a> ';
+			    // need delete rights on content to delete a file
+			    if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { echo '<a href="javascript:;" onclick="if(confirm(\'' . $this->translate('Do you really want to delete?') . '\')) { location.href=\'file/delete/'.$file->getId().'\'; }"><i class="icon-trash"></i></a> '; }
 			    echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-download-alt" style="margin-right:5px;"></i> ' . $file->getName() . "</a>\n";
 			    echo'
 <a href="javascript:;" class="label label-info" rel="popover" data-html="true" data-placement="right" data-content="Size: '.$file->getSize().'<br>' . $this->translate('Downloads') . ':'.$file->getDownloads().'<br>' . $this->translate('MD5 Sum') . ':'.$file->getHash().'<br>' . $this->translate('changed') . ':'.$file->getChangeDate().'<br>' . $this->translate('changed by') . ':'.$file->getChangedBy().'<br>' . $this->translate('created') . ':'.$file->getCreateDate().'<br>' . $this->translate('created by') . ':'.$file->getCreatedBy().'" title="' . $this->translate('File Information') . '">info</a>

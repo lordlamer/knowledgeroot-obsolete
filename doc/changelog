@@ -1,3 +1,7 @@
+20131006 - fhabermann
+* using javascript confirm to delete a file
+* added acl check on delete file in html template
+
 20130917 - fhabermann
 * return user or date object on Knowledgeroot_Content
 * show last change infos on content
