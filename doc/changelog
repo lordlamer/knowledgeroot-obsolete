@@ -1,5 +1,6 @@
 20131010 - fhabermann
 * added option to enable default rights for active user in permission panel
+* enabled automatic set of contentid on fileupload modal
 
 20131006 - fhabermann
 * using javascript confirm to delete a file
