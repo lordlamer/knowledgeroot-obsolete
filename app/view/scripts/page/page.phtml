@@ -113,7 +113,7 @@
 	    </div>
 	    <div class="tab-pane" id="tab-permission">
 		<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'permission') || ($this->action == 'new' && Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))) { ?>
-		<?php echo $this->permissionPanel('page_'.$this->id, array('new','edit','delete','show','new_content','permission'), array('show_save_button' => false, 'add_acl_on_form_submit' => true)); ?>
+		<?php echo $this->permissionPanel('page_'.$this->id, array('new','edit','delete','show','new_content','permission'), array('show_save_button' => false, 'add_acl_on_form_submit' => true, 'add_user_permissions' => true)); ?>
 		<?php } ?>
 	    </div>
 	    <div class="tab-pane" id="tab-inherit-permission">

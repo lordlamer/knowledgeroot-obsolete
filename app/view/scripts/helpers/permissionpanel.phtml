@@ -53,7 +53,7 @@
 	});
     </script>
     <?php } ?>
-    <?php if($this->addUserPermissions && count($this->permissions) > 0) { ?>
+    <?php if($this->addUserPermissions && count($this->permissions) == 0) { ?>
     <script>
 	$(window).load(function() {
 		addUserToList('<?= $this->name ?>', 'U_<?= $this->userId ?>');
