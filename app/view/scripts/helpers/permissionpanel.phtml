@@ -1,4 +1,4 @@
-<!-- -->
+<!-- stores -->
 <script>
     var permissionStore_<?= $this->name ?> = <?php echo ((count($this->permissions) > 0) ? json_encode($this->permissions) : '{}'); ?>;
     var roleStore_<?= $this->name ?> = <?= json_encode($this->roles) ?>;
@@ -50,6 +50,13 @@
     <script>
 	$(window).load(function() {
 	    updateAclField('<?= $this->name ?>');
+	});
+    </script>
+    <?php } ?>
+    <?php if($this->addUserPermissions) { ?>
+    <script>
+	$(window).load(function() {
+		addUserToList('<?= $this->name ?>', 'U_<?= $this->userId ?>');
 	});
     </script>
     <?php } ?>
