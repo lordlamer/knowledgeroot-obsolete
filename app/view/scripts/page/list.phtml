@@ -9,9 +9,34 @@
     </ul>
 </div>
 
-<h1 style="color: #797979"><?= $this->title ?></h1>
-<?php if(!empty($this->subtitle)) { ?><span  style="color: #797979; padding-left:3px;"><?= $this->subtitle ?></span><?php } ?>
-<hr>
+<div class="page-header">
+    <h1 style="color: #797979"><?= $this->title ?>
+    <?php if(!empty($this->subtitle)) { ?><small><?= $this->subtitle ?></small><?php } ?>
+    </h1>
+</div>
+
+<div class="row-fluid">
+<!-- page description -->
+    <div class="span8">
+	page description
+    </div>
+
+<!-- table of contents -->
+
+    <div class="well span4 pull-right">
+	<h2><?= $this->translate('contents') ?></h2>
+	<ol>
+    <?php
+    foreach ($this->contents as $content) { // run for each content
+	?>
+	    <li><a href="#content<?php echo $content->getId(); ?>"><?= $content->getName() ?></a></li>
+	<?php
+    } // foreach end
+    ?>
+	</ol>
+    </div>
+</div>
+<!-- contents -->
 <?php
 foreach ($this->contents as $content) { // run for each content
     ?>

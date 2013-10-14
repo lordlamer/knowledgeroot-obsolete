@@ -44,6 +44,16 @@
 		    </div>
 
 		    <div class="control-group">
+			<label class="control-label" for="page-subtitle"><?= $this->translate('Subtitle') ?></label>
+			<div class="controls">
+			    <input type="text" class="input-xlarge span9" id="page-subtitle" name="page_subtitle" size="255" value="<?= $this->subtitle ?>">
+			    <p class="help-block">
+				<?= $this->translate('Subtitle of Page') ?>
+			    </p>
+			</div>
+		    </div>
+
+		    <div class="control-group">
 			<label class="control-label" for="page-alias"><?= $this->translate('Alias') ?></label>
 			<div class="controls">
 			    <input type="text" class="input-xlarge span9" id="page-alias" name="page_alias" size="255" value="<?= $this->alias ?>">
@@ -86,7 +96,7 @@
 	    </div>
 	    <div class="tab-pane" id="tab-content">
 		<div class="control-group">
-		    <label class="control-label" for="content-title"><?= $this->translate('Position for Content') ?>:</label>
+		    <label class="control-label" for="content-title"><?= $this->translate('Position for new Content') ?>:</label>
 		    <div class="controls">
 			<select>
 			    <option value=""><?= $this->translate('at beginning') ?></option>
@@ -102,12 +112,31 @@
 		    <label class="control-label" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
 		    <div class="controls">
 			<label class="checkbox">
-			    <input type="checkbox" name="contentcollapse" value="1" />
+			    <input type="checkbox" <?php if($this->contentcollapse) echo "checked=\"checked\""; ?>name="contentcollapse" value="1" />
 			    <?= $this->translate('Show content collapsed') ?>
 			</label>
 
-			<p class="help-block"><strong><?= $this->translate('Note') ?>:</strong> Foo Bar Hello World.</p>
+			<label class="checkbox">
+			    <input type="checkbox" <?php if($this->showpagedescription) echo "checked=\"checked\""; ?>name="showpagedescription" value="1" />
+			    <?= $this->translate('Show page description') ?>
+			</label>
 
+			<label class="checkbox">
+			    <input type="checkbox" <?php if($this->showtableofcontent) echo "checked=\"checked\""; ?>name="showtableofcontent" value="1" />
+			    <?= $this->translate('Show table of content') ?>
+			</label>
+
+			<p class="help-block"><strong><?= $this->translate('Note') ?>:</strong> <?= $this->translate('Set options for the page') ?></p>
+
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    <label class="control-label" for="page-description-editor"><?= $this->translate('Page description') ?></label>
+		    <div class="controls">
+			<?php
+			echo $this->editor;
+			?>
 		    </div>
 		</div>
 	    </div>

@@ -35,6 +35,7 @@ class PageController extends Zend_Controller_Action {
 	// set page for view
 	$this->view->id = $page->getId();
 	$this->view->title = $page->getName();
+	$this->view->subtitle = "KB123456";
 
 	// set contents for view
 	$this->view->contents = $contents;
@@ -65,7 +66,12 @@ class PageController extends Zend_Controller_Action {
 	    $page = new Knowledgeroot_Page();
 	    $page->setParent($this->_getParam('page_parent'));
 	    $page->setName($this->_getParam('page_title'));
+	    $page->setSubtitle($this->_getParam('page_subtitle'));
+	    $page->setDescription($this->_getParam('page_description'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
+	    $page->setContentCollapse($this->_getParam('contentcollapse'));
+	    $page->setShowContentDescription($this->_getParam('showpagedescription'));
+	    $page->setShowTableOfContent($this->_getParam('showtableofcontent'));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -80,6 +86,11 @@ class PageController extends Zend_Controller_Action {
 	} else {
 	    $this->view->action = 'new';
 	    $this->view->parent = $this->_getParam('id');
+
+	    $rte = Knowledgeroot_Registry::get('rte');
+	    $rte->setName('page_description');
+	    $rte->setContent('');
+	    $this->view->editor = $rte;
 
 	    $this->renderScript("page/page.phtml");
 	}
@@ -103,7 +114,12 @@ class PageController extends Zend_Controller_Action {
 
 	    $page->setParent($this->_getParam('page_parent'));
 	    $page->setName($this->_getParam('page_title'));
+	    $page->setSubtitle($this->_getParam('page_subtitle'));
+	    $page->setDescription($this->_getParam('page_description'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
+	    $page->setContentCollapse($this->_getParam('contentcollapse'));
+	    $page->setShowContentDescription($this->_getParam('showpagedescription'));
+	    $page->setShowTableOfContent($this->_getParam('showtableofcontent'));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -119,6 +135,15 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->id = $id;
 	    $this->view->parent = $page->getParent();
 	    $this->view->title = $page->getName();
+	    $this->view->subtitle = $page->getSubtitle();
+	    $this->view->contentcollapse = $page->getContentCollapse();
+	    $this->view->showpagedescription = $page->getShowContentDescription();
+	    $this->view->showtableofcontent = $page->getShowTableOfContent();
+
+	    $rte = Knowledgeroot_Registry::get('rte');
+	    $rte->setName('page_description');
+	    $rte->setContent($page->getDescription());
+	    $this->view->editor = $rte;
 
 	    // action body
 	    $this->renderScript("page/page.phtml");

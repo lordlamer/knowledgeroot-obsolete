@@ -4,11 +4,15 @@ class Knowledgeroot_Page {
 	protected $id = null;
 	protected $parent = null;
 	protected $name = null;
+	protected $subtitle = null;
+	protected $description = null;
 	protected $tooltip = null;
 	protected $icon = null;
 	protected $alias = null;
 	protected $content_collapse = null;
 	protected $content_position = null;
+	protected $show_content_description = null;
+	protected $show_table_of_content = null;
 	protected $sorting = null;
 	protected $time_start = null;
 	protected $time_end = null;
@@ -37,11 +41,15 @@ class Knowledgeroot_Page {
 	$this->id = $row[0]['id'];
 	$this->parent = $row[0]['parent'];
 	$this->name = $row[0]['name'];
+	$this->subtitle = $row[0]['subtitle'];
+	$this->description = $row[0]['description'];
 	$this->tooltip = $row[0]['tooltip'];
 	$this->icon = $row[0]['icon'];
 	$this->alias = $row[0]['alias'];
 	$this->content_collapse = $row[0]['content_collapse'];
 	$this->content_position = $row[0]['content_position'];
+	$this->show_content_description = $row[0]['show_content_description'];
+	$this->show_table_of_content = $row[0]['show_table_of_content'];
 	$this->sorting = $row[0]['sorting'];
 	$this->time_start = $row[0]['time_start'];
 	$this->time_end = $row[0]['time_end'];
@@ -61,6 +69,10 @@ class Knowledgeroot_Page {
 
 	if ($this->name != null)
 	    $data['name'] = $this->name;
+	if ($this->subtitle != null)
+	    $data['subtitle'] = $this->subtitle;
+	if ($this->description != null)
+	    $data['description'] = $this->description;
 	if ($this->parent != null)
 	    $data['parent'] = $this->parent;
 	if ($this->tooltip != null)
@@ -73,6 +85,10 @@ class Knowledgeroot_Page {
 	    $data['content_collapse'] = $this->content_collapse;
 	if ($this->content_position != null)
 	    $data['content_position'] = $this->content_position;
+	if ($this->show_content_description != null)
+	    $data['show_content_description'] = $this->show_content_description;
+	if ($this->show_table_of_content != null)
+	    $data['show_table_of_content'] = $this->show_table_of_content;
 	if ($this->sorting != null)
 	    $data['sorting'] = $this->sorting;
 	if ($this->time_start != null)
@@ -152,7 +168,7 @@ class Knowledgeroot_Page {
     /**
      * get id
      *
-     * @return type
+     * @return int
      */
     public function getId() {
 	return $this->id;
@@ -160,13 +176,56 @@ class Knowledgeroot_Page {
 
     /**
      * get title
+     *
+     * @return string
      */
     public function getName() {
 	return $this->name;
     }
 
+    /**
+     * set name of page
+     *
+     * @param string $name
+     */
     public function setName($name) {
 	$this->name = $name;
+    }
+
+    /**
+     * get subtitle
+     *
+     * @return string subtitle
+     */
+    public function getSubtitle() {
+	return $this->subtitle;
+    }
+
+    /**
+     * set page description
+     *
+     * @param string $description
+     */
+    public function setDescription($description) {
+	$this->description = $description;
+    }
+
+    /**
+     * get page description
+     *
+     * @return string
+     */
+    public function getDescription() {
+	return $this->description;
+    }
+
+    /**
+     * set subtitle
+     *
+     * @param string $subtitle subtitle
+     */
+    public function setSubtitle($subtitle) {
+	$this->subtitle = $subtitle;
     }
 
     /**
@@ -266,6 +325,42 @@ class Knowledgeroot_Page {
 
     public function getChangedBy() {
 	return $this->changed_by;
+    }
+
+    /**
+     * set show content description
+     *
+     * @param bool $show show content description
+     */
+    public function setShowContentDescription($show) {
+	$this->show_content_description = $show;
+    }
+
+    /**
+     * get show content description
+     *
+     * @return bool
+     */
+    public function getShowContentDescription() {
+	return $this->show_content_description;
+    }
+
+    /**
+     * set show table of content
+     *
+     * @param bool $show
+     */
+    public function setShowTableOfContent($show) {
+	$this->show_table_of_content = $show;
+    }
+
+    /**
+     * get show table of content
+     *
+     * @return bool
+     */
+    public function getShowTableOfContent() {
+	return $this->show_table_of_content;
     }
 
     /**
