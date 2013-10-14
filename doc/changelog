@@ -1,3 +1,6 @@
+20131014 - fhabermann
+* added anker.js to handle ankers
+
 20131010 - fhabermann
 * added option to enable default rights for active user in permission panel
 * enabled automatic set of contentid on fileupload modal
