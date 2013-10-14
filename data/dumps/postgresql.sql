@@ -83,11 +83,15 @@ CREATE TABLE page (
   id integer PRIMARY KEY DEFAULT nextval('seq_page') NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
   content_collapse boolean DEFAULT TRUE NOT NULL,
   content_position content_position DEFAULT 'end' NOT NULL,
+  show_content_description boolean DEFAULT FALSE NOT NULL,
+  show_table_of_content boolean DEFAULT FALSE NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start timestamp without time zone NULL,
   time_end timestamp without time zone NULL,
@@ -106,11 +110,15 @@ CREATE TABLE page_history (
   version integer DEFAULT 0 NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
   content_collapse boolean DEFAULT TRUE NOT NULL,
   content_position content_position DEFAULT 'end' NOT NULL,
+  show_content_description boolean DEFAULT FALSE NOT NULL,
+  show_table_of_content boolean DEFAULT FALSE NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start timestamp without time zone NULL,
   time_end timestamp without time zone NULL,
@@ -248,8 +256,8 @@ BEGIN
 	    pageVersion = (SELECT max(version)+1 FROM page_history WHERE page_id = NEW.id);
     END CASE;
 
-    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, pageVersion, NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    INSERT INTO page_history (page_id, version, parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, pageVersion, NEW.parent, NEW.name, NEW.subtitle, NEW.description, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.show_content_description, NEW.show_table_of_content, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 
     RETURN NEW;
 END;
