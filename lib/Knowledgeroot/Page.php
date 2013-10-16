@@ -321,15 +321,19 @@ class Knowledgeroot_Page {
     }
 
     public function getCreateDate() {
-	return $this->create_date;
+	return new Knowledgeroot_Date($this->create_date);
     }
 
     public function getChangeDate() {
-	return $this->change_date;
+	return new Knowledgeroot_Date($this->change_date);
     }
 
     public function getChangedBy() {
-	return $this->changed_by;
+	return new Knowledgeroot_User($this->changed_by);
+    }
+
+    public function getCreatedBy() {
+	return new Knowledgeroot_User($this->created_by);
     }
 
     /**

@@ -173,6 +173,9 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->showtableofcontent = $page->getShowTableOfContent();
 	    $this->view->contentposition = $page->getContentPosition();
 
+	    $this->view->created_by = $page->getCreatedBy()->getLogin();
+	    $this->view->create_date = $page->getCreateDate()->getUserDate();
+
 	    $rte = Knowledgeroot_Registry::get('rte');
 	    $rte->setName('page_description');
 	    $rte->setContent($page->getDescription());

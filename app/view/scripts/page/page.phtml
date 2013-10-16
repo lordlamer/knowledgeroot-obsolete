@@ -172,7 +172,7 @@
 		<div class="control-group">
 		    <label class="control-label" for="content-title"><?= $this->translate('Created By') ?></label>
 		    <div class="controls">
-			<span class="input-xlarge uneditable-input">admin</span>
+			<span class="input-xlarge uneditable-input"><?= $this->created_by ?></span>
 			<p class="help-block">
 			    <?= $this->translate('Username') ?>
 			</p>
@@ -181,7 +181,7 @@
 		<div class="control-group">
 		    <label class="control-label" for="content-title"><?= $this->translate('Created at') ?></label>
 		    <div class="controls">
-			<span class="input-xlarge uneditable-input">20120606</span>
+			<span class="input-xlarge uneditable-input"><?= $this->create_date ?></span>
 			<p class="help-block">
 			    <?= $this->translate('creation date') ?>
 			</p>
