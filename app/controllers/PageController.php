@@ -178,8 +178,10 @@ class PageController extends Zend_Controller_Action {
 
 	    $rte = Knowledgeroot_Registry::get('rte');
 	    $rte->setName('page_description');
-	    $rte->setContent($page->getDescription());
+	    $rte->setContent($page->getDescription(true));
 	    $this->view->editor = $rte;
+
+	    $this->view->versions = $page->getVersions();
 
 	    // action body
 	    $this->renderScript("page/page.phtml");
@@ -263,6 +265,27 @@ class PageController extends Zend_Controller_Action {
 	}
 
 	return $ret;
+    }
+
+    public function showAction() {
+	// check acl
+	if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('id'), 'show'))
+		$this->_redirect('');
+
+	$this->_helper->layout()->disableLayout();
+
+	if($this->_getParam('version') !== null) {
+	    $page = new Knowledgeroot_Page($this->_getParam('id'), $this->_getParam('version'));
+	} else {
+	    $page = new Knowledgeroot_Page($this->_getParam('id'));
+	}
+
+	$this->view->id = $page->getId();
+	$this->view->name = $page->getName();
+	$this->view->subtitle = $page->getSubtitle();
+	$this->view->alias = $page->getAlias();
+	$this->view->tooltip = $page->getTooltip();
+	$this->view->description = $page->getDescription();
     }
 
 }

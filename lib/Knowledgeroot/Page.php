@@ -24,9 +24,12 @@ class Knowledgeroot_Page {
 	protected $deleted = null;
 	protected $acl = null;
 
-    public function __construct($id = null) {
+    public function __construct($id = null, $version = null) {
 	if ($id != null) {
-	    $this->load((int) $id);
+	    if($version !== null)
+		$this->load((int) $id, (int) $version);
+	    else
+		$this->load((int) $id);
 	}
     }
 
@@ -34,9 +37,21 @@ class Knowledgeroot_Page {
 
     }
 
-    public function load($id) {
-	$content = new Knowledgeroot_Db_Page();
-	$row = $content->find($id);
+    public function load($id, $version = null) {
+	if($version !== null) {
+	    $history = new Knowledgeroot_Db_Page_History();
+
+	    $select = $history->select();
+	    $select->where('page_id = ?', $id);
+	    $select->where('version = ?', $version);
+
+	    $row = $history->fetchAll($select);
+
+	    $this->readOnly = true;
+	} else {
+	    $page = new Knowledgeroot_Db_Page();
+	    $row = $page->find($id);
+	}
 
 	$this->id = $row[0]['id'];
 	$this->parent = $row[0]['parent'];
@@ -218,9 +233,15 @@ class Knowledgeroot_Page {
     /**
      * get page description
      *
+     * @param bool $raw enable raw output
      * @return string
      */
-    public function getDescription() {
+    public function getDescription($raw = false) {
+	if(!$raw && Knowledgeroot_Registry::isRegistered('Knowledgeroot_Content_Parser')) {
+	    $parser = Knowledgeroot_Registry::get('Knowledgeroot_Content_Parser');
+	    return $parser->parse($this->description);
+	}
+
 	return $this->description;
     }
 
@@ -403,6 +424,33 @@ class Knowledgeroot_Page {
 
     public function getAcl() {
 
+    }
+
+    /**
+     * return array with existing versions of page
+     *
+     * return array with integer values of existing versions of page
+     * @return array
+     */
+    public function getVersions() {
+	$ret = array();
+
+	$history = new Knowledgeroot_Db_Page_History();
+
+	$select = $history->select();
+	$select->where('page_id = ?', $this->id);
+	$select->order('version DESC');
+	$rows = $history->fetchAll($select);
+
+	foreach($rows as $value) {
+	    $ret[] = array(
+		'version' => $value['version'],
+		'user' => new Knowledgeroot_User($value['changed_by']),
+		'date' => new Knowledgeroot_Date($value['change_date'])
+		);
+	}
+
+	return $ret;
     }
 }
 

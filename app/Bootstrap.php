@@ -233,6 +233,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: page/show/:pageid/version/:version
+	    $router->addRoute('pageshowversion', new Zend_Controller_Router_Route_Regex('page/show/(\d+)/version/(\d+)', array(
+			'controller' => 'page',
+			'action' => 'show'),
+			    array(
+				1 => 'id',
+				2 => 'version',
+			    )
+	    ));
+
 	    //route: content/new/:pageid
 	    $router->addRoute('contentnew', new Zend_Controller_Router_Route_Regex('content/new/(\d*)', array(
 			'controller' => 'content',
