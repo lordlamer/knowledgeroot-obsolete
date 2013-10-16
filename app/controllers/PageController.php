@@ -280,7 +280,6 @@ class PageController extends Zend_Controller_Action {
 	    $page = new Knowledgeroot_Page($this->_getParam('id'));
 	}
 
-	$this->view->id = $page->getId();
 	$this->view->name = $page->getName();
 	$this->view->subtitle = $page->getSubtitle();
 	$this->view->alias = $page->getAlias();
