@@ -17,8 +17,8 @@
 	    <li><a data-toggle="tab" href="#tab-permission"><?= $this->translate('Permissions') ?></a></li>
 	    <li><a data-toggle="tab" href="#tab-inherit-permission"><?= $this->translate('Inherit Permissions') ?></a></li>
 	    <?php } ?>
-	    <li><a data-toggle="tab" href="#tab-info"><?= $this->translate('Information') ?></a></li>
-	    <li><a data-toggle="tab" href="#tab-history"><?= $this->translate('History') ?></a></li>
+	    <?php if($this->action != 'new') { ?><li><a data-toggle="tab" href="#tab-info"><?= $this->translate('Information') ?></a></li><?php } ?>
+	    <?php if($this->action != 'new') { ?><li><a data-toggle="tab" href="#tab-history"><?= $this->translate('History') ?></a></li><?php } ?>
 	</ul>
 	<div class="tab-content">
 	    <div class="tab-pane active" id="tab-page">
@@ -168,6 +168,7 @@
 		</div>
 
 	    </div>
+	    <?php if($this->action != 'new') { ?>
 	    <div class="tab-pane" id="tab-info">
 		<div class="control-group">
 		    <label class="control-label" for="content-title"><?= $this->translate('Created By') ?></label>
@@ -188,6 +189,7 @@
 		    </div>
 		</div>
 	    </div>
+	    <?php } ?>
 	    <?php if($this->action != 'new') { ?>
 	    <div class="tab-pane" id="tab-history">
 		<table class="table table-striped table-bordered table-hover">
