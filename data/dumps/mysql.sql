@@ -65,11 +65,15 @@ CREATE TABLE page (
   id integer NOT NULL AUTO_INCREMENT,
   parent integer DEFAULT 0 NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
   content_collapse tinyint(1) DEFAULT TRUE NOT NULL,
   content_position ENUM('start', 'end') DEFAULT 'end' NOT NULL,
+  show_content_description tinyint(1) DEFAULT FALSE NOT NULL,
+  show_table_of_content tinyint(1) DEFAULT FALSE NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
@@ -91,11 +95,15 @@ CREATE TABLE page_history (
   version integer DEFAULT 0 NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
   content_collapse tinyint(1) DEFAULT TRUE NOT NULL,
   content_position ENUM('start', 'end') DEFAULT 'end' NOT NULL,
+  show_content_description tinyint(1) DEFAULT FALSE NOT NULL,
+  show_table_of_content tinyint(1) DEFAULT FALSE NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
@@ -239,8 +247,8 @@ DELIMITER ;
 DELIMITER ||
 CREATE TRIGGER pageHistory_trigger_insert AFTER INSERT ON page FOR EACH ROW
 BEGIN
-    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, 1, NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    INSERT INTO page_history (page_id, version, parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, 1, NEW.parent, NEW.name, NEW.subtitle, NEW.description, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.show_content_description, NEW.show_table_of_content, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 END
 ||
 DELIMITER ;
@@ -248,8 +256,8 @@ DELIMITER ;
 DELIMITER ||
 CREATE TRIGGER pageHistory_trigger_update AFTER UPDATE ON page FOR EACH ROW
 BEGIN
-    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM page_history) x WHERE x.page_id = NEW.id), NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    INSERT INTO page_history (page_id, version, parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM page_history) x WHERE x.page_id = NEW.id), NEW.parent, NEW.name, NEW.subtitle, NEW.description, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.show_content_description, NEW.show_table_of_content, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 END
 ||
 DELIMITER ;

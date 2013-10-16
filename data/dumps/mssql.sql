@@ -84,11 +84,15 @@ CREATE TABLE page (
   id int IDENTITY(1,1) NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
   content_collapse bit DEFAULT 1 NOT NULL,
   content_position varchar(5) DEFAULT 'end' NOT NULL CHECK (content_position IN('start', 'end')),
+  show_content_description bit DEFAULT 0 NOT NULL,
+  show_table_of_content bit DEFAULT 0 NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
@@ -114,11 +118,15 @@ CREATE TABLE page_history (
   version integer DEFAULT 0 NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name varchar(255) DEFAULT '' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip varchar(255) DEFAULT '' NOT NULL,
   icon varchar(255) DEFAULT '' NOT NULL,
   alias varchar(255) DEFAULT '' NOT NULL,
   content_collapse bit DEFAULT 1 NOT NULL,
   content_position varchar(5) DEFAULT 'end' NOT NULL CHECK (content_position IN('start', 'end')),
+  show_content_description bit DEFAULT 0 NOT NULL,
+  show_table_of_content bit DEFAULT 0 NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
@@ -273,7 +281,7 @@ BEGIN
 
     INSERT INTO content_history ([version], content_id, [parent], [name], [content], [type], sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
 	SELECT 1 as [version], c.* from inserted i, content c WHERE i.id=c.id;
-	
+
 	SET NOCOUNT OFF;
 END
 
@@ -288,7 +296,7 @@ BEGIN
 
 	INSERT INTO content_history ([version], content_id, [parent], [name], [content], [type], sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
 	SELECT @version as [version], c.* from inserted i, content c WHERE i.id=c.id;
-	
+
 	SET NOCOUNT OFF;
 END
 
@@ -299,9 +307,9 @@ CREATE TRIGGER pageHistory_trigger_insert ON page AFTER INSERT AS
 BEGIN
 	SET NOCOUNT ON;
 
-    INSERT INTO page_history ([version], page_id, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    INSERT INTO page_history ([version], page_id, parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
 	SELECT 1 as [version], p.* from inserted i, page p WHERE i.id=p.id;
-	
+
 	SET NOCOUNT OFF;
 END
 
@@ -314,9 +322,9 @@ BEGIN
 
 	SELECT  @version = (max(h.version)+1) FROM inserted i, page_history h WHERE i.id=h.page_id;
 
-    INSERT INTO page_history (page_id, [version], parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    INSERT INTO page_history (page_id, [version], parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
 	SELECT @version as [version], p.* from inserted i, page p WHERE i.id=p.id;
-	
+
 	SET NOCOUNT OFF;
 END
 
@@ -329,7 +337,7 @@ BEGIN
 
     INSERT INTO file_history ([version], file_id, parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
 	SELECT 1 as [version], f.* from inserted i, [file] f WHERE i.id=f.id;
-	
+
 	SET NOCOUNT OFF;
 END
 
@@ -344,7 +352,7 @@ BEGIN
 
     INSERT INTO file_history (file_id, [version], parent, hash, name, size, type, downloads, created_by, create_date, changed_by, change_date, deleted)
     SELECT @version as [version], f.* from inserted i, [file] f WHERE i.id=f.id;
-	
+
 	SET NOCOUNT OFF;
 END
 

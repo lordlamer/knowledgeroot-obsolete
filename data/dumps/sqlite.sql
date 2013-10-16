@@ -61,11 +61,15 @@ CREATE TABLE page (
   id integer PRIMARY KEY DEFAULT auto_incrementing NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name text DEFAULT '' NOT NULL,
+  subtitle text DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip text DEFAULT '' NOT NULL,
   icon text DEFAULT '' NOT NULL,
   alias text DEFAULT '' NOT NULL,
   content_collapse integer DEFAULT TRUE NOT NULL,
   content_position text DEFAULT 'end' NOT NULL,
+  show_content_description integer DEFAULT FALSE NOT NULL,
+  show_table_of_content integer DEFAULT FALSE NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
@@ -84,11 +88,15 @@ CREATE TABLE page_history (
   version integer DEFAULT 0 NOT NULL,
   parent integer DEFAULT 0 NOT NULL,
   name text DEFAULT '' NOT NULL,
+  subtitle text DEFAULT '' NOT NULL,
+  description text DEFAULT '' NOT NULL,
   tooltip text DEFAULT '' NOT NULL,
   icon text DEFAULT '' NOT NULL,
   alias text DEFAULT '' NOT NULL,
   content_collapse integer DEFAULT TRUE NOT NULL,
   content_position text DEFAULT 'end' NOT NULL,
+  show_content_description integer DEFAULT FALSE NOT NULL,
+  show_table_of_content integer DEFAULT FALSE NOT NULL,
   sorting integer DEFAULT 0 NOT NULL,
   time_start datetime NULL,
   time_end datetime NULL,
@@ -206,14 +214,14 @@ END;
 -- trigger function for page table
 CREATE TRIGGER pageHistory_trigger_insert AFTER INSERT ON page FOR EACH ROW
 BEGIN
-    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, 1, NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    INSERT INTO page_history (page_id, version, parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, 1, NEW.parent, NEW.name, NEW.subtitle, NEW.description, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.show_content_description, NEW.show_table_of_content, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 END;
 
 CREATE TRIGGER pageHistory_trigger_update AFTER UPDATE ON page FOR EACH ROW
 BEGIN
-    INSERT INTO page_history (page_id, version, parent, name, tooltip, icon, alias, content_collapse, content_position, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
-    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM page_history) x WHERE x.page_id = NEW.id), NEW.parent, NEW.name, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
+    INSERT INTO page_history (page_id, version, parent, name, subtitle, description, tooltip, icon, alias, content_collapse, content_position, show_content_description, show_table_of_content, sorting, time_start, time_end, created_by, create_date, changed_by, change_date, active, deleted)
+    VALUES (NEW.id, (SELECT max(x.version)+1 FROM (SELECT * FROM page_history) x WHERE x.page_id = NEW.id), NEW.parent, NEW.name, NEW.subtitle, NEW.description, NEW.tooltip, NEW.icon, NEW.alias, NEW.content_collapse, NEW.content_position, NEW.show_content_description, NEW.show_table_of_content, NEW.sorting, NEW.time_start, NEW.time_end, NEW.created_by, NEW.create_date, NEW.changed_by, NEW.change_date, NEW.active, NEW.deleted);
 END;
 
 
