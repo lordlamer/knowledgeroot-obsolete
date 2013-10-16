@@ -35,7 +35,11 @@ class PageController extends Zend_Controller_Action {
 	// set page for view
 	$this->view->id = $page->getId();
 	$this->view->title = $page->getName();
-	$this->view->subtitle = "KB123456";
+	$this->view->subtitle = $page->getSubtitle();
+	$this->view->description = $page->getDescription();
+	$this->view->contentcollapse = $page->getContentCollapse();
+	$this->view->showpagedescription = $page->getShowContentDescription();
+	$this->view->showtableofcontent = $page->getShowTableOfContent();
 
 	// set contents for view
 	$this->view->contents = $contents;
@@ -69,9 +73,23 @@ class PageController extends Zend_Controller_Action {
 	    $page->setSubtitle($this->_getParam('page_subtitle'));
 	    $page->setDescription($this->_getParam('page_description'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
-	    $page->setContentCollapse($this->_getParam('contentcollapse'));
-	    $page->setShowContentDescription($this->_getParam('showpagedescription'));
-	    $page->setShowTableOfContent($this->_getParam('showtableofcontent'));
+
+	    if($this->_getParam('contentcollapse') == 1)
+		$page->setContentCollapse(true);
+	    else
+		$page->setContentCollapse(false);
+
+	    if($this->_getParam('showpagedescription') == 1)
+		$page->setShowContentDescription(true);
+	    else
+		$page->setShowContentDescription(false);
+
+	    if($this->_getParam('showtableofcontent') == 1)
+		$page->setShowTableOfContent(true);
+	    else
+		$page->setShowTableOfContent(false);
+
+	    $page->setContentPosition($this->_getParam('contentposition'));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -117,9 +135,23 @@ class PageController extends Zend_Controller_Action {
 	    $page->setSubtitle($this->_getParam('page_subtitle'));
 	    $page->setDescription($this->_getParam('page_description'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
-	    $page->setContentCollapse($this->_getParam('contentcollapse'));
-	    $page->setShowContentDescription($this->_getParam('showpagedescription'));
-	    $page->setShowTableOfContent($this->_getParam('showtableofcontent'));
+
+	    if($this->_getParam('contentcollapse') == 1)
+		$page->setContentCollapse(true);
+	    else
+		$page->setContentCollapse(false);
+
+	    if($this->_getParam('showpagedescription') == 1)
+		$page->setShowContentDescription(true);
+	    else
+		$page->setShowContentDescription(false);
+
+	    if($this->_getParam('showtableofcontent') == 1)
+		$page->setShowTableOfContent(true);
+	    else
+		$page->setShowTableOfContent(false);
+
+	    $page->setContentPosition($this->_getParam('contentposition'));
 	    $page->save();
 
 	    if ($this->_getParam('button') == 'save') {
@@ -139,6 +171,7 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->contentcollapse = $page->getContentCollapse();
 	    $this->view->showpagedescription = $page->getShowContentDescription();
 	    $this->view->showtableofcontent = $page->getShowTableOfContent();
+	    $this->view->contentposition = $page->getContentPosition();
 
 	    $rte = Knowledgeroot_Registry::get('rte');
 	    $rte->setName('page_description');

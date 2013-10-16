@@ -81,14 +81,20 @@ class Knowledgeroot_Page {
 	    $data['icon'] = $this->icon;
 	if ($this->alias != null)
 	    $data['alias'] = $this->alias;
-	if ($this->content_collapse != null)
-	    $data['content_collapse'] = $this->content_collapse;
+	if ($this->content_collapse == true)
+	    $data['content_collapse'] = Knowledgeroot_Db::true();
+	if ($this->content_collapse == false)
+	    $data['content_collapse'] = Knowledgeroot_Db::false();
 	if ($this->content_position != null)
 	    $data['content_position'] = $this->content_position;
-	if ($this->show_content_description != null)
-	    $data['show_content_description'] = $this->show_content_description;
-	if ($this->show_table_of_content != null)
-	    $data['show_table_of_content'] = $this->show_table_of_content;
+	if ($this->show_content_description == true)
+	    $data['show_content_description'] = Knowledgeroot_Db::true();
+	if ($this->show_content_description == false)
+	    $data['show_content_description'] = Knowledgeroot_Db::false();
+	if ($this->show_table_of_content == true)
+	    $data['show_table_of_content'] = Knowledgeroot_Db::true();
+	if ($this->show_table_of_content == false)
+	    $data['show_table_of_content'] = Knowledgeroot_Db::false();
 	if ($this->sorting != null)
 	    $data['sorting'] = $this->sorting;
 	if ($this->time_start != null)
@@ -125,7 +131,6 @@ class Knowledgeroot_Page {
 	$data['change_date'] = $this->change_date;
 
 	$page = new Knowledgeroot_Db_Page();
-
 	if ($this->id == null) {
 	    $this->id = $page->insert($data);
 	} else {
@@ -146,7 +151,7 @@ class Knowledgeroot_Page {
 	$page = new Knowledgeroot_Db_Page();
 
 	if ($markOnly == true) {
-	    $data = array('deleted' => 1);
+	    $data = array('deleted' => Knowledgeroot_Db::true());
 	    $page->update($data, 'id = ' . $id);
 	} else {
 	    $page->delete('id = ' . $id);

@@ -98,9 +98,9 @@
 		<div class="control-group">
 		    <label class="control-label" for="content-title"><?= $this->translate('Position for new Content') ?>:</label>
 		    <div class="controls">
-			<select>
-			    <option value=""><?= $this->translate('at beginning') ?></option>
-			    <option value=""><?= $this->translate('at the end') ?></option>
+			<select name="contentposition">
+			    <option value="start" <?php if($this->contentposition == 'start') echo "selected=\"selected\""; ?>><?= $this->translate('at beginning') ?></option>
+			    <option value="end" <?php if($this->contentposition == 'end') echo "selected=\"selected\""; ?>><?= $this->translate('at the end') ?></option>
 			</select>
 			<p class="help-block">
 			    <?= $this->translate('Page') ?>
@@ -112,17 +112,17 @@
 		    <label class="control-label" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
 		    <div class="controls">
 			<label class="checkbox">
-			    <input type="checkbox" <?php if($this->contentcollapse) echo "checked=\"checked\""; ?>name="contentcollapse" value="1" />
+			    <input type="checkbox" <?php if($this->contentcollapse) echo "checked=\"checked\" "; ?>name="contentcollapse" value="1" />
 			    <?= $this->translate('Show content collapsed') ?>
 			</label>
 
 			<label class="checkbox">
-			    <input type="checkbox" <?php if($this->showpagedescription) echo "checked=\"checked\""; ?>name="showpagedescription" value="1" />
+			    <input type="checkbox" <?php if($this->showpagedescription) echo "checked=\"checked\" "; ?>name="showpagedescription" value="1" />
 			    <?= $this->translate('Show page description') ?>
 			</label>
 
 			<label class="checkbox">
-			    <input type="checkbox" <?php if($this->showtableofcontent) echo "checked=\"checked\""; ?>name="showtableofcontent" value="1" />
+			    <input type="checkbox" <?php if($this->showtableofcontent) echo "checked=\"checked\" "; ?>name="showtableofcontent" value="1" />
 			    <?= $this->translate('Show table of content') ?>
 			</label>
 

@@ -14,15 +14,17 @@
     <?php if(!empty($this->subtitle)) { ?><small><?= $this->subtitle ?></small><?php } ?>
     </h1>
 </div>
-
+<?php if($this->showpagedescription || $this->showtableofcontent) { ?>
 <div class="row-fluid">
 <!-- page description -->
+    <?php if($this->showpagedescription) { ?>
     <div class="span8">
-	page description
+	<?= $this->description ?>
     </div>
+    <?php } ?>
 
 <!-- table of contents -->
-
+    <?php if($this->showtableofcontent) { ?>
     <div class="well span4 pull-right">
 	<h2><?= $this->translate('contents') ?></h2>
 	<ol>
@@ -35,7 +37,9 @@
     ?>
 	</ol>
     </div>
+    <?php } ?>
 </div>
+<?php } ?>
 <!-- contents -->
 <?php
 foreach ($this->contents as $content) { // run for each content
@@ -50,7 +54,7 @@ foreach ($this->contents as $content) { // run for each content
     	    </a>
 
     	</div>
-    	<div id="collapse<?php echo $content->getId(); ?>" class="accordion-body collapse<?php if ($this->open) echo ' in'; ?>">
+    	<div id="collapse<?php echo $content->getId(); ?>" class="accordion-body collapse<?php if ($this->open || $this->contentcollapse) echo ' in'; ?>">
 
     	    <div class="accordion-inner" style="background-color:#ffffff;">
     		<div class="btn-toolbar">
