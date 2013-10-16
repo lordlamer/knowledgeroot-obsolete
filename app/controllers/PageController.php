@@ -71,6 +71,8 @@ class PageController extends Zend_Controller_Action {
 	    $page->setParent($this->_getParam('page_parent'));
 	    $page->setName($this->_getParam('page_title'));
 	    $page->setSubtitle($this->_getParam('page_subtitle'));
+	    $page->setAlias($this->_getParam('alias'));
+	    $page->setTooltip($this->_getParam('tooltip'));
 	    $page->setDescription($this->_getParam('page_description'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
 
@@ -133,6 +135,8 @@ class PageController extends Zend_Controller_Action {
 	    $page->setParent($this->_getParam('page_parent'));
 	    $page->setName($this->_getParam('page_title'));
 	    $page->setSubtitle($this->_getParam('page_subtitle'));
+	    $page->setAlias($this->_getParam('alias'));
+	    $page->setTooltip($this->_getParam('tooltip'));
 	    $page->setDescription($this->_getParam('page_description'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
 
@@ -168,6 +172,8 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->parent = $page->getParent();
 	    $this->view->title = $page->getName();
 	    $this->view->subtitle = $page->getSubtitle();
+	    $this->view->alias = $page->getAlias();
+	    $this->view->tooltip = $page->getTooltip();
 	    $this->view->contentcollapse = $page->getContentCollapse();
 	    $this->view->showpagedescription = $page->getShowContentDescription();
 	    $this->view->showtableofcontent = $page->getShowTableOfContent();
