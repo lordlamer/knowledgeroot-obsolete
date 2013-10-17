@@ -1,0 +1,85 @@
+<?php
+/**
+ * load config
+ */
+$config = Zend_Registry::get('config');
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<title>Knowledgeroot</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<base href="<?= $config->base->base_url ?>" />
+	<?php echo $this->layout()->header; ?>
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+	<style type="text/css">
+	    body {
+		background-color: #fdfdfd;
+	    }
+
+
+	    /* Footer
+	    -------------------------------------------------- */
+	    .footer {
+		background-color: #eee;
+		min-width: 940px;
+		padding: 30px 0;
+		text-shadow: 0 1px 0 #fff;
+		border-top: 1px solid #e5e5e5;
+		-webkit-box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		-moz-box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		/*          box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		*/}
+	    .footer p {
+		color: #555;
+	    }
+	</style>
+
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-filestyle.js"></script>
+
+	<!-- load the dojo toolkit base -->
+	<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"
+		djConfig="parseOnLoad: false, async:true">
+	</script>
+
+
+
+	<style type="text/css">
+	    @import "http://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dijit/themes/claro/claro.css";
+	</style>
+    </head>
+
+    <body class="claro">
+welcome
+	<!-- style file uploads -->
+	<script>
+	    jQuery(function($) {
+		$(':file').filestyle();
+	    });
+	</script>
+	<script src="js/accordion-icon.js"></script>
+	<script src="js/toggle-content.js"></script>
+	<script src="js/permissionpanel.js"></script>
+	<script src="js/memberpanel.js"></script>
+	<script src="js/anker.js"></script>
+    <!-- <script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script> -->
+    </body>
+</html>
