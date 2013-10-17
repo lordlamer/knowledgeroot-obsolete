@@ -1,0 +1,7 @@
+composer.lock
+data/sessions/*
+data/cache/*
+data/files/*
+data/lucene/*
+vendor/*
+module/*
