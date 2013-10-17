@@ -68,7 +68,8 @@ $config = Zend_Registry::get('config');
     </head>
 
     <body class="claro">
-welcome
+	<?php echo $this->layout()->content; ?>
+
 	<!-- style file uploads -->
 	<script>
 	    jQuery(function($) {
