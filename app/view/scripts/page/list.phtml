@@ -18,14 +18,14 @@
 <div class="row-fluid">
 <!-- page description -->
     <?php if($this->showpagedescription) { ?>
-    <div class="span8">
+    <div class="<?php if($this->showpagedescription) echo "span8"; else echo "span12"; ?>">
 	<?= $this->description ?>
     </div>
     <?php } ?>
 
 <!-- table of contents -->
     <?php if($this->showtableofcontent) { ?>
-    <div class="well span4 pull-right">
+    <div class="well <?php if($this->showpagedescription) echo "span4"; else echo "span12"; ?> pull-right">
 	<h2><?= $this->translate('contents') ?></h2>
 	<ol>
     <?php
