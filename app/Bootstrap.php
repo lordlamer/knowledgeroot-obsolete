@@ -224,6 +224,25 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: page/move/:pageid
+	    $router->addRoute('pagemove', new Zend_Controller_Router_Route_Regex('page/move/(\d+)', array(
+			'controller' => 'page',
+			'action' => 'move'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: page/move/:pageid/to/:targetid
+	    $router->addRoute('pagemovetotarget', new Zend_Controller_Router_Route_Regex('page/move/(\d+)/to/(\d+)', array(
+			'controller' => 'page',
+			'action' => 'move'),
+			    array(
+				1 => 'id',
+				2 => 'target',
+			    )
+	    ));
+
 	    //route: page/delete/:pageid
 	    $router->addRoute('pagedelete', new Zend_Controller_Router_Route_Regex('page/delete/(\d+)', array(
 			'controller' => 'page',

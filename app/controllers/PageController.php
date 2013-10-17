@@ -207,7 +207,32 @@ class PageController extends Zend_Controller_Action {
     }
 
     public function moveAction() {
-	// action body
+	// acl checks
+	if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('page/' . $this->_getParam('id'));
+
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
+
+	if($this->_getParam('target') !== null) {
+	    // acl checks
+	    // check for new root page
+	    if($this->_getParam('target') == 0 && !Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))
+		    $this->_redirect('');
+
+	    // check if page note the page itself
+	    if($this->_getParam('target') == $this->_getParam('id'))
+		$this->_redirect('');
+
+	    $page = new Knowledgeroot_Page($this->_getParam('id'));
+	    $page->setParent($this->_getParam('target'));
+	    $page->save();
+
+	    $this->view->pageid = $this->_getParam('id');
+	    $this->view->target = $this->_getParam('target');
+	} else {
+	    $this->view->pageid = $this->_getParam('id');
+	}
     }
 
     public function jsontreeAction() {

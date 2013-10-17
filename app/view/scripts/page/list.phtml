@@ -3,7 +3,7 @@
     <ul class="nav nav-pills">
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'new')) { ?><li><a href="page/new/<?php echo $this->id; ?>"><?= $this->translate('add new page') ?></a></li><?php } ?>
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'edit')) { ?><li><a href="page/edit/<?php echo $this->id; ?>"><?= $this->translate('edit page') ?></a></li><?php } ?>
-	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'edit')) { ?><li><a href="javascript:;" onclick="window.open('page/move/<?php echo $this->id; ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move page') ?></a></li><?php } ?>
+	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'edit')) { ?><li><a href="javascript:;" onclick="window.open('page/move/<?php echo $this->id; ?>','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move page') ?></a></li><?php } ?>
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'delete')) { ?><li><a href="javascript:;" onclick="if(confirm('<?= $this->translate('Do you really want to delete this page?') ?>')) { location.href='page/delete/<?php echo $this->id; ?>'; } else { return false; }"><?= $this->translate('delete page') ?></a></li><?php } ?>
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'new_content')) { ?><li><a href="content/new/<?php echo $this->id; ?>"><?= $this->translate('add new content') ?></a></li><?php } ?>
     </ul>

@@ -2,6 +2,7 @@
 * composer update
 * added gitignore
 * using better layout for page description and table of content
+* enable move of page
 
 20131016 - fhabermann
 * added subtitle, table of contents and descripion for page
