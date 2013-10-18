@@ -80,6 +80,8 @@ class ContentController extends Zend_Controller_Action {
 	    $this->view->title = $content->getName();
 
 	    $this->view->page = $content->getParent();
+	    $parent = new Knowledgeroot_Page($content->getParent());
+	    $this->view->pagename = $parent->getName();
 
 	    $this->view->created_by = $content->getCreatedBy()->getLogin();
 	    $this->view->create_date = $content->getCreateDate()->getUserDate();
