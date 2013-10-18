@@ -61,7 +61,7 @@ foreach ($this->contents as $content) { // run for each content
     		    <div class="btn-group">
 			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="content/edit/<?php echo $content->getId(); ?>"><?= $this->translate('edit') ?></a><?php } ?>
     			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { ?><a class="btn" href="javascript:;" onclick="if(confirm('<?= $this->translate('Do you really want to delete?') ?>')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }"><?= $this->translate('delete') ?></a><?php } ?>
-    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('move/<?php echo $content->getId(); ?>','Knowledgeroot','width=310,height=400,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move') ?></a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('content/move/<?php echo $content->getId(); ?>','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move') ?></a><?php } ?>
     			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('print') ?></a><?php } ?>
     		    </div>
     		    <div class="btn-group pull-right">

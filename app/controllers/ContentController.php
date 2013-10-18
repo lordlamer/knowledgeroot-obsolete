@@ -103,7 +103,28 @@ class ContentController extends Zend_Controller_Action {
     }
 
     public function moveAction() {
-	// action body
+	// acl checks
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('');
+
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
+
+	if($this->_getParam('target') !== null) {
+	    // check if user has page new_content rights on target
+	    if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('target'), 'new_content'))
+		    $this->_redirect('page/' . $this->_getParam('id'));
+
+	    $content = new Knowledgeroot_Content($this->_getParam('id'));
+	    $content->setParent($this->_getParam('target'));
+	    $content->save();
+
+	    $this->view->pageid = $content->getParent();
+	    $this->view->contentid = $this->_getParam('id');
+	    $this->view->target = $this->_getParam('target');
+	} else {
+	    $this->view->contentid = $this->_getParam('id');
+	}
     }
 
     public function moveDownAction() {

@@ -220,6 +220,10 @@ class PageController extends Zend_Controller_Action {
 	    if($this->_getParam('target') == 0 && !Knowledgeroot_Acl::iAmAllowed('manageRootPages', 'new'))
 		    $this->_redirect('');
 
+	    // check if user has page new rights on target
+	    if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('target'), 'new'))
+		    $this->_redirect('page/' . $this->_getParam('id'));
+
 	    // check if page note the page itself
 	    if($this->_getParam('target') == $this->_getParam('id'))
 		$this->_redirect('');

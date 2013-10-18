@@ -125,11 +125,14 @@ class Knowledgeroot_Content {
 	    $content->update($data, 'id = ' . $this->id);
 	}
 
-	// get acl object
-	$krAcl = Knowledgeroot_Registry::get('acl');
+	// check if acl is changed
+	if($this->acl !== null) {
+		// get acl object
+		$krAcl = Knowledgeroot_Registry::get('acl');
 
-	// save acl
-	$krAcl->saveAclForResource('content_'.$this->id, $this->acl);
+		// save acl
+		$krAcl->saveAclForResource('content_'.$this->id, $this->acl);
+	}
     }
 
     public function delete($id = null, $markOnly = true) {

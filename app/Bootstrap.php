@@ -280,6 +280,25 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: content/move/:contentid
+	    $router->addRoute('contentmove', new Zend_Controller_Router_Route_Regex('content/move/(\d+)', array(
+			'controller' => 'content',
+			'action' => 'move'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
+	    //route: content/move/:contentid/to/:targetid
+	    $router->addRoute('contentmovetotarget', new Zend_Controller_Router_Route_Regex('content/move/(\d+)/to/(\d+)', array(
+			'controller' => 'content',
+			'action' => 'move'),
+			    array(
+				1 => 'id',
+				2 => 'target',
+			    )
+	    ));
+
 	    //route: content/delete/:contentid/page/:pageid
 	    $router->addRoute('contentdelete', new Zend_Controller_Router_Route_Regex('content/delete/(\d+)', array(
 			'controller' => 'content',
