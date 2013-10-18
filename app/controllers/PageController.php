@@ -170,6 +170,8 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->action = 'edit';
 	    $this->view->id = $id;
 	    $this->view->parent = $page->getParent();
+	    $parent = new Knowledgeroot_Page($page->getParent());
+	    $this->view->parentname = $parent->getName();
 	    $this->view->title = $page->getName();
 	    $this->view->subtitle = $page->getSubtitle();
 	    $this->view->alias = $page->getAlias();
@@ -237,6 +239,11 @@ class PageController extends Zend_Controller_Action {
 	} else {
 	    $this->view->pageid = $this->_getParam('id');
 	}
+    }
+
+    public function selectAction() {
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
     }
 
     public function jsontreeAction() {

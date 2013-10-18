@@ -24,11 +24,13 @@
 	    <div class="tab-pane active" id="tab-page">
 		<fieldset>
 		    <div class="control-group">
-			<label class="control-label" for="content-title"><?= $this->translate('Page') ?></label>
+			<label class="control-label" for="content-title"><?= $this->translate('Parent Page') ?></label>
 			<div class="controls">
-			    <input type="text" class="input-xlarge span2" id="content-title" size="255" name="page_parent" value="<?= $this->parent ?>">
+			    <input type="text" placeholder="<?= $this->translate('select a page') ?>" disabled="true" class="input-xlarge span2" id="page-parent-name" size="255" name="page_parent_name" value="<?= $this->parentname ?>">&nbsp;
+			    <input type="hidden" id="page-parent" size="255" name="page_parent" value="<?= $this->parent ?>">&nbsp;
+			    <input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('page/select','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
 			    <p class="help-block">
-				<?= $this->translate('Parent Page') ?>
+				<?= $this->translate('Select a parent page') ?>
 			    </p>
 			</div>
 		    </div>
@@ -222,3 +224,10 @@
 	<button class="btn btn-danger" type="submit" name="button" value="close"><?= $this->translate('Close') ?></button>&nbsp;
     </div>
 </form>
+
+<script>
+    function selectPage(id, name) {
+	$('#page-parent').val(id);
+	$('#page-parent-name').val(name);
+    }
+</script>
