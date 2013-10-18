@@ -40,6 +40,8 @@ class ContentController extends Zend_Controller_Action {
 	    $this->view->editor = $rte;
 
 	    $this->view->page = $this->_getParam('id');
+	    $parent = new Knowledgeroot_Page($this->_getParam('id'));
+	    $this->view->pagename = $parent->getName();
 
 	    $this->renderScript("content/content.phtml");
 	}
