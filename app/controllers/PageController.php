@@ -106,6 +106,8 @@ class PageController extends Zend_Controller_Action {
 	} else {
 	    $this->view->action = 'new';
 	    $this->view->parent = $this->_getParam('id');
+	    $parent = new Knowledgeroot_Page($this->_getParam('id'));
+	    $this->view->parentname = $parent->getName();
 
 	    $rte = Knowledgeroot_Registry::get('rte');
 	    $rte->setName('page_description');
