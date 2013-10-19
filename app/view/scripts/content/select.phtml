@@ -1,0 +1,42 @@
+<div style="padding: 5px;">
+<h2><?= $this->translate('Select Page') ?></h2>
+<div class="well">
+    <div class="btn-group">
+	<!-- <a class="btn" href="#"><i class="icon-refresh"></i></a> -->
+	<a class="btn" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="icon-plus"></i></a>
+	<a class="btn" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="icon-minus"></i></a>
+    </div>
+    <script type="text/javascript">
+	require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
+
+	    var store = new dojo.data.ItemFileReadStore({
+		url: "./page/jsontree"
+	    });
+
+	    var treeModel = new dijit.tree.ForestStoreModel({
+		store: store,
+		query: {"type": "root"},
+		rootId: "root",
+		rootLabel: "Knowledgeroot",
+		childrenAttrs: ["children"]
+	    });
+
+	    new dijit.Tree({
+		model: treeModel,
+		showRoot: false,
+		persist: true,
+		onClick: function(item){
+		    // Get the URL from the item, and navigate to it
+		    //location.href = 'page/move/<?= $this->pageid ?>/to/' + item.id;
+			window.opener.selectPage(item.id, item.name);
+			window.close();
+		}
+	    }, "treeOne");
+	});
+    </script>
+
+    <div id="treeOne"></div>
+</div>
+
+<button class="btn btn-primary pull-right" onclick="window.close();"><?= $this->translate('close') ?></button>
+</div>
