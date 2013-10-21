@@ -1,6 +1,7 @@
 <div style="padding: 5px;">
-<h2><?= $this->translate('Select Page') ?></h2>
-<div class="well">
+<h2><?= $this->translate('Select Content') ?></h2>
+<div class="row-fluid">
+<div class="well span4">
     <div class="btn-group">
 	<!-- <a class="btn" href="#"><i class="icon-refresh"></i></a> -->
 	<a class="btn" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="icon-plus"></i></a>
@@ -27,9 +28,7 @@
 		persist: true,
 		onClick: function(item){
 		    // Get the URL from the item, and navigate to it
-		    //location.href = 'page/move/<?= $this->pageid ?>/to/' + item.id;
-			window.opener.selectPage(item.id, item.name);
-			window.close();
+		    location.href = 'content/select/' + item.id;
 		}
 	    }, "treeOne");
 	});
@@ -37,6 +36,19 @@
 
     <div id="treeOne"></div>
 </div>
-
+<div class="span8">
+<?php
+	if(is_array($this->contents)) {
+		echo '<ul class="nav nav-tabs nav-stacked">';
+		foreach($this->contents as $key => $value) {
+			echo "<li><a onclick=\"window.opener.selectContent('".$value->getId()."', '".$value->getName()."'); window.close();\" href=\"javascript:;\">" . $value->getName() . "</a></li>\n";
+		}
+		echo '</ul>';
+	} else {
+		echo $this->translate('Please select a page!');
+	}
+?>
+</div>
+</div>
 <button class="btn btn-primary pull-right" onclick="window.close();"><?= $this->translate('close') ?></button>
 </div>

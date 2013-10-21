@@ -89,7 +89,7 @@ foreach ($this->contents as $content) { // run for each content
 		?>
 		<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?>
 		<form>
-		    <a onclick="$('#parent').val('<?= $content->getId() ?>'); $('#fileUpload').modal('show');" href="javascript:;" class="btn btn-primary btn-mini"><i class="icon-plus icon-white" style="margin-right:2px;"></i><?= $this->translate('add') ?></a>
+		    <a onclick="selectContent('<?= $content->getId() ?>', '<?= $content->getName() ?>'); $('#fileUpload').modal('show');" href="javascript:;" class="btn btn-primary btn-mini"><i class="icon-plus icon-white" style="margin-right:2px;"></i><?= $this->translate('add') ?></a>
 		</form>
 		<?php } ?>
     	    </div>

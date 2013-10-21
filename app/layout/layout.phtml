@@ -79,11 +79,13 @@ $config = Zend_Registry::get('config');
 
 		    <fieldset>
 			<div class="control-group">
-			    <label class="control-label" for="content-title"><h4><?= $this->translate('Content Id') ?></h4></label>
+			    <label class="control-label" for="content-title"><h4><?= $this->translate('Content') ?></h4></label>
 			    <div class="controls">
-				<input type="text" class="input-xlarge span2" id="parent" size="255" name="parent" value="">
+				<input type="text" placeholder="<?= $this->translate('select content') ?>" disabled="true" class="input-xlarge span2" id="parent-name" size="255" name="parent_name" value="">&nbsp;
+				<input type="hidden" id="parent" size="255" name="parent" value="">&nbsp;
+				<input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('content/select','Knowledgeroot','width=800,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
 				<p class="help-block">
-				    <?= $this->translate('Id for Content') ?>
+				    <?= $this->translate('Select content') ?>
 				</p>
 			    </div>
 			</div>
@@ -108,6 +110,12 @@ $config = Zend_Registry::get('config');
 		    <button class="btn" data-dismiss="modal"><?= $this->translate('Close') ?></button>
 		</div>
 	    </form>
+	    <script>
+		function selectContent(id, name) {
+		    $('#parent').val(id);
+		    $('#parent-name').val(name);
+		}
+	    </script>
 	</div>
 
 	<div class="navbar navbar-inverse navbar-fixed-top" style="border-bottom: 3px solid #F88529;">

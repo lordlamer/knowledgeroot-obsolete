@@ -299,6 +299,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: content/select/:pageid
+	    $router->addRoute('contentselect', new Zend_Controller_Router_Route_Regex('content/select/(\d+)', array(
+			'controller' => 'content',
+			'action' => 'select'),
+			    array(
+				1 => 'id',
+			    )
+	    ));
+
 	    //route: content/delete/:contentid/page/:pageid
 	    $router->addRoute('contentdelete', new Zend_Controller_Router_Route_Regex('content/delete/(\d+)', array(
 			'controller' => 'content',

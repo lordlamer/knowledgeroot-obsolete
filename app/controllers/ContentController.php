@@ -167,5 +167,14 @@ class ContentController extends Zend_Controller_Action {
 	$this->view->title = $content->getName();
 	$this->view->content = $content->getContent();
     }
+
+    public function selectAction() {
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
+
+	if($this->_getParam('id') != null) {
+	    $this->view->contents = Knowledgeroot_Content::getContents(new Knowledgeroot_Page($this->_getParam('id')));
+	}
+    }
 }
 
