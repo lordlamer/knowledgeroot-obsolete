@@ -336,9 +336,11 @@ class Knowledgeroot_Content {
     /**
      * get all contents on this page as Knowledgeroot_Content object
      *
+     * @param object $page Knowledgeroot_Page object
+     * @param string $sorting column to sort by also with ASC|DESC
      * return $array
      */
-    public static function getContents(Knowledgeroot_Page $page) {
+    public static function getContents(Knowledgeroot_Page $page, $sorting = 'sorting') {
 	$ret = array();
 
 	// get acl
@@ -348,7 +350,7 @@ class Knowledgeroot_Content {
 	$select = $content->select();
 	$select->where('parent = ?', $page->getId());
 	$select->where('deleted = '.Knowledgeroot_Db::false());
-	$select->order('sorting');
+	$select->order($sorting);
 	$rows = $content->fetchAll($select);
 
 	foreach($rows as $value) {
