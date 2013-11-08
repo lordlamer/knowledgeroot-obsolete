@@ -171,6 +171,7 @@ class Knowledgeroot_Content {
 	if($this->readOnly)
 	    return;
 
+
     }
 
     public function moveDown() {
@@ -347,6 +348,7 @@ class Knowledgeroot_Content {
 	$select = $content->select();
 	$select->where('parent = ?', $page->getId());
 	$select->where('deleted = '.Knowledgeroot_Db::false());
+	$select->order('sorting');
 	$rows = $content->fetchAll($select);
 
 	foreach($rows as $value) {
