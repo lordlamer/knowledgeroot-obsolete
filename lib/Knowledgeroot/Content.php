@@ -167,17 +167,78 @@ class Knowledgeroot_Content {
 	$this->parent = $pageId;
     }
 
+    /**
+     * move content up
+     *
+     * @return type
+     */
     public function moveUp() {
 	if($this->readOnly)
 	    return;
 
+	// get all contents from this page
+	$contents = $this->getContents(new Knowledgeroot_Page($this->getParent()));
+	$prev = null;
 
+	// find previous content
+	foreach($contents as $content) {
+	    // check if we are itself so we have a previous content
+	    if($content->getId() == $this->getId()) {
+		// check that previuos is not null
+		if($prev === null)
+		    return;
+
+		// save my sort number
+		$sort = $this->getSorting();
+
+		// set new sorting for this content
+		$this->setSorting($prev->getSorting());
+		$this->save();
+
+		// set new sorting for other content
+		$prev->setSorting($sort);
+		$prev->save();
+	    }
+
+	    $prev = $content;
+	}
     }
 
+    /**
+     * move content down
+     *
+     * @return type
+     */
     public function moveDown() {
 	if($this->readOnly)
 	    return;
 
+	// get all contents from this page
+	$contents = $this->getContents(new Knowledgeroot_Page($this->getParent()), 'sorting DESC');
+	$prev = null;
+
+	// find previous content
+	foreach($contents as $content) {
+	    // check if we are itself so we have a previous content
+	    if($content->getId() == $this->getId()) {
+		// check that previuos is not null
+		if($prev === null)
+		    return;
+
+		// save my sort number
+		$sort = $this->getSorting();
+
+		// set new sorting for this content
+		$this->setSorting($prev->getSorting());
+		$this->save();
+
+		// set new sorting for other content
+		$prev->setSorting($sort);
+		$prev->save();
+	    }
+
+	    $prev = $content;
+	}
     }
 
     public function moveAfter($contentId) {

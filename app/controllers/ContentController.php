@@ -131,12 +131,34 @@ class ContentController extends Zend_Controller_Action {
 	}
     }
 
-    public function moveDownAction() {
-	// action body
+    public function movedownAction() {
+	// acl checks
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('');
+
+	// get content and move down
+	$content = new Knowledgeroot_Content($this->_getParam('id'));
+	$content->moveDown();
+	$parent = $content->getParent();
+	$content->save();
+
+	// redirect to page
+	$this->_redirect('page/' . $parent);
     }
 
-    public function moveUpAction() {
-	// action body
+    public function moveupAction() {
+	// acl checks
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('');
+
+	// get content and move up
+	$content = new Knowledgeroot_Content($this->_getParam('id'));
+	$content->moveUp();
+	$parent = $content->getParent();
+	$content->save();
+
+	// redirect to page
+	$this->_redirect('page/' . $parent);
     }
 
     public function printAction() {
