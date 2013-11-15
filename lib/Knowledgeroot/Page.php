@@ -455,6 +455,30 @@ class Knowledgeroot_Page {
 
 	return $ret;
     }
+
+
+    /**
+     * find page by field and value
+     *
+     * @param string $field
+     * @param string $value
+     *
+     * @return object Knowledgeroot_Page
+     */
+    public static function findBy($field, $value) {
+	$ret = array();
+
+	$page = new Knowledgeroot_Db_Page();
+
+	$where = $page->getAdapter()->quoteInto($field.' = ?', $value);
+
+	$row = $page->fetchRow($where);
+
+	if($row === null)
+	    return null;
+
+	return new Knowledgeroot_Page($row['id']);
+    }
 }
 
 ?>
