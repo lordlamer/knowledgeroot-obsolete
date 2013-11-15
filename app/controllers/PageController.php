@@ -331,5 +331,16 @@ class PageController extends Zend_Controller_Action {
 	$this->view->description = $page->getDescription();
     }
 
+    public function aliasAction() {
+	// get page by alias
+	$page = Knowledgeroot_Page::findBy("alias", $this->_getParam('alias'));
+
+	// alias not found -> redirect to homepage
+	if($page === null)
+	    $this->_redirect('');
+
+	// forward to listing
+	$this->_forward('list', 'page', null, array('id' => $page->getId()));
+    }
 }
 
