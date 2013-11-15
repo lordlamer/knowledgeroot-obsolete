@@ -178,6 +178,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	try {
 	    // load controller
 	    //$this->bootstrap('controller');
+
+	    // load config
+	    $this->bootstrap('config');
+
+	    // get config
+	    $config = Knowledgeroot_Registry::get('config');
+
 	    // add routes
 	    $router = Zend_Controller_Front::getInstance()->getRouter();
 
@@ -461,6 +468,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 				1 => 'id',
 			    )
 	    ));
+
+	    // check for active alias
+	    if($config->alias->enable) {
+		    //route: alias/:alias
+		    $router->addRoute('alias', new Zend_Controller_Router_Route_Regex($config->alias->prefix.'/(.*)', array(
+				'controller' => 'page',
+				'action' => 'alias'),
+				    array(
+					1 => 'alias',
+				    )
+		    ));
+	    }
 	} catch (Exception $e) {
 	    echo $e->getMessage();
 	    die('could not create routes');

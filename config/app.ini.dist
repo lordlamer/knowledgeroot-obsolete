@@ -90,6 +90,10 @@ save_path = PROJECT_PATH "/data/lucene"
 delay = "30"
 max = "50"
 
+[alias]
+enable = true
+prefix = kb
+
 [email]
 notification = false
 html = true
