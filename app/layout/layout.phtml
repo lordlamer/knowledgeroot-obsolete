@@ -284,7 +284,10 @@ $config = Zend_Registry::get('config');
 					    persist: true,
 					    onClick: function(item){
 						// Get the URL from the item, and navigate to it
-						location.href = item.url;
+						if(item.alias != "")
+							location.href = item.alias;
+						else
+							location.href = item.url;
 					    }
 					}, "treeOne");
 				    });
