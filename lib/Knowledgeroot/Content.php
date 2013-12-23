@@ -449,6 +449,87 @@ class Knowledgeroot_Content {
 	return $ret;
     }
 
+    /**
+     * add tag to content
+     *
+     * @param Knowledgeroot_Tag $tag
+     */
+    public function addTag(Knowledgeroot_Tag $tag) {
+	$tagMember = new Knowledgeroot_Db_Tag_Content();
+
+	// check if relation already exists
+	$select = $tagMember->select();
+	$select->where('tag_id = ?', $tag->getId());
+	$select->where('content_id = ?', $this->id);
+
+	$found = $tagMember->fetchAll($select);
+
+	if(count($found) < 1) {
+	    $data = array();
+	    $data['tag_id'] = $tag->getId();
+	    $data['content_id'] = $this->id;
+
+	    $tagMember->insert($data);
+	}
+    }
+
+    /**
+     * get all tags for content
+     *
+     * @return array array of Knowledgeroot_Tag
+     */
+    public function getTags() {
+	$ret = array();
+
+	$tagMember = new Knowledgeroot_Db_Tag_Content();
+
+	$select = $tagMember->select();
+	$select->where('content_id = ?', $this->id);
+
+	$tags = $tagMember->fetchAll($select);
+
+	foreach($tags as $tag) {
+	    $ret[] = new Knowledgeroot_Tag($tag['tag_id']);
+	}
+
+	return $ret;
+    }
+
+    /**
+     * set array with tags for content
+     *
+     * @param array $tags array of Knowledgeroot_Tag
+     */
+    public function setTags(array $tags) {
+	// delete existing tags
+	$tagMember = new Knowledgeroot_Db_Tag_Content();
+	$tagMember->delete('content_id = ' . $this->id);
+
+	// set new tags
+	foreach($tags as $tag) {
+	    $this->addTag($tag);
+	}
+    }
+
+    /**
+     * delete tag from content
+     *
+     * @param Knowledgeroot_Tag $tag
+     */
+    public function deleteTag(Knowledgeroot_Tag $tag) {
+	$tagMember = new Knowledgeroot_Db_Tag_Content();
+	$tagMember->delete(array('tag_id' => $tag->getId(), 'content_id' => $this->id));
+    }
+
+    /**
+     * delete all tags from content
+     *
+     *
+     */
+    public function deleteTags() {
+	$tagMember = new Knowledgeroot_Db_Tag_Content();
+	$tagMember->delete('content_id = ' . $this->id);
+    }
 }
 
 ?>

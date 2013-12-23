@@ -26,6 +26,21 @@ class ContentController extends Zend_Controller_Action {
 	    $content->setAcl(json_decode($this->_getParam('acl')));
 	    $content->save();
 
+	    // save tags
+	    if($this->_getParam('content_tags') != '') {
+		$tags = explode(",", $this->_getParam('content_tags'));
+
+		foreach($tags as $tag) {
+		    if(trim($tag) != '') {
+			$newTag = new Knowledgeroot_Tag();
+			$newTag->setName(trim($tag));
+			$newTag->save();
+
+			$content->addTag($newTag);
+		    }
+		}
+	    }
+
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('content/edit/' . $content->getId());
 	    } else {
@@ -63,6 +78,24 @@ class ContentController extends Zend_Controller_Action {
 	    $content->setAcl(json_decode($this->_getParam('acl')));
 	    $content->save();
 
+	    // delete existing tags
+	    $content->deleteTags();
+
+	    // save tags
+	    if($this->_getParam('content_tags') != '') {
+		$tags = explode(",", $this->_getParam('content_tags'));
+
+		foreach($tags as $tag) {
+		    if(trim($tag) != '') {
+			$newTag = new Knowledgeroot_Tag();
+			$newTag->setName(trim($tag));
+			$newTag->save();
+
+			$content->addTag($newTag);
+		    }
+		}
+	    }
+
 	    if ($this->_getParam('button') == 'save') {
 		$this->_redirect('content/edit/' . $content->getId());
 	    } else {
@@ -80,6 +113,7 @@ class ContentController extends Zend_Controller_Action {
 	    $this->view->editor = $rte;
 
 	    $this->view->title = $content->getName();
+	    $this->view->tags = $content->getTags();
 
 	    $this->view->page = $content->getParent();
 	    $parent = new Knowledgeroot_Page($content->getParent());

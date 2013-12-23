@@ -42,7 +42,18 @@
 		    <div class="control-group">
 			<label class="control-label" for="content-tags"><?= $this->translate('Tags') ?></label>
 			<div class="controls">
-			    <input type="text" class="input-xlarge span9" id="content-tags" name="content-tags" value="<?= $this->tags; ?>">
+			    <?php
+				$tags = "";
+
+				if(is_array($this->tags)) {
+				    foreach($this->tags as $tag) {
+					$tags .= $tag->getName() . ", ";
+				    }
+
+				    $tags = trim($tags, ", ");
+				}
+			    ?>
+			    <input type="text" class="input-xlarge span9" id="content-tags" name="content_tags" value="<?= $tags; ?>">
 			    <p class="help-block">
 				<?= $this->translate('Comma separated words') ?>
 			    </p>

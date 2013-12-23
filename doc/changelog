@@ -1,3 +1,6 @@
+20131223 - fhabermann
+* added tag support for content (Closes #15)
+
 20131116 - fhabermann
 * added alias handling (Closes #13)
 
