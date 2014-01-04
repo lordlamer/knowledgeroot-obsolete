@@ -176,31 +176,32 @@ class Knowledgeroot_Content {
 	if($this->readOnly)
 	    return;
 
-	// get all contents from this page
-	$contents = $this->getContents(new Knowledgeroot_Page($this->getParent()));
-	$prev = null;
+	// check page rights
+	// TODO
 
-	// find previous content
-	foreach($contents as $content) {
-	    // check if we are itself so we have a previous content
-	    if($content->getId() == $this->getId()) {
-		// check that previuos is not null
-		if($prev === null)
-		    return;
+	$db = Knowledgeroot_Registry::get('db');
 
-		// save my sort number
-		$sort = $this->getSorting();
+	if($this->sorting == 0 || $this->sorting == null) {
+	    $res = $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND deleted=".Knowledgeroot_Db::false(), array($this->parent, $this->id));
+	} else {
+	    $res = $db->query("SELECT id, max(sorting) as sorting
+				FROM content
+				WHERE parent=? AND sorting<=? AND id<>? AND deleted=?
+				GROUP BY id
+				ORDER BY sorting DESC
+				LIMIT 1",
+			    array($this->parent, $this->sorting, $this->id, Knowledgeroot_Db::false()));
+	    $row = $res->fetchAll();
+	    $cnt = count($row);
 
-		// set new sorting for this content
-		$this->setSorting($prev->getSorting());
-		$this->save();
-
-		// set new sorting for other content
-		$prev->setSorting($sort);
-		$prev->save();
+	    if($cnt == 1) {
+		if($this->sorting == $row[0]['sorting']) {
+		    $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND sorting>=? AND deleted=?", array($this->parent, $this->id, $this->sorting, Knowledgeroot_Db::false()));
+		} else {
+		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($this->sorting, $row[0]['id']));
+		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($row[0]['sorting'], $this->id));
+		}
 	    }
-
-	    $prev = $content;
 	}
     }
 
@@ -213,31 +214,32 @@ class Knowledgeroot_Content {
 	if($this->readOnly)
 	    return;
 
-	// get all contents from this page
-	$contents = $this->getContents(new Knowledgeroot_Page($this->getParent()), 'sorting DESC');
-	$prev = null;
+	// check page rights
+	// TODO
 
-	// find previous content
-	foreach($contents as $content) {
-	    // check if we are itself so we have a previous content
-	    if($content->getId() == $this->getId()) {
-		// check that previuos is not null
-		if($prev === null)
-		    return;
+	$db = Knowledgeroot_Registry::get('db');
 
-		// save my sort number
-		$sort = $this->getSorting();
+	if($this->sorting == 0 || $this->sorting == null) {
+	    $res = $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND deleted=".Knowledgeroot_Db::false(), array($this->parent, $this->id));
+	} else {
+	    $res = $db->query("SELECT id, min(sorting) as sorting
+				FROM content
+				WHERE parent=? AND sorting>=? AND id<>? AND deleted=?
+				GROUP BY id
+				ORDER BY sorting DESC
+				LIMIT 1",
+			    array($this->parent, $this->sorting, $this->id, Knowledgeroot_Db::false()));
+	    $row = $res->fetchAll();
+	    $cnt = count($row);
 
-		// set new sorting for this content
-		$this->setSorting($prev->getSorting());
-		$this->save();
-
-		// set new sorting for other content
-		$prev->setSorting($sort);
-		$prev->save();
+	    if($cnt == 1) {
+		if($this->sorting == $row[0]['sorting']) {
+		    $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND sorting>=? AND deleted=?", array($this->parent, $this->id, $this->sorting, Knowledgeroot_Db::false()));
+		} else {
+		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($this->sorting, $row[0]['id']));
+		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($row[0]['sorting'], $this->id));
+		}
 	    }
-
-	    $prev = $content;
 	}
     }
 
