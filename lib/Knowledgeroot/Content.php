@@ -177,13 +177,13 @@ class Knowledgeroot_Content {
 	    return;
 
 	// check page rights
-	if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->getParent(), 'edit'))
+	if(!Knowledgeroot_Acl::iAmAllowed('page_' . $this->getParent(), 'edit'))
 	    return;
 
 	$db = Knowledgeroot_Registry::get('db');
 
 	if($this->sorting == 0 || $this->sorting == null) {
-	    $res = $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND deleted=".Knowledgeroot_Db::false(), array($this->parent, $this->id));
+	    $res = $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND deleted=?", array($this->parent, $this->id, Knowledgeroot_Db::false()));
 	} else {
 	    $res = $db->query("SELECT id, max(sorting) as sorting
 				FROM content
@@ -216,13 +216,13 @@ class Knowledgeroot_Content {
 	    return;
 
 	// check page rights
-	if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->getParent(), 'edit'))
+	if(!Knowledgeroot_Acl::iAmAllowed('page_' . $this->getParent(), 'edit'))
 	    return;
 
 	$db = Knowledgeroot_Registry::get('db');
 
 	if($this->sorting == 0 || $this->sorting == null) {
-	    $res = $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND deleted=".Knowledgeroot_Db::false(), array($this->parent, $this->id));
+	    $res = $db->query("UPDATE content SET sorting=sorting+1 WHERE parent=? AND id<>? AND deleted=?", array($this->parent, $this->id, Knowledgeroot_Db::false()));
 	} else {
 	    $res = $db->query("SELECT id, min(sorting) as sorting
 				FROM content
