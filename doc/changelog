@@ -1,3 +1,6 @@
+20140105 - fhabermann
+* renew move content up and down to fix existing problems (Closes #6)
+
 20131223 - fhabermann
 * added tag support for content (Closes #15)
 

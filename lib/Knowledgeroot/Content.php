@@ -177,7 +177,8 @@ class Knowledgeroot_Content {
 	    return;
 
 	// check page rights
-	// TODO
+	if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->getParent(), 'edit'))
+	    return;
 
 	$db = Knowledgeroot_Registry::get('db');
 
@@ -215,7 +216,8 @@ class Knowledgeroot_Content {
 	    return;
 
 	// check page rights
-	// TODO
+	if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->getParent(), 'edit'))
+	    return;
 
 	$db = Knowledgeroot_Registry::get('db');
 
