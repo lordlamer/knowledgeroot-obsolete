@@ -174,7 +174,7 @@ class ContentController extends Zend_Controller_Action {
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
 	$content->moveDown();
 	$parent = $content->getParent();
-	$content->save();
+	//$content->save();
 
 	// redirect to page
 	$this->_redirect('page/' . $parent);
@@ -189,7 +189,7 @@ class ContentController extends Zend_Controller_Action {
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
 	$content->moveUp();
 	$parent = $content->getParent();
-	$content->save();
+	//$content->save();
 
 	// redirect to page
 	$this->_redirect('page/' . $parent);

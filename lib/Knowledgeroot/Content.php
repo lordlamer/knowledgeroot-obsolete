@@ -201,6 +201,7 @@ class Knowledgeroot_Content {
 		} else {
 		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($this->sorting, $row[0]['id']));
 		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($row[0]['sorting'], $this->id));
+		    $this->sorting = $row[0]['sorting'];
 		}
 	    }
 	}
@@ -240,6 +241,7 @@ class Knowledgeroot_Content {
 		} else {
 		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($this->sorting, $row[0]['id']));
 		    $db->query("UPDATE content SET sorting=? WHERE id=?", array($row[0]['sorting'], $this->id));
+		    $this->sorting = $row[0]['sorting'];
 		}
 	    }
 	}
