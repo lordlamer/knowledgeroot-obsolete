@@ -118,139 +118,136 @@ $config = Zend_Registry::get('config');
 	    </script>
 	</div>
 
-	<div class="navbar navbar-inverse navbar-fixed-top" style="border-bottom: 3px solid #F88529;">
-	    <div class="navbar-inner">
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation" style="border-bottom: 3px solid #F88529;">
 
 		<div class="container-fluid">
-		    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		    </button>
-		    <a class="brand" href="#"><?= $config->base->title ?></a>
+		    <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			    <span class="sr-only">Toggle navigation</span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><?= $config->base->title ?></a>
+		    </div>
 
-		    <ul class="nav">
-			<li class="divider-vertical"></li>
-			<li class="dropdown" style="border-top: 3px solid #1171A3;">
-			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="icon-plus icon-white"></i>&nbsp;<strong><?= $this->translate('New') ?></strong>
-				<b class="caret"></b>
-			    </a>
-			    <ul class="dropdown-menu">
-				<li><a href="page/new"><i class="icon-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
-				<li><a href="content/new"><i class="icon-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
-				<li><a data-toggle="modal" href="#fileUpload"><i class="icon-paper-clip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
-				<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new') || Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?>
-				    <li class="divider"></li>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="icon-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="icon-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
-				<?php } ?>
-			    </ul>
-			</li>
-			<li class="divider-vertical"></li>
-		    </ul>
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" style="border-top: 3px solid #1171A3;">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				    <i class="icon-plus icon-white"></i>&nbsp;<strong><?= $this->translate('New') ?></strong>
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <li><a href="page/new"><i class="icon-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
+				    <li><a href="content/new"><i class="icon-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
+				    <li><a data-toggle="modal" href="#fileUpload"><i class="icon-paper-clip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new') || Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?>
+					<li class="divider"></li>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="icon-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="icon-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
+				    <?php } ?>
+				</ul>
+			    </li>
+			    <li class="divider-vertical"></li>
+			</ul>
 
-
-		    <form class="navbar-search pull-left" action="index.php" method="post">
-			<input id="searchquery" class="search-query span2" style="background-image:url('img/search.png'); background-repeat: no-repeat; background-position: 4px 4px; padding-left: 30px;" type="text" placeholder="<?= $this->translate('Search') ?>" name="search" value="" />
-			<input type="hidden" name="submit" value="<?= $this->translate('GO') ?>" />
-			<script>
-			    $('#searchquery').on('focusin focusout', function () {
-				$('#searchquery').toggleClass('span2 span5');
-			    })
-			</script>
-		    </form>
-		    <?php
-		    $session = new Zend_Session_Namespace('user');
-		    if(!$session->valid) { // show language dropdown only for guest users
-		    ?>
-		    <ul class="nav pull-right">
-			<li class="divider-vertical"></li>
-			<li class="dropdown" style="border-top: 3px solid #932AB6;">
-			    <a href="#"
-			       class="dropdown-toggle"
-			       data-toggle="dropdown">
-				<i class="icon-flag icon-white"></i>&nbsp;
-				<?= $this->translate('Languages') ?>
-				<b class="caret"></b>
-			    </a>
-			    <ul class="dropdown-menu">
-				<?php
-				$translation = Knowledgeroot_Registry::get('translate');
-				$actLocale = $translation->getLocale();
-
-				foreach ($translation->getTranslations() as $key => $value) {
-					// switch locale
-					$translation->setLocale($key);
-
-					// show translation name
-					echo '<li><a href="./language/' . $key . '">' . $this->translate('[TRANSLATION_NAME]', $key) . '</a></li>';
-				}
-
-				// reset locale
-				$translation->setLocale($actLocale);
-				?>
-			    </ul>
-			</li>
-		    </ul>
-		    <?php
-		    } // end language dropdown
-		    ?>
-		    <script>
-			$('.dropdown-toggle').dropdown();
-		    </script>
-		    <ul class="nav pull-right">
+			<form class="navbar-form navbar-left" role="search" action="index.php" method="post">
+			    <div class="form-group">
+				<input id="searchquery" type="text" class="form-control" placeholder="<?= $this->translate('Search') ?>" name="search" value="">
+			    </div>
+			</form>
 			<?php
-			$userSession = new Zend_Session_Namespace('user');
-			if ($userSession->valid) {
-			    ?>
-    			<ul class="nav pull-right">
-    			    <li class="divider-vertical"></li>
-    			    <li class="dropdown" style="border-top: 3px solid #FA3031;">
-    				<a href="#"
-    				   class="dropdown-toggle"
-    				   data-toggle="dropdown">
-    				    <i class="icon-user icon-white"></i>&nbsp;
-					<?= $userSession->login ?>
-    				    <b class="caret"></b>
-    				</a>
-    				<ul class="dropdown-menu">
-    				    <li><a href="settings"><i class="icon-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
-    				    <li><a href="logout"><i class="icon-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
-    				</ul>
-    			    </li>
-    			</ul>
-
-    			<ul class="nav pull-right">
-    			    <li class="divider-vertical"></li>
-    			    <li class="dropdown" style="border-top: 3px solid #43C83C;">
-    				<a href="#"
-    				   class="dropdown-toggle"
-    				   data-toggle="dropdown">
-    				    <i class="icon-th-large icon-white"></i>&nbsp;
-					<?= $this->translate('system') ?>
-    				    <b class="caret"></b>
-    				</a>
-    				<ul class="dropdown-menu">
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="icon-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="icon-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="icon-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
-    				</ul>
-    			    </li>
-    			</ul>
-			    <?php
-			} else {
-			    ?>
-    			<li style="border-top: 3px solid #FA3031;"><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
-			    <?php
-			}
+			$session = new Zend_Session_Namespace('user');
+			if(!$session->valid) { // show language dropdown only for guest users
 			?>
-		    </ul>
-		    <?php echo $this->layout()->topNavi; ?>
+			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" style="border-top: 3px solid #932AB6;">
+				<a href="#"
+				   class="dropdown-toggle"
+				   data-toggle="dropdown">
+				    <i class="icon-flag icon-white"></i>&nbsp;
+				    <?= $this->translate('Languages') ?>
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <?php
+				    $translation = Knowledgeroot_Registry::get('translate');
+				    $actLocale = $translation->getLocale();
 
+				    foreach ($translation->getTranslations() as $key => $value) {
+					    // switch locale
+					    $translation->setLocale($key);
+
+					    // show translation name
+					    echo '<li><a href="./language/' . $key . '">' . $this->translate('[TRANSLATION_NAME]', $key) . '</a></li>';
+				    }
+
+				    // reset locale
+				    $translation->setLocale($actLocale);
+				    ?>
+				</ul>
+			    </li>
+			</ul>
+			<?php
+			} // end language dropdown
+			?>
+			<script>
+			    $('.dropdown-toggle').dropdown();
+			</script>
+			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+			    <?php
+			    $userSession = new Zend_Session_Namespace('user');
+			    if ($userSession->valid) {
+				?>
+			    <ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+				<li class="divider-vertical"></li>
+				<li class="dropdown" style="border-top: 3px solid #FA3031;">
+				    <a href="#"
+				       class="dropdown-toggle"
+				       data-toggle="dropdown">
+					<i class="icon-user icon-white"></i>&nbsp;
+					    <?= $userSession->login ?>
+					<b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+					<li><a href="settings"><i class="icon-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
+					<li><a href="logout"><i class="icon-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
+				    </ul>
+				</li>
+			    </ul>
+
+			    <ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+				<li class="divider-vertical"></li>
+				<li class="dropdown" style="border-top: 3px solid #43C83C;">
+				    <a href="#"
+				       class="dropdown-toggle"
+				       data-toggle="dropdown">
+					<i class="icon-th-large icon-white"></i>&nbsp;
+					    <?= $this->translate('system') ?>
+					<b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="icon-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="icon-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="icon-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
+				    </ul>
+				</li>
+			    </ul>
+				<?php
+			    } else {
+				?>
+			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
+				<?php
+			    }
+			    ?>
+			</ul>
+			<?php echo $this->layout()->topNavi; ?>
+		    </div>
 		</div>
-	    </div> <!-- /topbar -->
-	</div>
+	</nav>
 
 	<div class="container-fluid">
 	    <div class="row-fluid">
