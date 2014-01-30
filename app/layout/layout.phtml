@@ -250,15 +250,15 @@ $config = Zend_Registry::get('config');
 	</nav>
 
 	<div class="container-fluid">
-	    <div class="row-fluid">
-		<div class="span3">
+	    <div class="row">
+		<div class="col-md-3">
 		    <div class="container-fluid">
-			<div class="sidebar">
+
 			    <div class="well">
 				<div class="btn-group">
 				    <!-- <a class="btn" href="#"><i class="icon-refresh"></i></a> -->
-				    <a class="btn" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="icon-plus"></i></a>
-				    <a class="btn" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="icon-minus"></i></a>
+				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="icon-plus"></i></a>
+				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="icon-minus"></i></a>
 				</div>
 				<script type="text/javascript">
 				    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
@@ -293,10 +293,9 @@ $config = Zend_Registry::get('config');
 				<div id="treeOne"></div>
 			    </div>
 
-			</div>
 		    </div><!--/span-->
 		</div>
-		<div class="span9">
+		<div class="col-md-9">
 		    <?php
 		    if (is_array($this->layout()->pathNavi)) {
 			echo "<ul class=\"breadcrumb\">";
@@ -341,8 +340,8 @@ $config = Zend_Registry::get('config');
 	    </div><!--/row-->
 	</div><!--/.fluid-container-->
 
-	<div class="navbar navbar-fixed-bottom">
-	    <div class="navbar-inner pull-center">
+	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+	    <div class="container-fluid pull-center">
 		<p class="muted credit">
 		    <a href="http://knowledgeroot.org">Knowledgeroot</a>
 		    <a href="https://github.com/lordlamer/knowledgeroot">Github</a>
@@ -353,7 +352,7 @@ $config = Zend_Registry::get('config');
 		    <span><?= $this->translate('Version') ?>: <?php echo $this->layout()->version; ?></span>
 		</p>
 	    </div>
-	</div>
+	</nav>
 
 	<!-- style file uploads -->
 	<script>
