@@ -298,8 +298,8 @@ $config = Zend_Registry::get('config');
 		<div class="col-md-9">
 		    <?php
 		    if (is_array($this->layout()->pathNavi)) {
-			echo "<ul class=\"breadcrumb\">";
-			echo "<li><i class=\"icon-home icon-large\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a> <span class=\"divider\">/</span></li>";
+			echo "<ol class=\"breadcrumb\">";
+			echo "<li><i class=\"icon-home icon-large\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
 
 			$c = count($this->layout()->pathNavi);
 			$x = 0;
@@ -307,15 +307,13 @@ $config = Zend_Registry::get('config');
 			    $x++;
 
 			    if ($x != $c) {
-				echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a>";
-				echo " <span class=\"divider\">/</span>";
-				echo "</li>";
+				echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
 			    } else {
 				echo "<li class=\"active\"><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
 			    }
 			}
 
-			echo "</ul>";
+			echo "</ol>";
 		    }
 		    ?>
 
