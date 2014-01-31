@@ -45,29 +45,29 @@
 foreach ($this->contents as $content) { // run for each content
     ?>
     <!-- anchor --><a name="content<?php echo $content->getId(); ?>"></a>
-    <div class="accordion" id="accordion<?php echo $content->getId(); ?>"><!-- start accordian -->
-        <div class="accordion-group">
-    	<div class="accordion-heading" style="background-color: #F6F6F6;">
+    <div class="panel-group" id="accordion<?php echo $content->getId(); ?>"><!-- start accordian -->
+        <div class="panel panel-default">
+    	<div class="panel-heading" style="background-color: #F6F6F6;">
 
     	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->getId(); ?>" href="#collapse<?php echo $content->getId(); ?>">
     		<?php echo $content->getName(); ?>
     	    </a>
 
     	</div>
-    	<div id="collapse<?php echo $content->getId(); ?>" class="accordion-body collapse<?php if ($this->open || $this->contentcollapse) echo ' in'; ?>">
+    	<div id="collapse<?php echo $content->getId(); ?>" class="panel-collapse collapse<?php if ($this->open || $this->contentcollapse) echo ' in'; ?>">
 
-    	    <div class="accordion-inner" style="background-color:#ffffff;">
+    	    <div class="panel-body" style="background-color:#ffffff;">
     		<div class="btn-toolbar">
     		    <div class="btn-group">
-			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="content/edit/<?php echo $content->getId(); ?>"><?= $this->translate('edit') ?></a><?php } ?>
-    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { ?><a class="btn" href="javascript:;" onclick="if(confirm('<?= $this->translate('Do you really want to delete?') ?>')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }"><?= $this->translate('delete') ?></a><?php } ?>
-    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('content/move/<?php echo $content->getId(); ?>','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move') ?></a><?php } ?>
-    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('print') ?></a><?php } ?>
-			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn" href="content/moveup/<?php echo $content->getId(); ?>"><i class="icon-arrow-up"></i></a><?php } ?>
-			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn" href="content/movedown/<?php echo $content->getId(); ?>"><i class="icon-arrow-down"></i></a><?php } ?>
+			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn btn-default" href="content/edit/<?php echo $content->getId(); ?>"><?= $this->translate('edit') ?></a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { ?><a class="btn btn-default" href="javascript:;" onclick="if(confirm('<?= $this->translate('Do you really want to delete?') ?>')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }"><?= $this->translate('delete') ?></a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn btn-default" href="javascript:;" onclick="window.open('content/move/<?php echo $content->getId(); ?>','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move') ?></a><?php } ?>
+    			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn btn-default" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('print') ?></a><?php } ?>
+			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn btn-default" href="content/moveup/<?php echo $content->getId(); ?>"><i class="icon-arrow-up"></i></a><?php } ?>
+			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn btn-default" href="content/movedown/<?php echo $content->getId(); ?>"><i class="icon-arrow-down"></i></a><?php } ?>
     		    </div>
     		    <div class="btn-group pull-right">
-    			<a class="btn pull-right" href="#top"><?= $this->translate('Top') ?></a>
+    			<a class="btn btn-default pull-right" href="#top"><?= $this->translate('Top') ?></a>
     		    </div>
     		</div>
     		<br>
