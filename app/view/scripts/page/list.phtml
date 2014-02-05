@@ -1,5 +1,5 @@
 <!-- page navi -->
-<div class="subnav" style="margin-bottom:20px;">
+<div class="nav  navbar-default" style="margin-bottom:20px;">
     <ul class="nav nav-pills">
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'new')) { ?><li><a href="page/new/<?php echo $this->id; ?>"><?= $this->translate('add new page') ?></a></li><?php } ?>
 	<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $this->id, 'edit')) { ?><li><a href="page/edit/<?php echo $this->id; ?>"><?= $this->translate('edit page') ?></a></li><?php } ?>
@@ -15,17 +15,18 @@
     </h1>
 </div>
 <?php if($this->showpagedescription || $this->showtableofcontent) { ?>
-<div class="row-fluid">
+<div class="container-fluid">
+<div class="row">
 <!-- page description -->
     <?php if($this->showpagedescription) { ?>
-    <div class="<?php if($this->showpagedescription) echo "span8"; else echo "span12"; ?>">
+    <div class="<?php if($this->showpagedescription) echo "col-md-8"; else echo "col-md-12"; ?>">
 	<?= $this->description ?>
     </div>
     <?php } ?>
 
 <!-- table of contents -->
     <?php if($this->showtableofcontent) { ?>
-    <div class="well <?php if($this->showpagedescription) echo "span4"; else echo "span12"; ?> pull-right">
+    <div class="well <?php if($this->showpagedescription) echo "col-md-4"; else echo "col-md-12"; ?> pull-right">
 	<h2><?= $this->translate('contents') ?></h2>
 	<ol>
     <?php
@@ -38,6 +39,7 @@
 	</ol>
     </div>
     <?php } ?>
+</div>
 </div>
 <?php } ?>
 <!-- contents -->
@@ -95,7 +97,7 @@ foreach ($this->contents as $content) { // run for each content
 		</form>
 		<?php } ?>
     	    </div>
-    	    <div class="content_statusbar"><?= $this->translate('Last change') ?>: <?= $content->getChangedBy()->getLogin() ?> - <?= $content->getChangeDate()->getUserDate() ?></div>
+    	    <div class="panel-footer"><?= $this->translate('Last change') ?>: <?= $content->getChangedBy()->getLogin() ?> - <?= $content->getChangeDate()->getUserDate() ?></div>
     	</div>
         </div>
     </div><!-- end accordian -->
