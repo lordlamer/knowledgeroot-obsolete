@@ -23,72 +23,74 @@
 	<div class="tab-content">
 	    <div class="tab-pane active" id="tab-page">
 		<fieldset>
-		    <div class="control-group">
-			<label class="control-label" for="content-title"><?= $this->translate('Parent Page') ?></label>
-			<div class="controls">
-			    <input type="text" placeholder="<?= $this->translate('select a page') ?>" disabled="true" class="input-xlarge span2" id="page-parent-name" size="255" name="page_parent_name" value="<?= $this->parentname ?>">&nbsp;
-			    <input type="hidden" id="page-parent" size="255" name="page_parent" value="<?= $this->parent ?>">&nbsp;
-			    <input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('page/select','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-title"><?= $this->translate('Parent Page') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" placeholder="<?= $this->translate('select a page') ?>" disabled="true" class="form-control" id="page-parent-name" size="255" name="page_parent_name" value="<?= $this->parentname ?>">
 			    <p class="help-block">
 				<?= $this->translate('Select a parent page') ?>
 			    </p>
+			    <input type="hidden" id="page-parent" size="255" name="page_parent" value="<?= $this->parent ?>">&nbsp;
+			</div>
+			<div class="col-sm-2">
+			    <input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('page/select','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="page-name"><?= $this->translate('Name') ?></label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span9" id="page-name" name="page_title" size="255" value="<?= $this->title ?>">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="page-name"><?= $this->translate('Name') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="page-name" name="page_title" size="255" value="<?= $this->title ?>">
 			    <p class="help-block">
 				<?= $this->translate('Name of Page') ?>
 			    </p>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="page-subtitle"><?= $this->translate('Subtitle') ?></label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span9" id="page-subtitle" name="page_subtitle" size="255" value="<?= $this->subtitle ?>">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="page-subtitle"><?= $this->translate('Subtitle') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="page-subtitle" name="page_subtitle" size="255" value="<?= $this->subtitle ?>">
 			    <p class="help-block">
 				<?= $this->translate('Subtitle of Page') ?>
 			    </p>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="page-alias"><?= $this->translate('Alias') ?></label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span9" id="page-alias" name="alias" size="255" value="<?= $this->alias ?>">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="page-alias"><?= $this->translate('Alias') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="page-alias" name="alias" size="255" value="<?= $this->alias ?>">
 			    <p class="help-block">
 				<?= $this->translate('Alias for Page') ?>
 			    </p>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="page-tooltip"><?= $this->translate('Tooltip') ?></label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span9" id="page-tooltip" name="tooltip" value="<?= $this->tooltip ?>">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="page-tooltip"><?= $this->translate('Tooltip') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="page-tooltip" name="tooltip" value="<?= $this->tooltip ?>">
 			    <p class="help-block">
 				<?= $this->translate('Tooltip for Page') ?>
 			    </p>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="content-icon">Icon</label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span2" id="content-icon" size="255" value="<?= $this->icon ?>">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-icon">Icon</label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="content-icon" size="255" value="<?= $this->icon ?>">
 			    <p class="help-block">
 				Icon for Tree
 			    </p>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="content-symlink"><?= $this->translate('Symlink') ?></label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span2" id="content-symlink" size="255" value="<?= $this->symlink ?>">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-symlink"><?= $this->translate('Symlink') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="content-symlink" size="255" value="<?= $this->symlink ?>">
 			    <p class="help-block">
 				<?= $this->translate('Symlink to other page') ?>
 			    </p>
@@ -97,10 +99,10 @@
 		</fieldset>
 	    </div>
 	    <div class="tab-pane" id="tab-content">
-		<div class="control-group">
-		    <label class="control-label" for="content-title"><?= $this->translate('Position for new Content') ?>:</label>
-		    <div class="controls">
-			<select name="contentposition">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="content-title"><?= $this->translate('Position for new Content') ?>:</label>
+		    <div class="col-sm-4">
+			<select name="contentposition" class="form-control">
 			    <option value="start" <?php if($this->contentposition == 'start') echo "selected=\"selected\""; ?>><?= $this->translate('at beginning') ?></option>
 			    <option value="end" <?php if($this->contentposition == 'end') echo "selected=\"selected\""; ?>><?= $this->translate('at the end') ?></option>
 			</select>
@@ -110,9 +112,9 @@
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
-		    <div class="controls">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
+		    <div class="col-sm-4">
 			<label class="checkbox">
 			    <input type="checkbox" <?php if($this->contentcollapse) echo "checked=\"checked\" "; ?>name="contentcollapse" value="1" />
 			    <?= $this->translate('Show content collapsed') ?>
@@ -133,9 +135,9 @@
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="page-description-editor"><?= $this->translate('Page description') ?></label>
-		    <div class="controls">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="page-description-editor"><?= $this->translate('Page description') ?></label>
+		    <div class="col-sm-4">
 			<?php
 			echo $this->editor;
 			?>
@@ -148,9 +150,9 @@
 		<?php } ?>
 	    </div>
 	    <div class="tab-pane" id="tab-inherit-permission">
-		<div class="control-group">
-		    <label class="control-label" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
-		    <div class="controls">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="optionsCheckboxList"><?= $this->translate('Options') ?>:</label>
+		    <div class="col-sm-4">
 			<label class="checkbox">
 			    <input type="checkbox" name="subinheritrights" value="1" />
 			    <?= $this->translate('enable inherit rights for subpages and contents') ?>
@@ -172,19 +174,19 @@
 	    </div>
 	    <?php if($this->action != 'new') { ?>
 	    <div class="tab-pane" id="tab-info">
-		<div class="control-group">
-		    <label class="control-label" for="content-title"><?= $this->translate('Created By') ?></label>
-		    <div class="controls">
-			<span class="input-xlarge uneditable-input"><?= $this->created_by ?></span>
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="content-title"><?= $this->translate('Created By') ?></label>
+		    <div class="col-sm-4">
+			<span class="form-control uneditable-input"><?= $this->created_by ?></span>
 			<p class="help-block">
 			    <?= $this->translate('Username') ?>
 			</p>
 		    </div>
 		</div>
-		<div class="control-group">
-		    <label class="control-label" for="content-title"><?= $this->translate('Created at') ?></label>
-		    <div class="controls">
-			<span class="input-xlarge uneditable-input"><?= $this->create_date ?></span>
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="content-title"><?= $this->translate('Created at') ?></label>
+		    <div class="col-sm-4">
+			<span class="form-control uneditable-input"><?= $this->create_date ?></span>
 			<p class="help-block">
 			    <?= $this->translate('creation date') ?>
 			</p>
@@ -218,9 +220,9 @@
 	    <?php } ?>
 	</div>
     </div>
-    <div class="form-actions">
+    <div class="row-fluid" style="margin-top: 20px;">
 	<button class="btn btn-primary" type="submit" name="button" value="save"><?= $this->translate('Save') ?></button>&nbsp;
-	<button class="btn" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>&nbsp;
+	<button class="btn btn-default" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>&nbsp;
 	<button class="btn btn-danger" type="submit" name="button" value="close"><?= $this->translate('Close') ?></button>&nbsp;
     </div>
 </form>

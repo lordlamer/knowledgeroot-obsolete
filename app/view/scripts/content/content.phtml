@@ -20,28 +20,28 @@
 	<div class="tab-content">
 	    <div class="tab-pane active" id="tab-content">
 		<fieldset>
-		    <div class="control-group">
-			<label class="control-label" for="content-title"><?= $this->translate('Titel') ?></label>
-			<div class="controls">
-			    <input type="text" class="input-xlarge span9" id="content-title" name="content_title" value="<?= $this->title; ?>" size="255">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-title"><?= $this->translate('Titel') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" class="form-control" id="content-title" name="content_title" value="<?= $this->title; ?>" size="255">
 			    <p class="help-block">
 				<?= $this->translate('Title of content') ?>
 			    </p>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="content-editor"><?= $this->translate('Content') ?></label>
-			<div class="controls">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-editor"><?= $this->translate('Content') ?></label>
+			<div class="col-sm-4">
 			    <?php
 			    echo $this->editor;
 			    ?>
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="content-tags"><?= $this->translate('Tags') ?></label>
-			<div class="controls">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-tags"><?= $this->translate('Tags') ?></label>
+			<div class="col-sm-4">
 			    <?php
 				$tags = "";
 
@@ -53,7 +53,7 @@
 				    $tags = trim($tags, ", ");
 				}
 			    ?>
-			    <input type="text" class="input-xlarge span9" id="content-tags" name="content_tags" value="<?= $tags; ?>">
+			    <input type="text" class="form-control" id="content-tags" name="content_tags" value="<?= $tags; ?>">
 			    <p class="help-block">
 				<?= $this->translate('Comma separated words') ?>
 			    </p>
@@ -62,23 +62,24 @@
 		</fieldset>
 	    </div>
 	    <div class="tab-pane" id="tab-position">
-		    <div class="control-group">
-			<label class="control-label" for="content-page"><?= $this->translate('Parent Page') ?></label>
-			<div class="controls">
-			    <input type="text" placeholder="<?= $this->translate('select a page') ?>" disabled="true" class="input-xlarge span2" id="page-parent-name" size="255" name="page_parent_name" value="<?= $this->pagename ?>">&nbsp;
-			    <input type="hidden" id="page-parent" size="255" name="content_page" value="<?= $this->page ?>">&nbsp;
-			    <input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('page/select','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
-
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-page"><?= $this->translate('Parent Page') ?></label>
+			<div class="col-sm-4">
+			    <input type="text" placeholder="<?= $this->translate('select a page') ?>" disabled="true" class="form-control" id="page-parent-name" size="255" name="page_parent_name" value="<?= $this->pagename ?>">
 			    <p class="help-block">
 				<?= $this->translate('Select a parent page') ?>
 			    </p>
+			    <input type="hidden" id="page-parent" size="255" name="content_page" value="<?= $this->page ?>">&nbsp;
+			</div>
+			<div class="col-sm-2">
+			    <input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('page/select','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
 			</div>
 		    </div>
 
-		    <div class="control-group">
-			<label class="control-label" for="position"><?= $this->translate('Position') ?></label>
-			<div class="controls">
-			    <select name="position" id="position">
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="position"><?= $this->translate('Position') ?></label>
+			<div class="col-sm-4">
+			    <select name="position" id="position" class="form-control">
 				<?php
 				if(is_array($this->positions)) {
 				    foreach ($this->positions as $position) {
@@ -98,19 +99,19 @@
 	    </div>
 	    <?php if($this->action != 'new') { ?>
 	    <div class="tab-pane" id="tab-info">
-		    <div class="control-group">
-			<label class="control-label" for="content-title"><?= $this->translate('Created By') ?></label>
-			<div class="controls">
-			    <span class="input-xlarge uneditable-input"><?= $this->created_by ?></span>
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-title"><?= $this->translate('Created By') ?></label>
+			<div class="col-sm-4">
+			    <span class="form-control uneditable-input"><?= $this->created_by ?></span>
 			    <p class="help-block">
 				<?= $this->translate('Username') ?>
 			    </p>
 			</div>
 		    </div>
-		    <div class="control-group">
-			<label class="control-label" for="content-title"><?= $this->translate('Created at') ?></label>
-			<div class="controls">
-			    <span class="input-xlarge uneditable-input"><?= $this->create_date ?></span>
+		    <div class="form-group">
+			<label class="control-label col-sm-2" for="content-title"><?= $this->translate('Created at') ?></label>
+			<div class="col-sm-4">
+			    <span class="form-control uneditable-input"><?= $this->create_date ?></span>
 			    <p class="help-block">
 				<?= $this->translate('creation date') ?>
 			    </p>
@@ -144,9 +145,9 @@
 	    <?php } ?>
 	</div>
     </div>
-    <div class="form-actions">
+    <div class="row-fluid" style="margin-top: 20px;">
 	<button class="btn btn-primary" type="submit" name="button" value="save"><?= $this->translate('Save') ?></button>&nbsp;
-	<button class="btn" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>&nbsp;
+	<button class="btn btn-default" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>&nbsp;
 	<button class="btn btn-danger" type="submit" name="button" value="close"><?= $this->translate('Close') ?></button>&nbsp;
     </div>
 </form>
