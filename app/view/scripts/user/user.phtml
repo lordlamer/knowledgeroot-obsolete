@@ -16,66 +16,66 @@
 	</ul>
 	<div class="tab-content">
 	    <div class="tab-pane active" id="tab-user">
-		<div class="control-group">
-		    <label class="control-label" for="login"><?= $this->translate('Login') ?></label>
-		    <div class="controls">
-			<input type="text" class="input-xlarge" id="login" name="login" value="<?php echo $this->login; ?>">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="login"><?= $this->translate('Login') ?></label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control" id="login" name="login" value="<?php echo $this->login; ?>">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="password"><?= $this->translate('Password') ?></label>
-		    <div class="controls">
-			<input type="password" class="input-xlarge" id="password" name="password" autocomplete="off">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="password"><?= $this->translate('Password') ?></label>
+		    <div class="col-sm-4">
+			<input type="password" class="form-control" id="password" name="password" autocomplete="off">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="password2"><?= $this->translate('Repeat Password') ?></label>
-		    <div class="controls">
-			<input type="password" class="input-xlarge" id="password2" name="password2" autocomplete="off">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="password2"><?= $this->translate('Repeat Password') ?></label>
+		    <div class="col-sm-4">
+			<input type="password" class="form-control" id="password2" name="password2" autocomplete="off">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="firstname"><?= $this->translate('First Name') ?></label>
-		    <div class="controls">
-			<input type="text" class="input-xlarge" id="firstname" name="firstname" value="<?php echo $this->firstname; ?>">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="firstname"><?= $this->translate('First Name') ?></label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $this->firstname; ?>">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="lastname"><?= $this->translate('Last Name') ?></label>
-		    <div class="controls">
-			<input type="text" class="input-xlarge" id="lastname" name="lastname" value="<?php echo $this->lastname; ?>">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="lastname"><?= $this->translate('Last Name') ?></label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $this->lastname; ?>">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="email"><?= $this->translate('E-Mail') ?></label>
-		    <div class="controls">
-			<input type="text" class="input-xlarge" id="email" name="email" value="<?php echo $this->email; ?>">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="email"><?= $this->translate('E-Mail') ?></label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control" id="email" name="email" value="<?php echo $this->email; ?>">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="language"><?= $this->translate('Language') ?></label>
-		    <div class="controls">
-			<input type="text" class="input-xlarge" id="language" name="language" value="<?php echo $this->language; ?>">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="language"><?= $this->translate('Language') ?></label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control" id="language" name="language" value="<?php echo $this->language; ?>">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="timezone">i<?= $this->translate('Timezone') ?></label>
-		    <div class="controls">
-			<input type="text" class="input-xlarge" id="timezone" name="timezone" value="<?php echo $this->timezone; ?>">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="timezone">i<?= $this->translate('Timezone') ?></label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control" id="timezone" name="timezone" value="<?php echo $this->timezone; ?>">
 		    </div>
 		</div>
 
-		<div class="control-group">
-		    <label class="control-label" for="active"><?= $this->translate('Active') ?></label>
-		    <div class="controls">
-			<select name="active" id="active">
+		<div class="form-group">
+		    <label class="control-label col-sm-2" for="active"><?= $this->translate('Active') ?></label>
+		    <div class="col-sm-4">
+			<select name="active" id="active" class="form-control">
 			    <option value="1"<?= ((!is_null($this->active) && $this->active) ? ' selected="selected"' : '') ?>><?= $this->translate('Yes') ?></option>
 			    <option value="0"<?= ((!is_null($this->active) && !$this->active) ? ' selected="selected"' : '') ?>><?= $this->translate('No') ?></option>
 			</select>
@@ -89,9 +89,9 @@
 
     </div>
 
-    <div class="form-actions">
+    <div class="row-fluid" style="margin-top: 20px;">
 	<button class="btn btn-primary" type="submit" name="button" value="save"><?= $this->translate('Save') ?></button>
-	<button class="btn" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>
+	<button class="btn btn-default" type="submit" name="button" value="save_and_close"><?= $this->translate('Save and Close') ?></button>
 	<button class="btn btn-danger" type="submit" name="button" value="close"><?= $this->translate('Close') ?></button>
     </div>
 </form>
