@@ -70,53 +70,55 @@ $config = Zend_Registry::get('config');
     </head>
 
     <body class="claro">
-	<div id="fileUpload" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <form action="./file/new" method="post" enctype="multipart/form-data">
-		<div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		    <h3 id="myModalLabel"><?= $this->translate('File Upload') ?></h3>
-		</div>
-		<div class="modal-body">
+	<div id="fileUpload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+		<div class="modal-content">
+		    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="myModalLabel"><?= $this->translate('File Upload') ?></h3>
+		    </div>
+		    <div class="modal-body">
+			<form action="./file/new" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+			    <fieldset>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="content-title"><h4><?= $this->translate('Content') ?></h4></label>
+				    <div class="col-sm-4">
+					<input type="text" placeholder="<?= $this->translate('select content') ?>" disabled="true" class="form-control" id="parent-name" size="255" name="parent_name" value="">
+					<p class="help-block">
+					    <?= $this->translate('Select content') ?>
+					</p>
+					<input type="hidden" id="parent" size="255" name="parent" value="">&nbsp;
+				    </div>
+				    <div class="col-sm-2">
+					<input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('content/select','Knowledgeroot','width=800,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
+				    </div>
+				</div>
 
-		    <fieldset>
-			<div class="control-group">
-			    <label class="control-label" for="content-title"><h4><?= $this->translate('Content') ?></h4></label>
-			    <div class="controls">
-				<input type="text" placeholder="<?= $this->translate('select content') ?>" disabled="true" class="input-xlarge span2" id="parent-name" size="255" name="parent_name" value="">&nbsp;
-				<input type="hidden" id="parent" size="255" name="parent" value="">&nbsp;
-				<input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('content/select','Knowledgeroot','width=800,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
-				<p class="help-block">
-				    <?= $this->translate('Select content') ?>
-				</p>
-			    </div>
-			</div>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="file-box"><h4><?= $this->translate('File') ?></h4></label>
+				    <div class="col-sm-6">
+					<input type="file" name="file" multiple class="filestyle form-horizontal" data-classButton="btn btn-primary" data-input="false" data-buttonText="<?= $this->translate('Select File(s)') ?>">
 
-			<div class="control-group">
-			    <label class="control-label" for="file-box"><h4><?= $this->translate('File') ?></h4></label>
-			    <div class="controls">
-				<span class="btn btn-success">
-				    <i class="icon-plus icon-white"></i>
-				    <span><?= $this->translate('Add files...') ?></span>
-				    <input type="file" name="file" multiple>
-				</span>
-				<p class="help-block">
-				    <?= $this->translate('Select a file') ?>
-				</p>
-			    </div>
-			</div>
-		    </fieldset>
+					<p class="help-block">
+					    <?= $this->translate('Select a file') ?>
+					</p>
+				    </div>
+				</div>
+			    </fieldset>
+			</form>
+		    </div>
+		    <div class="modal-footer">
+			<button class="btn btn-primary" type="submit"><?= $this->translate('Upload') ?></button>
+			<button class="btn btn-default" data-dismiss="modal"><?= $this->translate('Close') ?></button>
+		    </div>
+		    <script>
+			function selectContent(id, name) {
+			    $('#parent').val(id);
+			    $('#parent-name').val(name);
+			}
+		    </script>
 		</div>
-		<div class="modal-footer">
-		    <button class="btn btn-primary" type="submit"><?= $this->translate('Upload') ?></button>
-		    <button class="btn" data-dismiss="modal"><?= $this->translate('Close') ?></button>
-		</div>
-	    </form>
-	    <script>
-		function selectContent(id, name) {
-		    $('#parent').val(id);
-		    $('#parent-name').val(name);
-		}
-	    </script>
+	    </div>
 	</div>
 
 	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation" style="border-bottom: 3px solid #F88529;">
