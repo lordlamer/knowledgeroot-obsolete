@@ -1,4 +1,4 @@
-<!-- -->
+<!-- stores -->
 <script>
     var memberStore_<?= $this->name ?> = <?php echo ((count($this->permissions) > 0) ? json_encode($this->permissions) : '{}'); ?>;
     var roleStore_<?= $this->name ?> = <?= json_encode($this->roles) ?>;
@@ -6,8 +6,8 @@
 
 <!-- main member panel -->
 <div class="member-panel" data-panel-name="<?= $this->name ?>">
-    <button class="btn" data-toggle="modal" href="#memberPanelRoles_<?= $this->name ?>"><?= $this->translate('add Role') ?></button>
-    <button type="button" class="btn" data-panel-event="mem_removeUser"><?= $this->translate('remove selected Role') ?></button>
+    <button type="button" class="btn btn-default" data-toggle="modal" href="#memberPanelRoles_<?= $this->name ?>"><?= $this->translate('add Role') ?></button>
+    <button type="button" class="btn btn-default" data-panel-event="mem_removeUser"><?= $this->translate('remove selected Role') ?></button>
     <div class="row-fluid">
 	<div class="span6">
 	    <h5><?= $this->translate('Group- or Username') ?>:</h5>
@@ -29,7 +29,9 @@
 </div>
 
 <!-- modal box with available roles -->
-<div id="memberPanelRoles_<?= $this->name ?>" data-panel-name="<?= $this->name ?>" class="memberPanelRoles modal hide fade" tabindex="-1" role="dialog" aria-labelledby="memberPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
+<div class="modal fade memberPanelRoles" id="memberPanelRoles_<?= $this->name ?>" data-panel-name="<?= $this->name ?>" tabindex="-1" role="dialog" aria-labelledby="memberPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	    <h3><?= $this->translate('Roles') ?></h3>
@@ -46,4 +48,6 @@
 	    <button class="btn btn-primary" data-panel-event="mem_addUser" type="button"><?= $this->translate('Add') ?></button>
 	    <button class="btn" data-dismiss="modal"><?= $this->translate('Cancel') ?></button>
 	</div>
+    </div>
+  </div>
 </div>

@@ -35,7 +35,7 @@ $('[data-panel-event="mem_removeUser"]').on( "click", function( event ) {
  */
 $('[data-panel-event="mem_addUser"]').on( "click", function( event ) {
     // get panelName
-    panelName = $(this).parent().parent().attr('data-panel-name');
+    panelName = $(this).parent().parent().parent().parent().attr('data-panel-name');
 
     $('#memberPanelRoles_'+panelName+' select option:selected').each(function( index ) {
 	mem_addUserToList(panelName, this.value);
