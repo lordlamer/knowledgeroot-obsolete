@@ -70,6 +70,23 @@ $config = Zend_Registry::get('config');
     </head>
 
     <body class="claro">
+	<div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="about-label" aria-hidden="true">
+	    <div class="modal-dialog">
+		<div class="modal-content">
+		    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="about-label"><?= $this->translate('About Knowledgeroot') ?></h4>
+		    </div>
+		    <div class="modal-body">
+			Yeha
+		    </div>
+		    <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal"><?= $this->translate('Close') ?></button>
+		    </div>
+		</div>
+	    </div>
+	</div>
+
 	<div id="fileUpload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 		<div class="modal-content">
@@ -161,6 +178,23 @@ $config = Zend_Registry::get('config');
 				<input id="searchquery" type="text" class="form-control" placeholder="<?= $this->translate('Search') ?>" name="search" value="">
 			    </div>
 			</form>
+
+			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" style="border-top: 3px solid #43C83C;">
+				<a href="#"
+				   class="dropdown-toggle"
+				   data-toggle="dropdown">
+				    <i class="icon-question-sign icon-white"></i>
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <li><a href="http://docs.knowledgeroot.org" target="_blank"><i class="icon-book"></i>&nbsp;<?= $this->translate('Online Help') ?></a></li>
+				    <li><a href="javascript:;" data-toggle="modal" data-target="#about"><i class="icon-star"></i>&nbsp;<?= $this->translate('About') ?></a></li>
+				</ul>
+			    </li>
+			</ul>
+
 			<?php
 			$session = new Zend_Session_Namespace('user');
 			if(!$session->valid) { // show language dropdown only for guest users
@@ -200,6 +234,7 @@ $config = Zend_Registry::get('config');
 			<script>
 			    $('.dropdown-toggle').dropdown();
 			</script>
+
 			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
 			    <?php
 			    $userSession = new Zend_Session_Namespace('user');
@@ -224,7 +259,7 @@ $config = Zend_Registry::get('config');
 
 			    <ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
 				<li class="divider-vertical"></li>
-				<li class="dropdown" style="border-top: 3px solid #43C83C;">
+				<li class="dropdown" style="border-top: 3px solid #F88529;">
 				    <a href="#"
 				       class="dropdown-toggle"
 				       data-toggle="dropdown">
