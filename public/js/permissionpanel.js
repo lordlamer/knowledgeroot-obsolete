@@ -65,11 +65,9 @@ function showUserRights(panelName, userName) {
 	$('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="deny"]').attr('data-panel-userid', userName);
 
 	if(value == 'allow') {
-	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="allow"]').addClass('active');
-	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="deny"]').removeClass('active');
+	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="allow"]').parent().button('toggle');
 	} else {
-	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="deny"]').addClass('active');
-	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="allow"]').removeClass('active');
+	    $('[data-panel-name="'+panelName+'"] [data-panel-action-name="'+key+'"] [data-panel-action-right="deny"]').parent().button('toggle');
 	}
     });
 }
@@ -181,12 +179,12 @@ function removeUserFromList(panelName, userId) {
 /**
  * set action on right click
  */
-$('[data-panel-action-right]').on('click', function() {
+$('[data-panel-action-right]').parent().on('click', function() {
     // define vars
-    var panelName = $(this).attr('data-panel-name');
-    var userId = $(this).attr('data-panel-userid');
-    var action = $(this).attr('data-panel-action-name');
-    var permission = $(this).attr('data-panel-action-right');
+    var panelName = $(this).children().attr('data-panel-name');
+    var userId = $(this).children().attr('data-panel-userid');
+    var action = $(this).children().attr('data-panel-action-name');
+    var permission = $(this).children().attr('data-panel-action-right');
 
     // set user permissions
     setUserPermission(panelName, userId, action, permission);

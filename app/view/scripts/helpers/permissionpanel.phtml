@@ -7,10 +7,10 @@
 
 <!-- main permission panel -->
 <div class="permission-panel" data-panel-name="<?= $this->name ?>">
-    <button class="btn" data-toggle="modal" href="#permissionPanelRoles_<?= $this->name ?>"><?= $this->translate('add Role') ?></button>
-    <button type="button" class="btn" data-panel-event="removeUser"><?= $this->translate('remove selected Role') ?></button>
+    <button type="button" class="btn btn-default" data-toggle="modal" href="#permissionPanelRoles_<?= $this->name ?>"><?= $this->translate('add Role') ?></button>
+    <button type="button" class="btn btn-default" data-panel-event="removeUser"><?= $this->translate('remove selected Role') ?></button>
     <div class="row-fluid">
-	<div class="span6">
+	<div class="col-xs-6">
 	    <h5><?= $this->translate('Group- or Username') ?>:</h5>
 	    <div class="permission-panel-roles">
 		<ul>
@@ -21,7 +21,7 @@
 	    </div>
 	</div>
 
-	<div class="span6">
+	<div class="col-xs-6">
 	    <h5><?= $this->translate('Permissions') ?>:</h5>
 	    <div class="permission-panel-rights well well-small" data-panel-name="<?= $this->name ?>" style="display:none;">
 		<?php
@@ -29,9 +29,14 @@
 		    ?>
     		<div class="action" data-panel-action-name="<?= $value ?>">
     		    <span class="action-name"><?= $value ?>:</span>
-    		    <div class="btn-group" data-toggle="buttons-radio">
-    			<button type="button" class="btn btn-small btn-success" data-panel-name="<?= $this->name ?>" data-panel-action-name="<?= $value ?>" data-panel-action-right="allow"><?= $this->translate('allow') ?></button>
-    			<button type="button" class="btn btn-small btn-danger" data-panel-name="<?= $this->name ?>" data-panel-action-name="<?= $value ?>" data-panel-action-right="deny"><?= $this->translate('deny') ?></button>
+    		    <div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-success btn-small">
+				<input type="radio" name="<?= $this->name ?>" data-panel-name="<?= $this->name ?>" data-panel-action-name="<?= $value ?>" data-panel-action-right="allow"><?= $this->translate('allow') ?>
+			</label>
+			<label class="btn btn-danger btn-small">
+				<input type="radio" name="<?= $this->name ?>" data-panel-name="<?= $this->name ?>" data-panel-action-name="<?= $value ?>" data-panel-action-right="deny"><?= $this->translate('deny') ?>
+			</label>
+
     		    </div>
     		</div>
 		<?php } ?>
@@ -40,8 +45,8 @@
     </div>
     <?php if($this->showSaveButton) { ?>
     <div class="row-fluid">
-	<div class="pull-right">
-	    <button type="button" class="btn btn-primary permission-panel-save-button" data-panel-name="<?= $this->name ?>" data-panel-save-url="./permissions/save"><?= $this->translate('Save') ?></button>
+	<div class="col-xs-12">
+	    <button type="button" class="pull-right btn btn-primary permission-panel-save-button" data-panel-name="<?= $this->name ?>" data-panel-save-url="./permissions/save"><?= $this->translate('Save') ?></button>
 	</div>
     </div>
     <?php } ?>
@@ -63,7 +68,9 @@
 </div>
 
 <!-- modal box with available roles -->
-<div id="permissionPanelRoles_<?= $this->name ?>" data-panel-name="<?= $this->name ?>" class="permissionPanelRoles modal hide fade" tabindex="-1" role="dialog" aria-labelledby="permissionPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
+<div class="modal fade permissionPanelRoles" id="permissionPanelRoles_<?= $this->name ?>" data-panel-name="<?= $this->name ?>" tabindex="-1" role="dialog" aria-labelledby="permissionPanelRoles_<?= $this->name ?>_Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	    <h3><?= $this->translate('Roles') ?></h3>
@@ -80,4 +87,6 @@
 	    <button class="btn btn-primary" data-panel-event="addUser" type="button"><?= $this->translate('Add') ?></button>
 	    <button class="btn" data-dismiss="modal"><?= $this->translate('Cancel') ?></button>
 	</div>
+    </div>
+  </div>
 </div>
