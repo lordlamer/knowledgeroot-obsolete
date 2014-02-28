@@ -41,7 +41,7 @@ $('[data-panel-event="removeUser"]').on( "click", function( event ) {
  */
 $('[data-panel-event="addUser"]').on( "click", function( event ) {
     // get panelName
-    panelName = $(this).parent().parent().attr('data-panel-name');
+    panelName = $(this).parent().parent().parent().parent().attr('data-panel-name');
 
     $('#permissionPanelRoles_'+panelName+' select option:selected').each(function( index ) {
 	addUserToList(panelName, this.value);
