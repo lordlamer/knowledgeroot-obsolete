@@ -11,15 +11,15 @@ $(document).ready(function() {
 	$.each($('.accordion-toggle'), function(key, value) {
 		// check if accordion is open
 		if($($(this).attr('href')).hasClass('in'))
-			$(value).append('<i class="icon-chevron-down pull-left accordion-icon"></i>');
+			$(value).append('<i class="fa fa-chevron-down pull-left accordion-icon"></i>');
 		else
-			$(value).append('<i class="icon-chevron-right pull-left accordion-icon"></i>');
+			$(value).append('<i class="fa fa-chevron-right pull-left accordion-icon"></i>');
 	});
 
 	// set onclick to toggle icon
 	$('.accordion-toggle').on('click', function() {
 		// toggle icon
-		$(this).children().toggleClass('icon-chevron-right icon-chevron-down');
+		$(this).children().toggleClass('fa-chevron-right fa-chevron-down');
 
 		// collapse body
 		$($(this).attr('href')).collapse('toggle');

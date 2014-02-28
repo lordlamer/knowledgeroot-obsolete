@@ -65,8 +65,8 @@ foreach ($this->contents as $content) { // run for each content
     			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { ?><a class="btn btn-default" href="javascript:;" onclick="if(confirm('<?= $this->translate('Do you really want to delete?') ?>')) { location.href='content/delete/<?php echo $content->getId(); ?>'; } else { return false; }"><?= $this->translate('delete') ?></a><?php } ?>
     			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn btn-default" href="javascript:;" onclick="window.open('content/move/<?php echo $content->getId(); ?>','Knowledgeroot','width=400,height=500,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('move') ?></a><?php } ?>
     			<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?><a class="btn btn-default" href="javascript:;" onclick="window.open('print/<?php echo $content->getId(); ?>','Knowledgeroot','width=640,height=480,menubar=yes,resizable=yes,scrollbars=yes');"><?= $this->translate('print') ?></a><?php } ?>
-			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn btn-default" href="content/moveup/<?php echo $content->getId(); ?>"><i class="icon-arrow-up"></i></a><?php } ?>
-			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn btn-default" href="content/movedown/<?php echo $content->getId(); ?>"><i class="icon-arrow-down"></i></a><?php } ?>
+			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn btn-default" href="content/moveup/<?php echo $content->getId(); ?>"><i class="fa fa-arrow-up"></i></a><?php } ?>
+			<?php if(Knowledgeroot_Acl::iAmAllowed('page_' . $content->getParent(), 'edit')) { ?><a class="btn btn-default" href="content/movedown/<?php echo $content->getId(); ?>"><i class="fa fa-arrow-down"></i></a><?php } ?>
     		    </div>
     		    <div class="btn-group pull-right">
     			<a class="btn btn-default pull-right" href="#top"><?= $this->translate('Top') ?></a>
@@ -81,8 +81,8 @@ foreach ($this->contents as $content) { // run for each content
 			foreach($this->files[$content->getId()] as $file) {
 			    echo '<li>';
 			    // need delete rights on content to delete a file
-			    if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { echo '<a href="javascript:;" onclick="if(confirm(\'' . $this->translate('Do you really want to delete?') . '\')) { location.href=\'file/delete/'.$file->getId().'\'; }"><i class="icon-trash"></i></a> '; }
-			    echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="icon-download-alt" style="margin-right:5px;"></i> ' . $file->getName() . "</a>\n";
+			    if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'delete')) { echo '<a href="javascript:;" onclick="if(confirm(\'' . $this->translate('Do you really want to delete?') . '\')) { location.href=\'file/delete/'.$file->getId().'\'; }"><i class="fa fa-trash"></i></a> '; }
+			    echo '<a href="./download/'.$file->getId().'/'.$file->getName().'"><i class="fa fa-download-alt" style="margin-right:5px;"></i> ' . $file->getName() . "</a>\n";
 			    echo'
 <a href="javascript:;" class="label label-info" rel="popover" data-html="true" data-placement="right" data-content="Size: '.$file->getSize().'<br>' . $this->translate('Downloads') . ':'.$file->getDownloads().'<br>' . $this->translate('MD5 Sum') . ':'.$file->getHash().'<br>' . $this->translate('changed') . ':'.$file->getChangeDate().'<br>' . $this->translate('changed by') . ':'.$file->getChangedBy().'<br>' . $this->translate('created') . ':'.$file->getCreateDate().'<br>' . $this->translate('created by') . ':'.$file->getCreatedBy().'" title="' . $this->translate('File Information') . '">info</a>
 ';
@@ -93,7 +93,7 @@ foreach ($this->contents as $content) { // run for each content
 		?>
 		<?php if(Knowledgeroot_Acl::iAmAllowed('content_' . $content->getId(), 'edit')) { ?>
 		<form>
-		    <a onclick="selectContent('<?= $content->getId() ?>', '<?= $content->getName() ?>'); $('#fileUpload').modal('show');" href="javascript:;" class="btn btn-primary btn-mini"><i class="icon-plus icon-white" style="margin-right:2px;"></i><?= $this->translate('add') ?></a>
+		    <a onclick="selectContent('<?= $content->getId() ?>', '<?= $content->getName() ?>'); $('#fileUpload').modal('show');" href="javascript:;" class="btn btn-primary btn-mini"><i class="fa fa-plus icon-white" style="margin-right:2px;"></i><?= $this->translate('add') ?></a>
 		</form>
 		<?php } ?>
     	    </div>

@@ -144,9 +144,9 @@ $config = Zend_Registry::get('config');
 		    <div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 			    <span class="sr-only">Toggle navigation</span>
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
+			    <span class="fa fa-bar"></span>
+			    <span class="fa fa-bar"></span>
+			    <span class="fa fa-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#"><?= $config->base->title ?></a>
 		    </div>
@@ -156,17 +156,17 @@ $config = Zend_Registry::get('config');
 			    <li class="divider-vertical"></li>
 			    <li class="dropdown" style="border-top: 3px solid #1171A3;">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				    <i class="icon-plus icon-white"></i>&nbsp;<strong><?= $this->translate('New') ?></strong>
+				    <i class="fa fa-plus icon-white"></i>&nbsp;<strong><?= $this->translate('New') ?></strong>
 				    <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-				    <li><a href="page/new"><i class="icon-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
-				    <li><a href="content/new"><i class="icon-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
-				    <li><a data-toggle="modal" href="#fileUpload"><i class="icon-paper-clip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
+				    <li><a href="page/new"><i class="fa fa-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
+				    <li><a href="content/new"><i class="fa fa-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
+				    <li><a data-toggle="modal" href="#fileUpload"><i class="fa fa-paperclip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
 				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new') || Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?>
 					<li class="divider"></li>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="icon-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="icon-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="fa fa-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="fa fa-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
 				    <?php } ?>
 				</ul>
 			    </li>
@@ -185,12 +185,12 @@ $config = Zend_Registry::get('config');
 				<a href="#"
 				   class="dropdown-toggle"
 				   data-toggle="dropdown">
-				    <i class="icon-question-sign icon-white"></i>&nbsp;
+				    <i class="fa fa-question-circle icon-white"></i>&nbsp;
 				    <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-				    <li><a href="http://docs.knowledgeroot.org" target="_blank"><i class="icon-book"></i>&nbsp;<?= $this->translate('Online Help') ?></a></li>
-				    <li><a href="javascript:;" data-toggle="modal" data-target="#about"><i class="icon-star"></i>&nbsp;<?= $this->translate('About') ?></a></li>
+				    <li><a href="http://docs.knowledgeroot.org" target="_blank"><i class="fa fa-book"></i>&nbsp;<?= $this->translate('Online Help') ?></a></li>
+				    <li><a href="javascript:;" data-toggle="modal" data-target="#about"><i class="fa fa-star"></i>&nbsp;<?= $this->translate('About') ?></a></li>
 				</ul>
 			    </li>
 			</ul>
@@ -205,7 +205,7 @@ $config = Zend_Registry::get('config');
 				<a href="#"
 				   class="dropdown-toggle"
 				   data-toggle="dropdown">
-				    <i class="icon-flag icon-white"></i>&nbsp;
+				    <i class="fa fa-flag icon-white"></i>&nbsp;
 				    <?= $this->translate('Languages') ?>
 				    <b class="caret"></b>
 				</a>
@@ -246,13 +246,13 @@ $config = Zend_Registry::get('config');
 				    <a href="#"
 				       class="dropdown-toggle"
 				       data-toggle="dropdown">
-					<i class="icon-user icon-white"></i>&nbsp;
+					<i class="fa fa-user icon-white"></i>&nbsp;
 					    <?= $userSession->login ?>
 					<b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-					<li><a href="settings"><i class="icon-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
-					<li><a href="logout"><i class="icon-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
+					<li><a href="settings"><i class="fa fa-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
+					<li><a href="logout"><i class="fa fa-power-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
 				    </ul>
 				</li>
 			    </ul>
@@ -263,21 +263,21 @@ $config = Zend_Registry::get('config');
 				    <a href="#"
 				       class="dropdown-toggle"
 				       data-toggle="dropdown">
-					<i class="icon-th-large icon-white"></i>&nbsp;
+					<i class="fa fa-th-large icon-white"></i>&nbsp;
 					    <?= $this->translate('system') ?>
 					<b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="icon-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="icon-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="icon-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="fa fa-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="fa fa-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="fa fa-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
 				    </ul>
 				</li>
 			    </ul>
 				<?php
 			    } else {
 				?>
-			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="icon-share-alt icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
+			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="fa fa-share-alt icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
 				<?php
 			    }
 			    ?>
@@ -294,9 +294,9 @@ $config = Zend_Registry::get('config');
 
 			    <div class="well">
 				<div class="btn-group">
-				    <!-- <a class="btn" href="#"><i class="icon-refresh"></i></a> -->
-				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="icon-plus"></i></a>
-				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="icon-minus"></i></a>
+				    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
+				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
+				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
 				</div>
 				<script type="text/javascript">
 				    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
@@ -337,7 +337,7 @@ $config = Zend_Registry::get('config');
 		    <?php
 		    if (is_array($this->layout()->pathNavi)) {
 			echo "<ol class=\"breadcrumb\">";
-			echo "<li><i class=\"icon-home icon-large\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
+			echo "<li><i class=\"fa fa-home fa-lg\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
 
 			$c = count($this->layout()->pathNavi);
 			$x = 0;
