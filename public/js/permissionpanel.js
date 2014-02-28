@@ -26,7 +26,7 @@ onClickUser();
  */
 $('[data-panel-event="removeUser"]').on( "click", function( event ) {
     // get panelName
-    panelName = $(this).parent().parent().parent().parent().attr('data-panel-name');
+    panelName = $(this).parent().attr('data-panel-name');
 
     // get selected user
     userId = $('[data-panel-name="'+panelName+'"] .active').attr('data-panel-userid');
