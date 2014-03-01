@@ -90,12 +90,12 @@ $config = Zend_Registry::get('config');
 	<div id="fileUpload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 		<div class="modal-content">
+			<form action="./file/new" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
 		    <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h3 id="myModalLabel"><?= $this->translate('File Upload') ?></h3>
 		    </div>
 		    <div class="modal-body">
-			<form action="./file/new" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
 			    <fieldset>
 				<div class="form-group">
 				    <label class="control-label col-sm-2" for="content-title"><h4><?= $this->translate('Content') ?></h4></label>
@@ -122,7 +122,6 @@ $config = Zend_Registry::get('config');
 				    </div>
 				</div>
 			    </fieldset>
-			</form>
 		    </div>
 		    <div class="modal-footer">
 			<button class="btn btn-primary" type="submit"><?= $this->translate('Upload') ?></button>
@@ -134,6 +133,7 @@ $config = Zend_Registry::get('config');
 			    $('#parent-name').val(name);
 			}
 		    </script>
+			</form>
 		</div>
 	    </div>
 	</div>
