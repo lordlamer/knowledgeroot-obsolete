@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Knowledgeroot\n"
 "Report-Msgid-Bugs-To: locale@knowledgeroot.org\n"
-"POT-Creation-Date: 2013-07-26 22:58+0200\n"
-"PO-Revision-Date: 2013-08-20 23:31+0100\n"
+"POT-Creation-Date: 2014-03-01 20:19+0100\n"
+"PO-Revision-Date: 2014-03-01 20:57+0100\n"
 "Last-Translator: Frank Habermann <lordlamer@lordlamer.de>\n"
 "Language-Team: Frank Habermann <lordlamer@lordlamer.de>\n"
 "Language: \n"
@@ -19,609 +19,739 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: bin/../app/layout/layout.phtml:76
-msgid "File Upload"
-msgstr "Datei hochladen"
-
-#: bin/../app/layout/layout.phtml:82
-msgid "Content Id"
-msgstr "Inhalts-ID"
-
-#: bin/../app/layout/layout.phtml:86
-msgid "Id for Content"
-msgstr "ID für Inhalt"
-
-#: bin/../app/layout/layout.phtml:92
-#: bin/../app/layout/layout.phtml:134
-msgid "File"
-msgstr "Datei"
-
-#: bin/../app/layout/layout.phtml:96
-msgid "Add files..."
-msgstr "Datei hinzufügen"
-
-#: bin/../app/layout/layout.phtml:100
-msgid "Select a file"
-msgstr "Datei auswählen"
-
-#: bin/../app/layout/layout.phtml:107
-msgid "Upload"
-msgstr "Hochladen"
-
-#: bin/../app/layout/layout.phtml:108
-#: bin/../app/view/scripts/group/group.phtml:55
-#: bin/../app/view/scripts/page/page.phtml:169
-#: bin/../app/view/scripts/content/content.phtml:112
-#: bin/../app/view/scripts/user/user.phtml:95
-msgid "Close"
-msgstr "Schließen"
-
-#: bin/../app/layout/layout.phtml:128
-msgid "New"
-msgstr "Neu"
-
-#: bin/../app/layout/layout.phtml:132
-#: bin/../app/view/scripts/page/page.phtml:14
-#: bin/../app/view/scripts/page/page.phtml:27
-#: bin/../app/view/scripts/page/page.phtml:96
-#: bin/../app/view/scripts/content/content.phtml:55
-#: bin/../app/view/scripts/content/content.phtml:59
-msgid "Page"
-msgstr "Seite"
-
-#: bin/../app/layout/layout.phtml:133
-#: bin/../app/view/scripts/page/page.phtml:15
-#: bin/../app/view/scripts/content/content.phtml:14
-#: bin/../app/view/scripts/content/content.phtml:34
-msgid "Content"
-msgstr "Inhalt"
-
-#: bin/../app/layout/layout.phtml:147
-msgid "Search"
-msgstr "Suche"
-
-#: bin/../app/layout/layout.phtml:148
-msgid "GO"
-msgstr "LOS"
-
-#: bin/../app/layout/layout.phtml:162
-msgid "Languages"
-msgstr "Sprachen"
-
-#: bin/../app/layout/layout.phtml:175
-msgid "[TRANSLATION_NAME]"
-msgstr "Deutsch"
-
-#: bin/../app/layout/layout.phtml:203
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: bin/../app/layout/layout.phtml:204
-msgid "Logout"
-msgstr "Abmelden"
-
-#: bin/../app/layout/layout.phtml:216
-msgid "system"
-msgstr "System"
-
-#: bin/../app/layout/layout.phtml:220
-#: bin/../app/view/scripts/user/list.phtml:2
-msgid "Users"
-msgstr "Benutzer"
-
-#: bin/../app/layout/layout.phtml:221
-#: bin/../app/view/scripts/group/list.phtml:2
-msgid "Groups"
-msgstr "Gruppen"
-
-#: bin/../app/layout/layout.phtml:222
-#: bin/../app/view/scripts/page/page.phtml:17
-#: bin/../app/view/scripts/permissions/list.phtml:1
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:25
-#: bin/../app/view/scripts/content/content.phtml:16
-msgid "Permissions"
-msgstr "Rechte"
-
-#: bin/../app/layout/layout.phtml:229
-#: bin/../app/view/scripts/index/login.phtml:2
-#: bin/../app/view/scripts/user/user.phtml:20
-msgid "Login"
-msgstr "Anmelden"
-
-#: bin/../app/layout/layout.phtml:334
-msgid "Forum"
-msgstr "Forum"
-
-#: bin/../app/layout/layout.phtml:336
-msgid "Version"
-msgstr "Version"
-
-#: bin/../app/view/scripts/group/list.phtml:9
-#: bin/../app/view/scripts/group/group.phtml:21
-#: bin/../app/view/scripts/page/page.phtml:37
-msgid "Name"
-msgstr "Name"
-
-#: bin/../app/view/scripts/group/list.phtml:10
-#: bin/../app/view/scripts/group/group.phtml:28
-msgid "Description"
-msgstr "Beschreibung"
-
-#: bin/../app/view/scripts/group/list.phtml:11
-#: bin/../app/view/scripts/user/list.phtml:15
-msgid "active"
-msgstr "aktiv"
-
-#: bin/../app/view/scripts/group/list.phtml:12
-#: bin/../app/view/scripts/user/list.phtml:16
-msgid "action"
-msgstr "Aktion"
-
-#: bin/../app/view/scripts/group/list.phtml:22
-#: bin/../app/view/scripts/group/group.phtml:38
-#: bin/../app/view/scripts/user/user.phtml:79
-msgid "Yes"
-msgstr "Ja"
-
-#: bin/../app/view/scripts/group/list.phtml:22
-#: bin/../app/view/scripts/group/group.phtml:39
-#: bin/../app/view/scripts/user/user.phtml:80
-msgid "No"
-msgstr "Nein"
-
-#: bin/../app/view/scripts/group/list.phtml:25
-#: bin/../app/view/scripts/page/list.phtml:33
-#: bin/../app/view/scripts/user/list.phtml:33
-msgid "edit"
-msgstr "bearbeiten"
-
-#: bin/../app/view/scripts/group/list.phtml:30
-#: bin/../app/view/scripts/user/list.phtml:38
-msgid "SU-Login"
-msgstr "SU-Anmeldung"
-
-#: bin/../app/view/scripts/group/list.phtml:31
-#: bin/../app/view/scripts/user/list.phtml:39
-msgid "disable"
-msgstr "deaktivieren"
-
-#: bin/../app/view/scripts/group/list.phtml:31
-#: bin/../app/view/scripts/user/list.phtml:39
-msgid "enable"
-msgstr "aktivieren"
-
-#: bin/../app/view/scripts/group/list.phtml:32
-#: bin/../app/view/scripts/page/list.phtml:34
-#: bin/../app/view/scripts/user/list.phtml:40
-msgid "delete"
-msgstr "löschen"
-
-#: bin/../app/view/scripts/group/list.phtml:42
-msgid "new Group"
-msgstr "neue Gruppen"
-
-#: bin/../app/view/scripts/group/group.phtml:5
-msgid "Create Group"
-msgstr "Gruppe erstellen"
-
-#: bin/../app/view/scripts/group/group.phtml:7
-msgid "Edit Group"
-msgstr "Gruppen bearbeiten"
-
-#: bin/../app/view/scripts/group/group.phtml:14
-msgid "Group"
-msgstr "Gruppen"
-
-#: bin/../app/view/scripts/group/group.phtml:15
-#: bin/../app/view/scripts/user/user.phtml:15
-msgid "Member Of"
-msgstr "Mitglied von"
-
-#: bin/../app/view/scripts/group/group.phtml:16
-msgid "Members"
-msgstr "Mitglieder"
-
-#: bin/../app/view/scripts/group/group.phtml:35
-#: bin/../app/view/scripts/user/user.phtml:76
-msgid "Active"
-msgstr "Aktiv"
-
-#: bin/../app/view/scripts/group/group.phtml:53
-#: bin/../app/view/scripts/page/page.phtml:167
-#: bin/../app/view/scripts/settings/index.phtml:47
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:44
-#: bin/../app/view/scripts/content/content.phtml:110
-#: bin/../app/view/scripts/user/user.phtml:93
-msgid "Save"
-msgstr "Speichern"
-
-#: bin/../app/view/scripts/group/group.phtml:54
-#: bin/../app/view/scripts/page/page.phtml:168
-#: bin/../app/view/scripts/content/content.phtml:111
-#: bin/../app/view/scripts/user/user.phtml:94
-msgid "Save and Close"
-msgstr "Speichern und Schließen"
-
-#: bin/../app/view/scripts/page/page.phtml:5
-msgid "Create Page"
-msgstr "Seite erstellen"
-
-#: bin/../app/view/scripts/page/page.phtml:7
-msgid "Edit Page"
-msgstr "Seite bearbeiten"
-
-#: bin/../app/view/scripts/page/page.phtml:18
-msgid "Inherit Permissions"
-msgstr "Vererbbare Rechte"
-
-#: bin/../app/view/scripts/page/page.phtml:20
-#: bin/../app/view/scripts/content/content.phtml:17
-msgid "Information"
-msgstr "Informationen"
-
-#: bin/../app/view/scripts/page/page.phtml:21
-#: bin/../app/view/scripts/content/content.phtml:18
-msgid "History"
-msgstr "Historie"
-
-#: bin/../app/view/scripts/page/page.phtml:31
-msgid "Parent Page"
-msgstr "Eltern Seite"
-
-#: bin/../app/view/scripts/page/page.phtml:41
-msgid "Name of Page"
-msgstr "Name der Seite"
-
-#: bin/../app/view/scripts/page/page.phtml:47
-msgid "Alias"
-msgstr "Alias"
-
-#: bin/../app/view/scripts/page/page.phtml:51
-msgid "Alias for Page"
-msgstr "Alias für Seite"
-
-#: bin/../app/view/scripts/page/page.phtml:57
-msgid "Tooltip"
-msgstr "Tooltip"
-
-#: bin/../app/view/scripts/page/page.phtml:61
-msgid "Tooltip for Page"
-msgstr "Tooltip für Seite"
-
-#: bin/../app/view/scripts/page/page.phtml:77
-msgid "Symlink"
-msgstr "Symbolischer Link"
-
-#: bin/../app/view/scripts/page/page.phtml:81
-msgid "Symlink to other page"
-msgstr "Symbolischer Link zu einer anderen Seite"
-
-#: bin/../app/view/scripts/page/page.phtml:89
-msgid "Position for Content"
-msgstr "Position für Inhalt"
-
-#: bin/../app/view/scripts/page/page.phtml:92
-msgid "at beginning"
-msgstr "am Anfang"
-
-#: bin/../app/view/scripts/page/page.phtml:93
-msgid "at the end"
-msgstr "am Ende"
-
-#: bin/../app/view/scripts/page/page.phtml:102
-#: bin/../app/view/scripts/page/page.phtml:121
-msgid "Options"
-msgstr "Optionen"
-
-#: bin/../app/view/scripts/page/page.phtml:106
-msgid "Show content collapsed"
-msgstr "Inhalt eingeklappt anzeigen"
-
-#: bin/../app/view/scripts/page/page.phtml:109
-#: bin/../app/view/scripts/page/page.phtml:136
-msgid "Note"
-msgstr "Notiz"
-
-#: bin/../app/view/scripts/page/page.phtml:125
-msgid "enable inherit rights for subpages and contents"
-msgstr "Vererbbare Rechte für Unterseiten und Inhalte aktivieren"
-
-#: bin/../app/view/scripts/page/page.phtml:130
-msgid "enable edit of rights for these pages and contents"
-msgstr "Bearbeiten der Rechte diese Seiten und Inhalte aktivieren"
-
-#: bin/../app/view/scripts/page/page.phtml:134
-msgid "disable inherit rights for subpages and contents"
-msgstr "Vererbbare Rechte für Unterseiten und Inhalte deaktiveren"
-
-#: bin/../app/view/scripts/page/page.phtml:144
-#: bin/../app/view/scripts/content/content.phtml:87
-msgid "Created By"
-msgstr "Erstellt von"
-
-#: bin/../app/view/scripts/page/page.phtml:148
-#: bin/../app/view/scripts/content/content.phtml:91
-msgid "Username"
-msgstr "Benutzername"
-
-#: bin/../app/view/scripts/page/page.phtml:153
-#: bin/../app/view/scripts/content/content.phtml:96
-msgid "Created at"
-msgstr "Erstellt am"
-
-#: bin/../app/view/scripts/page/page.phtml:157
-#: bin/../app/view/scripts/content/content.phtml:100
-msgid "creation date"
-msgstr "Erstelldatum"
-
-#: bin/../app/view/scripts/page/list.phtml:4
-msgid "add new page"
-msgstr "neue Seite anlegen"
-
-#: bin/../app/view/scripts/page/list.phtml:5
-msgid "edit page"
-msgstr "Seite bearbeiten"
-
-#: bin/../app/view/scripts/page/list.phtml:6
-msgid "move page"
-msgstr "Seite verschieben"
-
-#: bin/../app/view/scripts/page/list.phtml:7
-msgid "Do you really want to delete this page?"
-msgstr "Wollen Sie diese Seite wirklich löschen?"
-
-#: bin/../app/view/scripts/page/list.phtml:7
-msgid "delete page"
-msgstr "Seite löschen"
-
-#: bin/../app/view/scripts/page/list.phtml:8
-msgid "add new content"
-msgstr "neuen Inhalt anlegen"
-
-#: bin/../app/view/scripts/page/list.phtml:34
-msgid "Do you really want to delete?"
-msgstr "Wollen Sie wirklich löschen?"
-
-#: bin/../app/view/scripts/page/list.phtml:35
-msgid "move"
-msgstr "verschieben"
-
-#: bin/../app/view/scripts/page/list.phtml:36
-msgid "print"
-msgstr "drucken"
-
-#: bin/../app/view/scripts/page/list.phtml:39
-msgid "Top"
-msgstr "oben"
-
-#: bin/../app/view/scripts/page/list.phtml:47
-msgid "Files"
-msgstr "Dateien"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "Downloads"
-msgstr "Dateien"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "MD5 Sum"
-msgstr "MD5 Summe"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "changed"
-msgstr "verändert"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "changed by"
-msgstr "verändert von"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "created"
-msgstr "erstellt"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "created by"
-msgstr "erstellt von"
-
-#: bin/../app/view/scripts/page/list.phtml:53
-msgid "File Information"
-msgstr "Datei-Informationen"
-
-#: bin/../app/view/scripts/page/list.phtml:62
-msgid "add"
-msgstr "hinzufügen"
-
-#: bin/../app/view/scripts/page/list.phtml:66
-msgid "Last changed"
-msgstr "Zuletzt geändert"
-
-#: bin/../app/view/scripts/page/list.phtml:66
-msgid "By"
-msgstr "von"
-
-#: bin/../app/view/scripts/index/login.phtml:9
-#: bin/../app/view/scripts/index/login.phtml:12
-#: bin/../app/view/scripts/user/user.phtml:14
-msgid "User"
-msgstr "Benutzer"
-
-#: bin/../app/view/scripts/index/login.phtml:17
-#: bin/../app/view/scripts/index/login.phtml:20
-#: bin/../app/view/scripts/settings/index.phtml:7
-#: bin/../app/view/scripts/user/user.phtml:27
-msgid "Password"
-msgstr "Passwort"
-
-#: bin/../app/view/scripts/index/login.phtml:25
-#: bin/../app/view/scripts/user/list.phtml:11
-msgid "login"
-msgstr "anmelden"
-
-#: bin/../app/view/scripts/index/index.phtml:3
-msgid "Home"
-msgstr "Start"
-
-#: bin/../app/view/scripts/index/index.phtml:7
-msgid "Welcome to Knowledgeroot"
-msgstr "Willkommen zu Knowledgeroot"
-
-#: bin/../app/view/scripts/permissions/list.phtml:7
-msgid "Manage Users"
-msgstr "Benutzer verwalten"
-
-#: bin/../app/view/scripts/permissions/list.phtml:20
-msgid "Manage Groups"
-msgstr "Gruppen verwalten"
-
-#: bin/../app/view/scripts/permissions/list.phtml:33
-msgid "Manage System Permissions"
-msgstr "Systemrechte verwalten"
-
-#: bin/../app/view/scripts/permissions/list.phtml:46
-msgid "Root Pages"
-msgstr "Oberseiten verwalten"
-
-#: bin/../app/view/scripts/settings/index.phtml:2
-msgid "Change Options"
-msgstr "Optionen bearbeiten"
-
-#: bin/../app/view/scripts/settings/index.phtml:14
-msgid "confirm Password"
-msgstr "Passwort bestätigen"
-
-#: bin/../app/view/scripts/settings/index.phtml:21
-msgid "Theme"
-msgstr "Erscheinungsbild"
-
-#: bin/../app/view/scripts/settings/index.phtml:34
-#: bin/../app/view/scripts/user/user.phtml:62
-msgid "Language"
-msgstr "Sprache"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:9
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:10
-msgid "add Role"
-msgstr "Rolle hinzufügen"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:10
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:11
-msgid "remove selected Role"
-msgstr "makierte Rolle löschen"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:13
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:14
-msgid "Group- or Username"
-msgstr "Gruppen- oder Benutzername"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:35
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:62
-msgid "Roles"
-msgstr "Rollen"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:38
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:65
-msgid "Select roles to add"
-msgstr "Rolle auswählen zum hinzufügen"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:46
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:73
-msgid "Add"
-msgstr "Hinzufügen"
-
-#: bin/../app/view/scripts/helpers/memberpanel.phtml:47
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:74
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:33
-msgid "allow"
-msgstr "erlauben"
-
-#: bin/../app/view/scripts/helpers/permissionpanel.phtml:34
-msgid "deny"
-msgstr "verbieten"
-
-#: bin/../app/view/scripts/content/content.phtml:5
-msgid "Create Content"
-msgstr "Inhalt erstellen"
-
-#: bin/../app/view/scripts/content/content.phtml:7
-msgid "Edit Content"
-msgstr "Inhalt bearbeiten"
-
-#: bin/../app/view/scripts/content/content.phtml:15
-#: bin/../app/view/scripts/content/content.phtml:65
-msgid "Position"
-msgstr "Position"
-
-#: bin/../app/view/scripts/content/content.phtml:24
-msgid "Titel"
-msgstr "Titel"
-
-#: bin/../app/view/scripts/content/content.phtml:28
-msgid "Title of content"
-msgstr "Titel des Inhalts"
-
-#: bin/../app/view/scripts/content/content.phtml:43
-msgid "Tags"
-msgstr "Schlagworte"
-
-#: bin/../app/view/scripts/content/content.phtml:47
-msgid "Comma separated words"
-msgstr "Komma separierte Wörter"
-
-#: bin/../app/view/scripts/content/content.phtml:77
-msgid "Define position of content on page"
-msgstr "Position des Inhalts auf der Seite definieren"
-
-#: bin/../app/view/scripts/user/user.phtml:5
+#: ../app/view/scripts/user/user.phtml:5
 msgid "Create User"
 msgstr "Benutzer erstellen"
 
-#: bin/../app/view/scripts/user/user.phtml:7
+#: ../app/view/scripts/user/user.phtml:7
 msgid "Edit User"
 msgstr "Benutzer bearbeiten"
 
-#: bin/../app/view/scripts/user/user.phtml:34
+#: ../app/view/scripts/user/user.phtml:14
+#: ../app/view/scripts/content/content.phtml:127
+#: ../app/view/scripts/page/page.phtml:202
+#: ../app/view/scripts/index/login.phtml:9
+#: ../app/view/scripts/index/login.phtml:13
+#: ../app/layout/layout.phtml:168
+msgid "User"
+msgstr "Benutzer"
+
+#: ../app/view/scripts/user/user.phtml:15
+#: ../app/view/scripts/group/group.phtml:15
+msgid "Member Of"
+msgstr "Mitglied von"
+
+#: ../app/view/scripts/user/user.phtml:20
+#: ../app/view/scripts/index/login.phtml:2
+#: ../app/view/scripts/settings/index.phtml:7
+#: ../app/layout/layout.phtml:280
+msgid "Login"
+msgstr "Anmelden"
+
+#: ../app/view/scripts/user/user.phtml:27
+#: ../app/view/scripts/index/login.phtml:18
+#: ../app/view/scripts/index/login.phtml:22
+#: ../app/view/scripts/settings/index.phtml:35
+msgid "Password"
+msgstr "Passwort"
+
+#: ../app/view/scripts/user/user.phtml:34
 msgid "Repeat Password"
 msgstr "Passwort wiederholen"
 
-#: bin/../app/view/scripts/user/user.phtml:41
+#: ../app/view/scripts/user/user.phtml:41
+#: ../app/view/scripts/settings/index.phtml:14
 msgid "First Name"
 msgstr "Vorname"
 
-#: bin/../app/view/scripts/user/user.phtml:48
+#: ../app/view/scripts/user/user.phtml:48
+#: ../app/view/scripts/settings/index.phtml:21
 msgid "Last Name"
 msgstr "Nachname"
 
-#: bin/../app/view/scripts/user/user.phtml:55
+#: ../app/view/scripts/user/user.phtml:55
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: bin/../app/view/scripts/user/user.phtml:69
+#: ../app/view/scripts/user/user.phtml:62
+#: ../app/view/scripts/settings/index.phtml:49
+msgid "Language"
+msgstr "Sprache"
+
+#: ../app/view/scripts/user/user.phtml:69
+#: ../app/view/scripts/settings/index.phtml:63
 msgid "Timezone"
 msgstr "Zeitzone"
 
-#: bin/../app/view/scripts/user/list.phtml:9
+#: ../app/view/scripts/user/user.phtml:76
+#: ../app/view/scripts/group/group.phtml:35
+msgid "Active"
+msgstr "Aktiv"
+
+#: ../app/view/scripts/user/user.phtml:79
+#: ../app/view/scripts/group/group.phtml:38
+#: ../app/view/scripts/group/list.phtml:22
+msgid "Yes"
+msgstr "Ja"
+
+#: ../app/view/scripts/user/user.phtml:80
+#: ../app/view/scripts/group/group.phtml:39
+#: ../app/view/scripts/group/list.phtml:22
+msgid "No"
+msgstr "Nein"
+
+#: ../app/view/scripts/user/user.phtml:93
+#: ../app/view/scripts/content/content.phtml:149
+#: ../app/view/scripts/group/group.phtml:55
+#: ../app/view/scripts/page/page.phtml:224
+#: ../app/view/scripts/helpers/permissionpanel.phtml:49
+#: ../app/view/scripts/settings/index.phtml:76
+msgid "Save"
+msgstr "Speichern"
+
+#: ../app/view/scripts/user/user.phtml:94
+#: ../app/view/scripts/content/content.phtml:150
+#: ../app/view/scripts/group/group.phtml:56
+#: ../app/view/scripts/page/page.phtml:225
+msgid "Save and Close"
+msgstr "Speichern und Schließen"
+
+#: ../app/view/scripts/user/user.phtml:95
+#: ../app/view/scripts/content/content.phtml:151
+#: ../app/view/scripts/group/group.phtml:57
+#: ../app/view/scripts/page/page.phtml:226
+#: ../app/layout/layout.phtml:84
+#: ../app/layout/layout.phtml:129
+msgid "Close"
+msgstr "Schließen"
+
+#: ../app/view/scripts/user/list.phtml:2
+#: ../app/layout/layout.phtml:271
+msgid "Users"
+msgstr "Benutzer"
+
+#: ../app/view/scripts/user/list.phtml:9
 msgid "firstname"
 msgstr "Vorname"
 
-#: bin/../app/view/scripts/user/list.phtml:10
+#: ../app/view/scripts/user/list.phtml:10
 msgid "lastname"
 msgstr "Nachname"
 
-#: bin/../app/view/scripts/user/list.phtml:12
+#: ../app/view/scripts/user/list.phtml:11
+#: ../app/view/scripts/index/login.phtml:27
+msgid "login"
+msgstr "anmelden"
+
+#: ../app/view/scripts/user/list.phtml:12
 msgid "email"
 msgstr "E-Mail"
 
-#: bin/../app/view/scripts/user/list.phtml:13
+#: ../app/view/scripts/user/list.phtml:13
 msgid "language"
 msgstr "Sprache"
 
-#: bin/../app/view/scripts/user/list.phtml:14
+#: ../app/view/scripts/user/list.phtml:14
 msgid "timezone"
 msgstr "Zeitzone"
 
-#: bin/../app/view/scripts/user/list.phtml:50
+#: ../app/view/scripts/user/list.phtml:15
+#: ../app/view/scripts/group/list.phtml:11
+msgid "active"
+msgstr "aktiv"
+
+#: ../app/view/scripts/user/list.phtml:16
+#: ../app/view/scripts/group/list.phtml:12
+msgid "action"
+msgstr "Aktion"
+
+#: ../app/view/scripts/user/list.phtml:33
+#: ../app/view/scripts/group/list.phtml:25
+#: ../app/view/scripts/page/list.phtml:64
+msgid "edit"
+msgstr "bearbeiten"
+
+#: ../app/view/scripts/user/list.phtml:38
+#: ../app/view/scripts/group/list.phtml:30
+msgid "SU-Login"
+msgstr "SU-Anmeldung"
+
+#: ../app/view/scripts/user/list.phtml:39
+#: ../app/view/scripts/group/list.phtml:31
+msgid "disable"
+msgstr "deaktivieren"
+
+#: ../app/view/scripts/user/list.phtml:39
+#: ../app/view/scripts/group/list.phtml:31
+msgid "enable"
+msgstr "aktivieren"
+
+#: ../app/view/scripts/user/list.phtml:40
+#: ../app/view/scripts/group/list.phtml:32
+#: ../app/view/scripts/page/list.phtml:65
+msgid "delete"
+msgstr "löschen"
+
+#: ../app/view/scripts/user/list.phtml:50
 msgid "new User"
 msgstr "neuer Benutzer"
 
+#: ../app/view/scripts/content/move.phtml:2
+msgid "Move Content"
+msgstr "Inhalt verschieben"
+
+#: ../app/view/scripts/content/move.phtml:8
+#: ../app/view/scripts/content/move.phtml:46
+#: ../app/view/scripts/content/select.phtml:52
+#: ../app/view/scripts/page/move.phtml:8
+#: ../app/view/scripts/page/move.phtml:47
+#: ../app/view/scripts/page/select.phtml:41
+msgid "close"
+msgstr "Schließen"
+
+#: ../app/view/scripts/content/select.phtml:2
+msgid "Select Content"
+msgstr "Inhalt auswählen"
+
+#: ../app/view/scripts/content/select.phtml:47
+msgid "Please select a page!"
+msgstr "Bitte wählen Sie eine Seite aus!"
+
+#: ../app/view/scripts/content/content.phtml:5
+msgid "Create Content"
+msgstr "Inhalt erstellen"
+
+#: ../app/view/scripts/content/content.phtml:7
+msgid "Edit Content"
+msgstr "Inhalt bearbeiten"
+
+#: ../app/view/scripts/content/content.phtml:14
+#: ../app/view/scripts/content/content.phtml:34
+#: ../app/view/scripts/page/page.phtml:15
+#: ../app/layout/layout.phtml:101
+#: ../app/layout/layout.phtml:164
+msgid "Content"
+msgstr "Inhalt"
+
+#: ../app/view/scripts/content/content.phtml:15
+#: ../app/view/scripts/content/content.phtml:80
+msgid "Position"
+msgstr "Position"
+
+#: ../app/view/scripts/content/content.phtml:16
+#: ../app/view/scripts/permissions/list.phtml:1
+#: ../app/view/scripts/page/page.phtml:17
+#: ../app/view/scripts/helpers/permissionpanel.phtml:25
+#: ../app/layout/layout.phtml:273
+msgid "Permissions"
+msgstr "Rechte"
+
+#: ../app/view/scripts/content/content.phtml:17
+#: ../app/view/scripts/page/page.phtml:20
+msgid "Information"
+msgstr "Informationen"
+
+#: ../app/view/scripts/content/content.phtml:18
+#: ../app/view/scripts/page/page.phtml:21
+msgid "History"
+msgstr "Historie"
+
+#: ../app/view/scripts/content/content.phtml:24
+msgid "Titel"
+msgstr "Titel"
+
+#: ../app/view/scripts/content/content.phtml:28
+msgid "Title of content"
+msgstr "Titel des Inhalts"
+
+#: ../app/view/scripts/content/content.phtml:43
+msgid "Tags"
+msgstr "Schlagworte"
+
+#: ../app/view/scripts/content/content.phtml:58
+msgid "Comma separated words"
+msgstr "Komma separierte Wörter"
+
+#: ../app/view/scripts/content/content.phtml:66
+#: ../app/view/scripts/page/page.phtml:27
+msgid "Parent Page"
+msgstr "Eltern Seite"
+
+#: ../app/view/scripts/content/content.phtml:68
+#: ../app/view/scripts/page/page.phtml:29
+msgid "select a page"
+msgstr "Seite auswählen"
+
+#: ../app/view/scripts/content/content.phtml:70
+#: ../app/view/scripts/page/page.phtml:31
+msgid "Select a parent page"
+msgstr "Elternseite auswählen"
+
+#: ../app/view/scripts/content/content.phtml:75
+#: ../app/view/scripts/page/page.phtml:36
+#: ../app/layout/layout.phtml:110
+msgid "select page"
+msgstr "Seite auswählen"
+
+#: ../app/view/scripts/content/content.phtml:92
+msgid "Define position of content on page"
+msgstr "Position des Inhalts auf der Seite definieren"
+
+#: ../app/view/scripts/content/content.phtml:103
+#: ../app/view/scripts/page/page.phtml:178
+msgid "Created By"
+msgstr "Erstellt von"
+
+#: ../app/view/scripts/content/content.phtml:107
+#: ../app/view/scripts/page/page.phtml:182
+msgid "Username"
+msgstr "Benutzername"
+
+#: ../app/view/scripts/content/content.phtml:112
+#: ../app/view/scripts/page/page.phtml:187
+msgid "Created at"
+msgstr "Erstellt am"
+
+#: ../app/view/scripts/content/content.phtml:116
+#: ../app/view/scripts/page/page.phtml:191
+msgid "creation date"
+msgstr "Erstelldatum"
+
+#: ../app/view/scripts/content/content.phtml:126
+#: ../app/view/scripts/page/page.phtml:201
+#: ../app/layout/layout.phtml:388
+msgid "Version"
+msgstr "Version"
+
+#: ../app/view/scripts/content/content.phtml:128
+#: ../app/view/scripts/page/page.phtml:203
+msgid "Date"
+msgstr "Datum"
+
+#: ../app/view/scripts/content/content.phtml:129
+#: ../app/view/scripts/page/page.phtml:204
+msgid "Action"
+msgstr "Aktion"
+
+#: ../app/view/scripts/content/content.phtml:138
+#: ../app/view/scripts/page/page.phtml:213
+msgid "show"
+msgstr "zeigen"
+
+#: ../app/view/scripts/group/group.phtml:5
+msgid "Create Group"
+msgstr "Gruppe erstellen"
+
+#: ../app/view/scripts/group/group.phtml:7
+msgid "Edit Group"
+msgstr "Gruppen bearbeiten"
+
+#: ../app/view/scripts/group/group.phtml:14
+#: ../app/layout/layout.phtml:169
+msgid "Group"
+msgstr "Gruppen"
+
+#: ../app/view/scripts/group/group.phtml:16
+msgid "Members"
+msgstr "Mitglieder"
+
+#: ../app/view/scripts/group/group.phtml:21
+#: ../app/view/scripts/group/list.phtml:9
+#: ../app/view/scripts/page/page.phtml:41
+msgid "Name"
+msgstr "Name"
+
+#: ../app/view/scripts/group/group.phtml:28
+#: ../app/view/scripts/group/list.phtml:10
+msgid "Description"
+msgstr "Beschreibung"
+
+#: ../app/view/scripts/group/list.phtml:2
+#: ../app/layout/layout.phtml:272
+msgid "Groups"
+msgstr "Gruppen"
+
+#: ../app/view/scripts/group/list.phtml:42
+msgid "new Group"
+msgstr "neue Gruppen"
+
+#: ../app/view/scripts/permissions/list.phtml:7
+msgid "Manage Users"
+msgstr "Benutzer verwalten"
+
+#: ../app/view/scripts/permissions/list.phtml:20
+msgid "Manage Groups"
+msgstr "Gruppen verwalten"
+
+#: ../app/view/scripts/permissions/list.phtml:33
+msgid "Manage System Permissions"
+msgstr "Systemrechte verwalten"
+
+#: ../app/view/scripts/permissions/list.phtml:46
+msgid "Root Pages"
+msgstr "Oberseiten verwalten"
+
+#: ../app/view/scripts/page/page.phtml:5
+msgid "Create Page"
+msgstr "Seite erstellen"
+
+#: ../app/view/scripts/page/page.phtml:7
+msgid "Edit Page"
+msgstr "Seite bearbeiten"
+
+#: ../app/view/scripts/page/page.phtml:14
+#: ../app/view/scripts/page/page.phtml:110
+#: ../app/layout/layout.phtml:163
+msgid "Page"
+msgstr "Seite"
+
+#: ../app/view/scripts/page/page.phtml:18
+msgid "Inherit Permissions"
+msgstr "Vererbbare Rechte"
+
+#: ../app/view/scripts/page/page.phtml:45
+msgid "Name of Page"
+msgstr "Name der Seite"
+
+#: ../app/view/scripts/page/page.phtml:51
+msgid "Subtitle"
+msgstr "Untertitel"
+
+#: ../app/view/scripts/page/page.phtml:55
+msgid "Subtitle of Page"
+msgstr "Untertitel der Seite"
+
+#: ../app/view/scripts/page/page.phtml:61
+msgid "Alias"
+msgstr "Alias"
+
+#: ../app/view/scripts/page/page.phtml:65
+msgid "Alias for Page"
+msgstr "Alias für Seite"
+
+#: ../app/view/scripts/page/page.phtml:71
+msgid "Tooltip"
+msgstr "Tooltip"
+
+#: ../app/view/scripts/page/page.phtml:75
+msgid "Tooltip for Page"
+msgstr "Tooltip für Seite"
+
+#: ../app/view/scripts/page/page.phtml:91
+msgid "Symlink"
+msgstr "Symbolischer Link"
+
+#: ../app/view/scripts/page/page.phtml:95
+msgid "Symlink to other page"
+msgstr "Symbolischer Link zu einer anderen Seite"
+
+#: ../app/view/scripts/page/page.phtml:103
+msgid "Position for new Content"
+msgstr "Position für neuen Inhalt"
+
+#: ../app/view/scripts/page/page.phtml:106
+msgid "at beginning"
+msgstr "am Anfang"
+
+#: ../app/view/scripts/page/page.phtml:107
+msgid "at the end"
+msgstr "am Ende"
+
+#: ../app/view/scripts/page/page.phtml:116
+#: ../app/view/scripts/page/page.phtml:154
+msgid "Options"
+msgstr "Optionen"
+
+#: ../app/view/scripts/page/page.phtml:120
+msgid "Show content collapsed"
+msgstr "Inhalt eingeklappt anzeigen"
+
+#: ../app/view/scripts/page/page.phtml:125
+msgid "Show page description"
+msgstr "Seiten-Beschreibung anzeigen"
+
+#: ../app/view/scripts/page/page.phtml:130
+msgid "Show table of content"
+msgstr "Inhaltsverzeichnis anzeigen"
+
+#: ../app/view/scripts/page/page.phtml:133
+#: ../app/view/scripts/page/page.phtml:169
+msgid "Note"
+msgstr "Notiz"
+
+#: ../app/view/scripts/page/page.phtml:133
+msgid "Set options for the page"
+msgstr "Einstellungen für die Seite setzen"
+
+#: ../app/view/scripts/page/page.phtml:139
+msgid "Page description"
+msgstr "Seiten-Beschreibung"
+
+#: ../app/view/scripts/page/page.phtml:158
+msgid "enable inherit rights for subpages and contents"
+msgstr "Vererbbare Rechte für Unterseiten und Inhalte aktivieren"
+
+#: ../app/view/scripts/page/page.phtml:163
+msgid "enable edit of rights for these pages and contents"
+msgstr "Bearbeiten der Rechte diese Seiten und Inhalte aktivieren"
+
+#: ../app/view/scripts/page/page.phtml:167
+msgid "disable inherit rights for subpages and contents"
+msgstr "Vererbbare Rechte für Unterseiten und Inhalte deaktiveren"
+
+#: ../app/view/scripts/page/move.phtml:2
+msgid "Move Page"
+msgstr "Seite verschieben"
+
+#: ../app/view/scripts/page/move.phtml:46
+msgid "Create as new root page"
+msgstr "Als neue Oberseite anlegen"
+
+#: ../app/view/scripts/page/show.phtml:3
+#: ../app/view/scripts/page/show.phtml:6
+msgid "Show version of page"
+msgstr "Version der Seite anzeigen"
+
+#: ../app/view/scripts/page/select.phtml:2
+msgid "Select Page"
+msgstr "Seite auswählen"
+
+#: ../app/view/scripts/page/list.phtml:4
+msgid "add new page"
+msgstr "neue Seite anlegen"
+
+#: ../app/view/scripts/page/list.phtml:5
+msgid "edit page"
+msgstr "Seite bearbeiten"
+
+#: ../app/view/scripts/page/list.phtml:6
+msgid "move page"
+msgstr "Seite verschieben"
+
+#: ../app/view/scripts/page/list.phtml:7
+msgid "Do you really want to delete this page?"
+msgstr "Wollen Sie diese Seite wirklich löschen?"
+
+#: ../app/view/scripts/page/list.phtml:7
+msgid "delete page"
+msgstr "Seite löschen"
+
+#: ../app/view/scripts/page/list.phtml:8
+msgid "add new content"
+msgstr "neuen Inhalt anlegen"
+
+#: ../app/view/scripts/page/list.phtml:30
+msgid "contents"
+msgstr "Inhalte"
+
+#: ../app/view/scripts/page/list.phtml:65
+#: ../app/view/scripts/page/list.phtml:84
+msgid "Do you really want to delete?"
+msgstr "Wollen Sie wirklich löschen?"
+
+#: ../app/view/scripts/page/list.phtml:66
+msgid "move"
+msgstr "verschieben"
+
+#: ../app/view/scripts/page/list.phtml:67
+msgid "print"
+msgstr "drucken"
+
+#: ../app/view/scripts/page/list.phtml:72
+msgid "Top"
+msgstr "oben"
+
+#: ../app/view/scripts/page/list.phtml:80
+msgid "Files"
+msgstr "Dateien"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "Downloads"
+msgstr "Dateien"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "MD5 Sum"
+msgstr "MD5 Summe"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "changed"
+msgstr "verändert"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "changed by"
+msgstr "verändert von"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "created"
+msgstr "erstellt"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "created by"
+msgstr "erstellt von"
+
+#: ../app/view/scripts/page/list.phtml:87
+msgid "File Information"
+msgstr "Datei-Informationen"
+
+#: ../app/view/scripts/page/list.phtml:96
+msgid "add"
+msgstr "hinzufügen"
+
+#: ../app/view/scripts/page/list.phtml:100
+msgid "Last change"
+msgstr "Letzte Änderung"
+
+#: ../app/view/scripts/index/index.phtml:3
+msgid "Home"
+msgstr "Start"
+
+#: ../app/view/scripts/index/index.phtml:7
+msgid "Welcome to Knowledgeroot"
+msgstr "Willkommen zu Knowledgeroot"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:9
+#: ../app/view/scripts/helpers/permissionpanel.phtml:10
+msgid "add Role"
+msgstr "Rolle hinzufügen"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:10
+#: ../app/view/scripts/helpers/permissionpanel.phtml:11
+msgid "remove selected Role"
+msgstr "makierte Rolle löschen"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:13
+#: ../app/view/scripts/helpers/permissionpanel.phtml:14
+msgid "Group- or Username"
+msgstr "Gruppen- oder Benutzername"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:37
+#: ../app/view/scripts/helpers/permissionpanel.phtml:76
+msgid "Roles"
+msgstr "Rollen"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:40
+#: ../app/view/scripts/helpers/permissionpanel.phtml:79
+msgid "Select roles to add"
+msgstr "Rolle auswählen zum hinzufügen"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:48
+#: ../app/view/scripts/helpers/permissionpanel.phtml:87
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: ../app/view/scripts/helpers/memberpanel.phtml:49
+#: ../app/view/scripts/helpers/permissionpanel.phtml:88
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../app/view/scripts/helpers/permissionpanel.phtml:34
+msgid "allow"
+msgstr "erlauben"
+
+#: ../app/view/scripts/helpers/permissionpanel.phtml:37
+msgid "deny"
+msgstr "verbieten"
+
+#: ../app/view/scripts/settings/index.phtml:2
+msgid "Change Options"
+msgstr "Optionen bearbeiten"
+
+#: ../app/view/scripts/settings/index.phtml:28
+msgid "Email"
+msgstr "E-Mail"
+
+#: ../app/view/scripts/settings/index.phtml:42
+msgid "confirm Password"
+msgstr "Passwort bestätigen"
+
+#: ../app/view/scripts/settings/index.phtml:55
+#: ../app/layout/layout.phtml:222
+msgid "[TRANSLATION_NAME]"
+msgstr "Deutsch"
+
+#: ../app/layout/layout.phtml:78
+msgid "About Knowledgeroot"
+msgstr "Über Knowledgeroot"
+
+#: ../app/layout/layout.phtml:95
+msgid "File Upload"
+msgstr "Datei hochladen"
+
+#: ../app/layout/layout.phtml:103
+msgid "select content"
+msgstr "Inhalt auswählen"
+
+#: ../app/layout/layout.phtml:105
+msgid "Select content"
+msgstr "Inhalt auswählen"
+
+#: ../app/layout/layout.phtml:115
+#: ../app/layout/layout.phtml:165
+msgid "File"
+msgstr "Datei"
+
+#: ../app/layout/layout.phtml:117
+msgid "Select File(s)"
+msgstr "Datei(en) auswählen"
+
+#: ../app/layout/layout.phtml:120
+msgid "Select a file"
+msgstr "Datei auswählen"
+
+#: ../app/layout/layout.phtml:128
+msgid "Upload"
+msgstr "Hochladen"
+
+#: ../app/layout/layout.phtml:159
+msgid "New"
+msgstr "Neu"
+
+#: ../app/layout/layout.phtml:178
+msgid "Search"
+msgstr "Suche"
+
+#: ../app/layout/layout.phtml:192
+msgid "Online Help"
+msgstr "Online Hilfe"
+
+#: ../app/layout/layout.phtml:193
+msgid "About"
+msgstr "Über"
+
+#: ../app/layout/layout.phtml:209
+msgid "Languages"
+msgstr "Sprachen"
+
+#: ../app/layout/layout.phtml:254
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: ../app/layout/layout.phtml:255
+msgid "Logout"
+msgstr "Abmelden"
+
+#: ../app/layout/layout.phtml:267
+msgid "system"
+msgstr "System"
+
+#: ../app/layout/layout.phtml:384
+msgid "Forum"
+msgstr "Forum"
+
+#~ msgid "Content Id"
+#~ msgstr "Inhalts-ID"
+
+#~ msgid "Id for Content"
+#~ msgstr "ID für Inhalt"
+
+#~ msgid "Add files..."
+#~ msgstr "Datei hinzufügen"
+
+#~ msgid "GO"
+#~ msgstr "LOS"
+
+#~ msgid "By"
+#~ msgstr "von"
+
+#~ msgid "Theme"
+#~ msgstr "Erscheinungsbild"
