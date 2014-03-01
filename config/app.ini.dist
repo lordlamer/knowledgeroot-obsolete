@@ -28,7 +28,7 @@ phpSettings.display_errors = 1
 resources.frontController.params.displayExceptions = 1
 
 [base]
-version = "1.9-dev"
+version = "2.0a1"
 title = "Knowledgeroot"
 cryptkey = "yourcryptkeyhere"
 base_path = "/path/to/folder/"
