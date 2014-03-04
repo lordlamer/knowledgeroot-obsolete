@@ -1,5 +1,7 @@
 20140304 - fhabermann
 * enable accordion open-close on full title bar (Closes #23)
+* added bootboxjs
+* added restore button for content
 
 20130301 - Knowledgeroot 2 alpha1
 
