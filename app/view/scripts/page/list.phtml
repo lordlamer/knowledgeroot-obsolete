@@ -49,11 +49,11 @@ foreach ($this->contents as $content) { // run for each content
     <!-- anchor --><a name="content<?php echo $content->getId(); ?>"></a>
     <div class="panel-group" id="accordion<?php echo $content->getId(); ?>"><!-- start accordian -->
         <div class="panel panel-default">
-    	<div class="panel-heading" style="background-color: #F6F6F6;">
+    	<div class="panel-heading" style="background-color: #F6F6F6; cursor: pointer;">
 
-    	    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->getId(); ?>" href="#collapse<?php echo $content->getId(); ?>">
+    	    <h5 style="color: #428bca; margin: 0px 0px 0px 0px;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $content->getId(); ?>" href="#collapse<?php echo $content->getId(); ?>">
     		<?php echo $content->getName(); ?>
-    	    </a>
+    	    </h5>
 
     	</div>
     	<div id="collapse<?php echo $content->getId(); ?>" class="panel-collapse collapse<?php if ($this->open || $this->contentcollapse) echo ' in'; ?>">
