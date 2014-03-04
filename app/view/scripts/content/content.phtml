@@ -158,7 +158,7 @@
 			<td><?= $value['date']->getUserDate() ?></td>
 			<td>
 			    <a href="javascript:;" onclick="window.open('content/show/<?= $this->id ?>/version/<?= $value['version'] ?>','Knowledgeroot','width=550,height=400,menubar=yes,resizable=yes,scrollbars=yes');" class="btn btn-primary btn-small"><?= $this->translate('show') ?></a>
-			    <a href="javascript:;" onclick="restoreContentDialog('content/<?= $this->id ?>/restore/<?= $value['version'] ?>');" class="btn btn-primary btn-small"><?= $this->translate('restore') ?></a>
+			    <a href="javascript:;" onclick="restoreContentDialog('content/restore/<?= $this->id ?>/version/<?= $value['version'] ?>');" class="btn btn-primary btn-small"><?= $this->translate('restore') ?></a>
 			</td>
 		    </tr>
 			<?php

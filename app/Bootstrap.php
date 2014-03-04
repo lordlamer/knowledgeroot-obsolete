@@ -370,6 +370,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: content/restore/:contentid/version/:version
+	    $router->addRoute('contentrestoreversion', new Zend_Controller_Router_Route_Regex('content/restore/(\d+)/version/(\d+)', array(
+			'controller' => 'content',
+			'action' => 'restore'),
+			    array(
+				1 => 'id',
+				2 => 'version',
+			    )
+	    ));
+
 	    //route: language/:language
 	    $router->addRoute('language', new Zend_Controller_Router_Route_Regex('language/(.+)', array(
 			'controller' => 'index',

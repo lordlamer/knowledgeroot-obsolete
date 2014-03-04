@@ -536,6 +536,23 @@ class Knowledgeroot_Content {
 	$tagMember = new Knowledgeroot_Db_Tag_Content();
 	$tagMember->delete('content_id = ' . $this->id);
     }
+
+    /**
+     * restore content version
+     */
+    public function restore() {
+	if($this->version === null)
+	    return;
+
+	$content = new Knowledgeroot_Content($this->id);
+
+	// restore contents
+	$content->setName($this->getName());
+	$content->setContent($this->getContent(true));
+
+	// save
+	$content->save();
+    }
 }
 
 ?>

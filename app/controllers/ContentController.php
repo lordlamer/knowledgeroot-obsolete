@@ -232,5 +232,22 @@ class ContentController extends Zend_Controller_Action {
 	    $this->view->contents = Knowledgeroot_Content::getContents(new Knowledgeroot_Page($this->_getParam('id')));
 	}
     }
+
+    public function restoreAction() {
+	// acl checks
+	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('');
+
+	// get content and restore version
+	$content = new Knowledgeroot_Content($this->_getParam('id'), $this->_getParam('version'));
+	$content->restore();
+	$parent = $content->getParent();
+
+	// show success message
+	Knowledgeroot_Message::success("Content restored","Content was restored to version " . $this->_getParam('version'));
+
+	// redirect to page
+	$this->_redirect('page/' . $parent);
+    }
 }
 

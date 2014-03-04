@@ -2,6 +2,7 @@
 * enable accordion open-close on full title bar (Closes #23)
 * added bootboxjs
 * added restore button for content
+* added restore function for title and content
 
 20130301 - Knowledgeroot 2 alpha1
 
