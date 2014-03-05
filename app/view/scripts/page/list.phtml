@@ -77,7 +77,7 @@ foreach ($this->contents as $content) { // run for each content
 		<br>
 		<?php
 		    if(is_array($this->files) && is_array($this->files[$content->getId()]) && count($this->files[$content->getId()]) > 0) {
-			echo "<legend>" . $this->translate('Files') . "</legend><ul class=\"unstyled\">\n";
+			echo "<legend>" . $this->translate('Files') . "</legend><ul class=\"list-unstyled\">\n";
 			foreach($this->files[$content->getId()] as $file) {
 			    echo '<li>';
 			    // need delete rights on content to delete a file
