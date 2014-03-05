@@ -547,7 +547,7 @@ class Knowledgeroot_Content {
 	if($this->version === null)
 	    return;
 
-	$content = new Knowledgeroot_Content($this->id);
+	$content = new Knowledgeroot_Content($this->getId());
 
 	// restore contents
 	$content->setName($this->getName());

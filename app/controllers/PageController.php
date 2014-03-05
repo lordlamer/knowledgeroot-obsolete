@@ -342,5 +342,21 @@ class PageController extends Zend_Controller_Action {
 	// forward to listing
 	$this->_forward('list', 'page', null, array('id' => $page->getId()));
     }
+
+    public function restoreAction() {
+	// acl checks
+	if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('id'), 'edit'))
+		$this->_redirect('');
+
+	// get page and restore version
+	$page = new Knowledgeroot_Page($this->_getParam('id'), $this->_getParam('version'));
+	$page->restore();
+
+	// show success message
+	Knowledgeroot_Message::success("Page restored","Page was restored to version " . $this->_getParam('version'));
+
+	// redirect to page
+	$this->_redirect('page/' . $page->getId());
+    }
 }
 

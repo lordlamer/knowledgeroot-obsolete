@@ -196,6 +196,27 @@
 	    <?php } ?>
 	    <?php if($this->action != 'new') { ?>
 	    <div class="tab-pane" id="tab-history">
+		<script>
+		    function restorePageDialog(restoreUrl) {
+			bootbox.dialog({
+			    message: "Do you really want to restore this version?",
+			    title: "Page restore",
+			    buttons: {
+				cancel: {
+				    label: "<?= $this->translate('cancel') ?>",
+				    className: "btn-default"
+				},
+				ok: {
+				    label: "<?= $this->translate('yes') ?>",
+				    className: "btn-primary",
+				    callback: function() {
+					window.location.href = restoreUrl;
+				    }
+				}
+			    }
+			    });
+		    }
+		</script>
 		<table class="table table-striped table-bordered table-hover">
 		    <tr>
 			<th><?= $this->translate('Version') ?></th>
@@ -210,7 +231,10 @@
 			<td><span class="badge badge-info"><?= $value['version'] ?></span></td>
 			<td><?= $value['user']->getLogin() ?></td>
 			<td><?= $value['date']->getUserDate() ?></td>
-			<td><a href="javascript:;" onclick="window.open('page/show/<?= $this->id ?>/version/<?= $value['version'] ?>','Knowledgeroot','width=550,height=400,menubar=yes,resizable=yes,scrollbars=yes');" class="btn btn-primary btn-small"><?= $this->translate('show') ?></a></td>
+			<td>
+			    <a href="javascript:;" onclick="window.open('page/show/<?= $this->id ?>/version/<?= $value['version'] ?>','Knowledgeroot','width=550,height=400,menubar=yes,resizable=yes,scrollbars=yes');" class="btn btn-primary btn-small"><?= $this->translate('show') ?></a>
+			    <a href="javascript:;" onclick="restorePageDialog('page/restore/<?= $this->id ?>/version/<?= $value['version'] ?>');" class="btn btn-primary btn-small"><?= $this->translate('restore') ?></a>
+			</td>
 		    </tr>
 			<?php
 		    }

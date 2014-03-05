@@ -269,6 +269,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 			    )
 	    ));
 
+	    //route: page/restore/:pageid/version/:version
+	    $router->addRoute('pagerestoreversion', new Zend_Controller_Router_Route_Regex('page/restore/(\d+)/version/(\d+)', array(
+			'controller' => 'page',
+			'action' => 'restore'),
+			    array(
+				1 => 'id',
+				2 => 'version',
+			    )
+	    ));
+
 	    //route: content/new/:pageid
 	    $router->addRoute('contentnew', new Zend_Controller_Router_Route_Regex('content/new/(\d*)', array(
 			'controller' => 'content',

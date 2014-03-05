@@ -2,6 +2,7 @@
 
 class Knowledgeroot_Page {
 	protected $id = null;
+	protected $version = null;
 	protected $parent = null;
 	protected $name = null;
 	protected $subtitle = null;
@@ -48,12 +49,13 @@ class Knowledgeroot_Page {
 	    $row = $history->fetchAll($select);
 
 	    $this->readOnly = true;
+	    $this->version = $version;
 	} else {
 	    $page = new Knowledgeroot_Db_Page();
 	    $row = $page->find($id);
 	}
 
-	$this->id = $row[0]['id'];
+	$this->id = $id;
 	$this->parent = $row[0]['parent'];
 	$this->name = $row[0]['name'];
 	$this->subtitle = $row[0]['subtitle'];
@@ -478,6 +480,30 @@ class Knowledgeroot_Page {
 	    return null;
 
 	return new Knowledgeroot_Page($row['id']);
+    }
+
+    /**
+     * restore page version
+     */
+    public function restore() {
+	if($this->version === null)
+	    return;
+
+	$page = new Knowledgeroot_Page($this->getId());
+
+	// restore page
+	$page->setName($this->getName());
+	$page->setDescription($this->getDescription());
+	$page->setAlias($this->getAlias());
+	$page->setIcon($this->getIcon());
+	$page->setSubtitle($this->getSubtitle());
+	$page->setTooltip($this->getTooltip());
+	$page->setShowContentDescription($this->getShowContentDescription());
+	$page->setShowTableOfContent($this->getShowTableOfContent());
+	$page->setContentCollapse($this->getContentCollapse());
+
+	// save
+	$page->save();
     }
 }
 
