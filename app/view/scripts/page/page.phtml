@@ -199,8 +199,8 @@
 		<script>
 		    function restorePageDialog(restoreUrl) {
 			bootbox.dialog({
-			    message: "Do you really want to restore this version?",
-			    title: "Page restore",
+			    message: "<?= $this->translate('Do you really want to restore this version?') ?>",
+			    title: "<?= $this->translate('Page restore') ?>",
 			    buttons: {
 				cancel: {
 				    label: "<?= $this->translate('cancel') ?>",
