@@ -9,6 +9,7 @@ class Knowledgeroot_Content {
     protected $readOnly = false;
 
     protected $id = null;
+    protected $version = null;
     protected $parent = null;
     protected $name = null;
     protected $content = null;
@@ -44,6 +45,8 @@ class Knowledgeroot_Content {
 	    $row = $history->fetchAll($select);
 
 	    $this->readOnly = true;
+	    $this->version = $version;
+
 	} else {
 	    $content = new Knowledgeroot_Db_Content();
 	    $row = $content->find($id);
