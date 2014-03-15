@@ -1,5 +1,6 @@
 20140315 - fhabermann
 * enable shortcut menu in top navi (Closes #28)
+* show short description and license in about dialog (Closes #29)
 
 20140305 - fhabermann
 * added restore for page
