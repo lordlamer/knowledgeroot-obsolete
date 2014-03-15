@@ -190,3 +190,12 @@ cdn_css_base_url = http://ajax.googleapis.com/ajax/libs/dojo/1.7.1/
 [password]
 method = sha512
 rotation = 100
+
+[linklist]
+enable = false
+list.1.url = http://www.knowledgeroot.org
+list.1.name = Knowledgeroot
+list.2.url = http://doc.knowledgeroot.org
+list.2.name = Docs
+list.3.url = http://api.knowledgeroot.org
+list.3.name = API

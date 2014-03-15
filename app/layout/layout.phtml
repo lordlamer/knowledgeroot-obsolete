@@ -149,6 +149,18 @@ $config = Zend_Registry::get('config');
 			    <span class="fa fa-bar"></span>
 			    <span class="fa fa-bar"></span>
 			</button>
+
+			<?php if($config->linklist->enable) { ?>
+			    <a class="navbar-brand" href="#" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+			    <ul class="dropdown-menu">
+				<?php
+				    foreach($config->linklist->list->toArray() as $key => $value) {
+					echo "<li><a href=\"".$value['url']."\">".$value['name']."</a></li>\n";
+				    }
+				?>
+			    </ul>
+			<?php } ?>
+
 			<a class="navbar-brand" href="#"><?= $config->base->title ?></a>
 		    </div>
 
