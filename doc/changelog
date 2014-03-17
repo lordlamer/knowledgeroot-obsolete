@@ -1,3 +1,6 @@
+20140317 - fhabermann
+* enable target and icon in linklist
+
 20140315 - fhabermann
 * enable shortcut menu in top navi (Closes #28)
 * show short description and license in about dialog (Closes #29)
