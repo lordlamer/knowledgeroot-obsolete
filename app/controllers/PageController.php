@@ -316,7 +316,10 @@ class PageController extends Zend_Controller_Action {
 	if(!Knowledgeroot_Acl::iAmAllowed('page_'.$this->_getParam('id'), 'show'))
 		$this->_redirect('');
 
-	$this->_helper->layout()->disableLayout();
+	$translate = Knowledgeroot_Registry::get('Zend_Translate');
+
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
 
 	if($this->_getParam('version') !== null) {
 	    $page = new Knowledgeroot_Page($this->_getParam('id'), $this->_getParam('version'));
@@ -329,6 +332,7 @@ class PageController extends Zend_Controller_Action {
 	$this->view->alias = $page->getAlias();
 	$this->view->tooltip = $page->getTooltip();
 	$this->view->description = $page->getDescription();
+	$this->view->title = $translate->translate('Show version of page');
     }
 
     public function aliasAction() {

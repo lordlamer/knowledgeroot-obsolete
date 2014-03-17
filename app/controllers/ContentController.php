@@ -200,11 +200,13 @@ class ContentController extends Zend_Controller_Action {
 	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'print'))
 		$this->_redirect('');
 
-	$this->_helper->layout()->disableLayout();
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
 
 	$content = new Knowledgeroot_Content($this->_getParam('id'));
 	$this->view->title = $content->getName();
 	$this->view->content = $content->getContent();
+	$this->view->bodyTags = 'onload="window.print();"';
     }
 
     public function showAction() {
@@ -212,7 +214,8 @@ class ContentController extends Zend_Controller_Action {
 	if(!Knowledgeroot_Acl::iAmAllowed('content_'.$this->_getParam('id'), 'show'))
 		$this->_redirect('');
 
-	$this->_helper->layout()->disableLayout();
+	// using blank layout
+	$this->_helper->layout->setLayout('blank');
 
 	if($this->_getParam('version') !== null) {
 	    $content = new Knowledgeroot_Content($this->_getParam('id'), $this->_getParam('version'));

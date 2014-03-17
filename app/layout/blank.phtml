@@ -8,7 +8,7 @@ $config = Zend_Registry::get('config');
 <html lang="en">
     <head>
 	<meta charset="utf-8">
-	<title>Knowledgeroot</title>
+	<title>Knowledgeroot<?= ((!empty($this->title)) ? ' - '.$this->title : '') ?></title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<base href="<?= $config->base->base_url ?>" />
@@ -68,7 +68,7 @@ $config = Zend_Registry::get('config');
 	</style>
     </head>
 
-    <body class="claro">
+    <body class="claro"<?= ((!empty($this->bodyTags)) ? ' '.$this->bodyTags : '') ?>>
 	<?php echo $this->layout()->content; ?>
 
 	<!-- style file uploads -->

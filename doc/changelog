@@ -1,5 +1,6 @@
 20140317 - fhabermann
 * enable target and icon in linklist
+* fix charset problems with show and print actions for content and pages (Closes #30)
 
 20140315 - fhabermann
 * enable shortcut menu in top navi (Closes #28)
