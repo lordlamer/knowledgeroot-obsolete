@@ -189,7 +189,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			    <ul class="dropdown-menu">
 				<?php
 				    foreach($config->linklist->list->toArray() as $key => $value) {
-					echo "<li><a href=\"".$value['url']."\">".$value['name']."</a></li>\n";
+					echo "<li>";
+					echo "<a href=\"".$value['url']."\"".((isset($value['target']) && $value['target'] != '') ? 'target="'.$value['target'].'"' : '' ).">";
+					if(isset($value['icon']) && $value['icon'] != '')
+						echo "<i class=\"".$value['icon']."\"></i>&nbsp;";
+					echo $value['name'];
+					echo "</a>";
+					echo "</li>\n";
 				    }
 				?>
 			    </ul>
