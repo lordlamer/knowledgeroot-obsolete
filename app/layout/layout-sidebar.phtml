@@ -32,8 +32,8 @@ $config = Zend_Registry::get('config');
 		overflow:	auto; /* when page gets too small */
 	}
 	    body {
-		padding-top: 60px;
-		padding-bottom: 60px;
+		padding-top: 55px;
+		padding-bottom: 50px;
 		background-color: #fdfdfd;
 	    }
 
@@ -90,8 +90,8 @@ $config = Zend_Registry::get('config');
 	$(document).ready(function() {
 
 		$('#sidebar-layout').layout({
-		    			minSize:					100	// ALL panes
-		,	west__size:					200
+		    	minSize:					300	// ALL panes
+		,	west__size:					300
 		,	stateManagement__enabled:	true
 		});
 
@@ -373,8 +373,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</nav>
 
 	<div id="sidebar-layout">
-<div class="ui-layout-west">
-			    <div class="well">
+<div class="ui-layout-west" style="background-color: #f5f5f5;">
+			    <div class="">
 				<div class="btn-group">
 				    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
 				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
