@@ -11,7 +11,8 @@ resources.frontController.defaultControllerName = "index"
 resources.frontController.defaultAction = "index"
 
 resources.layout.layoutPath = APPLICATION_PATH "/layout/"
-resources.layout.layout = "layout"
+;resources.layout.layout = "layout"
+resources.layout.layout = "layout-sidebar"
 
 resources.view.encoding = "UTF-8"
 resources.view.basePath = APPLICATION_PATH "/view/"

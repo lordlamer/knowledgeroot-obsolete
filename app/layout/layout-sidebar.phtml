@@ -1,0 +1,486 @@
+<?php
+/**
+ * load config
+ */
+$config = Zend_Registry::get('config');
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<title>Knowledgeroot</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<base href="<?= $config->base->base_url ?>" />
+	<?php echo $this->layout()->header; ?>
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+	<style type="text/css">
+
+	html, body {
+		width:		100%;
+		height:		100%;
+		padding:	0;
+		margin:		0;
+		overflow:	auto; /* when page gets too small */
+	}
+	    body {
+		padding-top: 60px;
+		padding-bottom: 60px;
+		background-color: #fdfdfd;
+	    }
+
+	    /* Footer
+	    -------------------------------------------------- */
+	    .footer {
+		background-color: #eee;
+		min-width: 940px;
+		padding: 30px 0;
+		text-shadow: 0 1px 0 #fff;
+		border-top: 1px solid #e5e5e5;
+		-webkit-box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		-moz-box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		/*          box-shadow: inset 0 5px 15px rgba(0,0,0,.025);
+		*/}
+	    .footer p {
+		color: #555;
+	    }
+
+	    #sidebar-layout {
+		background:	#999;
+		height:		100%;
+		margin:		0 auto;
+		width:		100%;
+	    }
+	</style>
+
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+	<script src="vendor/jquery-layout/jquery.layout-latest.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-filestyle.js"></script>
+	<script src="vendor/bootboxjs/bootbox.min.js"></script>
+
+	<!-- load the dojo toolkit base -->
+	<script src="vendor/dojotoolkit/dojo/dojo.js"
+		djConfig="parseOnLoad: false, async:true">
+	</script>
+
+
+
+	<style type="text/css">
+	    @import "vendor/dojotoolkit/dijit/themes/claro/claro.css";
+	</style>
+
+	<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		$('#sidebar-layout').layout({
+		    			minSize:					100	// ALL panes
+		,	west__size:					200
+		,	stateManagement__enabled:	true
+		});
+
+	});
+
+	</script>
+
+	<link type="text/css" rel="stylesheet" href="vendor/jquery-layout/layout-default-latest.css" />
+    </head>
+
+    <body class="claro">
+	<div class="modal fade bs-example-modal-lg" id="about" tabindex="-1" role="dialog" aria-labelledby="about-label" aria-hidden="true">
+	    <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="about-label"><?= $this->translate('About Knowledgeroot') ?></h4>
+		    </div>
+		    <div class="modal-body" style="overflow-y: scroll; max-height: 450px;">
+			<h3>Knowledgeroot Knowledgebase System</h3>
+			<p>Version: <?= $config->base->version ?></p>
+			<p>Homepage: <a href="http://www.knowledgeroot.org" target="_blank">http://www.knowledgeroot.org</a></p>
+
+			<h3>License</h3>
+			<hr>
+			<pre>
+Copyright (c) 2014, Frank Habermann <lordlamer@lordlamer.de>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+
+    * Neither the name of Frank Habermann <lordlamer@lordlamer.de> nor the names of its
+      contributors may be used to endorse or promote products derived from this
+      software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+			</pre>
+		    </div>
+		    <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal"><?= $this->translate('Close') ?></button>
+		    </div>
+		</div>
+	    </div>
+	</div>
+
+	<div id="fileUpload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+		<div class="modal-content">
+			<form action="./file/new" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+		    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="myModalLabel"><?= $this->translate('File Upload') ?></h3>
+		    </div>
+		    <div class="modal-body">
+			    <fieldset>
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="content-title"><h4><?= $this->translate('Content') ?></h4></label>
+				    <div class="col-sm-4">
+					<input type="text" placeholder="<?= $this->translate('select content') ?>" disabled="true" class="form-control" id="parent-name" size="255" name="parent_name" value="">
+					<p class="help-block">
+					    <?= $this->translate('Select content') ?>
+					</p>
+					<input type="hidden" id="parent" size="255" name="parent" value="">&nbsp;
+				    </div>
+				    <div class="col-sm-2">
+					<input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('content/select','Knowledgeroot','width=800,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
+				    </div>
+				</div>
+
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="file-box"><h4><?= $this->translate('File') ?></h4></label>
+				    <div class="col-sm-6">
+					<input type="file" name="file" multiple class="filestyle form-horizontal" data-classButton="btn btn-primary" data-input="false" data-buttonText="<?= $this->translate('Select File(s)') ?>">
+
+					<p class="help-block">
+					    <?= $this->translate('Select a file') ?>
+					</p>
+				    </div>
+				</div>
+			    </fieldset>
+		    </div>
+		    <div class="modal-footer">
+			<button class="btn btn-primary" type="submit"><?= $this->translate('Upload') ?></button>
+			<button class="btn btn-default" data-dismiss="modal"><?= $this->translate('Close') ?></button>
+		    </div>
+		    <script>
+			function selectContent(id, name) {
+			    $('#parent').val(id);
+			    $('#parent-name').val(name);
+			}
+		    </script>
+			</form>
+		</div>
+	    </div>
+	</div>
+
+	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation" style="border-bottom: 3px solid #F88529;">
+
+		<div class="container-fluid">
+		    <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			    <span class="sr-only">Toggle navigation</span>
+			    <span class="fa fa-bar"></span>
+			    <span class="fa fa-bar"></span>
+			    <span class="fa fa-bar"></span>
+			</button>
+
+			<?php if($config->linklist->enable) { ?>
+			    <a class="navbar-brand" href="#" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+			    <ul class="dropdown-menu">
+				<?php
+				    foreach($config->linklist->list->toArray() as $key => $value) {
+					echo "<li>";
+					echo "<a href=\"".$value['url']."\"".((isset($value['target']) && $value['target'] != '') ? 'target="'.$value['target'].'"' : '' ).">";
+					if(isset($value['icon']) && $value['icon'] != '')
+						echo "<i class=\"".$value['icon']."\"></i>&nbsp;";
+					echo $value['name'];
+					echo "</a>";
+					echo "</li>\n";
+				    }
+				?>
+			    </ul>
+			<?php } ?>
+
+			<a class="navbar-brand" href="#"><?= $config->base->title ?></a>
+		    </div>
+
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" style="border-top: 3px solid #1171A3;">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				    <i class="fa fa-plus icon-white"></i>&nbsp;<strong><?= $this->translate('New') ?></strong>
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <li><a href="page/new"><i class="fa fa-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
+				    <li><a href="content/new"><i class="fa fa-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
+				    <li><a data-toggle="modal" href="#fileUpload"><i class="fa fa-paperclip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
+				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new') || Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?>
+					<li class="divider"></li>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="fa fa-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="fa fa-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
+				    <?php } ?>
+				</ul>
+			    </li>
+			    <li class="divider-vertical"></li>
+			</ul>
+
+			<form class="navbar-form navbar-left" role="search" action="index.php" method="post">
+			    <div class="form-group">
+				<input id="searchquery" type="text" class="form-control" placeholder="<?= $this->translate('Search') ?>" name="search" value="">
+			    </div>
+			</form>
+
+			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" style="border-top: 3px solid #43C83C;">
+				<a href="#"
+				   class="dropdown-toggle"
+				   data-toggle="dropdown">
+				    <i class="fa fa-question-circle icon-white"></i>&nbsp;
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <li><a href="http://docs.knowledgeroot.org" target="_blank"><i class="fa fa-book"></i>&nbsp;<?= $this->translate('Online Help') ?></a></li>
+				    <li><a href="javascript:;" data-toggle="modal" data-target="#about"><i class="fa fa-star"></i>&nbsp;<?= $this->translate('About') ?></a></li>
+				</ul>
+			    </li>
+			</ul>
+
+			<?php
+			$session = new Zend_Session_Namespace('user');
+			if(!$session->valid) { // show language dropdown only for guest users
+			?>
+			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" style="border-top: 3px solid #932AB6;">
+				<a href="#"
+				   class="dropdown-toggle"
+				   data-toggle="dropdown">
+				    <i class="fa fa-flag icon-white"></i>&nbsp;
+				    <?= $this->translate('Languages') ?>
+				    <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				    <?php
+				    $translation = Knowledgeroot_Registry::get('translate');
+				    $actLocale = $translation->getLocale();
+
+				    foreach ($translation->getTranslations() as $key => $value) {
+					    // switch locale
+					    $translation->setLocale($key);
+
+					    // show translation name
+					    echo '<li><a href="./language/' . $key . '">' . $this->translate('[TRANSLATION_NAME]', $key) . '</a></li>';
+				    }
+
+				    // reset locale
+				    $translation->setLocale($actLocale);
+				    ?>
+				</ul>
+			    </li>
+			</ul>
+			<?php
+			} // end language dropdown
+			?>
+			<script>
+			    $('.dropdown-toggle').dropdown();
+			</script>
+
+			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+			    <?php
+			    $userSession = new Zend_Session_Namespace('user');
+			    if ($userSession->valid) {
+				?>
+			    <ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+				<li class="divider-vertical"></li>
+				<li class="dropdown" style="border-top: 3px solid #FA3031;">
+				    <a href="#"
+				       class="dropdown-toggle"
+				       data-toggle="dropdown">
+					<i class="fa fa-user icon-white"></i>&nbsp;
+					    <?= $userSession->login ?>
+					<b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+					<li><a href="settings"><i class="fa fa-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
+					<li><a href="logout"><i class="fa fa-power-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
+				    </ul>
+				</li>
+			    </ul>
+
+			    <ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
+				<li class="divider-vertical"></li>
+				<li class="dropdown" style="border-top: 3px solid #F88529;">
+				    <a href="#"
+				       class="dropdown-toggle"
+				       data-toggle="dropdown">
+					<i class="fa fa-th-large icon-white"></i>&nbsp;
+					    <?= $this->translate('system') ?>
+					<b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu">
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="fa fa-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="fa fa-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
+					<?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="fa fa-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
+				    </ul>
+				</li>
+			    </ul>
+				<?php
+			    } else {
+				?>
+			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="fa fa-share icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
+				<?php
+			    }
+			    ?>
+			</ul>
+			<?php echo $this->layout()->topNavi; ?>
+		    </div>
+		</div>
+	</nav>
+
+	<div id="sidebar-layout">
+<div class="ui-layout-west">
+			    <div class="well">
+				<div class="btn-group">
+				    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
+				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
+				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
+				</div>
+				<script type="text/javascript">
+				    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
+
+					var store = new dojo.data.ItemFileReadStore({
+					    url: "./page/jsontree"
+					});
+
+					var treeModel = new dijit.tree.ForestStoreModel({
+					    store: store,
+					    query: {"type": "root"},
+					    rootId: "root",
+					    rootLabel: "Knowledgeroot",
+					    childrenAttrs: ["children"]
+					});
+
+					new dijit.Tree({
+					    model: treeModel,
+					    showRoot: false,
+					    persist: true,
+					    onClick: function(item){
+						// Get the URL from the item, and navigate to it
+						if(item.alias != "")
+							location.href = item.alias;
+						else
+							location.href = item.url;
+					    }
+					}, "treeOne");
+				    });
+				</script>
+
+				<div id="treeOne"></div>
+			    </div>
+</div>
+
+<div class="ui-layout-center">
+		    <?php
+		    if (is_array($this->layout()->pathNavi)) {
+			echo "<ol class=\"breadcrumb\">";
+			echo "<li><i class=\"fa fa-home fa-lg\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
+
+			$c = count($this->layout()->pathNavi);
+			$x = 0;
+			foreach ($this->layout()->pathNavi as $page) {
+			    $x++;
+
+			    if ($x != $c) {
+				echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
+			    } else {
+				echo "<li class=\"active\"><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
+			    }
+			}
+
+			echo "</ol>";
+		    }
+		    ?>
+
+		    <div class="content">
+			<?php
+			foreach (Knowledgeroot_Message::getMessages() as $key => $value) {
+			    echo '
+			    <div class="alert alert-' . $value['type'] . '" data-dismiss="alert">
+			    <a class="close" href="#">×</a>
+			    <p><strong>' . $value['title'] . '</strong>&nbsp;' . $value['message'] . '</p>
+			    </div>';
+
+			    Knowledgeroot_Message::delMessage($key);
+			}
+			?>
+			<script>
+			    $(".alert").alert()
+			</script>
+			<?php echo $this->layout()->content; ?>
+		    </div>
+</div>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+	    <div class="container-fluid pull-center">
+		<p class="muted credit">
+		    <a href="http://knowledgeroot.org">Knowledgeroot</a>
+		    <a href="https://github.com/lordlamer/knowledgeroot">Github</a>
+		    <a href="http://forum.lordlamer.de/"><?= $this->translate('Forum') ?></a>
+		    <a href="http://lists.knowledgeroot.org">Mailinglists</a>
+		    <a href="http://api.knowledgeroot.org">API</a>
+		    <a href="http://docs.knowledgeroot.org">Docs</a>
+		    <span><?= $this->translate('Version') ?>: <?php echo $this->layout()->version; ?></span>
+		</p>
+	    </div>
+	</nav>
+
+	<!-- style file uploads -->
+	<script>
+	    jQuery(function($) {
+		$(':file').filestyle();
+	    });
+	</script>
+	<script src="js/accordion-icon.js"></script>
+	<script src="js/toggle-content.js"></script>
+	<script src="js/permissionpanel.js"></script>
+	<script src="js/memberpanel.js"></script>
+	<script src="js/anker.js"></script>
+    <!-- <script src="http://tablesorter.com/__jquery.tablesorter.min.js"></script> -->
+    </body>
+</html>
