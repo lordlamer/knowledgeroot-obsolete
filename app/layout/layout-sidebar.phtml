@@ -23,14 +23,14 @@ $config = Zend_Registry::get('config');
 	<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/base.css" rel="stylesheet">
 	<style type="text/css">
+	    html, body {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+		overflow: auto;
+	    }
 
-	html, body {
-		width:		100%;
-		height:		100%;
-		padding:	0;
-		margin:		0;
-		overflow:	auto; /* when page gets too small */
-	}
 	    body {
 		padding-top: 55px;
 		padding-bottom: 50px;
@@ -79,24 +79,18 @@ $config = Zend_Registry::get('config');
 		djConfig="parseOnLoad: false, async:true">
 	</script>
 
-
-
 	<style type="text/css">
 	    @import "vendor/dojotoolkit/dijit/themes/claro/claro.css";
 	</style>
 
 	<script type="text/javascript">
-
-	$(document).ready(function() {
-
-		$('#sidebar-layout').layout({
-		    	minSize:					300	// ALL panes
-		,	west__size:					300
-		,	stateManagement__enabled:	true
-		});
-
-	});
-
+	    $(document).ready(function() {
+		    $('#sidebar-layout').layout({
+			minSize: 300,
+			west__size: 300,
+			stateManagement__enabled: true
+		    });
+	    });
 	</script>
 
 	<link type="text/css" rel="stylesheet" href="vendor/jquery-layout/layout-default-latest.css" />
@@ -373,87 +367,85 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</nav>
 
 	<div id="sidebar-layout">
-<div class="ui-layout-west" style="background-color: #f5f5f5;">
-			    <div class="">
-				<div class="btn-group">
-				    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
-				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
-				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
-				</div>
-				<script type="text/javascript">
-				    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
+	    <div class="ui-layout-west" style="background-color: #f5f5f5;">
+		<div class="btn-group">
+		    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
+		    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
+		    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
+		</div>
+		<script type="text/javascript">
+		    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
 
-					var store = new dojo.data.ItemFileReadStore({
-					    url: "./page/jsontree"
-					});
+			var store = new dojo.data.ItemFileReadStore({
+			    url: "./page/jsontree"
+			});
 
-					var treeModel = new dijit.tree.ForestStoreModel({
-					    store: store,
-					    query: {"type": "root"},
-					    rootId: "root",
-					    rootLabel: "Knowledgeroot",
-					    childrenAttrs: ["children"]
-					});
+			var treeModel = new dijit.tree.ForestStoreModel({
+			    store: store,
+			    query: {"type": "root"},
+			    rootId: "root",
+			    rootLabel: "Knowledgeroot",
+			    childrenAttrs: ["children"]
+			});
 
-					new dijit.Tree({
-					    model: treeModel,
-					    showRoot: false,
-					    persist: true,
-					    onClick: function(item){
-						// Get the URL from the item, and navigate to it
-						if(item.alias != "")
-							location.href = item.alias;
-						else
-							location.href = item.url;
-					    }
-					}, "treeOne");
-				    });
-				</script>
-
-				<div id="treeOne"></div>
-			    </div>
-</div>
-
-<div class="ui-layout-center">
-		    <?php
-		    if (is_array($this->layout()->pathNavi)) {
-			echo "<ol class=\"breadcrumb\">";
-			echo "<li><i class=\"fa fa-home fa-lg\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
-
-			$c = count($this->layout()->pathNavi);
-			$x = 0;
-			foreach ($this->layout()->pathNavi as $page) {
-			    $x++;
-
-			    if ($x != $c) {
-				echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
-			    } else {
-				echo "<li class=\"active\"><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
+			new dijit.Tree({
+			    model: treeModel,
+			    showRoot: false,
+			    persist: true,
+			    onClick: function(item){
+				// Get the URL from the item, and navigate to it
+				if(item.alias != "")
+					location.href = item.alias;
+				else
+					location.href = item.url;
 			    }
-			}
+			}, "treeOne");
+		    });
+		</script>
 
-			echo "</ol>";
+		<div id="treeOne"></div>
+	    </div>
+
+	    <div class="ui-layout-center">
+		<?php
+		if (is_array($this->layout()->pathNavi)) {
+		    echo "<ol class=\"breadcrumb\">";
+		    echo "<li><i class=\"fa fa-home fa-lg\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
+
+		    $c = count($this->layout()->pathNavi);
+		    $x = 0;
+		    foreach ($this->layout()->pathNavi as $page) {
+			$x++;
+
+			if ($x != $c) {
+			    echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
+			} else {
+			    echo "<li class=\"active\"><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
+			}
+		    }
+
+		    echo "</ol>";
+		}
+		?>
+
+		<div class="content">
+		    <?php
+		    foreach (Knowledgeroot_Message::getMessages() as $key => $value) {
+			echo '
+			<div class="alert alert-' . $value['type'] . '" data-dismiss="alert">
+			<a class="close" href="#">×</a>
+			<p><strong>' . $value['title'] . '</strong>&nbsp;' . $value['message'] . '</p>
+			</div>';
+
+			Knowledgeroot_Message::delMessage($key);
 		    }
 		    ?>
-
-		    <div class="content">
-			<?php
-			foreach (Knowledgeroot_Message::getMessages() as $key => $value) {
-			    echo '
-			    <div class="alert alert-' . $value['type'] . '" data-dismiss="alert">
-			    <a class="close" href="#">×</a>
-			    <p><strong>' . $value['title'] . '</strong>&nbsp;' . $value['message'] . '</p>
-			    </div>';
-
-			    Knowledgeroot_Message::delMessage($key);
-			}
-			?>
-			<script>
-			    $(".alert").alert()
-			</script>
-			<?php echo $this->layout()->content; ?>
-		    </div>
-</div>
+		    <script>
+			$(".alert").alert()
+		    </script>
+		    <?php echo $this->layout()->content; ?>
+		</div>
+	    </div>
 	</div>
 
 	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
