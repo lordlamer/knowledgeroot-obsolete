@@ -1,3 +1,6 @@
+20140319 - fhabermann
+* added flexible sidebar layout (Closes #27)
+
 20140317 - fhabermann
 * enable target and icon in linklist
 * fix charset problems with show and print actions for content and pages (Closes #30)
