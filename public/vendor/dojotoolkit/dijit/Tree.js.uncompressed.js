@@ -1680,7 +1680,7 @@ define("dijit/Tree", [
 				for(var id in this._openedNodes){
 					ary.push(id);
 				}
-				cookie(this.cookieName, ary.join(","), {expires: 365});
+				cookie(this.cookieName, ary.join(","), {expires: 365, path: "/"});
 			}
 		},
 

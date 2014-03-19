@@ -656,7 +656,7 @@ var ary=[];
 for(var id in this._openedNodes){
 ary.push(id);
 }
-_4(this.cookieName,ary.join(","),{expires:365});
+_4(this.cookieName,ary.join(","),{expires:365,path:"/"});
 }
 },destroy:function(){
 if(this._curSearch){
