@@ -53,6 +53,21 @@ class IndexController extends Zend_Controller_Action
 	// redirect
 	$this->_redirect('./');
     }
+
+    public function registerAction() {
+	$config = Knowledgeroot_Registry::get('config');
+
+	// check if register is enabled
+	if(!$config->register->enable)
+	    $this->_redirect('./');
+
+	// get translations
+	$translation = Knowledgeroot_Registry::get('translate');
+	$this->view->translations = $translation->getTranslations();
+
+	// get timezones
+	$this->view->timezones = Knowledgeroot_Timezone::getTimezones();
+    }
 }
 
 

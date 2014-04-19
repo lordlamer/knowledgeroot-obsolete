@@ -189,6 +189,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 	    $router = Zend_Controller_Front::getInstance()->getRouter();
 
 
+	    // register
+	    $router->addRoute('register', new Zend_Controller_Router_Route('register', array(
+			'controller' => 'index',
+			'action' => 'register')));
+
 	    // login
 	    $router->addRoute('login', new Zend_Controller_Router_Route('login', array(
 			'controller' => 'index',

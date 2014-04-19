@@ -1,0 +1,78 @@
+<div class="page-header">
+    <h2><i class="fa fa-pencil"></i> <?= $this->translate('Register') ?></h2>
+</div>
+<form class="form-horizontal" role="form" method="post">
+    <input type="hidden" name="action" value="register" />
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="login"><?= $this->translate('Username') ?></label>
+	<div class="col-sm-4">
+	    <input type="text" class="form-control" id="login" name="login" value="">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="firstname"><?= $this->translate('First Name') ?></label>
+	<div class="col-sm-4">
+	    <input type="text" class="form-control" id="firstname" name="first_name" value="<?= $this->first_name ?>">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="lastname"><?= $this->translate('Last Name') ?></label>
+	<div class="col-sm-4">
+	    <input type="text" class="form-control" id="lastname" name="last_name" value="<?= $this->last_name ?>">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="email"><?= $this->translate('Email') ?></label>
+	<div class="col-sm-4">
+	    <input type="text" class="form-control" id="email" name="email" value="<?= $this->email ?>">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="password"><?= $this->translate('Password') ?></label>
+	<div class="col-sm-4">
+	    <input type="password" class="form-control" id="password" name="password">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="password1"><?= $this->translate('confirm Password') ?></label>
+	<div class="col-sm-4">
+	    <input type="password" class="form-control" id="password1" name="password1">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="language"><?= $this->translate('Language') ?></label>
+	<div class="col-sm-4">
+	    <select name="language" id="language" class="form-control">
+		<?php
+		    foreach ($this->translations as $key => $value) {
+			    // show translation name
+			    echo '<option value="'.$key.'"'.(($this->language == $key) ? ' selected="selected"': '').'>' . $this->translate('[TRANSLATION_NAME]', $key) . '</option>';
+		    }
+		?>
+	    </select>
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="control-label col-sm-2" for="timezone"><?= $this->translate('Timezone') ?></label>
+	<div class="col-sm-4">
+	    <select name="timezone" id="timezone" class="form-control">
+		<?php
+		    foreach($this->timezones as $key => $value) {
+			echo '<option value="'.$key.'"'.(($this->timezone == $key) ? ' selected="selected"': '').'>'.$value."</option>\n";
+		    }
+		?>
+	    </select>
+	</div>
+    </div>
+
+    <div class="col-sm-6">
+	<input class="btn btn-primary pull-right" type="submit" name="registerbutton" value="<?= $this->translate('Register') ?>" />
+    </div>
+</form>

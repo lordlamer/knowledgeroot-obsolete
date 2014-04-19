@@ -206,3 +206,9 @@ list.3.url = http://api.knowledgeroot.org
 list.3.name = API
 list.3.target = _blank
 list.3.icon = fa fa-puzzle-piece
+
+[register]
+enable = true
+emailverification = true
+captcha = true
+defaultgroups = others

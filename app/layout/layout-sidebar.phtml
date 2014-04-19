@@ -357,9 +357,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<?php
 			    } else {
 				?>
-			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="fa fa-share icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
+			    <li style="border-top: 3px solid #FA3031; margin-left:35px;"><a href="login"><i class="fa fa-share icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
 				<?php
 			    }
+			    ?>
+			    <?php
+				if($config->register->enable && !$userSession->valid) {
+				    ?>
+			    <li style="border-top: 3px solid #F4B04F; margin-left:35px;"><a href="register"><i class="fa fa-pencil icon-white"></i>&nbsp;<?= $this->translate('Register') ?></a></li>
+				    <?php
+				}
 			    ?>
 			</ul>
 			<?php echo $this->layout()->topNavi; ?>
