@@ -61,6 +61,30 @@ class IndexController extends Zend_Controller_Action
 	if(!$config->register->enable)
 	    $this->_redirect('./');
 
+	if($this->getRequest()->isPost()) {
+	    $user = new Knowledgeroot_User();
+	    $user->setLogin($this->_getParam('login'));
+
+	    // check if password is changed
+	    if($this->_getParam('password') != '' && $this->_getParam('password1') != '' && $this->_getParam('password') == $this->_getParam('password1')) {
+		$user->setPassword($this->_getParam('password'));
+	    }
+
+	    $user->setFirstName($this->_getParam('first_name'));
+	    $user->setLastName($this->_getParam('last_name'));
+	    $user->setEmail($this->_getParam('email'));
+	    $user->setLanguage($this->_getParam('language'));
+	    $user->setTimezone($this->_getParam('timezone'));
+	    $user->setActive(true);
+	    $user->save();
+
+	    // success message
+	    Knowledgeroot_Message::success("User registered", "User is successfully registered");
+
+	    // redirect to homepage
+	    $this->_redirect('./');
+	}
+
 	// get translations
 	$translation = Knowledgeroot_Registry::get('translate');
 	$this->view->translations = $translation->getTranslations();
