@@ -36,7 +36,7 @@ class Knowledgeroot_Message {
     }
 
     public static function error($title, $message) {
-	Knowledgeroot_Message::addMessage('error', $title, $message);
+	Knowledgeroot_Message::addMessage('danger', $title, $message);
     }
 
     public static function success($title, $message) {
