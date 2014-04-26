@@ -43,7 +43,8 @@ CREATE TABLE "user" (
   create_date timestamp without time zone NOT NULL,
   changed_by integer NOT NULL,
   change_date timestamp without time zone NOT NULL,
-  deleted boolean DEFAULT false NOT NULL
+  deleted boolean DEFAULT false NOT NULL,
+  CONSTRAINT login UNIQUE(login)
 );
 
 /* table: group */

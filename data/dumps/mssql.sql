@@ -32,6 +32,11 @@ CREATE TABLE [user] (
 
 GO
 
+ALTER TABLE [user]
+ADD CONSTRAINT UX_user_login UNIQUE (login)
+
+GO
+
 -- table: group
 CREATE TABLE [group] (
   id int IDENTITY(1,1) NOT NULL,

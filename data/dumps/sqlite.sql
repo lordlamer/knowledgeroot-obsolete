@@ -9,7 +9,7 @@ CREATE TABLE "user" (
   id integer PRIMARY KEY DEFAULT auto_incrementing NOT NULL,
   first_name text DEFAULT '' NOT NULL,
   last_name text DEFAULT '' NOT NULL,
-  login text DEFAULT '' NOT NULL,
+  login text DEFAULT '' NOT NULL UNIQUE,
   email text DEFAULT '' NOT NULL,
   password text DEFAULT '' NOT NULL,
   language text DEFAULT '' NOT NULL,

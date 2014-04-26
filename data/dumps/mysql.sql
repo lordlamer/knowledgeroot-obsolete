@@ -22,7 +22,8 @@ CREATE TABLE `user` (
   changed_by integer NOT NULL,
   change_date datetime NOT NULL,
   deleted tinyint(1) DEFAULT false NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE KEY (login)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- table: group
