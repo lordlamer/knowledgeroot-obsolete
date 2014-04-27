@@ -393,6 +393,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			    model: treeModel,
 			    showRoot: false,
 			    persist: true,
+			    //getIconClass: function(/*dojo.store.Item*/ item, /*Boolean*/ opened){
+			        //return (!item || this.model.mayHaveChildren(item)) ? (opened ? "dijitFolderOpened" : "dijitFolderClosed") : "dijitLeaf"
+			        //return "fa fa-bars";
+			    //},
 			    onClick: function(item){
 				// Get the URL from the item, and navigate to it
 				if(item.alias != "")
