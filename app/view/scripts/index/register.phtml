@@ -72,6 +72,8 @@
 	</div>
     </div>
 
+    <?php echo $this->captcha->render($this, null) ?>
+
     <div class="col-sm-6">
 	<input class="btn btn-primary pull-right" type="submit" name="registerbutton" value="<?= $this->translate('Register') ?>" />
     </div>

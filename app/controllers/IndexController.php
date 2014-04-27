@@ -62,27 +62,32 @@ class IndexController extends Zend_Controller_Action
 	    $this->_redirect('./');
 
 	if($this->getRequest()->isPost()) {
-	    $user = new Knowledgeroot_User();
-	    $user->setLogin($this->_getParam('login'));
+	    try {
+		$user = new Knowledgeroot_User();
+		$user->setLogin($this->_getParam('login'));
 
-	    // check if password is changed
-	    if($this->_getParam('password') != '' && $this->_getParam('password1') != '' && $this->_getParam('password') == $this->_getParam('password1')) {
-		$user->setPassword($this->_getParam('password'));
+		// check if password is changed
+		if($this->_getParam('password') != '' && $this->_getParam('password1') != '' && $this->_getParam('password') == $this->_getParam('password1')) {
+		    $user->setPassword($this->_getParam('password'));
+		}
+
+		$user->setFirstName($this->_getParam('first_name'));
+		$user->setLastName($this->_getParam('last_name'));
+		$user->setEmail($this->_getParam('email'));
+		$user->setLanguage($this->_getParam('language'));
+		$user->setTimezone($this->_getParam('timezone'));
+		$user->setActive(true);
+		$user->save();
+
+		// success message
+		Knowledgeroot_Message::success("User registered", "User is successfully registered");
+
+		// redirect to homepage
+		$this->_redirect('./');
+	    } catch(Exception $e) {
+		Knowledgeroot_Message::error("Registration failed", "Could not register user!");
+		$this->_redirect('./register');
 	    }
-
-	    $user->setFirstName($this->_getParam('first_name'));
-	    $user->setLastName($this->_getParam('last_name'));
-	    $user->setEmail($this->_getParam('email'));
-	    $user->setLanguage($this->_getParam('language'));
-	    $user->setTimezone($this->_getParam('timezone'));
-	    $user->setActive(true);
-	    $user->save();
-
-	    // success message
-	    Knowledgeroot_Message::success("User registered", "User is successfully registered");
-
-	    // redirect to homepage
-	    $this->_redirect('./');
 	}
 
 	// get translations
@@ -91,6 +96,21 @@ class IndexController extends Zend_Controller_Action
 
 	// get timezones
 	$this->view->timezones = Knowledgeroot_Timezone::getTimezones();
+
+	// check for captcha
+	if($config->register->captcha) {
+	    $captcha = new Zend_Captcha_Image();
+	    $captcha->setImgDir(PROJECT_PATH . '/public/data/captcha/');
+	    $captcha->setImgUrl($this->view->baseUrl('/data/captcha/'));
+	    $captcha->setFont('/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf');
+	    $captcha->setWidth(350);
+	    $captcha->setHeight(150);
+	    $captcha->setWordlen(5);
+	    $captcha->setFontSize(70);
+	    $captcha->setLineNoiseLevel(3);
+	    $captcha->generate();
+	    $this->view->captcha = $captcha;
+	}
     }
 }
 
