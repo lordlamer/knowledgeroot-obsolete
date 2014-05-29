@@ -269,9 +269,9 @@ class PageController extends Zend_Controller_Action {
 	    foreach ($pages as $key => $page) {
 		$item = array(
 		    'id' => $page->getId(),
-		    'parent' => $page->getParent(),
+		    'parent' => (($page->getParent() != 0) ? $page->getParent() : '#'),
 		    'url' => $config->base->base_url . 'page/' . $page->getId(),
-		    'name' => $page->getName(),
+		    'text' => $page->getName(),
 		    'type' => (($page->getParent() == 0) ? 'root' : 'page'),
 		    'tooltip' => $page->getTooltip(),
 		    'alias' => (($config->alias->enable && $page->getAlias() != "") ? $config->base->base_url . $config->alias->prefix . "/" . $page->getAlias() : ""),
@@ -281,13 +281,6 @@ class PageController extends Zend_Controller_Action {
 
 		$out['items'][] = $item;
 	    }
-	}
-
-	// build reference now
-	foreach ($out['items'] as $key => $value) {
-	    $childs = $this->getJsonChildReference($value, $out['items']);
-	    if (count($childs) > 0)
-		$out['items'][$key]['children'] = $childs;
 	}
 
 	echo json_encode($out);

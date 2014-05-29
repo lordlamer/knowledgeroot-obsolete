@@ -74,14 +74,9 @@ $config = Zend_Registry::get('config');
 	<script src="js/bootstrap-filestyle.js"></script>
 	<script src="vendor/bootboxjs/bootbox.min.js"></script>
 
-	<!-- load the dojo toolkit base -->
-	<script src="vendor/dojotoolkit/dojo/dojo.js"
-		djConfig="parseOnLoad: false, async:true">
-	</script>
-
-	<style type="text/css">
-	    @import "vendor/dojotoolkit/dijit/themes/claro/claro.css";
-	</style>
+	<!-- jstree -->
+	<link rel="stylesheet" href="vendor/jstree/themes/default/style.min.css" />
+	<script src="vendor/jstree/jstree.min.js"></script>
 
 	<script type="text/javascript">
 	    $(document).ready(function() {
@@ -375,37 +370,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
 		</div>
 		<script type="text/javascript">
-		    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
-
-			var store = new dojo.data.ItemFileReadStore({
-			    url: "./page/jsontree"
-			});
-
-			var treeModel = new dijit.tree.ForestStoreModel({
-			    store: store,
-			    query: {"type": "root"},
-			    rootId: "root",
-			    rootLabel: "Knowledgeroot",
-			    childrenAttrs: ["children"]
-			});
-
-			new dijit.Tree({
-			    model: treeModel,
-			    showRoot: false,
-			    persist: true,
-			    //getIconClass: function(/*dojo.store.Item*/ item, /*Boolean*/ opened){
-			        //return (!item || this.model.mayHaveChildren(item)) ? (opened ? "dijitFolderOpened" : "dijitFolderClosed") : "dijitLeaf"
-			        //return "fa fa-bars";
-			    //},
-			    onClick: function(item){
-				// Get the URL from the item, and navigate to it
-				if(item.alias != "")
-					location.href = item.alias;
-				else
-					location.href = item.url;
-			    }
-			}, "treeOne");
-		    });
+                    $.getJSON( "./page/jsontree", function( data ) {
+                            $(function () { $('#treeOne')
+                            .on('changed.jstree', function (e, data) {
+                                item = data.node.original;
+                        
+                                if(item.alias != "")
+                                    location.href = item.alias;
+                                else
+                                    location.href = item.url;
+                            })            
+                            .jstree({
+                                'core' : {
+                                    'data' : data.items
+                                }
+                            }); });
+                    });
 		</script>
 
 		<div id="treeOne"></div>
