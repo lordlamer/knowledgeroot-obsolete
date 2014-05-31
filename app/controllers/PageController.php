@@ -276,6 +276,7 @@ class PageController extends Zend_Controller_Action {
 		    'tooltip' => $page->getTooltip(),
 		    'alias' => (($config->alias->enable && $page->getAlias() != "") ? $config->base->base_url . $config->alias->prefix . "/" . $page->getAlias() : ""),
 		    //'symlink' => $value['symlink'],
+		    'sort' => $page->getSorting(),
 		    'icon' => $page->getIcon()
 		);
 
