@@ -374,16 +374,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                             $(function () { $('#treeOne')
                             .on('changed.jstree', function (e, data) {
                                 item = data.node.original;
-                        
+
                                 if(item.alias != "")
                                     location.href = item.alias;
                                 else
                                     location.href = item.url;
-                            })            
+                            })
                             .jstree({
                                 'core' : {
                                     'data' : data.items
-                                }
+                                },
+				'sort': function(a, b) {
+					return this.get_node(a).original.sort > this.get_node(b).original.sort ? 1 : -1;
+				},
+                                "plugins" : [ "sort", "state" ]
                             }); });
                     });
 		</script>
