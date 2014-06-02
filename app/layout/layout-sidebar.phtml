@@ -366,8 +366,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    <div class="ui-layout-west" style="background-color: #f5f5f5;">
 		<div class="btn-group">
 		    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
-		    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
-		    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
+		    <a class="btn btn-default" href="javascript:;" onclick="$('#treeOne').jstree('open_all');"><i class="fa fa-plus"></i></a>
+		    <a class="btn btn-default" href="javascript:;" onclick="$('#treeOne').jstree('close_all');"><i class="fa fa-minus"></i></a>
 		</div>
 		<script type="text/javascript">
                     $.getJSON( "./page/jsontree", function( data ) {
