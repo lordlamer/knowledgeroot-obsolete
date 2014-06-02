@@ -364,11 +364,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<div id="sidebar-layout">
 	    <div class="ui-layout-west" style="background-color: #f5f5f5;">
-		<div class="btn-group">
-		    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
-		    <a class="btn btn-default" href="javascript:;" onclick="$('#treeOne').jstree('open_all');"><i class="fa fa-plus"></i></a>
-		    <a class="btn btn-default" href="javascript:;" onclick="$('#treeOne').jstree('close_all');"><i class="fa fa-minus"></i></a>
+		<div class="row">
+		  <div class="col-lg-12">
+		    <div class="input-group">
+		      <span class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('open_all');"><i class="fa fa-plus"></i></button>
+		      </span>
+		      <input id="treeOneSearch" type="text" class="form-control">
+		      <span class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('close_all');"><i class="fa fa-minus"></i></button>
+		      </span>
+		    </div>
+		  </div>
 		</div>
+
 		<script type="text/javascript">
                     $.getJSON( "./page/jsontree", function( data ) {
                             $(function () { $('#treeOne')
@@ -387,8 +396,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				'sort': function(a, b) {
 					return this.get_node(a).original.sort > this.get_node(b).original.sort ? 1 : -1;
 				},
-                                "plugins" : [ "sort", "state" ]
+                                "plugins" : [ "sort", "state", "search" ]
                             }); });
+
+			var to = false;
+			$('#treeOneSearch').keyup(function () {
+				if(to)
+					clearTimeout(to);
+
+				to = setTimeout(function () {
+					var v = $('#treeOneSearch').val();
+					$('#treeOne').jstree(true).search(v);
+				}, 250);
+			});
                     });
 		</script>
 
