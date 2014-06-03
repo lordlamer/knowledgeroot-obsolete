@@ -84,19 +84,19 @@ class Knowledgeroot_Page {
 	// get user session
 	$session = new Zend_Session_Namespace('user');
 
-	if ($this->name != null)
+	if ($this->name !== null)
 	    $data['name'] = $this->name;
-	if ($this->subtitle != null)
+	if ($this->subtitle !== null)
 	    $data['subtitle'] = $this->subtitle;
-	if ($this->description != null)
+	if ($this->description !== null)
 	    $data['description'] = $this->description;
-	if ($this->parent != null)
+	if ($this->parent !== null)
 	    $data['parent'] = $this->parent;
-	if ($this->tooltip != null)
+	if ($this->tooltip !== null)
 	    $data['tooltip'] = $this->tooltip;
-	if ($this->icon != null)
+	if ($this->icon !== null)
 	    $data['icon'] = $this->icon;
-	if ($this->alias != null)
+	if ($this->alias !== null)
 	    $data['alias'] = $this->alias;
 	if ($this->content_collapse == true)
 	    $data['content_collapse'] = Knowledgeroot_Db::true();
