@@ -74,6 +74,7 @@ class PageController extends Zend_Controller_Action {
 	    $page->setAlias($this->_getParam('alias'));
 	    $page->setTooltip($this->_getParam('tooltip'));
 	    $page->setDescription($this->_getParam('page_description'));
+	    $page->setIcon($this->_getParam('icon'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
 
 	    if($this->_getParam('contentcollapse') == 1)
@@ -140,6 +141,7 @@ class PageController extends Zend_Controller_Action {
 	    $page->setAlias($this->_getParam('alias'));
 	    $page->setTooltip($this->_getParam('tooltip'));
 	    $page->setDescription($this->_getParam('page_description'));
+	    $page->setIcon($this->_getParam('icon'));
 	    $page->setAcl(json_decode($this->_getParam('acl')));
 
 	    if($this->_getParam('contentcollapse') == 1)
@@ -178,6 +180,7 @@ class PageController extends Zend_Controller_Action {
 	    $this->view->subtitle = $page->getSubtitle();
 	    $this->view->alias = $page->getAlias();
 	    $this->view->tooltip = $page->getTooltip();
+	    $this->view->icon = $page->getIcon();
 	    $this->view->contentcollapse = $page->getContentCollapse();
 	    $this->view->showpagedescription = $page->getShowContentDescription();
 	    $this->view->showtableofcontent = $page->getShowTableOfContent();

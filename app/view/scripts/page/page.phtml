@@ -78,11 +78,11 @@
 		    </div>
 
 		    <div class="form-group">
-			<label class="control-label col-sm-2" for="content-icon">Icon</label>
+			<label class="control-label col-sm-2" for="content-icon"><?= $this->translate('Icon') ?></label>
 			<div class="col-sm-4">
-			    <input type="text" class="form-control" id="content-icon" size="255" value="<?= $this->icon ?>">
+			    <input type="text" class="form-control" id="content-icon" size="255" name="icon" value="<?= $this->icon ?>">
 			    <p class="help-block">
-				Icon for Tree
+				<?= $this->translate('Icon for Tree') ?>
 			    </p>
 			</div>
 		    </div>
