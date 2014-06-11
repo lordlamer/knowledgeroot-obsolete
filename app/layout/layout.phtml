@@ -58,19 +58,12 @@ $config = Zend_Registry::get('config');
 	<script src="js/bootstrap-filestyle.js"></script>
 	<script src="vendor/bootboxjs/bootbox.min.js"></script>
 
-	<!-- load the dojo toolkit base -->
-	<script src="vendor/dojotoolkit/dojo/dojo.js"
-		djConfig="parseOnLoad: false, async:true">
-	</script>
-
-
-
-	<style type="text/css">
-	    @import "vendor/dojotoolkit/dijit/themes/claro/claro.css";
-	</style>
+	<!-- jstree -->
+	<link rel="stylesheet" href="vendor/jstree/themes/default/style.min.css" />
+	<script src="vendor/jstree/jstree.min.js"></script>
     </head>
 
-    <body class="claro">
+    <body>
 	<div class="modal fade bs-example-modal-lg" id="about" tabindex="-1" role="dialog" aria-labelledby="about-label" aria-hidden="true">
 	    <div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -346,38 +339,45 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		    <div class="container-fluid">
 
 			    <div class="well">
-				<div class="btn-group">
-				    <!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
-				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
-				    <a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
+				<div class="input-group">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree(true).refresh();"><i class="fa fa-refresh"></i></button>
+						<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('open_all');"><i class="fa fa-plus"></i></button>
+						<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('close_all');"><i class="fa fa-minus"></i></button>
+					</div>
+					<input id="treeOneSearch" type="text" placeholder="<?= $this->translate('Search') ?>" class="form-control">
 				</div>
 				<script type="text/javascript">
-				    require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
+				    $.getJSON( "./page/jsontree", function( data ) {
+					    $(function () { $('#treeOne')
+					    .on('changed.jstree', function (e, data) {
+						item = data.node.original;
 
-					var store = new dojo.data.ItemFileReadStore({
-					    url: "./page/jsontree"
-					});
-
-					var treeModel = new dijit.tree.ForestStoreModel({
-					    store: store,
-					    query: {"type": "root"},
-					    rootId: "root",
-					    rootLabel: "Knowledgeroot",
-					    childrenAttrs: ["children"]
-					});
-
-					new dijit.Tree({
-					    model: treeModel,
-					    showRoot: false,
-					    persist: true,
-					    onClick: function(item){
-						// Get the URL from the item, and navigate to it
 						if(item.alias != "")
-							location.href = item.alias;
+						    location.href = item.alias;
 						else
-							location.href = item.url;
-					    }
-					}, "treeOne");
+						    location.href = item.url;
+					    })
+					    .jstree({
+						'core' : {
+						    'data' : data.items
+						},
+						'sort': function(a, b) {
+							return this.get_node(a).original.sort > this.get_node(b).original.sort ? 1 : -1;
+						},
+						"plugins" : [ "sort", "state", "search" ]
+					    }); });
+
+					var to = false;
+					$('#treeOneSearch').keyup(function () {
+						if(to)
+							clearTimeout(to);
+
+						to = setTimeout(function () {
+							var v = $('#treeOneSearch').val();
+							$('#treeOne').jstree(true).search(v);
+						}, 250);
+					});
 				    });
 				</script>
 

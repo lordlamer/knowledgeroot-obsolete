@@ -8,39 +8,45 @@
 <button class="btn btn-primary" onclick="window.close();"><?= $this->translate('close') ?></button>
 <?php } else { ?>
 <div class="well">
-    <div class="btn-group">
-	<!-- <a class="btn" href="#"><i class="fa fa-refresh"></i></a> -->
-	<a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').expandAll();"><i class="fa fa-plus"></i></a>
-	<a class="btn btn-default" href="javascript:;" onclick="dijit.byId('treeOne').collapseAll();"><i class="fa fa-minus"></i></a>
-    </div>
-    <script type="text/javascript">
-	require(["dojo/parser", "dojo/data/ItemFileReadStore", "dijit/Tree"], function() {
+	<div class="input-group">
+		<div class="input-group-btn">
+			<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree(true).refresh();"><i class="fa fa-refresh"></i></button>
+			<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('open_all');"><i class="fa fa-plus"></i></button>
+			<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('close_all');"><i class="fa fa-minus"></i></button>
+		</div>
+		<input id="treeOneSearch" type="text" placeholder="<?= $this->translate('Search') ?>" class="form-control">
+	</div>
+	<script type="text/javascript">
+	    $.getJSON( "./page/jsontree", function( data ) {
+		    $(function () { $('#treeOne')
+		    .on('changed.jstree', function (e, data) {
+			item = data.node.original;
+			location.href = 'page/move/<?= $this->pageid ?>/to/' + item.id;
+		    })
+		    .jstree({
+			'core' : {
+			    'data' : data.items
+			},
+			'sort': function(a, b) {
+				return this.get_node(a).original.sort > this.get_node(b).original.sort ? 1 : -1;
+			},
+			"plugins" : [ "sort", "state", "search" ]
+		    }); });
 
-	    var store = new dojo.data.ItemFileReadStore({
-		url: "./page/jsontree"
+		var to = false;
+		$('#treeOneSearch').keyup(function () {
+			if(to)
+				clearTimeout(to);
+
+			to = setTimeout(function () {
+				var v = $('#treeOneSearch').val();
+				$('#treeOne').jstree(true).search(v);
+			}, 250);
+		});
 	    });
+	</script>
 
-	    var treeModel = new dijit.tree.ForestStoreModel({
-		store: store,
-		query: {"type": "root"},
-		rootId: "root",
-		rootLabel: "Knowledgeroot",
-		childrenAttrs: ["children"]
-	    });
-
-	    new dijit.Tree({
-		model: treeModel,
-		showRoot: false,
-		persist: true,
-		onClick: function(item){
-		    // Get the URL from the item, and navigate to it
-		    location.href = 'page/move/<?= $this->pageid ?>/to/' + item.id;
-		}
-	    }, "treeOne");
-	});
-    </script>
-
-    <div id="treeOne"></div>
+	<div id="treeOne"></div>
 </div>
 
 <button class="btn btn-primary" onclick="location.href = 'page/move/<?= $this->pageid ?>/to/0';"><?= $this->translate('Create as new root page') ?></button>
