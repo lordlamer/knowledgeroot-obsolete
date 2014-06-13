@@ -827,7 +827,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
 	    // set controller directory
 	    $controller->setControllerDirectory(
-		    $config->base->base_path . '/application/controller'
+		    $config->base->base_path . '/app/controller'
 	    );
 
 	    // disable view renderer
