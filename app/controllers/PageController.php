@@ -287,6 +287,12 @@ class PageController extends Zend_Controller_Action {
 	    }
 	}
 
+	// check for dead items
+	foreach($out['items'] as $key => $value) {
+		if($value['parent'] != '#' && !isset($out['items'][$value['parent']]))
+			unset($out['items'][$value['parent']]);
+	}
+
 	echo json_encode($out);
     }
 
