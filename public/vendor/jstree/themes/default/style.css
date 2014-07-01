@@ -168,8 +168,8 @@
   -webkit-box-shadow: 0 0 2px #0a6aa1;
   box-shadow: 0 0 2px #0a6aa1;
 }
-.vakata-context .vakata-context-separator a,
-.vakata-context .vakata-context-separator a:hover {
+.vakata-context .vakata-context-separator > a,
+.vakata-context .vakata-context-separator > a:hover {
   background: white;
   border: 0;
   border-top: 1px solid #e2e3e3;
@@ -259,7 +259,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  margin: 0;
+  margin: -5px 0 0 0;
   padding: 0;
   border-right: 0;
   border-top: 5px solid transparent;
@@ -809,6 +809,35 @@
   background: transparent;
 }
 @media (max-width: 768px) {
+  #jstree-dnd.jstree-dnd-responsive {
+    line-height: 40px;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 1px 1px white;
+  }
+  #jstree-dnd.jstree-dnd-responsive > i {
+    background: transparent;
+    width: 40px;
+    height: 40px;
+  }
+  #jstree-dnd.jstree-dnd-responsive > .jstree-ok {
+    background-image: url("40px.png");
+    background-position: 0 -200px;
+    background-size: 120px 240px;
+  }
+  #jstree-dnd.jstree-dnd-responsive > .jstree-er {
+    background-image: url("40px.png");
+    background-position: -40px -200px;
+    background-size: 120px 240px;
+  }
+  #jstree-marker.jstree-dnd-responsive {
+    border-left-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    margin-top: -10px;
+  }
+}
+@media (max-width: 768px) {
   .jstree-default-responsive {
     /*
 		.jstree-open > .jstree-ocl,
@@ -852,7 +881,7 @@
   .jstree-default-responsive .jstree-ocl,
   .jstree-default-responsive .jstree-themeicon,
   .jstree-default-responsive .jstree-checkbox {
-    background-size: 120px 200px;
+    background-size: 120px 240px;
   }
   .jstree-default-responsive .jstree-leaf > .jstree-ocl {
     background: transparent;
@@ -917,7 +946,7 @@
   .jstree-default-responsive .jstree-themeicon,
   .jstree-default-responsive .jstree-checkbox {
     background-image: url("40px.png");
-    background-size: 120px 200px;
+    background-size: 120px 240px;
   }
   .jstree-default-responsive .jstree-node {
     background-position: -80px 0;
@@ -939,11 +968,11 @@
   }
   .jstree-default-responsive .jstree-file {
     background: url("40px.png") 0 -160px no-repeat;
-    background-size: 120px 200px;
+    background-size: 120px 240px;
   }
   .jstree-default-responsive .jstree-folder {
     background: url("40px.png") -40px -40px no-repeat;
-    background-size: 120px 200px;
+    background-size: 120px 240px;
   }
 }
 .jstree-default > .jstree-container-ul > .jstree-node {
