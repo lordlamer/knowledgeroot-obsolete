@@ -270,6 +270,14 @@ class PageController extends Zend_Controller_Action {
 
 	if (count($pages) > 0) {
 	    foreach ($pages as $key => $page) {
+		// check for broken parentId to itself
+		if($page->getId() == $page->getParent())
+			continue;
+
+		// check if page is accessable
+		if(!Knowledgeroot_Page_Path::isAccessable($page->getId()))
+			continue;
+
 		$item = array(
 		    'id' => $page->getId(),
 		    'parent' => (($page->getParent() != 0) ? $page->getParent() : '#'),
@@ -285,20 +293,6 @@ class PageController extends Zend_Controller_Action {
 
 		$out['items'][] = $item;
 	    }
-	}
-
-	// check for dead items
-	foreach($out['items'] as $key => $value) {
-		if($value['parent'] != '#') {
-			$found = false;
-			foreach($out['items'] as $k => $v) {
-				if($value['parent'] == $v['id'])
-					$found = true;
-			}
-
-			if($found == false)
-				unset($out['items'][$key]);
-		}
 	}
 
 	echo json_encode($out);

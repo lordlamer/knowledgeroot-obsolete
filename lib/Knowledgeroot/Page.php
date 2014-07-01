@@ -505,6 +505,13 @@ class Knowledgeroot_Page {
 	// save
 	$page->save();
     }
+
+    public function isDeleted() {
+        if($this->deleted == true)
+		return true;
+	else
+		return false;
+    }
 }
 
 ?>

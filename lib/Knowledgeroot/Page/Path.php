@@ -27,6 +27,20 @@ class Knowledgeroot_Page_Path {
 	}
     }
 
+	/**
+	 * check if page is accessable
+	 */
+	public static function isAccessable($pageId) {
+		$path = Knowledgeroot_Page_Path::getPath($pageId);
+
+		foreach($path as $node) {
+			if($node->isDeleted())
+				return false;
+		}
+
+		return true;
+	}
+
 }
 
 ?>
