@@ -8,3 +8,4 @@ module/*
 config/app.ini
 config/modules.ini
 public/module/*
+/nbproject/private/
