@@ -4,7 +4,6 @@ data/cache/*
 data/files/*
 data/lucene/*
 vendor/*
-module/*
 config/app.ini
 config/modules.ini
 public/module/*

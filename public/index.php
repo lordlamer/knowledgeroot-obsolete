@@ -1,34 +1,35 @@
 <?php
 
-// use composer autoload
-require "../vendor/autoload.php";
-
-// Define path to application directory
-defined('APPLICATION_PATH')
-    || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../app'));
+/**
+ * Knowledgeroot
+ *
+ * Knowledgeroot Knowledgebase
+ *
+ * @author Frank Habermann <lordlamer@lordlamer.de>
+ * @date 20150309
+ */
 
 // Define path to project directory
 defined('PROJECT_PATH')
     || define('PROJECT_PATH', realpath(dirname(__FILE__) . '/..'));
 
-// Define application environment
-//defined('APPLICATION_ENV')
-//    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
-define('APPLICATION_ENV', 'development');
+// use composer autoload
+require PROJECT_PATH . '/vendor/autoload.php';
 
-// Ensure library/ is on include_path
-set_include_path(implode(PATH_SEPARATOR, array(
-    realpath(PROJECT_PATH . '/lib'),
-    get_include_path(),
-)));
+// parse config
+$config = parse_ini_file(PROJECT_PATH . '/config/app.ini', true);
 
-/** Zend_Application */
-require_once 'Zend/Application.php';
+// modules to load
+$modules = array();
 
-// Create application, bootstrap, and run
-$application = new Zend_Application(
-    APPLICATION_ENV,
-    PROJECT_PATH . '/config/app.ini'
-);
-$application->bootstrap()
-            ->run();
+// get each active module
+foreach($config['modules'] as $module => $enabled) {
+	if($enabled)
+		$modules[] = $module;
+}
+
+// init app
+$app = new \SlimMVC\Application(PROJECT_PATH . '/module', $modules);
+
+// run auth app
+$app->run();
