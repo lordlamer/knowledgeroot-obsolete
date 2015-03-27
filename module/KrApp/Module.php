@@ -24,7 +24,7 @@ class Module {
 
     public function getViewConfig() {
         return array(
-            __NAMESPACE__ => __DIR__ . '/view/'
+            'Knowledgeroot' => __DIR__ . '/view/'
         );
     }
 

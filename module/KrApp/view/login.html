@@ -1,30 +1,33 @@
+{% extends '@Knowledgeroot/Layout/layout-sidebar.html' %}
+
+{% block content %}
 <div class="page-header">
-    <h2><?= $this->translate('Login') ?></h2>
+    <h2>{% trans "Login" %}</h2>
 </div>
 <form role="form" class="form-horizontal" action="./login" method="post" name="loginformular">
     <input type="hidden" name="<?php session_name(); ?>" value="<?php session_id(); ?>" />
     <input type="hidden" name="login" value="login" />
 
     <div class="form-group">
-	<label class="col-sm-1 control-label" for="user"><?= $this->translate('User') ?></label>
+	<label class="col-sm-1 control-label" for="user">{% trans "User" %}</label>
 
 	<div class="input-group col-sm-3">
 	  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-	  <input type="text" class="form-control" id="user" name="user" placeholder="<?= $this->translate('User') ?>" required="required" autofocus="autofocus">
+	  <input type="text" class="form-control" id="user" name="user" placeholder="{% trans "User" %}" required="required" autofocus="autofocus">
 	</div>
     </div>
 
     <div class="form-group">
-	<label class="col-sm-1 control-label" for="password"><?= $this->translate('Password') ?></label>
+	<label class="col-sm-1 control-label" for="password">{% trans "Password" %}</label>
 
 	<div class="input-group col-sm-3">
 	  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	  <input type="password" class="form-control" id="password" name="password" placeholder="<?= $this->translate('Password') ?>" required="required" autofocus="autofocus">
+	  <input type="password" class="form-control" id="password" name="password" placeholder="{% trans "Password" %}" required="required" autofocus="autofocus">
 	</div>
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">
-	<input class="btn btn-primary" type="submit" name="loginbutton" value="<?= $this->translate('login') ?>" />
+	<input class="btn btn-primary" type="submit" name="loginbutton" value="{% trans "login" %}" />
     </div>
 </form>
 
@@ -33,3 +36,4 @@
     document.loginformular.user.focus();
     //-->
 </script>
+{% endblock %}
