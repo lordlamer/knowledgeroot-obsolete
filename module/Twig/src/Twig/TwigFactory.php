@@ -22,6 +22,11 @@ class TwigFactory {
 		$twig->getLoader()->addPath($value, $key);
 	}
 
+        // add translation extension
+        // see: http://twig.sensiolabs.org/doc/extensions/index.html#extensions-install
+        // see: http://twig.sensiolabs.org/doc/extensions/i18n.html
+        $twig->addExtension(new \Twig_Extensions_Extension_I18n());
+
         return $twig;
     }
 }

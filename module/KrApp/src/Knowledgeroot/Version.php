@@ -19,6 +19,8 @@
  * @version    $Id:$
  */
 
+namespace Knowledgeroot;
+
 /**
  * Class to store and retrieve the version of Knowledgeroot.
  *
@@ -27,12 +29,12 @@
  * @copyright  Copyright (c) 2011 Frank Habermann
  * @license    http://knowledgeroot.org/license/new-bsd     New BSD License
  */
-final class Knowledgeroot_Version
+final class Version
 {
     /**
      * Knowledgeroot version identification - see compareVersion()
      */
-    const VERSION = '1.0.100';
+    const VERSION = '2.0-dev';
 
     /**
      * The latest stable version Knowledgeroot available

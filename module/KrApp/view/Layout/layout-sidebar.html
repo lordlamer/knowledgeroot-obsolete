@@ -1,9 +1,3 @@
-<?php
-/**
- * load config
- */
-$config = Zend_Registry::get('config');
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,8 +5,8 @@ $config = Zend_Registry::get('config');
 	<title>Knowledgeroot</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<base href="<?= $config->base->base_url ?>" />
-	<?php echo $this->layout()->header; ?>
+	<base href="{{baseUrl}}" />
+        {% block header %} {% endblock %}
 	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
 	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -98,17 +92,17 @@ $config = Zend_Registry::get('config');
 		<div class="modal-content">
 		    <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h4 class="modal-title" id="about-label"><?= $this->translate('About Knowledgeroot') ?></h4>
+			<h4 class="modal-title" id="about-label">{% trans "About Knowledgeroot" %}</h4>
 		    </div>
 		    <div class="modal-body" style="overflow-y: scroll; max-height: 450px;">
 			<h3>Knowledgeroot Knowledgebase System</h3>
-			<p>Version: <?= $config->base->version ?></p>
+			<p>Version: {{version}}</p>
 			<p>Homepage: <a href="http://www.knowledgeroot.org" target="_blank">http://www.knowledgeroot.org</a></p>
 
 			<h3>License</h3>
 			<hr>
 			<pre>
-Copyright (c) 2014, Frank Habermann <lordlamer@lordlamer.de>
+Copyright (c) 2015, Frank Habermann <lordlamer@lordlamer.de>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -138,7 +132,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			</pre>
 		    </div>
 		    <div class="modal-footer">
-			<button type="button" class="btn btn-primary" data-dismiss="modal"><?= $this->translate('Close') ?></button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Close" %}</button>
 		    </div>
 		</div>
 	    </div>
@@ -150,39 +144,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<form action="./file/new" class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
 		    <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3 id="myModalLabel"><?= $this->translate('File Upload') ?></h3>
+			<h3 id="myModalLabel">{% trans "File Upload" %}</h3>
 		    </div>
 		    <div class="modal-body">
 			    <fieldset>
 				<div class="form-group">
-				    <label class="control-label col-sm-2" for="content-title"><h4><?= $this->translate('Content') ?></h4></label>
+				    <label class="control-label col-sm-2" for="content-title"><h4>{% trans "Content" %}</h4></label>
 				    <div class="col-sm-4">
-					<input type="text" placeholder="<?= $this->translate('select content') ?>" disabled="true" class="form-control" id="parent-name" size="255" name="parent_name" value="">
+					<input type="text" placeholder="{% trans "select content" %}" disabled="true" class="form-control" id="parent-name" size="255" name="parent_name" value="">
 					<p class="help-block">
-					    <?= $this->translate('Select content') ?>
+                                            {% trans "Select content" %}
 					</p>
 					<input type="hidden" id="parent" size="255" name="parent" value="">&nbsp;
 				    </div>
 				    <div class="col-sm-2">
-					<input type="button" class="btn btn-success" value="<?= $this->translate('select page') ?>" onclick="window.open('content/select','Knowledgeroot','width=800,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
+					<input type="button" class="btn btn-success" value="{% trans "select page" %}" onclick="window.open('content/select','Knowledgeroot','width=800,height=500,menubar=yes,resizable=yes,scrollbars=yes');" />
 				    </div>
 				</div>
 
 				<div class="form-group">
-				    <label class="control-label col-sm-2" for="file-box"><h4><?= $this->translate('File') ?></h4></label>
+				    <label class="control-label col-sm-2" for="file-box"><h4>{% trans "File" %}</h4></label>
 				    <div class="col-sm-6">
-					<input type="file" name="file" multiple class="filestyle form-horizontal" data-classButton="btn btn-primary" data-input="false" data-buttonText="<?= $this->translate('Select File(s)') ?>">
+					<input type="file" name="file" multiple class="filestyle form-horizontal" data-classButton="btn btn-primary" data-input="false" data-buttonText="{% trans "Select File(s)" %}">
 
 					<p class="help-block">
-					    <?= $this->translate('Select a file') ?>
+                                            {% trans "Select a file" %}
 					</p>
 				    </div>
 				</div>
 			    </fieldset>
 		    </div>
 		    <div class="modal-footer">
-			<button class="btn btn-primary" type="submit"><?= $this->translate('Upload') ?></button>
-			<button class="btn btn-default" data-dismiss="modal"><?= $this->translate('Close') ?></button>
+			<button class="btn btn-primary" type="submit">{% trans "Upload" %}</button>
+			<button class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
 		    </div>
 		    <script>
 			function selectContent(id, name) {
@@ -206,24 +200,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			    <span class="fa fa-bar"></span>
 			</button>
 
-			<?php if($config->linklist->enable) { ?>
+                        {% if config.linklist.enable %}
 			    <a class="navbar-brand" href="#" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
 			    <ul class="dropdown-menu">
-				<?php
-				    foreach($config->linklist->list->toArray() as $key => $value) {
-					echo "<li>";
-					echo "<a href=\"".$value['url']."\"".((isset($value['target']) && $value['target'] != '') ? 'target="'.$value['target'].'"' : '' ).">";
-					if(isset($value['icon']) && $value['icon'] != '')
-						echo "<i class=\"".$value['icon']."\"></i>&nbsp;";
-					echo $value['name'];
-					echo "</a>";
-					echo "</li>\n";
-				    }
-				?>
+                                {% for link in config.linklist.list %}
+                                    <li>
+                                        <a href="{{link.url}}"{% if link.target != '' %} target="{{link.target}}"{% endif %}>
+                                            {% if link.icon != '' %}<i class="{{link.icon}}"></i>&nbsp;{% endif %}
+                                            {{link.name}}
+                                        </a>
+                                    </li>
+                                {% endfor %}
 			    </ul>
-			<?php } ?>
+			{% endif %}
 
-			<a class="navbar-brand" href="#"><?= $config->base->title ?></a>
+			<a class="navbar-brand" href="#">{{ config.base.title|raw }}</a>
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -231,18 +222,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			    <li class="divider-vertical"></li>
 			    <li class="dropdown" style="border-top: 3px solid #1171A3;">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				    <i class="fa fa-plus icon-white"></i>&nbsp;<strong><?= $this->translate('New') ?></strong>
+				    <i class="fa fa-plus icon-white"></i>&nbsp;<strong>{% trans "New" %}</strong>
 				    <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-				    <li><a href="page/new"><i class="fa fa-file"></i>&nbsp;<?= $this->translate('Page') ?></a></li>
-				    <li><a href="content/new"><i class="fa fa-file-text"></i>&nbsp;<?= $this->translate('Content') ?></a></li>
-				    <li><a data-toggle="modal" href="#fileUpload"><i class="fa fa-paperclip"></i>&nbsp;<?= $this->translate('File') ?></a></li>
-				    <?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new') || Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?>
+				    <li><a href="page/new"><i class="fa fa-file"></i>&nbsp;{% trans "Page" %}</a></li>
+				    <li><a href="content/new"><i class="fa fa-file-text"></i>&nbsp;{% trans "Content" %}</a></li>
+				    <li><a data-toggle="modal" href="#fileUpload"><i class="fa fa-paperclip"></i>&nbsp;{% trans "File" %}</a></li>
+				    {% if iAmAllowed('manageUsers','new') or iAmAllowed('manageGroups','new') %}
 					<li class="divider"></li>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers', 'new')) { ?><li><a href="user/new"><i class="fa fa-user"></i>&nbsp;<?= $this->translate('User') ?></a></li><?php } ?>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups', 'new')) { ?><li><a href="group/new"><i class="fa fa-group"></i>&nbsp;<?= $this->translate('Group') ?></a></li><?php } ?>
-				    <?php } ?>
+					{% if iAmAllowed('manageUsers','new') %}<li><a href="user/new"><i class="fa fa-user"></i>&nbsp;{% trans "User" %}</a></li>{% endif %}
+					{% if iAmAllowed('manageGroups','new') %}<li><a href="group/new"><i class="fa fa-group"></i>&nbsp;{% trans "Group" %}</a></li>{% endif %}
+				    {% endif %}
 				</ul>
 			    </li>
 			    <li class="divider-vertical"></li>
@@ -250,7 +241,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 			<form class="navbar-form navbar-left" role="search" action="index.php" method="post">
 			    <div class="form-group">
-				<input id="searchquery" type="text" class="form-control" placeholder="<?= $this->translate('Search') ?>" name="search" value="">
+				<input id="searchquery" type="text" class="form-control" placeholder="{% trans "Search" %}" name="search" value="">
 			    </div>
 			</form>
 
@@ -264,16 +255,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				    <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-				    <li><a href="http://docs.knowledgeroot.org" target="_blank"><i class="fa fa-book"></i>&nbsp;<?= $this->translate('Online Help') ?></a></li>
-				    <li><a href="javascript:;" data-toggle="modal" data-target="#about"><i class="fa fa-star"></i>&nbsp;<?= $this->translate('About') ?></a></li>
+				    <li><a href="http://docs.knowledgeroot.org" target="_blank"><i class="fa fa-book"></i>&nbsp;{% trans "Online Help" %}</a></li>
+				    <li><a href="javascript:;" data-toggle="modal" data-target="#about"><i class="fa fa-star"></i>&nbsp;{% trans "About" %}</a></li>
 				</ul>
 			    </li>
 			</ul>
 
-			<?php
-			$session = new Zend_Session_Namespace('user');
-			if(!$session->valid) { // show language dropdown only for guest users
-			?>
+                        {% if not session.valid %}
 			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
 			    <li class="divider-vertical"></li>
 			    <li class="dropdown" style="border-top: 3px solid #932AB6;">
@@ -281,40 +269,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				   class="dropdown-toggle"
 				   data-toggle="dropdown">
 				    <i class="fa fa-flag icon-white"></i>&nbsp;
-				    <?= $this->translate('Languages') ?>
+				    {% trans "Languages" %}
 				    <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-				    <?php
-				    $translation = Knowledgeroot_Registry::get('translate');
-				    $actLocale = $translation->getLocale();
-
-				    foreach ($translation->getTranslations() as $key => $value) {
-					    // switch locale
-					    $translation->setLocale($key);
-
-					    // show translation name
-					    echo '<li><a href="./language/' . $key . '">' . $this->translate('[TRANSLATION_NAME]', $key) . '</a></li>';
-				    }
-
-				    // reset locale
-				    $translation->setLocale($actLocale);
-				    ?>
+                                    {% for language in languages %}
+                                        <li><a href="./language/{{language.key}}">{{language.name}}</a></li>
+                                    {% endfor %}
 				</ul>
 			    </li>
 			</ul>
-			<?php
-			} // end language dropdown
-			?>
+			{% endif %}
 			<script>
 			    $('.dropdown-toggle').dropdown();
 			</script>
 
 			<ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
-			    <?php
-			    $userSession = new Zend_Session_Namespace('user');
-			    if ($userSession->valid) {
-				?>
+                            {% if session.valid %}
 			    <ul class="nav navbar-nav navbar-right" style="margin-left:35px;">
 				<li class="divider-vertical"></li>
 				<li class="dropdown" style="border-top: 3px solid #FA3031;">
@@ -322,12 +293,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				       class="dropdown-toggle"
 				       data-toggle="dropdown">
 					<i class="fa fa-user icon-white"></i>&nbsp;
-					    <?= $userSession->login ?>
+					    {{session.login}}
 					<b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-					<li><a href="settings"><i class="fa fa-cog"></i>&nbsp;<?= $this->translate('Settings') ?></a></li>
-					<li><a href="logout"><i class="fa fa-power-off"></i>&nbsp;<?= $this->translate('Logout') ?></a></li>
+					<li><a href="settings"><i class="fa fa-cog"></i>&nbsp;{% trans "Settings" %}</a></li>
+					<li><a href="logout"><i class="fa fa-power-off"></i>&nbsp;{% trans "Logout" %}</a></li>
 				    </ul>
 				</li>
 			    </ul>
@@ -339,25 +310,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				       class="dropdown-toggle"
 				       data-toggle="dropdown">
 					<i class="fa fa-th-large icon-white"></i>&nbsp;
-					    <?= $this->translate('system') ?>
+					    {% trans "system" %}
 					<b class="caret"></b>
 				    </a>
 				    <ul class="dropdown-menu">
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageUsers','show')) { ?><li><a href="user"><i class="fa fa-user"></i>&nbsp;<?= $this->translate('Users') ?></a></li><?php } ?>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageGroups','show')) { ?><li><a href="group"><i class="fa fa-group"></i>&nbsp;<?= $this->translate('Groups') ?></a></li><?php } ?>
-					<?php if(Knowledgeroot_Acl::iAmAllowed('manageSystemPermissions','show')) { ?><li><a href="permissions"><i class="fa fa-key"></i>&nbsp;<?= $this->translate('Permissions') ?></a></li><?php } ?>
+                                        {% if iAmAllowed('manageUsers','show') %}<li><a href="user"><i class="fa fa-user"></i>&nbsp;{% trans "Users" %}</a></li>{% endif %}
+                                        {% if iAmAllowed('manageGroups','show') %}<li><a href="group"><i class="fa fa-group"></i>&nbsp;{% trans "Groups" %}</a></li>{% endif %}
+                                        {% if iAmAllowed('manageSystemPermissions','show') %}<li><a href="permissions"><i class="fa fa-key"></i>&nbsp;{% trans "Permissions" %}</a></li>{% endif %}
 				    </ul>
 				</li>
 			    </ul>
-				<?php
-			    } else {
-				?>
-			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="fa fa-share icon-white"></i>&nbsp;<?= $this->translate('Login') ?></a></li>
-				<?php
-			    }
-			    ?>
+                            {% else %}
+			    <li style="border-top: 3px solid #FA3031;"><a href="login"><i class="fa fa-share icon-white"></i>&nbsp;{% trans "Login" %}</a></li>
+                            {% endif %}
 			</ul>
-			<?php echo $this->layout()->topNavi; ?>
+                        {% block topNavi %} {% endblock %}
 		    </div>
 		</div>
 	</nav>
@@ -370,7 +337,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('open_all');"><i class="fa fa-plus"></i></button>
 				<button class="btn btn-default" type="button" onclick="$('#treeOne').jstree('close_all');"><i class="fa fa-minus"></i></button>
 			</div>
-			<input id="treeOneSearch" type="text" placeholder="<?= $this->translate('Search') ?>" class="form-control">
+			<input id="treeOneSearch" type="text" placeholder="{% trans "Search" %}" class="form-control">
 		</div>
 		<script type="text/javascript">
                     $.getJSON( "./page/jsontree", function( data ) {
@@ -410,43 +377,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	    </div>
 
 	    <div class="ui-layout-center">
-		<?php
-		if (is_array($this->layout()->pathNavi)) {
-		    echo "<ol class=\"breadcrumb\">";
-		    echo "<li><i class=\"fa fa-home fa-lg\"></i> <a href=\"./\"><?= $this->translate('Home') ?></a></li>";
-
-		    $c = count($this->layout()->pathNavi);
-		    $x = 0;
-		    foreach ($this->layout()->pathNavi as $page) {
-			$x++;
-
-			if ($x != $c) {
-			    echo "<li><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
-			} else {
-			    echo "<li class=\"active\"><a href=\"./page/" . $page->getId() . "\">" . $page->getName() . "</a></li>";
-			}
-		    }
-
-		    echo "</ol>";
-		}
-		?>
+                <ol class="breadcrumb">
+                {% for item in breadcrumb %}
+                    <li class="{item.class}"><a href="{item.url}">{item.name}</a></li>
+                {% endfor %}
+                </ol>
 
 		<div class="content">
-		    <?php
-		    foreach (Knowledgeroot_Message::getMessages() as $key => $value) {
-			echo '
-			<div class="alert alert-' . $value['type'] . '" data-dismiss="alert">
-			<a class="close" href="#">×</a>
-			<p><strong>' . $value['title'] . '</strong>&nbsp;' . $value['message'] . '</p>
-			</div>';
-
-			Knowledgeroot_Message::delMessage($key);
-		    }
-		    ?>
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.type}}}" data-dismiss="alert">
+                            <a class="close" href="#">×</a>
+                            <p><strong>{{message.title}}</strong>&nbsp;{{message.message}}</p>
+			</div>
+                    {% endfor %}
 		    <script>
 			$(".alert").alert()
 		    </script>
-		    <?php echo $this->layout()->content; ?>
+		    {% block content %} {% endblock %}
 		</div>
 	    </div>
 	</div>
@@ -456,11 +403,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<p class="muted credit">
 		    <a href="http://knowledgeroot.org">Knowledgeroot</a>
 		    <a href="https://github.com/lordlamer/knowledgeroot">Github</a>
-		    <a href="http://forum.lordlamer.de/"><?= $this->translate('Forum') ?></a>
+		    <a href="http://forum.lordlamer.de/">{% trans "Forum" %}</a>
 		    <a href="http://lists.knowledgeroot.org">Mailinglists</a>
 		    <a href="http://api.knowledgeroot.org">API</a>
 		    <a href="http://docs.knowledgeroot.org">Docs</a>
-		    <span><?= $this->translate('Version') ?>: <?php echo $this->layout()->version; ?></span>
+		    <span>{% trans "Version" %}: {{version}}</span>
 		</p>
 	    </div>
 	</nav>

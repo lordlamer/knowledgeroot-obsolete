@@ -1,3 +1,6 @@
+20150309 - fhabermann
+* added slim mvc module loader and started migration to new structure
+
 20140319 - fhabermann
 * added flexible sidebar layout (Closes #27)
 
