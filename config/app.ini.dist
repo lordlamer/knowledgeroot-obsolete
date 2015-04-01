@@ -1,33 +1,3 @@
-[production]
-phpSettings.display_startup_errors = 1
-phpSettings.display_errors = 1
-includePaths.library = PROJECT_PATH "/lib"
-bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
-bootstrap.class = "Bootstrap"
-appnamespace = "Knowledgeroot"
-resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
-resources.frontController.params.displayExceptions = 1
-resources.frontController.defaultControllerName = "index"
-resources.frontController.defaultAction = "index"
-
-resources.layout.layoutPath = APPLICATION_PATH "/layout/"
-;resources.layout.layout = "layout"
-resources.layout.layout = "layout-sidebar"
-
-resources.view.encoding = "UTF-8"
-resources.view.basePath = APPLICATION_PATH "/view/"
-resources.view.helperPath = APPLICATION_PATH "/view/helpers"
-[staging : production]
-
-[testing : production]
-phpSettings.display_startup_errors = 1
-phpSettings.display_errors = 1
-
-[development : production]
-phpSettings.display_startup_errors = 1
-phpSettings.display_errors = 1
-resources.frontController.params.displayExceptions = 1
-
 [base]
 version = "2.0a1"
 title = "Knowledgeroot"
@@ -38,6 +8,16 @@ charset = "UTF-8"
 locale = "en_US"
 showlogo = "1"
 theme = "green"
+
+[database]
+dsn = "mysql://root:@localhost/knowledgeroot2?charset=utf8"
+
+[modules]
+Config = true
+Monolog = true
+Doctrine = true
+Twig = true
+KrApp = true
 
 [admin]
 loginhash = ""
