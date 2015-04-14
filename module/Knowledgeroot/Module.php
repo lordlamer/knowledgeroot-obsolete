@@ -1,6 +1,6 @@
 <?php
 
-namespace KrApp;
+namespace Knowledgeroot;
 
 class Module {
 
