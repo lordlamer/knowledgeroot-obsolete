@@ -11,7 +11,7 @@ class PageController extends Zend_Controller_Action {
     }
 
     protected function getPagePath() {
-	if ($this->_getParam('id') != "") {
+	if ($this->_getParam('id') != "" && $this->_getParam('id') != 0) {
 	    $pagePath = Knowledgeroot_Page_Path::getPath($this->_getParam('id'));
 	    Zend_Layout::getMvcInstance()->assign('pathNavi', $pagePath);
 	}
@@ -23,7 +23,13 @@ class PageController extends Zend_Controller_Action {
 
     public function listAction() {
 	// load contents for page
-	$page = new Knowledgeroot_Page($this->_getParam('id'));
+	try {
+		$page = new Knowledgeroot_Page($this->_getParam('id'));
+	} catch(Exception $e) {
+		// redirect to homepage on error
+		$this->_redirect('');
+	}
+
 	$contents = Knowledgeroot_Content::getContents($page);
 	$files = array();
 
