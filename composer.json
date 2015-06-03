@@ -20,14 +20,14 @@
 	"symfony/console": "2.*",
 	"doctrine/dbal": "2.*",
 	"monolog/monolog": "1.*",
-	"zendframework/zend-mail": "2.3.*",
-	"zendframework/zend-eventmanager": "2.3.*",
-	"zendframework/zend-config": "2.3.*",
-	"zendframework/zend-loader": "2.3.*",
-	"zendframework/zend-permissions-acl": "2.3.*",
-	"zendframework/zend-session": "2.3.*",
-	"zendframework/zend-navigation": "2.3.*",
-	"zendframework/zend-log": "2.3.*",
+	"zendframework/zend-mail": "2.*",
+	"zendframework/zend-eventmanager": "2.*",
+	"zendframework/zend-config": "2.*",
+	"zendframework/zend-loader": "2.*",
+	"zendframework/zend-permissions-acl": "2.*",
+	"zendframework/zend-session": "2.*",
+	"zendframework/zend-navigation": "2.*",
+	"zendframework/zend-log": "2.*",
         "twig/extensions": "~1.1.0"
     }
 }
